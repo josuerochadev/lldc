@@ -1,0 +1,74 @@
+@startuml sequence_diagram
+
+participant Client
+participant SiteWeb
+participant Serveur
+participant BaseDeDonnées
+participant Opticien
+
+== Prise de Rendez-vous ==
+Client -> SiteWeb: Sélectionne une date et un créneau
+SiteWeb -> Serveur: Vérifie disponibilité du créneau
+Serveur -> BaseDeDonnées: Vérifie disponibilité
+BaseDeDonnées -> Serveur: Retour disponibilité
+alt Créneau disponible
+    Serveur -> SiteWeb: Affiche formulaire de RDV
+    Client -> SiteWeb: Remplit et soumet la demande de RDV
+    SiteWeb -> Serveur: Enregistre la demande en attente
+    Serveur -> BaseDeDonnées: Stocke la demande
+    Serveur -> Opticien: Notification d'une nouvelle demande
+    Opticien -> Serveur: Accepte ou refuse la demande
+    Serveur -> BaseDeDonnées: Met à jour le statut du RDV
+    Serveur -> Client: Envoie confirmation ou refus de RDV
+else Créneau indisponible
+    Serveur -> SiteWeb: Informe le client de l’indisponibilité
+end
+
+== Modification d'un RDV par l'Opticien ==
+Opticien -> SiteWeb: Modifie un RDV
+SiteWeb -> Serveur: Envoie la modification
+Serveur -> BaseDeDonnées: Met à jour le RDV
+BaseDeDonnées -> Serveur: Confirmation de mise à jour
+Serveur -> Client: Notification de modification avec lien de confirmation
+alt Client accepte la modification
+    Client -> Serveur: Confirme la modification via un lien
+    Serveur -> BaseDeDonnées: Met à jour le statut du RDV
+end
+alt Client refuse la modification
+    Client -> Serveur: Refuse la modification via un lien
+    Serveur -> BaseDeDonnées: Met à jour le statut du RDV à "Annulé par le client"
+    Serveur -> Opticien: Notification de l'annulation
+    Serveur -> Client: Invitation à reprendre un nouveau RDV
+end
+
+== Annulation d'un RDV ==
+alt Annulation par l'opticien
+    Opticien -> Serveur: Annule un RDV
+    Serveur -> BaseDeDonnées: Met à jour le statut du RDV
+    BaseDeDonnées -> Serveur: Confirmation d'annulation
+    Serveur -> Client: Notification d'annulation
+end
+
+alt Annulation demandée par le client via lien
+    Client -> Serveur: Clique sur le lien d'annulation reçu par email/SMS
+    Serveur -> BaseDeDonnées: Met à jour le statut du RDV à "Annulé par le client"
+    Serveur -> Opticien: Notification de l'annulation
+end
+
+alt Annulation demandée par le client (contact manuel)
+    Client -> Opticien: Demande d'annulation (email, téléphone, formulaire)
+    Opticien -> Serveur: Annule manuellement le RDV
+    Serveur -> BaseDeDonnées: Met à jour le statut du RDV
+    Serveur -> Client: Confirmation d'annulation
+end
+
+== Rappel Automatique ==
+Serveur -> BaseDeDonnées: Vérifie les RDV du lendemain
+BaseDeDonnées -> Serveur: Retourne la liste des RDV
+Serveur -> Client: Envoie rappel RDV
+Serveur -> Opticien: Envoie récapitulatif RDV du lendemain
+alt Second rappel activé
+    Serveur -> Client: Envoie un second rappel 2h avant le RDV
+end
+
+@enduml

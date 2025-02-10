@@ -1,0 +1,29 @@
+@startuml architecture
+
+package "Frontend (React)" {
+  component "Interface utilisateur" as UI
+}
+
+package "Backend (Node.js + Express)" {
+  component "API REST" as API
+  component "Gestion des données" as Data
+}
+
+package "Base de Données (PostgreSQL)" {
+  database "BDD"
+}
+
+package "Services tiers" {
+  component "Service Email (SendGrid)" as Email
+  component "Service SMS (Twilio)" as SMS
+  component "Captcha (reCAPTCHA ou autre)" as Captcha
+}
+
+UI --> API : Requêtes utilisateur
+API --> Data : Gestion des traitements
+Data --> BDD : Interactions SQL
+API --> Email : Envoi des emails
+API --> SMS : Envoi des SMS
+UI --> Captcha : Validation des formulaires
+
+@enduml

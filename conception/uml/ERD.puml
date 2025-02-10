@@ -1,0 +1,49 @@
+@startuml ERD_Diagram
+entity "Clients" {
+  + id: INT [PK]
+  --
+  + first_name: VARCHAR
+  + last_name: VARCHAR
+  + email: VARCHAR
+  + phone: VARCHAR
+}
+
+entity "Rendez-vous" {
+  + id: INT [PK]
+  --
+  + client_id: INT [FK -> Clients.id]
+  + appointment_date: DATETIME
+  + status: ENUM('pending', 'confirmed', 'cancelled')
+  + preferred_notification: ENUM('email', 'sms', 'both')
+  + optician_notes: TEXT
+}
+
+entity "Créneaux bloqués" {
+  + id: INT [PK]
+  --
+  + start_date: DATETIME
+  + end_date: DATETIME
+}
+
+entity "Notifications" {
+  + id: INT [PK]
+  --
+  + appointment_id: INT [FK -> Rendez-vous.id]
+  + notification_date: DATETIME
+  + type: ENUM('rappel', 'confirmation', 'modification')
+}
+
+entity "Messages" {
+  + id: INT [PK]
+  --
+  + name: VARCHAR
+  + email: VARCHAR
+  + phone: VARCHAR
+  + message_content: TEXT
+  + sent_at: DATETIME
+}
+
+Clients ||--o{ "Rendez-vous" : "a"
+"Rendez-vous" ||--o{ Notifications : "génère"
+"Créneaux bloqués" ||--o{ "Rendez-vous" : "empêche"
+@enduml

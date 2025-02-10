@@ -1,0 +1,20 @@
+@startuml arborescence
+
+node "Site Web" {
+  node "Accueil" {
+    node "Pages principales" {
+      [Les Offres]
+      [Les Services]
+      [Le Concept]
+      [Réseaux Sociaux]
+      [Contact]
+    }
+    node "Administration" {
+      [Gestion des RDV]
+      [Blocage des créneaux]
+      [Rappels]
+    }
+  }
+}
+
+@enduml
