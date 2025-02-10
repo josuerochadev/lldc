@@ -1,0 +1,40 @@
+@startuml use_cases_diagram
+
+left to right direction
+
+actor Client
+actor Opticien
+actor Système
+
+rectangle "Gestion des Rendez-vous" {
+  Client -- (Faire une demande de RDV)
+  Opticien -- (Valider ou refuser une demande de RDV)
+  Opticien -- (Modifier un RDV)
+  Opticien -- (Annuler un RDV)
+  Client -- (Recevoir une confirmation ou un refus de RDV)
+  Client -- (Recevoir une notification de modification ou annulation)
+  Client -- (Refuser une modification de RDV)
+  Système -- (Annuler automatiquement un RDV refusé par le client)
+  Système -- (Notifier l'opticien de l'annulation automatique)
+}
+
+rectangle "Gestion des Créneaux" {
+  Opticien -- (Bloquer un créneau spécifique)
+  Opticien -- (Bloquer une période entière)
+}
+
+rectangle "Notifications" {
+  Système -- (Envoyer confirmation de RDV)
+  Système -- (Envoyer notification de modification ou annulation)
+  Système -- (Envoyer rappel automatique 24h avant le RDV)
+  Système -- (Envoyer un second rappel 2h avant le RDV si activé)
+}
+
+rectangle "Formulaire de Contact" {
+  Client -- (Envoyer un message à l'opticien)
+  Système -- (Transmettre le message à l'opticien par email)
+  Système -- (Protéger le formulaire avec un captcha)
+  Système -- (Limiter les soumissions à 1 par minute)
+}
+
+@enduml
