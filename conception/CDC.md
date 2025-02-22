@@ -94,7 +94,7 @@
   - Prisma pour les interactions avec PostgreSQL
   - Zod pour la validation des données
   - Sécurité : Helmet, Rate-Limit, CORS
-  - Logs : Winston ou Pino
+  - Logs : Winston
   - Tests : Jest, Supertest
   - Documentation API : Swagger
 - **Frontend :**
