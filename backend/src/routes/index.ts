@@ -1,8 +1,8 @@
 import { Router } from "express";
+import appointmentRoutes from "./appointment";
+
 const router = Router();
 
-router.get("/services", (req, res) => {
-  res.send("Liste des services");
-});
+router.use("/appointments", appointmentRoutes);
 
 export default router;
