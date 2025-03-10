@@ -1,3 +1,5 @@
+// frontend/src/App.tsx
+
 import React from 'react';
 
 function App() {

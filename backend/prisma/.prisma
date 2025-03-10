@@ -1,3 +1,5 @@
+// backend/prisma/.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -26,11 +28,11 @@ enum NotificationType {
 }
 
 model Client {
-  id         Int    @id @default(autoincrement())
-  first_name String
-  last_name  String
-  email      String @unique
-  phone      String
+  id         Int          @id @default(autoincrement())
+  first_name String       @db.VarChar(100)
+  last_name  String       @db.VarChar(100)
+  email      String       @unique @db.VarChar(255)
+  phone      String       @db.VarChar(20)
 
   appointments Appointment[]
 }
@@ -41,10 +43,12 @@ model Appointment {
   appointment_date       DateTime
   status                 Status
   preferred_notification PreferredNotification
-  optician_notes         String?
+  optician_notes         String?  // facultatif
 
   client         Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
   notifications  Notification[]
+
+  @@index([appointment_date])
 }
 
 model BlockedSlot {
@@ -66,9 +70,9 @@ model Notification {
 
 model ContactMessage {
   id              Int       @id @default(autoincrement())
-  full_name       String
-  email           String
-  phone           String?
+  full_name       String    @db.VarChar(200)
+  email           String    @db.VarChar(255)
+  phone           String?   @db.VarChar(20)
   message_content String
   sent_at         DateTime  @default(now())
 }
