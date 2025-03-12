@@ -1,7 +1,7 @@
-import type { Request, Response, NextFunction } from "express";
 import winston from "winston";
 import fs from "node:fs";
 import path from "node:path";
+import type { Request, Response, NextFunction } from "express";
 
 // 📌 Vérifie si le dossier logs existe, sinon le crée
 const logDir = path.join(__dirname, "../../logs");
@@ -11,20 +11,22 @@ if (!fs.existsSync(logDir)) {
 
 // 📌 Configuration du logger avec Winston
 const logger = winston.createLogger({
-	level: "info",
+	level: process.env.NODE_ENV === "production" ? "warn" : "info", // Niveau en fonction de l'environnement
 	format: winston.format.combine(
 		winston.format.timestamp(),
 		winston.format.json(),
 	),
 	transports: [
-		new winston.transports.Console(), // Affiche dans la console
+		new winston.transports.Console({
+			format: winston.format.simple(),
+		}),
 		new winston.transports.File({
 			filename: path.join(logDir, "error.log"),
 			level: "error",
-		}), // Logs d'erreurs
+		}),
 		new winston.transports.File({
 			filename: path.join(logDir, "combined.log"),
-		}), // Tous les logs
+		}),
 	],
 });
 
@@ -37,7 +39,6 @@ export const errorLogger = (
 ) => {
 	logger.error({
 		message: err.message,
-		stack: err.stack,
 		route: req.originalUrl,
 		method: req.method,
 		ip: req.ip,
