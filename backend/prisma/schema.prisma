@@ -66,9 +66,9 @@ model Notification {
 
 model ContactMessage {
   id              Int       @id @default(autoincrement())
-  full_name       String
-  email           String
-  phone           String?
+  full_name       String    @db.VarChar(200)
+  email           String    @db.VarChar(255)
+  phone           String?   @db.VarChar(20)
   message_content String
   sent_at         DateTime  @default(now())
 }
