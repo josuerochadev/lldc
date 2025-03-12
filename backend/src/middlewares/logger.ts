@@ -15,6 +15,14 @@ const logger = winston.createLogger({
 	format: winston.format.combine(
 		winston.format.timestamp(),
 		winston.format.json(),
+		winston.format((info) => {
+			// 🔹 Filtrage des logs pour masquer les données sensibles
+			const message = info.message as string;
+			if (message.includes("password") || message.includes("token")) {
+				info.message = "[SENSITIVE DATA HIDDEN]";
+			}
+			return info;
+		})()
 	),
 	transports: [
 		new winston.transports.Console({
@@ -31,32 +39,26 @@ const logger = winston.createLogger({
 });
 
 // 📌 Middleware pour logger les erreurs
-export const errorLogger = (
-	err: Error,
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+export const errorLogger = (err: Error, req: Request, res: Response, next: NextFunction) => {
 	logger.error({
 		message: err.message,
+		stack: err.stack,
 		route: req.originalUrl,
 		method: req.method,
 		ip: req.ip,
+		timestamp: new Date().toISOString(),
 	});
 	next(err);
 };
 
 // 📌 Middleware pour logger les requêtes HTTP
-export const requestLogger = (
-	req: Request,
-	res: Response,
-	next: NextFunction,
-) => {
+export const requestLogger = (req: Request, res: Response, next: NextFunction) => {
 	logger.info({
 		message: "Nouvelle requête",
 		method: req.method,
 		route: req.originalUrl,
 		ip: req.ip,
+		timestamp: new Date().toISOString(),
 	});
 	next();
 };

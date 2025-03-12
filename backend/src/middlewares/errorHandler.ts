@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
+import { ZodError } from "zod";
 import { Prisma } from "@prisma/client";
 import logger from "./logger";
 
@@ -18,9 +19,19 @@ const errorHandler = (
 	err: Error,
 	req: Request,
 	res: Response,
-	// ⚠️ Type de retour doit être `void` pour être accepté par Express
-	next: NextFunction
+	next: NextFunction,
 ): void => {
+	// 📌 Gestion des erreurs de validation Zod
+	if (err instanceof ZodError) {
+		const errors = err.errors.map((e) => ({
+			field: e.path.join("."),
+			message: e.message,
+		}));
+		logger.warn(`⚠️ Validation échouée: ${JSON.stringify(errors)}`);
+		res.status(400).json({ error: "Erreur de validation", details: errors });
+		return;
+	}
+
 	// 📌 Prisma Errors
 	if (err instanceof Prisma.PrismaClientKnownRequestError) {
 		logger.error(`🛑 Prisma Error: ${err.code} - ${err.message}`);
