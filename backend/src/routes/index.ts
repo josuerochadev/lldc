@@ -4,6 +4,7 @@ import blockedSlotRoutes from "./blockedSlots";
 import notificationRoutes from "./notifications";
 import contactRoutes from "./contact";
 import logRoutes from "./logs";
+import debugRoutes from "./debug";
 
 const router = Router();
 
@@ -12,5 +13,6 @@ router.use("/admin/block-slots", blockedSlotRoutes);
 router.use("/admin", notificationRoutes);
 router.use("/contact", contactRoutes);
 router.use("/admin/logs", logRoutes);
+router.use("/debug", debugRoutes);
 
 export default router;
