@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { sendReminderNotifications, testSendEmail, testSendSMS } from "../controllers/notificationController";
+import {
+	sendReminderNotifications,
+	testSendEmail,
+	testSendSMS,
+} from "../controllers/notificationController";
 
 const router = Router();
 

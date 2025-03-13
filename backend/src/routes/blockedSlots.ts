@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createBlockedSlot, getBlockedSlots } from "../controllers/blockedSlotController";
+import {
+	createBlockedSlot,
+	getBlockedSlots,
+} from "../controllers/blockedSlotController";
 
 const router = Router();
 
