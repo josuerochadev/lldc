@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { sendContactMessage, getContactMessages, contactLimiter } from "../controllers/contactController";
+import {
+	sendContactMessage,
+	getContactMessages,
+	contactLimiter,
+} from "../controllers/contactController";
 
 const router = Router();
 

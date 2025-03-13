@@ -2,8 +2,10 @@ import { z } from "zod";
 
 export const appointmentSchema = z.object({
 	clientId: z.number().int().positive(),
-  appointment_date: z.string().datetime(),
-  preferred_notification: z.enum(["email", "sms", "both"]),
+	appointment_date: z.string().datetime(),
+	preferred_notification: z.enum(["email", "sms", "both"]),
+	email: z.string().email(),
+	phone: z.string().optional(),
 });
 
 export const updateAppointmentSchema = appointmentSchema.partial();
