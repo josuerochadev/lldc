@@ -25,6 +25,11 @@ enum NotificationType {
   modification
 }
 
+model Optician {
+  id        Int    @id @default(autoincrement())
+  email     String @unique
+  password  String
+}
 model Client {
   id         Int    @id @default(autoincrement())
   first_name String
