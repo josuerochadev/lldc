@@ -10,6 +10,7 @@ import {
 	acceptAppointment,
 	rejectAppointment,
 } from "../controllers/appointmentController";
+import { isAuthenticated } from "../middlewares/auth";
 
 const router = Router();
 
@@ -20,7 +21,7 @@ router.patch("/:id/reschedule", rescheduleAppointment);
 router.delete("/:id", deleteAppointment);
 router.post("/:id/decline-reschedule", declineReschedule);
 router.post("/cancel/:token", cancelAppointmentByToken);
-router.patch("/:id/accept", acceptAppointment);
-router.delete("/:id/reject", rejectAppointment);
+router.patch("/:id/accept", isAuthenticated, acceptAppointment);
+router.delete("/:id/reject", isAuthenticated, rejectAppointment);
 
 export default router;
