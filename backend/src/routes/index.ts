@@ -9,10 +9,10 @@ import logRoutes from "./logs";
 const router = Router();
 
 router.use("/admin", adminRoutes);
+router.use("/admin", notificationRoutes);
+router.use("/admin/logs", logRoutes);
 router.use("/appointments", appointmentRoutes);
 router.use("/admin/block-slots", blockedSlotRoutes);
-router.use("/admin", notificationRoutes);
 router.use("/contact", contactRoutes);
-router.use("/admin/logs", logRoutes);
 
 export default router;

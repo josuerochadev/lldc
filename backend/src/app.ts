@@ -7,6 +7,7 @@ import { csrfProtection } from "./middlewares/csrf";
 import { apiLimiter, contactLimiter } from "./middlewares/rateLimiter";
 import { errorHandler, notFoundHandler } from "./middlewares/errorHandler";
 import { errorLogger, requestLogger } from "./middlewares/logger";
+import { ENV } from "./config/env";
 
 const app = express();
 
@@ -55,7 +56,7 @@ app.use(errorLogger);
 app.use(errorHandler);
 
 // 📌 Lancement du serveur
-const PORT = process.env.PORT || 4000;
+const PORT = ENV.PORT;
 app.listen(PORT, () => {
 	console.log(`✅ Serveur en écoute sur http://localhost:${PORT}`);
 });

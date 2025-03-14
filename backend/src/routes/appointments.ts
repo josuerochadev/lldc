@@ -3,7 +3,7 @@ import {
 	createAppointment,
 	getAppointment,
 	updateAppointment,
-  toggleSecondReminder,
+	toggleSecondReminder,
 	deleteAppointment,
 	rescheduleAppointment,
 	declineReschedule,

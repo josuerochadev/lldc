@@ -3,7 +3,7 @@ import prisma from "../prisma";
 import { comparePasswords, generateToken } from "../services/authService";
 import { AppError } from "../middlewares/errorHandler";
 
-export const loginOptician = async (
+export const login = async (
 	req: Request,
 	res: Response,
 	next: NextFunction,
@@ -25,6 +25,30 @@ export const loginOptician = async (
 		const token = generateToken(optician.id);
 
 		res.json({ token });
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const logout = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	try {
+		const authHeader = req.headers.authorization;
+		if (!authHeader || !authHeader.startsWith("Bearer ")) {
+			return next(new AppError("Accès refusé. Authentification requise.", 403));
+		}
+
+		const token = authHeader.split(" ")[1];
+
+		// Ajouter le token à la liste noire
+		await prisma.blacklistedToken.create({
+			data: { token },
+		});
+
+		res.json({ message: "Déconnexion réussie." });
 	} catch (error) {
 		next(error);
 	}
