@@ -136,6 +136,38 @@ export const updateAppointment = async (
 	}
 };
 
+export const toggleSecondReminder = async (
+	req: Request,
+	res: Response,
+	next: NextFunction,
+) => {
+	try {
+		const { id } = req.params;
+
+		const appointment = await prisma.appointment.findUnique({
+			where: { id: Number(id) },
+		});
+
+		if (!appointment) {
+			return next(new AppError("Rendez-vous non trouvé.", 404));
+		}
+
+		const updatedAppointment = await prisma.appointment.update({
+			where: { id: Number(id) },
+			data: {
+				second_reminder_enabled: !appointment.second_reminder_enabled, // ✅ Inverse l'état
+			},
+		});
+
+		res.json({
+			message: `Second rappel ${updatedAppointment.second_reminder_enabled ? "activé" : "désactivé"}.`,
+			appointment: updatedAppointment,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
 export const rescheduleAppointment = async (
 	req: Request,
 	res: Response,

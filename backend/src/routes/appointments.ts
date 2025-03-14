@@ -3,6 +3,7 @@ import {
 	createAppointment,
 	getAppointment,
 	updateAppointment,
+  toggleSecondReminder,
 	deleteAppointment,
 	rescheduleAppointment,
 	declineReschedule,
@@ -17,6 +18,7 @@ const router = Router();
 router.post("/", createAppointment);
 router.get("/:id", getAppointment);
 router.patch("/:id", updateAppointment);
+router.patch("/:id/second-reminder", isAuthenticated, toggleSecondReminder);
 router.patch("/:id/reschedule", rescheduleAppointment);
 router.delete("/:id", deleteAppointment);
 router.post("/:id/decline-reschedule", declineReschedule);

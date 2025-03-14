@@ -26,12 +26,15 @@ export const sendReminderNotifications = async (
 	res: Response,
 ) => {
 	try {
-		// Trouver les RDV dans les prochaines 24h
 		const now = new Date();
-		const next24h = new Date();
+		const next24h = new Date(now);
 		next24h.setHours(now.getHours() + 24);
 
-		const appointments = await prisma.appointment.findMany({
+		const next2h = new Date(now);
+		next2h.setHours(now.getHours() + 2);
+
+		// ✅ Trouver les RDV dans les prochaines 24h
+		const appointments24h = await prisma.appointment.findMany({
 			where: {
 				appointment_date: {
 					gte: now,
@@ -42,17 +45,49 @@ export const sendReminderNotifications = async (
 			include: { client: true },
 		});
 
-		// Envoyer une notification à chaque client
-		for (const appointment of appointments) {
+		// ✅ Trouver les RDV dans les prochaines 2h avec `second_reminder_enabled = true`
+		const appointments2h = await prisma.appointment.findMany({
+			where: {
+				appointment_date: {
+					gte: now,
+					lte: next2h,
+				},
+				status: "confirmed",
+				second_reminder_enabled: true, // ✅ Vérification si activé
+			},
+			include: { client: true },
+		});
+
+		// ✅ Envoyer les rappels 24h avant
+		for (const appointment of appointments24h) {
 			const { client, appointment_date, preferred_notification } = appointment;
-			const message = `Bonjour ${client.first_name}, ceci est un rappel automatique pour votre rendez-vous prévu le ${appointment_date.toLocaleString()} chez La Lunetterie du Coin. Merci de nous contacter si vous souhaitez le modifier. (Ref: ${appointment.id})`;
+			const message = `Bonjour ${client.first_name}, ceci est un rappel pour votre rendez-vous prévu le ${appointment_date.toLocaleString()} chez La Lunetterie du Coin.`;
+
 			if (
 				preferred_notification === "email" ||
 				preferred_notification === "both"
 			) {
 				await sendEmail(client.email, "Rappel de votre RDV", message);
 			}
+			if (
+				preferred_notification === "sms" ||
+				preferred_notification === "both"
+			) {
+				await sendSMS(client.phone, message);
+			}
+		}
 
+		// ✅ Envoyer les rappels 2h avant
+		for (const appointment of appointments2h) {
+			const { client, appointment_date, preferred_notification } = appointment;
+			const message = `Bonjour ${client.first_name}, ceci est un dernier rappel pour votre rendez-vous dans 2h chez La Lunetterie du Coin.`;
+
+			if (
+				preferred_notification === "email" ||
+				preferred_notification === "both"
+			) {
+				await sendEmail(client.email, "Dernier rappel de votre RDV", message);
+			}
 			if (
 				preferred_notification === "sms" ||
 				preferred_notification === "both"
