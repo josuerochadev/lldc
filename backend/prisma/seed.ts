@@ -1,158 +1,129 @@
-// backend/prisma/seed.ts
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
 
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
+dotenv.config(); 
+
+const prisma = new PrismaClient();
 
 async function main() {
-  // Création de plusieurs clients
-  const alice = await prisma.client.create({
-    data: {
-      first_name: 'Alice',
-      last_name: 'Dupont',
-      email: 'alice.dupont@example.com',
-      phone: '0123456789',
+	console.log("🚀 Démarrage du seeding...");
+
+  const password = process.env.SEED_PASSWORD;
+  if (!password) {
+    console.error("❌ ERREUR : SEED_PASSWORD est manquant dans .env !");
+    process.exit(1);
+  }
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await prisma.optician.upsert({
+    where: { email: "opticien@lldc.com" },
+    update: {},
+    create: {
+      email: "opticien@lldc.com",
+      password: hashedPassword,
     },
-  })
+  });
+  console.log("✅ Opticien par défaut ajouté !");
 
-  const bob = await prisma.client.create({
-    data: {
-      first_name: 'Bob',
-      last_name: 'Martin',
-      email: 'bob.martin@example.com',
-      phone: '0987654321',
-    },
-  })
+	// 📌 Création des clients avec upsert pour éviter les doublons
+	const alice = await prisma.client.upsert({
+		where: { email: "alice.dupont@example.com" },
+		update: {},
+		create: {
+			first_name: "Alice",
+			last_name: "Dupont",
+			email: "alice.dupont@example.com",
+			phone: "0123456789",
+		},
+	});
 
-  const claire = await prisma.client.create({
-    data: {
-      first_name: 'Claire',
-      last_name: 'Durand',
-      email: 'claire.durand@example.com',
-      phone: '0555123456',
-    },
-  })
+	const bob = await prisma.client.upsert({
+		where: { email: "bob.martin@example.com" },
+		update: {},
+		create: {
+			first_name: "Bob",
+			last_name: "Martin",
+			email: "bob.martin@example.com",
+			phone: "0987654321",
+		},
+	});
 
-  // Création de rendez-vous pour chaque client avec diverses valeurs d'enums
-  // Pour Alice : deux rendez-vous (un en attente et un confirmé)
-  const aliceAppointment1 = await prisma.appointment.create({
-    data: {
-      clientId: alice.id,
-      appointment_date: new Date('2025-03-15T10:00:00.000Z'),
-      status: 'pending', // Valeurs possibles : pending, confirmed, cancelled
-      preferred_notification: 'email', // Valeurs possibles : email, sms, both
-      optician_notes: 'Premier rendez-vous, en attente de confirmation.',
-    },
-  })
+	console.log("✅ Clients insérés avec succès.");
 
-  const aliceAppointment2 = await prisma.appointment.create({
-    data: {
-      clientId: alice.id,
-      appointment_date: new Date('2025-03-20T14:00:00.000Z'),
-      status: 'confirmed',
-      preferred_notification: 'sms',
-      optician_notes: null,
-    },
-  })
+	// 📅 Création des rendez-vous avec upsert
+	const aliceAppointment = await prisma.appointment.upsert({
+		where: { id: 1 },
+		update: {},
+		create: {
+			client_id: alice.id,
+			appointment_date: new Date("2025-03-18T08:00:00.000Z"),
+			status: "confirmed",
+			preferred_notification: "both",
+		},
+	});
 
-  // Pour Bob : un rendez-vous annulé
-  const bobAppointment = await prisma.appointment.create({
-    data: {
-      clientId: bob.id,
-      appointment_date: new Date('2025-04-01T09:30:00.000Z'),
-      status: 'cancelled',
-      preferred_notification: 'both',
-      optician_notes: 'Rendez-vous annulé par le client.',
-    },
-  })
+	const bobAppointment = await prisma.appointment.upsert({
+		where: { id: 2 },
+		update: {},
+		create: {
+			client_id: bob.id,
+			appointment_date: new Date("2025-03-19T09:28:00.000Z"),
+			status: "confirmed",
+			preferred_notification: "email",
+		},
+	});
 
-  // Pour Claire : un rendez-vous confirmé
-  const claireAppointment = await prisma.appointment.create({
-    data: {
-      clientId: claire.id,
-      appointment_date: new Date('2025-04-10T16:00:00.000Z'),
-      status: 'confirmed',
-      preferred_notification: 'email',
-      optician_notes: 'Rendez-vous confirmé pour contrôle annuel.',
-    },
-  })
+	console.log("✅ Rendez-vous insérés avec succès.");
 
-  // Création de notifications pour les rendez-vous
-  // Pour le premier rendez-vous d'Alice : deux notifications (rappel et confirmation)
-  await prisma.notification.createMany({
-    data: [
-      {
-        appointmentId: aliceAppointment1.id,
-        notification_date: new Date('2025-03-14T10:00:00.000Z'),
-        type: 'rappel', // Valeurs possibles : rappel, confirmation, modification
-      },
-      {
-        appointmentId: aliceAppointment1.id,
-        notification_date: new Date('2025-03-15T08:00:00.000Z'),
-        type: 'confirmation',
-      },
-    ],
-  })
+	// 🔔 Création des notifications associées aux rendez-vous
+	await prisma.notification.upsert({
+		where: { id: 1 },
+		update: {},
+		create: {
+			appointment_id: aliceAppointment.id,
+			sent_at: new Date(),
+			type: "reminder_24h",
+		},
+	});
 
-  // Pour le rendez-vous de Bob : une notification de type modification
-  await prisma.notification.create({
-    data: {
-      appointmentId: bobAppointment.id,
-      notification_date: new Date('2025-03-31T12:00:00.000Z'),
-      type: 'modification',
-    },
-  })
+	await prisma.notification.upsert({
+		where: { id: 2 },
+		update: {},
+		create: {
+			appointment_id: bobAppointment.id,
+			sent_at: new Date(),
+			type: "appointment_created_by_client",
+		},
+	});
 
-  // Pour le rendez-vous de Claire : une notification de type confirmation
-  await prisma.notification.create({
-    data: {
-      appointmentId: claireAppointment.id,
-      notification_date: new Date('2025-04-09T16:00:00.000Z'),
-      type: 'confirmation',
-    },
-  })
+	await prisma.notification.upsert({
+		where: { id: 3 },
+		update: {},
+		create: {
+			appointment_id: aliceAppointment.id,
+			sent_at: new Date(),
+			type: "appointment_accepted",
+		},
+	});
 
-  // Création de créneaux bloqués
-  await prisma.blockedSlot.createMany({
-    data: [
-      {
-        start_date: new Date('2025-03-25T00:00:00.000Z'),
-        end_date: new Date('2025-03-25T23:59:59.000Z'),
-      },
-      {
-        start_date: new Date('2025-04-05T00:00:00.000Z'),
-        end_date: new Date('2025-04-05T23:59:59.000Z'),
-      },
-    ],
-  })
+	await prisma.notification.upsert({
+		where: { id: 4 },
+		update: {},
+		create: {
+			appointment_id: bobAppointment.id,
+			sent_at: new Date(),
+			type: "reminder_2h",
+		},
+	});
 
-  // Création de messages de contact
-  await prisma.contactMessage.createMany({
-    data: [
-      {
-        full_name: 'Éric Petit',
-        email: 'eric.petit@example.com',
-        phone: '0147852369',
-        message_content: 'Bonjour, j\'aimerais avoir plus d\'informations sur vos services.',
-        sent_at: new Date('2025-03-10T12:00:00.000Z'),
-      },
-      {
-        full_name: 'Sophie Lambert',
-        email: 'sophie.lambert@example.com',
-        phone: null,
-        message_content: 'Je souhaite prendre rendez-vous pour un contrôle.',
-        sent_at: new Date('2025-03-11T15:30:00.000Z'),
-      },
-    ],
-  })
-
-  console.log('Seeding terminé.')
+	console.log("✅ Notifications insérées avec succès.");
 }
 
 main()
-  .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+	.catch((e) => {
+		console.error("❌ Erreur lors du seeding :", e);
+		process.exit(1);
+	})
+	.finally(async () => {
+		await prisma.$disconnect();
+	});

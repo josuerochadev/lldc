@@ -7,53 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Status {
-  pending
-  confirmed
-  cancelled
-}
-
-enum PreferredNotification {
-  email
-  sms
-  both
-}
-
-enum NotificationType {
-  rappel
-  confirmation
-  modification
-}
-
 model Optician {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
-  password  String
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
 }
-model Client {
-  id         Int    @id @default(autoincrement())
-  first_name String
-  last_name  String
-  email      String @unique
-  phone      String
 
+model Client {
+  id           Int           @id @default(autoincrement())
+  first_name   String
+  last_name    String
+  email        String        @unique
+  phone        String
   appointments Appointment[]
 
   @@index([last_name])
 }
 
 model Appointment {
-  id                     Int                   @id @default(autoincrement())
-  clientId               Int
-  appointment_date       DateTime
-  status                 Status
-  preferred_notification PreferredNotification
-  optician_notes         String?
-  cancellation_token     String? @unique
-  second_reminder_enabled Boolean @default(false)
-
-  client         Client       @relation(fields: [clientId], references: [id], onDelete: Cascade)
-  notifications  Notification[]
+  id                      Int                   @id @default(autoincrement())
+  client_id               Int
+  appointment_date        DateTime
+  status                  Status
+  preferred_notification  PreferredNotification
+  optician_notes          String?
+  cancellation_token      String?               @unique
+  second_reminder_enabled Boolean               @default(false)
+  client                  Client                @relation(fields: [client_id], references: [id], onDelete: Cascade)
+  notifications           Notification[]
 
   @@index([appointment_date])
   @@index([status])
@@ -69,24 +50,23 @@ model BlockedSlot {
 }
 
 model Notification {
-  id                 Int              @id @default(autoincrement())
-  appointmentId      Int
-  notification_date  DateTime
-  type               NotificationType
+  id             Int              @id @default(autoincrement())
+  appointment_id Int
+  sent_at        DateTime         @default(now())
+  type           NotificationType
+  appointment    Appointment      @relation(fields: [appointment_id], references: [id], onDelete: Cascade)
 
-  appointment        Appointment      @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
-
-  @@index([appointmentId])
-  @@index([notification_date])
+  @@index([appointment_id])
+  @@index([sent_at])
 }
 
 model ContactMessage {
-  id              Int       @id @default(autoincrement())
-  full_name       String    @db.VarChar(200)
-  email           String    @db.VarChar(255)
-  phone           String?   @db.VarChar(20)
+  id              Int      @id @default(autoincrement())
+  full_name       String   @db.VarChar(200)
+  email           String   @db.VarChar(255)
+  phone           String?  @db.VarChar(20)
   message_content String
-  sent_at         DateTime  @default(now())
+  sent_at         DateTime @default(now())
 
   @@index([email])
 }
@@ -95,4 +75,27 @@ model BlacklistedToken {
   id        Int      @id @default(autoincrement())
   token     String   @unique
   createdAt DateTime @default(now())
+}
+
+enum Status {
+  pending
+  confirmed
+  cancelled
+}
+
+enum PreferredNotification {
+  email
+  sms
+  both
+}
+
+enum NotificationType {
+  appointment_created_by_client
+  appointment_created_by_optician
+  appointment_accepted
+  appointment_modified
+  appointment_rejected
+  appointment_cancelled_by_client
+  reminder_24h
+  reminder_2h
 }

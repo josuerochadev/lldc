@@ -1,14 +1,13 @@
 import { Router } from "express";
-import {
-	sendReminderNotifications,
-	testSendEmail,
-	testSendSMS,
-} from "../controllers/notificationController";
+import { sendReminderHandler } from "../controllers/notificationController";
 
 const router = Router();
 
-router.get("/test-email", testSendEmail);
-router.get("/test-sms", testSendSMS);
-router.post("/reminders", sendReminderNotifications);
+/**
+ * @route POST /api/notifications/reminders
+ * @desc Envoi des rappels de rendez-vous
+ * @access Privé
+ */
+router.post("/reminders", sendReminderHandler);
 
 export default router;

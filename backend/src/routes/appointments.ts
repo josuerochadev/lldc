@@ -1,29 +1,72 @@
 import { Router } from "express";
 import {
-	createAppointment,
-	getAppointment,
-	updateAppointment,
-	toggleSecondReminder,
-	deleteAppointment,
-	rescheduleAppointment,
-	declineReschedule,
-	cancelAppointmentByToken,
-	acceptAppointment,
-	rejectAppointment,
+	createAppointmentHandler,
+	getAppointmentHandler,
+	getAppointmentsHandler,
+	updateAppointmentHandler,
+	deleteAppointmentHandler,
+	cancelAppointmentHandler,
+	acceptAppointmentHandler,
+	rejectAppointmentHandler,
 } from "../controllers/appointmentController";
 import { isAuthenticated } from "../middlewares/auth";
 
 const router = Router();
 
-router.post("/", createAppointment);
-router.get("/:id", getAppointment);
-router.patch("/:id", updateAppointment);
-router.patch("/:id/second-reminder", isAuthenticated, toggleSecondReminder);
-router.patch("/:id/reschedule", rescheduleAppointment);
-router.delete("/:id", deleteAppointment);
-router.post("/:id/decline-reschedule", declineReschedule);
-router.post("/cancel/:token", cancelAppointmentByToken);
-router.patch("/:id/accept", isAuthenticated, acceptAppointment);
-router.delete("/:id/reject", isAuthenticated, rejectAppointment);
+/**
+ * @route POST /api/appointments
+ * @desc Création d'un rendez-vous
+ * @access Public
+ */
+router.post("/", createAppointmentHandler);
+
+/**
+ * @route GET /api/appointments/:id
+ * @desc Récupération d'un rendez-vous par ID
+ * @access Privé
+ */
+router.get("/:id", isAuthenticated, getAppointmentHandler);
+
+/**
+ * @route GET /api/appointments
+ * @desc Récupère les créneaux réservés et confirmés
+ * @access Public
+ */
+router.get("/", getAppointmentsHandler);
+
+/**
+ * @route PATCH /api/appointments/:id
+ * @desc Mise à jour d'un rendez-vous
+ * @access Privé
+ */
+router.patch("/:id", isAuthenticated, updateAppointmentHandler);
+
+/**
+ * @route POST /api/appointments/cancel/:token
+ * @desc Annulation d'un rendez-vous avec un token sécurisé
+ * @access Public
+ */
+router.post("/cancel/:token", cancelAppointmentHandler);
+
+/**
+ * @route PATCH /api/appointments/:id/accept
+ * @desc Acceptation d'un rendez-vous
+ * @access Privé
+ */
+router.patch("/:id/accept", isAuthenticated, acceptAppointmentHandler);
+
+/**
+ * @route DELETE /api/appointments/:id/reject
+ * @desc Rejet d'un rendez-vous
+ * @access Privé
+ */
+router.delete("/:id/reject", isAuthenticated, rejectAppointmentHandler);
+
+/**
+ * @route DELETE /api/appointments/:id
+ * @desc Suppression d'un rendez-vous
+ * @access Privé
+ */
+router.delete("/:id", isAuthenticated, deleteAppointmentHandler);
 
 export default router;
