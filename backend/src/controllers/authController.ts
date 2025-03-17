@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
-import prisma from "../prisma";
-import { comparePasswords, generateToken } from "../services/authService";
+import { loginUser, logoutUser } from "../services/authService";
 import { AppError } from "../middlewares/errorHandler";
+import logger from "../middlewares/logger";
 
 export const login = async (
 	req: Request,
@@ -10,22 +10,14 @@ export const login = async (
 ) => {
 	try {
 		const { email, password } = req.body;
-
-		const optician = await prisma.optician.findUnique({ where: { email } });
-
-		if (!optician) {
-			return next(new AppError("Identifiants incorrects", 401));
-		}
-
-		const isValidPassword = await comparePasswords(password, optician.password);
-		if (!isValidPassword) {
-			return next(new AppError("Identifiants incorrects", 401));
-		}
-
-		const token = generateToken(optician.id);
-
+		const token = await loginUser(email, password);
 		res.json({ token });
 	} catch (error) {
+		if (error instanceof Error) {
+			logger.error(`❌ Erreur lors de la connexion : ${error.message}`);
+		} else {
+			logger.error("❌ Erreur lors de la connexion : Erreur inconnue");
+		}
 		next(error);
 	}
 };
@@ -38,18 +30,19 @@ export const logout = async (
 	try {
 		const authHeader = req.headers.authorization;
 		if (!authHeader || !authHeader.startsWith("Bearer ")) {
-			return next(new AppError("Accès refusé. Authentification requise.", 403));
+			logger.warn("🔒 Tentative de déconnexion sans token");
+			throw new AppError("Accès refusé. Authentification requise.", 401);
 		}
 
 		const token = authHeader.split(" ")[1];
-
-		// Ajouter le token à la liste noire
-		await prisma.blacklistedToken.create({
-			data: { token },
-		});
-
+		await logoutUser(token);
 		res.json({ message: "Déconnexion réussie." });
 	} catch (error) {
+		if (error instanceof Error) {
+			logger.error(`❌ Erreur lors de la déconnexion : ${error.message}`);
+		} else {
+			logger.error("❌ Erreur lors de la déconnexion : Erreur inconnue");
+		}
 		next(error);
 	}
 };

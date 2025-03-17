@@ -5,7 +5,11 @@
     "outDir": "./dist",
     "rootDir": "./",
     "strict": true,
+    "moduleResolution": "node",
     "esModuleInterop": true
   },
-  "include": ["src", "prisma"]
+  "include": [
+    "src",
+    "prisma"
+  ]
 }

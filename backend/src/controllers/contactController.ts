@@ -1,9 +1,12 @@
 import type { Request, Response, NextFunction } from "express";
-import prisma from "../prisma";
-import { AppError } from "../middlewares/errorHandler";
 import { contactSchema } from "../validations/contactSchema";
-import { sendEmail } from "../services/emailService";
+import {
+	saveContactMessage,
+	getAllContactMessages,
+	notifyOptician,
+} from "../services/contactService";
 import rateLimit from "express-rate-limit";
+import logger from "../middlewares/logger";
 
 export const contactLimiter = rateLimit({
 	windowMs: 60 * 1000, // 1 minute
@@ -11,6 +14,9 @@ export const contactLimiter = rateLimit({
 	message: "Trop de requêtes, veuillez réessayer plus tard.",
 });
 
+/**
+ * 🔹 Envoie un message via le formulaire de contact
+ */
 export const sendContactMessage = async (
 	req: Request,
 	res: Response,
@@ -18,47 +24,34 @@ export const sendContactMessage = async (
 ) => {
 	try {
 		const data = contactSchema.parse(req.body);
+		const contactMessage = await saveContactMessage(data);
+		await notifyOptician(data);
 
-		const contactMessage = await prisma.contactMessage.create({
-			data: {
-				full_name: data.full_name,
-				email: data.email,
-				phone: data.phone,
-				message_content: data.message_content,
-			},
-		});
-
-		const emailBody = `
-      Nouveau message de contact :
-      Nom : ${data.full_name}
-      Email : ${data.email}
-      Téléphone : ${data.phone || "Non renseigné"}
-      Message :
-      ${data.message_content}
-    `;
-
-		await sendEmail(
-			process.env.OPTICIAN_EMAIL as string,
-			"Nouveau message de contact",
-			emailBody,
-		);
 		res.status(201).json({ message: "Message envoyé avec succès." });
 	} catch (error) {
+		logger.error(
+			`❌ Erreur lors de l'envoi du message de contact : ${(error as Error).message}`,
+		);
 		next(error);
 	}
 };
 
+/**
+ * 🔹 Récupère tous les messages de contact (réservé à l'opticien)
+ */
 export const getContactMessages = async (
 	req: Request,
 	res: Response,
 	next: NextFunction,
 ) => {
 	try {
-		const messages = await prisma.contactMessage.findMany({
-			orderBy: { sent_at: "desc" },
-		});
+		logger.info("📩 Récupération des messages de contact...");
+		const messages = await getAllContactMessages();
 		res.json(messages);
 	} catch (error) {
+		logger.error(
+			`❌ Erreur lors de la récupération des messages de contact : ${(error as Error).message}`,
+		);
 		next(error);
 	}
 };

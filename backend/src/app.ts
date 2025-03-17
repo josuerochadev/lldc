@@ -4,10 +4,11 @@ import helmet from "helmet";
 import router from "./routes";
 import cookieParser from "cookie-parser";
 import { csrfProtection } from "./middlewares/csrf";
-import { apiLimiter, contactLimiter } from "./middlewares/rateLimiter";
+import { apiLimiter } from "./middlewares/rateLimiter";
 import { errorHandler, notFoundHandler } from "./middlewares/errorHandler";
 import { errorLogger, requestLogger } from "./middlewares/logger";
 import { ENV } from "./config/env";
+import { scheduleReminders } from "./config/cron";
 
 const app = express();
 
@@ -25,13 +26,13 @@ app.get("/api/csrf-token", (req, res) => {
 	res.json({ csrfToken: req.csrfToken() });
 });
 
-// 📌 Limites de requêtes
+// 📌 Limites de requêtes (Contact inclut dans API limiter)
 app.use("/api", apiLimiter);
-app.use("/api/contact", contactLimiter);
 
 // 📌 Mode maintenance
 const isMaintenanceMode = process.env.MAINTENANCE_MODE === "true";
 if (isMaintenanceMode) {
+	console.log("⚠️ L'API est en mode maintenance...");
 	app.use((req, res) => {
 		res
 			.status(503)
@@ -60,3 +61,6 @@ const PORT = ENV.PORT;
 app.listen(PORT, () => {
 	console.log(`✅ Serveur en écoute sur http://localhost:${PORT}`);
 });
+
+// 📌 Planification des rappels
+scheduleReminders();
