@@ -3,6 +3,7 @@ import { Status } from "@prisma/client";
 import { AppError } from "../middlewares/errorHandler";
 import logger from "../middlewares/logger";
 import crypto from "node:crypto";
+import bcrypt from "bcrypt";
 import { sendNotification } from "./notificationService";
 import { ENV } from "../config/env";
 
@@ -108,36 +109,44 @@ export const createAppointment = async (data: {
 		);
 	}
 
-	// 🔑 Génération du token d'annulation
-	const cancellation_token = crypto.randomBytes(32).toString("hex");
-	logger.info(`🔑 Token d'annulation généré: ${cancellation_token}`);
+	// 🔑 Génération du token brut et hashé
+	const rawToken = crypto.randomBytes(16).toString("base64url"); // Choisir l'option souhaitée
+	const hashedToken = await bcrypt.hash(rawToken, 10);
+	const expiration = new Date();
+	expiration.setHours(expiration.getHours() + 72); // Expire dans 72h
 
 	// ✅ Définition du statut selon le créateur du RDV
 	const status = data.isOptician ? "confirmed" : "pending";
 
+	// 📌 Création du rendez-vous en BDD
 	const appointment = await prisma.appointment.create({
 		data: {
 			client_id: client.id,
 			appointment_date: new Date(data.appointment_date),
 			preferred_notification: data.preferred_notification,
-			cancellation_token,
+			cancellation_token: hashedToken, // Stocker le token HASHÉ en BDD
+			cancellation_token_expiry: expiration,
 			status,
 		},
 	});
 
-	// 📩 Envoyer la notification à l'opticien si RDV créé par un client
-	if (!data.isOptician) {
-		await sendNotification(
-			"appointment_created_by_client",
-			client,
-			OPTICIAN_EMAIL,
-			{
-				...appointment,
-				optician_notes: appointment.optician_notes ?? undefined,
-			},
-			data.preferred_notification,
-		);
-	}
+	// 🔍 Afficher le token brut dans la console pour les tests
+	console.log(
+		`🔑 Token d'annulation brut pour le RDV ID ${appointment.id}: ${rawToken}`,
+	);
+
+	// 📩 Envoyer `rawToken` au client (ne pas stocker en clair)
+	await sendNotification(
+		"appointment_created_by_client",
+		client,
+		OPTICIAN_EMAIL,
+		{
+			...appointment,
+			...(rawToken ? { cancellation_token: rawToken } : {}), // Envoyer la version non hashée
+			optician_notes: appointment.optician_notes ?? undefined,
+		},
+		data.preferred_notification,
+	);
 
 	logger.info(
 		`✅ Rendez-vous créé avec succès, ID: ${appointment.id}, Status: ${status}`,
@@ -154,15 +163,37 @@ export const updateAppointment = async (
 		appointment_date: string;
 		preferred_notification: "email" | "sms" | "both";
 		optician_notes?: string;
+		status?: Status; // 🔹 Utiliser `Status` au lieu de `string`
 	}>,
 ) => {
 	logger.info(`🛠 Mise à jour du rendez-vous ID: ${id}`);
 
+	// 🔍 Récupérer le rendez-vous actuel
 	const appointment = await getAppointmentById(id);
 
+	// 🔒 Vérifier si le statut demandé est valide
+	if (data.status) {
+		const validTransitions: Record<Status, Status[]> = {
+			pending: ["confirmed", "cancelled"],
+			confirmed: ["cancelled"],
+			cancelled: [],
+		};
+
+		if (!validTransitions[appointment.status].includes(data.status)) {
+			throw new AppError(
+				`Transition de statut invalide: ${appointment.status} → ${data.status}`,
+				400,
+			);
+		}
+	}
+
+	// 🔄 Mise à jour du rendez-vous
 	const updatedAppointment = await prisma.appointment.update({
 		where: { id },
-		data,
+		data: {
+			...data,
+			status: data.status ? (data.status as Status) : undefined, // 🔹 Conversion explicite
+		},
 	});
 
 	// 📩 Notifier le client que son rendez-vous a été modifié
@@ -184,26 +215,53 @@ export const updateAppointment = async (
 /**
  * 🔹 Annulation d'un rendez-vous via un token sécurisé (notification à l'opticien)
  */
-export const cancelAppointmentWithToken = async (cancellationToken: string) => {
-	logger.info(
-		`🔹 Annulation du rendez-vous avec le token: ${cancellationToken}`,
-	);
+export const cancelAppointmentWithToken = async (receivedToken: string) => {
+	logger.info(`🔹 Annulation du rendez-vous avec le token: ${receivedToken}`);
 
-	const appointment = await prisma.appointment.findUnique({
-		where: { cancellation_token: cancellationToken },
-		include: { client: true },
+	// Recherche des RDV avec un token valide et non expiré
+	const appointments = await prisma.appointment.findMany({
+		where: {
+			cancellation_token_expiry: { gte: new Date() }, // Seuls les RDV non expirés
+			cancellation_token: { not: null }, // Assurer que le token est bien présent
+		},
+		include: { client: true }, // Inclure les infos du client pour la notification
 	});
 
-	if (!appointment) {
-		throw new AppError("Aucun rendez-vous trouvé avec ce token.", 404);
+	// 🔍 Recherche du RDV correspondant au token
+	let appointment = null;
+	for (const a of appointments) {
+		if (!a.cancellation_token) continue; // Ignorer si le token est null
+
+		const isMatch = await bcrypt.compare(receivedToken, a.cancellation_token);
+		logger.info(
+			`Comparaison token pour RDV ID ${a.id}: ${isMatch ? "✅ Match trouvé" : "❌ Aucun match"}`,
+		);
+
+		if (isMatch) {
+			appointment = a;
+			break;
+		}
 	}
 
+	// Si aucun RDV correspondant, lever une erreur
+	if (!appointment) {
+		throw new AppError("Token invalide ou expiré.", 403);
+	}
+
+	// Mise à jour du statut du RDV en "cancelled"
 	const updatedAppointment = await prisma.appointment.update({
 		where: { id: appointment.id },
 		data: { status: "cancelled" },
 	});
 
-	// 📩 Notifier l'opticien de l'annulation
+	// 📩 Vérifier que `appointment.client` est bien défini avant d'envoyer la notification
+	if (!appointment.client) {
+		throw new AppError(
+			"Impossible de notifier le client, données manquantes.",
+			500,
+		);
+	}
+
 	await sendNotification(
 		"appointment_cancelled_by_client",
 		appointment.client,
@@ -222,10 +280,22 @@ export const cancelAppointmentWithToken = async (cancellationToken: string) => {
 /**
  * 🔹 Supprime un rendez-vous (aucune notification nécessaire)
  */
-export const deleteAppointment = async (id: number) => {
+export const deleteAppointment = async (id: number, userRole: string) => {
 	logger.info(`🗑 Suppression du rendez-vous ID: ${id}`);
 
-	await getAppointmentById(id);
+	const appointment = await getAppointmentById(id);
+
+	if (appointment.status !== "cancelled") {
+		throw new AppError("Seuls les RDV annulés peuvent être supprimés.", 403);
+	}
+
+	// Vérifier si l'utilisateur a le rôle autorisé (ex: opticien ou admin)
+	if (userRole !== "optician" && userRole !== "admin") {
+		throw new AppError(
+			"Vous n'avez pas l'autorisation de supprimer ce RDV.",
+			403,
+		);
+	}
 
 	await prisma.appointment.delete({
 		where: { id },

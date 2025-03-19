@@ -32,6 +32,7 @@ model Appointment {
   preferred_notification  PreferredNotification
   optician_notes          String?
   cancellation_token      String?               @unique
+  cancellation_token_expiry DateTime @default(now()) // Expire immédiatement pour les anciens RDV
   second_reminder_enabled Boolean               @default(false)
   client                  Client                @relation(fields: [client_id], references: [id], onDelete: Cascade)
   notifications           Notification[]

@@ -1,11 +1,12 @@
 import { Router } from "express";
 import fs from "node:fs";
 import path from "node:path";
+import { isAuthenticated } from "../middlewares/auth";
 
 const router = Router();
 
 // 📌 Route pour récupérer les logs d'erreurs
-router.get("/errors", (req, res) => {
+router.get("/errors", isAuthenticated, (req, res) => {
 	const logPath = path.join(__dirname, "../../logs/error.log");
 	if (fs.existsSync(logPath)) {
 		const logs = fs.readFileSync(logPath, "utf-8");
@@ -16,7 +17,7 @@ router.get("/errors", (req, res) => {
 });
 
 // 📌 Route pour récupérer tous les logs
-router.get("/all", (req, res) => {
+router.get("/all", isAuthenticated, (req, res) => {
 	const logPath = path.join(__dirname, "../../logs/combined.log");
 	if (fs.existsSync(logPath)) {
 		const logs = fs.readFileSync(logPath, "utf-8");
