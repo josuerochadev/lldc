@@ -10,6 +10,7 @@ import {
 	rejectAppointment,
 } from "../services/appointmentService";
 import logger from "../middlewares/logger";
+import { AppError } from "../middlewares/errorHandler";
 
 // 📌 Étendre le type Request pour inclure `user`
 interface AuthenticatedRequest extends Request {
@@ -70,7 +71,9 @@ export const getAppointmentsHandler = async (
 
 		res.status(200).json(appointments);
 	} catch (error) {
-		logger.error(`❌ Erreur lors de la récupération des rendez-vous : ${(error as Error).message}`);
+		logger.error(
+			`❌ Erreur lors de la récupération des rendez-vous : ${(error as Error).message}`,
+		);
 		next(error);
 	}
 };
@@ -102,7 +105,9 @@ export const cancelAppointmentHandler = async (
 ) => {
 	try {
 		const { token } = req.params;
-		logger.info("🛑 Annulation d'un rendez-vous...");
+		if (!token) throw new AppError("Token manquant.", 400);
+
+		logger.info(`🛑 Annulation d'un rendez-vous avec token: ${token}`);
 		const result = await cancelAppointmentWithToken(token);
 		res.json(result);
 	} catch (error) {
@@ -112,7 +117,7 @@ export const cancelAppointmentHandler = async (
 };
 
 export const deleteAppointmentHandler = async (
-	req: Request,
+	req: AuthenticatedRequest,
 	res: Response,
 	next: NextFunction,
 ) => {
@@ -120,8 +125,12 @@ export const deleteAppointmentHandler = async (
 		const { id } = req.params;
 		if (Number.isNaN(Number(id))) throw new Error("ID invalide");
 
-		logger.info(`🗑 Suppression du rendez-vous ID: ${id}`);
-		const result = await deleteAppointment(Number(id));
+		// 🔍 Vérifier que l'utilisateur est connecté et récupérer son rôle
+		const userRole = req.user?.role;
+		if (!userRole) throw new Error("Utilisateur non authentifié");
+
+		logger.info(`🗑 Suppression du rendez-vous ID: ${id} par un ${userRole}`);
+		const result = await deleteAppointment(Number(id), userRole);
 		res.json(result);
 	} catch (error) {
 		logger.error(
