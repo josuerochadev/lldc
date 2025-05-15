@@ -1,32 +1,31 @@
 // src/pages/OffersPage.tsx
-import CardFrame from "@/components/CardFrame";
-import { OFFERS } from "@/config/constants";
+import CardFrame from '@/components/CardFrame';
+import { OFFERS } from '@/config/constants';
 
 export default function OffersPage() {
+  return (
+    <div className="flex min-h-[100dvh] w-full flex-col items-center px-4 py-10">
+      <div className="relative z-10 mt-10 flex w-full max-w-xl flex-col gap-10">
+        {OFFERS.map((offer) => (
+          <CardFrame key={offer.title}>
+            <h2 className="mb-2 text-lg font-extrabold uppercase sm:text-xl md:text-2xl">
+              {offer.title}
+            </h2>
 
-	return (
-		<div className="min-h-[100dvh] w-full px-4 py-10 flex flex-col items-center">
-			<div className="flex flex-col gap-10 max-w-xl w-full relative z-10 mt-10">
-				{OFFERS.map((offer) => (
-					<CardFrame key={offer.title}>
-						<h2 className="text-lg sm:text-xl md:text-2xl font-extrabold mb-2 uppercase">
-							{offer.title}
-						</h2>
-
-						{offer.description.length > 1 ? (
-							<ul className="text-sm sm:text-base font-serif list-disc list-inside space-y-2">
-								{offer.description.map((line) => (
-									<li key={line}>{line}</li>
-								))}
-							</ul>
-						) : (
-							<p className="text-sm sm:text-base font-serif leading-relaxed">
-								{offer.description[0]}
-							</p>
-						)}
-					</CardFrame>
-				))}
-			</div>
-		</div>
-	);
+            {offer.description.length > 1 ? (
+              <ul className="list-inside list-disc space-y-2 font-serif text-sm sm:text-base">
+                {offer.description.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="font-serif text-sm leading-relaxed sm:text-base">
+                {offer.description[0]}
+              </p>
+            )}
+          </CardFrame>
+        ))}
+      </div>
+    </div>
+  );
 }
