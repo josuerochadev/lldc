@@ -1,13 +1,13 @@
-// frontend/src/App.tsx
+import { BrowserRouter } from "react-router-dom";
+import Layout from "@/layout/Layout";
+import AppRoutes from "@/router";
 
-import React from 'react';
-
-function App() {
-  return (
-    <div>
-      <h1>Bienvenue sur La Lunetterie du Coin</h1>
-    </div>
-  );
+export default function App() {
+	return (
+		<BrowserRouter>
+			<Layout>
+				<AppRoutes />
+			</Layout>
+		</BrowserRouter>
+	);
 }
-
-export default App;
