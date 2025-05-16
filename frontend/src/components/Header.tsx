@@ -11,12 +11,12 @@ export default function Header() {
 
   return (
     /* `relative` para ancorar o overlay */
-    <header className="relative isolate z-30 mt-8 flex w-full items-center justify-center gap-8 px-6 py-4">
+    <header className="relative isolate z-30 mt-8 flex w-full items-center justify-evenly gap-8 px-6 py-4">
       {/* --- EFEITO DE FUNDO --- */}
       {/* O elemento `span` com `aria-hidden` é usado para criar um efeito de fundo animado */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -top-32 -z-10 h-56 w-[160vw] -translate-x-1/2 animate-halo rounded-b-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow/60 via-orange/45 to-transparent blur-lg md:h-64 md:w-[140vw]"
+        className="pointer-events-none absolute -top-32 -z-10 h-56 w-[160vw] -translate-x-1/2 animate-halo rounded-b-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow/60 via-orange/60 to-transparent blur-lg md:h-64 md:w-[140vw]"
       />
 
       {/* --- CONTEÚDO DO HEADER --- */}

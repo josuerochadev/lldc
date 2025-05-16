@@ -1,18 +1,34 @@
+// src/components/Background.tsx
+const BLOBS = [
+	{ size: 60, x: "-20%", y: "-10%", color: "bg-orange", anim: "blob1", op: 50 },
+	{ size: 50, x: "50%", y: "20%", color: "bg-purple", anim: "blob2", op: 40 },
+	{ size: 45, x: "30%", y: "90%", color: "bg-yellow", anim: "blob3", op: 30 },
+	{ size: 60, x: "-15%", y: "120%", color: "bg-beige", anim: "blob4", op: 30 },
+	{ size: 70, x: "-30%", y: "30%", color: "bg-orange", anim: "blob5", op: 25 },
+	{ size: 55, x: "-25%", y: "70%", color: "bg-purple", anim: "blob6", op: 25 },
+	{ size: 40, x: "10%", y: "10%", color: "bg-yellow", anim: "blob7", op: 20 },
+] as const;
+
 export default function Background() {
-  return (
-    <div className="pointer-events-none fixed inset-0 z-0">
-      <div className="absolute inset-0 bg-primary" />
-      {/* cor neutra de base */}
-      <div className="absolute inset-0 transform-gpu overflow-hidden will-change-transform">
-        {/* Blobs animados */}
-        <div className="absolute left-[-20%] top-[-10%] h-[60vw] w-[60vw] animate-blob1 rounded-full bg-orange opacity-50 mix-blend-multiply blur-3xl" />
-        <div className="absolute left-[50%] top-[20%] h-[50vw] w-[50vw] animate-blob2 rounded-full bg-purple opacity-40 mix-blend-multiply blur-3xl" />
-        <div className="absolute bottom-[10%] left-[30%] h-[45vw] w-[45vw] animate-blob3 rounded-full bg-yellow opacity-30 mix-blend-multiply blur-3xl" />
-        <div className="absolute bottom-[-20%] right-[-15%] h-[60vw] w-[60vw] animate-blob4 rounded-full bg-beige opacity-30 mix-blend-multiply blur-3xl" />
-        <div className="absolute left-[-30%] top-[30%] h-[70vw] w-[70vw] animate-blob5 rounded-full bg-orange opacity-25 mix-blend-multiply blur-3xl" />
-        <div className="absolute bottom-[30%] right-[-25%] h-[55vw] w-[55vw] animate-blob6 rounded-full bg-purple opacity-25 mix-blend-multiply blur-3xl" />
-        <div className="absolute right-[10%] top-[10%] h-[40vw] w-[40vw] animate-blob7 rounded-full bg-yellow opacity-20 mix-blend-multiply blur-3xl" />
-      </div>
-    </div>
-  );
+	return (
+		<div className="pointer-events-none fixed inset-0 z-0">
+			<div className="absolute inset-0 bg-primary" />
+
+			{/* motion-safe : só anima se usuário NÃO pedir redução */}
+			<div className="absolute inset-0 overflow-hidden transform-gpu will-change-transform motion-safe:animate-none">
+				{BLOBS.map(({ size, x, y, color, anim, op }) => (
+					<div
+						key={anim}
+						style={{
+							width: `${size}vw`,
+							height: `${size}vw`,
+							left: x,
+							top: y,
+						}}
+						className={`absolute rounded-full ${color} opacity-${op} mix-blend-multiply blur-3xl motion-safe:animate-${anim}`}
+					/>
+				))}
+			</div>
+		</div>
+	);
 }
