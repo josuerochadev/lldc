@@ -5,10 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --clr-yellow: theme(colors.yellow); /* #ffe922   */
-    --clr-beige: theme(colors.beige); /* #ebdcd7   */
-  }
 
   html,
   body,
