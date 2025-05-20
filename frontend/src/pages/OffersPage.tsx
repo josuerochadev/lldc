@@ -1,5 +1,5 @@
 // src/pages/OffersPage.tsx
-import CardFrame from '@/components/CardFrame';
+import { CardFrame } from '@/components/CardFrame';
 import { OFFERS } from '@/config/constants';
 
 export default function OffersPage() {

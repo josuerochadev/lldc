@@ -1,21 +1,66 @@
-import type React from 'react';
+// src/components/CardFrame.tsx
 
-type CardFrameProps = {
-  children: React.ReactNode;
-  className?: string;
-};
+import { forwardRef } from "react";
+import type { ElementType, ComponentPropsWithRef, Ref } from "react";
+import { clsx } from "clsx";
 
-export default function CardFrame({ children, className = '' }: CardFrameProps) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-3xl bg-beige/35 p-6 px-4 shadow-md backdrop-blur-xl sm:p-8 ${className}`}
-    >
-      {/* Borders */}
-      <div className="pointer-events-none absolute inset-4 rounded-2xl border-2 border-primary" />
-      <div className="pointer-events-none absolute inset-2 rounded-2xl border-2 border-primary" />
-      <div className="pointer-events-none absolute inset-0 rounded-3xl border-8 border-orange" />
-      {/* Content */}
-      <div className="relative z-10">{children}</div>
-    </div>
-  );
-}
+type CardFrameProps<E extends ElementType = "article"> = {
+	as?: E;
+	className?: string;
+	bgColor?: string;
+	frameColor?: string;
+	innerBorderColor?: string;
+} & ComponentPropsWithRef<E>;
+
+export const CardFrame = forwardRef(
+	<E extends ElementType = "article">(
+		{
+			as,
+			className = "",
+			children,
+			bgColor = "bg-beige/30",
+			frameColor = "border-yellow",
+			innerBorderColor = "border-primary",
+			...rest
+		}: CardFrameProps<E>,
+		ref: Ref<Element>,
+	) => {
+		const Comp: ElementType = as ?? "article";
+
+		return (
+			<Comp
+				ref={ref}
+				className={clsx(
+					"relative overflow-hidden rounded-3xl p-6 sm:p-8 shadow-md backdrop-blur-lg",
+					bgColor,
+					className,
+				)}
+				{...rest}
+			>
+				{/* Bordas visuais */}
+				<div
+					className={clsx(
+						"pointer-events-none absolute inset-4 rounded-2xl border-2",
+						innerBorderColor,
+					)}
+				/>
+				<div
+					className={clsx(
+						"pointer-events-none absolute inset-2 rounded-2xl border-2",
+						innerBorderColor,
+					)}
+				/>
+				<div
+					className={clsx(
+						"pointer-events-none absolute inset-0 rounded-3xl border-[8px]",
+						frameColor,
+					)}
+				/>
+				{/* Conteúdo */}
+				<div className="relative z-10">{children}</div>
+			</Comp>
+		);
+	},
+);
+
+CardFrame.displayName = "CardFrame";

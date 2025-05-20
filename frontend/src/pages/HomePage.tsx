@@ -1,4 +1,4 @@
-import CardFrame from "@/components/CardFrame";
+import { CardFrame } from "@/components/CardFrame";
 import Logo from "@/assets/logo/logo.svg?react";
 import { ROUTES_CONFIG } from "@/config/constants";
 import VisionLine from "@/components/VisionLine";

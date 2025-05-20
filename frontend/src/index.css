@@ -5,7 +5,6 @@
 @tailwind utilities;
 
 @layer base {
-
   html,
   body,
   #root {
@@ -22,5 +21,49 @@
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+  }
+
+  :root {
+    --color-primary: #302a2a;
+    --color-orange: #ff7a00;
+    --color-purple: #7d50f7;
+    --color-beige: #ebdcd7;
+    --color-yellow: #ffe922;
+  }
+}
+
+@layer components {
+  .test-line {
+    @apply block w-full text-center uppercase;
+  }
+
+  .test-size-1 {
+    letter-spacing: clamp(0.2em, 0.5vw, 0.3em);
+  }
+
+  .test-size-2 {
+    letter-spacing: clamp(0.15em, 0.5vw, 0.25em);
+  }
+
+  .test-size-3 {
+    letter-spacing: clamp(0.em, 0.45vw, 0.4em);
+  }
+
+  .test-size-4 {
+    letter-spacing: clamp(0.4em, 0.4vw, 0.5em);
+  }
+
+  .test-size-5 {
+    letter-spacing: clamp(0.35em, 0.25vw, 0.4em);
+  }
+
+  .test-size-6 {
+    letter-spacing: clamp(0.35em, 0.2vw, 0.45em);
+  }
+
+  .link-interactive {
+    @apply text-primary font-semibold transition-all duration-500 ease-out
+           focus-visible:animate-jitter group-hover:animate-jitter
+           group-hover:font-extrabold group-hover:text-purple;
   }
 }
