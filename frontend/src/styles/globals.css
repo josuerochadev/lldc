@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    min-height: 100vh;
+    background-color: #352f2f;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  :root {
+    --color-primary: #352f2f;
+    --color-orange: #fc871a;
+    --color-purple: #645196;
+    --color-beige: #efd8d1;
+    --color-yellow: #ead300;
+  }
+}
+
+@layer components {
+  .link-interactive {
+    @apply text-primary font-semibold transition-all duration-500 ease-out
+           focus-visible:animate-jitter group-hover:animate-jitter
+           group-hover:font-extrabold group-hover:text-purple;
+  }
+}

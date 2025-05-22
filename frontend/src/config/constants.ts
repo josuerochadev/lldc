@@ -1,13 +1,5 @@
 // src/config/constants.ts
 
-export const COLORS = {
-  primary: '#302a2a',
-  orange: '#ff7a00',
-  purple: '#7d50f7',
-  beige: '#ebdcd7',
-  yellow: '#ffe922',
-};
-
 export const ROUTES_CONFIG = [
   {
     path: '/offres',
@@ -41,18 +33,3 @@ export const ROUTES_CONFIG = [
   },
 ];
 
-export const OFFERS = [
-  {
-    title: 'RECYCLAGE DE VOS ANCIENNES PAIRES',
-    description: [
-      "En rapportant vos anciennes montures, vous pouvez bénéficier d'une remise allant jusqu'à 70€ sur l'achat d'une nouvelle paire.",
-    ],
-  },
-  {
-    title: 'DEUXIÈME PAIRE DE LUNETTES',
-    description: [
-      'Pour 59€, une deuxième paire avec monture et verres unifocaux.',
-      'Pour 89€, une deuxième paire avec verres progressifs.',
-    ],
-  },
-];
