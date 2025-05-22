@@ -4,15 +4,15 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: "#302a2a",
-				orange: "#ff7a00",
-				purple: "#7d50f7",
-				beige: "#d4c5ba",
-				yellow: "#ffe922",
+				primary: "#352f2f",
+				orange: "#fc871a",
+				purple: "#645196",
+				beige: "#efd8d1",
+				yellow: "#ead300",
 			},
 			fontFamily: {
 				sans: ['"League Spartan"', "sans-serif"],
-				serif: ['"Instrument Serif"', "serif"],
+				serif: ['"Imbue"', "serif"],
 			},
 			keyframes: {
 				radialShift: {
@@ -22,16 +22,9 @@ export default {
 					"75%": { backgroundPosition: "50% 70%" },
 					"100%": { backgroundPosition: "20% 30%" },
 				},
-				jitter: {
-					"0%, 100%": { transform: "translate(0, 0)", filter: "blur(0px)" },
-					"25%": { transform: "translate(1px, -1px)", filter: "blur(8px)" },
-					"50%": { transform: "translate(-1px, 1px)", filter: "blur(6px)" },
-					"75%": { transform: "translate(1px, 1px)", filter: "blur(4px)" },
-				},
 			},
 			animation: {
 				radialShift: "radialShift 30s ease-in-out infinite",
-				jitter: "jitter 0.2s ease-in-out",
 			},
 		},
 	},
