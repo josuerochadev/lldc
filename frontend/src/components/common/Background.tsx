@@ -14,6 +14,7 @@ export default function Background() {
 					backgroundSize: "150% 150%", // leve otimização de performance
 					backgroundRepeat: "no-repeat",
 					backgroundPosition: "20% 30%",
+					mixBlendMode: "multiply",
 				}}
 			/>
 		</div>
