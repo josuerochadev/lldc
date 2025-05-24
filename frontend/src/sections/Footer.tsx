@@ -12,7 +12,7 @@ export default function Footer({ className = "", ...rest }: FooterProps) {
 		<footer
 			{...rest}
 			className={clsx(
-				"relative z-20 w-full bg-primary px-6 py-10 text-beige",
+				"relative z-10 w-full bg-primary px-6 py-10 text-beige",
 				className,
 			)}
 		>
