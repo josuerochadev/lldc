@@ -44,11 +44,11 @@ export default function App() {
 	}, []);
 
 	return (
-		<div className="relative min-h-screen font-sans text-primary bg-beige">
+		<div className="relative min-h-screen font-sans text-primary">
 			<Background />
 			<Navbar />
 			<Buttons />
-			<main className="space-y-24 sm:space-y-32">
+			<main>
 				<Hero />
 				<Punchlines />
 				<Offers />

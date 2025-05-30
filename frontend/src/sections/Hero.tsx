@@ -18,7 +18,7 @@ export default function Hero() {
 			id="hero"
 			aria-label="Hero Section"
 			ref={sectionRef}
-			className="relative z-10 isolate block min-h-[150svh] overflow-hidden px-4 sm:px-6"
+			className="relative z-10 isolate block min-h-[145svh] overflow-hidden px-4 sm:px-6"
 		>
 			<motion.div
 				style={{ opacity: animations.sectionOpacity }}
