@@ -28,11 +28,11 @@ export default function SectionFade({
 
 	return (
 		<div
-			className={`w-full h-[20vh] pointer-events-none z-10 ${
+			className={`w-full h-[80vh] pointer-events-none z-10 ${
 				absolute
 					? direction === "top"
-						? "absolute -top-[20vh] left-0"
-						: "absolute -bottom-[20vh] left-0"
+						? "absolute -top-[80vh] left-0"
+						: "absolute -bottom-[80vh] left-0"
 					: ""
 			}`}
 			style={{
