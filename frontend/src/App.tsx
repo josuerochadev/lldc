@@ -19,7 +19,7 @@ import Navbar from "@/components/common/Navbar";
 export default function App() {
 	useEffect(() => {
 		const lenis = new Lenis({
-			duration: 1.1, // ligeiramente mais rápido, mantendo fluidez
+			duration: 1, // ligeiramente mais rápido, mantendo fluidez
 			easing: (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2), // EaseInOutCubic
 			wheelMultiplier: 1.15, // um pouco mais ágil em desktop
 			touchMultiplier: 1.2, // resposta mais rápida em mobile
@@ -52,10 +52,10 @@ export default function App() {
 				<Hero />
 				<Punchlines />
 				<Offers />
-				<Photos />
-				<Concept />
 				<Services />
 				<Testimonials />
+				<Photos />
+				<Concept />
 				<Social />
 				<Footer />
 			</main>
