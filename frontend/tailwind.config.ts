@@ -35,6 +35,11 @@ const config: Config = {
 			animation: {
 				radialShift: "radialShift 30s ease-in-out infinite",
 			},
+			screens: {
+				"3xl": "1920px", // Full HD Desktop
+				"4xl": "2560px", // WQHD 2K
+				"5xl": "3840px", // 4K UHD
+			},
 		},
 	},
 	plugins: [

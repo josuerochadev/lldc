@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import SectionTitle from "@/components/common/SectionTitle";
+
 const offres = [
 	{
 		title: "Recyclez vos anciennes lunettes jusqu'à 70€ offerts",
@@ -26,23 +28,33 @@ export default function Offres() {
 	return (
 		<section
 			id="offres"
-			className="relative w-full min-h-screen py-24 px-6 sm:px-12"
+			className="relative w-full min-h-screen py-16 sm:py-24 px-6 sm:px-12"
 		>
+			<SectionTitle text="Des offres pour faire du bien à vos yeux et à votre budget" />
 			<div className="max-w-7xl mx-auto">
-				<div className="grid gap-12 sm:grid-cols-2">
+				<div className="grid gap-12 grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
 					{offres.map((offre, index) => (
 						<motion.div
 							key={offre.title}
 							initial={{ opacity: 0, y: 30 }}
 							animate={visible ? { opacity: 1, y: 0 } : {}}
 							transition={{ delay: index * 0.3, duration: 0.6 }}
-							className="relative w-full"
+							tabIndex={0}
+							className="relative w-full focus:outline-none"
 						>
-							<div className="card-lens w-full">
-								<h3 className="text-5xl text-balance text-purple font-bold font-serif my-3 leading-[0.9]">
+							<div className="card-lens w-full flex flex-col justify-center items-start gap-4 group">
+								<h3 className="text-4xl font-bold font-serif text-balance text-purple leading-tight">
 									{offre.title}
 								</h3>
-								<p className="text-base leading-relaxed text-primary/80">
+
+								<p
+									className={`
+      text-base leading-relaxed text-primary/80 transition-opacity duration-300
+      md:opacity-100
+      opacity-0 group-hover:opacity-100 group-focus-within:opacity-100
+      max-h-0 md:max-h-none overflow-hidden md:overflow-visible
+    `}
+								>
 									{offre.description}
 								</p>
 							</div>
