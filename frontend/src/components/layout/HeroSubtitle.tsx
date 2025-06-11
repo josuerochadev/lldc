@@ -1,3 +1,5 @@
+// src/components/layout/HeroSubtitle.tsx
+
 import { motion } from "framer-motion";
 import { useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
@@ -6,12 +8,12 @@ import type { HeroAnimations } from "@/types/animations";
 
 type Props = {
 	animations: HeroAnimations;
+	className?: string;
 };
 
-export default function HeroSubtitle({ animations }: Props) {
+export default function HeroSubtitle({ animations, className = "" }: Props) {
 	const [boldClass, setBoldClass] = useState("font-medium");
 
-	// Opcional: hook para classe dinâmica com threshold
 	useMotionValueEvent(animations.isSubtitleBold, "change", (v) => {
 		setBoldClass(v ? "font-extrabold" : "font-medium");
 	});
@@ -20,14 +22,14 @@ export default function HeroSubtitle({ animations }: Props) {
 		<motion.p
 			initial={{ opacity: 0, y: -10 }}
 			animate={{ opacity: 1, y: 0 }}
-			transition={{ delay: 0.7, duration: 0.6, ease: "easeOut" }}
+			transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
 			style={{
 				x: animations.subtitleX,
 				y: animations.subtitleY,
-				opacity: animations.subtitleOpacity,
 				color: animations.subtitleColor,
+				opacity: animations.subtitleOpacity,
 			}}
-			className={`absolute top-[38%] right-[12%] z-20 text-left text-[clamp(1.25rem,3.5vw,2.5rem)] leading-[0.9] uppercase ${boldClass}`}
+			className={`text-left text-xl sm:text-2xl md:text-3xl leading-tight ${boldClass} ${className}`}
 		>
 			NEUF
 			<br />

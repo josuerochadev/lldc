@@ -1,11 +1,14 @@
 import SectionFade from "../components/common/SectionFade";
 import PunchlineContent from "../components/layout/PunchlineContent";
 
+import SectionContainer from "@/components/common/SectionContainer";
+
+
 export default function Punchlines() {
 	return (
-		<section
+		<SectionContainer
 			id="punchlines"
-			className="relative isolate flex flex-col justify-center items-center"
+			className="flex flex-col justify-center items-center"
 		>
 			{/* Fade superior */}
 			<SectionFade direction="top" />
@@ -17,6 +20,6 @@ export default function Punchlines() {
 
 			{/* Fade inferior */}
 			<SectionFade direction="bottom" />
-		</section>
+		</SectionContainer>
 	);
 }

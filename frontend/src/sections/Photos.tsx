@@ -1,3 +1,5 @@
+
+
 export default function Photos() {
 	return (
 		<section className="px-6 py-24 relative z-10 flex flex-col items-center justify-center">

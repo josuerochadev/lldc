@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import SectionContainer from "@/components/common/SectionContainer";
 import SectionTitle from "@/components/common/SectionTitle";
 
 const offres = [
@@ -26,9 +27,9 @@ export default function Offres() {
 	}, []);
 
 	return (
-		<section
+		<SectionContainer
 			id="offres"
-			className="relative w-full min-h-screen py-16 sm:py-24 px-6 sm:px-12"
+			className="min-h-screen py-16 sm:py-24 px-6 sm:px-12"
 		>
 			<SectionTitle text="Des offres pour faire du bien à vos yeux et à votre budget" />
 			<div className="max-w-7xl mx-auto">
@@ -62,6 +63,6 @@ export default function Offres() {
 					))}
 				</div>
 			</div>
-		</section>
+		</SectionContainer>
 	);
 }

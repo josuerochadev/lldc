@@ -1,3 +1,5 @@
+// src/components/animations/useHeroAnimations.ts
+
 import { useScroll, useTransform, useSpring, easeInOut } from "framer-motion";
 import type { RefObject } from "react";
 

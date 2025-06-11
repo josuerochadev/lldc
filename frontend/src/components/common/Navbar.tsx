@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 
 function scrollToId(id: string) {
 	const element = document.getElementById(id);
@@ -8,55 +10,68 @@ function scrollToId(id: string) {
 }
 
 export default function Navbar() {
-	const [isVisible, setIsVisible] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			([entry]) => setIsVisible(!entry.isIntersecting),
-			{ threshold: 0.1 },
-		);
-		const hero = document.querySelector("section#hero");
-		if (hero) observer.observe(hero);
-		return () => {
-			if (hero) observer.unobserve(hero);
-		};
-	}, []);
+	const handleClick = (id: string) => {
+		scrollToId(id);
+		setIsOpen(false);
+	};
 
 	return (
-		<nav
-			className={`fixed top-0 left-0 w-full px-6 py-4 z-30 transition-opacity duration-500 ${
-				isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
-			}`}
+		<motion.div
+			className="fixed top-4 right-4 z-50 flex flex-col items-end space-y-3"
+			initial={{ opacity: 0, y: -20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
 		>
-			<ul className="flex justify-center space-x-8">
-				<li>
-					<button
-						type="button"
-						className="button-primary"
-						onClick={() => scrollToId("offres")}
+			{/* Botão principal */}
+			<button
+				type="button"
+				onClick={() => setIsOpen(!isOpen)}
+				className="button-primary flex items-center gap-2"
+				aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+			>
+				{isOpen ? (
+					<>
+						<HiOutlineX size={20} /> Fermer
+					</>
+				) : (
+					<>
+						<HiOutlineMenu size={20} /> Menu
+					</>
+				)}
+			</button>
+
+			{/* Dropdown */}
+			<AnimatePresence>
+				{isOpen && (
+					<motion.ul
+						initial={{ opacity: 0, y: -10 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -10 }}
+						transition={{ duration: 0.3 }}
+						className="flex flex-col items-end space-y-3"
 					>
-						Offres
-					</button>
-				</li>
-				<li>
-					<button
-						type="button"
-						className="button-primary"
-						onClick={() => scrollToId("offres")}
-					>
-						Services
-					</button>
-				</li>
-				<li>
-					<button
-						type="button"
-						className="button-primary"
-						onClick={() => scrollToId("concept")}
-					>
-						Concept
-					</button>
-				</li>
-			</ul>
-		</nav>
+						{[
+							{ id: "offres", label: "Offres" },
+							{ id: "services", label: "Services" },
+							{ id: "concept", label: "Concept" },
+							{ id: "contact", label: "Contactez-nous" },
+							{ id: "rdv", label: "Prendre RDV !" },
+						].map(({ id, label }) => (
+							<li key={id}>
+								<button
+									type="button"
+									onClick={() => handleClick(id)}
+									className="button-primary text-center"
+								>
+									{label}
+								</button>
+							</li>
+						))}
+					</motion.ul>
+				)}
+			</AnimatePresence>
+		</motion.div>
 	);
 }

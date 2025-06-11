@@ -1,3 +1,5 @@
+// src/components/layout/HeroLogo.tsx
+
 import { motion, useMotionTemplate } from "framer-motion";
 
 import LogoEye from "@/assets/logo/logo-eye.svg?react";
@@ -5,9 +7,10 @@ import type { HeroAnimations } from "@/types/animations";
 
 type Props = {
 	animations: HeroAnimations;
+	className?: string;
 };
 
-export default function HeroLogo({ animations }: Props) {
+export default function HeroLogo({ animations, className = "" }: Props) {
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: -20 }}
@@ -20,9 +23,13 @@ export default function HeroLogo({ animations }: Props) {
 				scale: animations.logoScale,
 				color: animations.logoColor,
 			}}
-			className="absolute top-[20%] left-[12%] z-20"
+			className={`z-20 ${className}`}
 		>
-			<LogoEye className="h-20 sm:h-24 md:h-28 w-auto" />
+			<LogoEye
+				className="h-20 sm:h-24 md:h-28 w-auto"
+				role="img"
+				aria-label="Logo La Lunetterie du Coin"
+			/>
 		</motion.div>
 	);
 }

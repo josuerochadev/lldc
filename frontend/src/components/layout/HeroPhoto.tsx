@@ -1,3 +1,5 @@
+// src/components/layout/HeroPhoto.tsx
+
 import { motion } from "framer-motion";
 
 import type { HeroAnimations } from "@/types/animations";
