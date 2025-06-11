@@ -2,8 +2,6 @@
 import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 
-import Buttons from "./components/common/Buttons";
-
 import Hero from "@/sections/Hero";
 import Punchlines from "@/sections/Punchlines";
 import Offers from "@/sections/Offers";
@@ -47,7 +45,6 @@ export default function App() {
 		<div className="relative min-h-screen font-sans text-primary">
 			<Background />
 			<Navbar />
-			<Buttons />
 			<main>
 				<Hero />
 				<Punchlines />

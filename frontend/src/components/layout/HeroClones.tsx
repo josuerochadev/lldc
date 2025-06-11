@@ -1,3 +1,5 @@
+// src/components/layout/HeroClones.tsx
+
 import { motion, useMotionTemplate } from "framer-motion";
 
 import HeroTitle from "./HeroTitle";

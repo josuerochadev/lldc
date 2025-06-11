@@ -1,6 +1,7 @@
 import { useState } from "react";
 import clsx from "clsx";
 
+import SectionContainer from "@/components/common/SectionContainer";
 import SectionTitle from "@/components/common/SectionTitle";
 
 const services = [
@@ -34,9 +35,9 @@ export default function Services() {
 	};
 
 	return (
-		<section
+		<SectionContainer
 			id="services"
-			className="relative w-full px-4 sm:px-8 py-24 flex flex-col items-center gap-16"
+			className="px-4 sm:px-8 py-24 flex flex-col items-center gap-16"
 		>
 			<SectionTitle text="Voici aussi ce que nous pouvons faire pour vous et pour votre vue." />
 
@@ -82,6 +83,6 @@ export default function Services() {
 					);
 				})}
 			</div>
-		</section>
+		</SectionContainer>
 	);
 }
