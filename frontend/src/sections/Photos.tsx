@@ -1,12 +1,22 @@
+import SectionContainer from '@/components/common/SectionContainer';
 
-
+// src/sections/Photos.tsx
 export default function Photos() {
-	return (
-		<section className="px-6 py-24 relative z-10 flex flex-col items-center justify-center">
-			<div className="w-full max-w-2xl h-64 bg-gray-300 rounded-xl animate-pulse" />
-			<p className="mt-6 text-center text-sm text-gray-500">
-				Galerie photo en cours de préparation
-			</p>
-		</section>
-	);
+  return (
+    <SectionContainer id="photos">
+      <div className="mx-auto mb-20 max-w-7xl text-center">
+        <h2 className="text-4xl font-extrabold md:text-6xl">La Boutique</h2>
+      </div>
+
+      <div className="mx-auto max-w-7xl">
+        <div className="w-full border-4 border-primary bg-beige p-10">
+          <img
+            src="/public/photo.png" // adapte si besoin le chemin
+            alt="Intérieur de la boutique"
+            className="h-auto max-h-[600px] w-full object-cover"
+          />
+        </div>
+      </div>
+    </SectionContainer>
+  );
 }
