@@ -1,57 +1,71 @@
-// src/sections/Hero.tsx
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import type React from "react";
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import SplitText from '@/components/motion/SplitText';
+import FadeInUp from '@/components/motion/FadeInUp';
 
-import SectionContainer from "@/components/common/SectionContainer";
-import { useHeroAnimations } from "@/components/animations/useHeroAnimations";
-import HeroTitle from "@/components/layout/HeroTitle";
-import HeroLogo from "@/components/layout/HeroLogo";
-import HeroSubtitle from "@/components/layout/HeroSubtitle";
-import HeroClones from "@/components/layout/HeroClones";
-import HeroPhoto from "@/components/layout/HeroPhoto";
+const phrases = [
+  'Des lunettes qui ont du style, une démarche qui a du sens',
+  'Des lunettes à la mode et pas de déchet en vue !',
+  'Payez vos lunettes moins cher en recyclant vos anciennes paires',
+];
 
-export default function Hero() {
-	const sectionRef = useRef<HTMLElement>(null) as React.RefObject<HTMLElement>;
-	const animations = useHeroAnimations(sectionRef);
+const Hero: React.FC = () => {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
-	return (
-		<SectionContainer
-			id="hero"
-			aria-label="Hero Section"
-			ref={sectionRef}
-			className="relative z-10 isolate min-h-[145svh] overflow-hidden px-4 sm:px-6"
-		>
-			<div className="sticky top-0 h-[100svh] flex flex-col justify-center">
-				<div className="grid grid-rows-3 w-full max-w-[90rem] mx-auto h-fit">
-					{/* Linha 1: Logo à esquerda */}
-					<div className="flex justify-end items-end">
-						<HeroLogo animations={animations} />
-					</div>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+    }, 5000);
 
-					{/* Linha 2: Título centralizado */}
-					<div className="flex justify-center items-center">
-						<motion.div
-							initial={{ opacity: 0, y: -20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ delay: 0.3, duration: 0.45, ease: "easeOut" }}
-							style={{ opacity: animations.mainTitleOpacity }}
-						>
-							<HeroTitle />
-						</motion.div>
-					</div>
+    return () => clearInterval(interval);
+  }, []);
 
-					{/* Linha 3: Subtítulo à direita */}
-					<div className="flex justify-end items-start">
-						<HeroSubtitle animations={animations} />
-					</div>
-				</div>
-			</div>
+  return (
+    <section className="grid min-h-screen w-full grid-rows-[auto_1fr_auto] bg-beige px-4">
+      <div className="mx-auto flex w-full max-w-7xl justify-center pt-16 md:pt-32">
+        <FadeInUp delay={0.1}>
+          <img
+            src="/src/assets/logo/logo.svg"
+            alt="La Lunetterie du Coin"
+            className="w-40 md:w-56"
+          />
+        </FadeInUp>
+      </div>
 
-			{/* Outros elementos */}
-			<HeroClones animations={animations} />
-			<HeroPhoto animations={animations} />
-		</SectionContainer>
-	);
-}
+      <div />
+
+      <div className="mx-auto w-full max-w-7xl pb-16 md:pb-32">
+        <div className="mx-auto max-w-5xl text-left">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={phrases[currentPhraseIndex]}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8 }}
+            >
+              <SplitText text={phrases[currentPhraseIndex]} />
+            </motion.div>
+          </AnimatePresence>
+
+          <FadeInUp delay={0.6}>
+            <button
+              type="button"
+              aria-label="Prendre rendez-vous"
+              onClick={() => {
+                window.location.href = '#appointment';
+              }}
+              className="button-primary transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange focus:ring-offset-2 active:scale-95"
+            >
+              Prendre rendez-vous
+            </button>
+          </FadeInUp>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;

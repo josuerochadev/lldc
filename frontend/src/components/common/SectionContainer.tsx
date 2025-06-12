@@ -1,30 +1,17 @@
 // src/components/common/SectionContainer.tsx
 
-import type { ReactNode, HTMLAttributes } from "react";
-import { forwardRef } from "react";
+import type { ReactNode } from 'react';
 
-type Props = {
-  id: string;
+type SectionContainerProps = {
   children: ReactNode;
+  id?: string;
   className?: string;
-  ariaLabel?: string;
-} & HTMLAttributes<HTMLElement>;
+};
 
-const SectionContainer = forwardRef<HTMLElement, Props>(function SectionContainer(
-  { id, children, className = "", ariaLabel, ...rest },
-  ref
-) {
+export default function SectionContainer({ children, id, className = '' }: SectionContainerProps) {
   return (
-    <section
-      id={id}
-      aria-label={ariaLabel}
-      ref={ref}
-      className={`relative isolate mx-auto w-full ${className}`}
-      {...rest}
-    >
-      {children}
+    <section id={id} className={`w-full px-4 py-32 ${className}`}>
+      <div className="mx-auto max-w-7xl">{children}</div>
     </section>
   );
-});
-
-export default SectionContainer;
+}

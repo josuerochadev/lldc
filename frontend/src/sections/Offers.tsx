@@ -1,68 +1,89 @@
-// src/sections/Offres.tsx
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import SectionContainer from "@/components/common/SectionContainer";
-import SectionTitle from "@/components/common/SectionTitle";
+import StaggerGroup from "@/components/motion/StaggerGroup";
+import FadeInUp from "@/components/motion/FadeInUp";
+import TiltCard from "@/components/motion/TiltCard";
 
-const offres = [
-	{
-		title: "Recyclez vos anciennes lunettes jusqu'à 70€ offerts",
-		description:
-			"Ramenez vos anciennes montures et bénéficiez d’une remise immédiate sur une nouvelle paire. Une démarche écoresponsable pour donner une seconde vie à vos lunettes.",
-	},
-	{
-		title: "Votre deuxième paire à partir de 59€",
-		description:
-			"Obtenez une deuxième paire à tarif préférentiel : 59€ pour des verres unifocaux, 89€ pour des progressifs. Verres transparents ou solaires 100% UV, fabriqués en France par Ophtalmic Vision.",
-	},
+const offers = [
+  {
+    id: 1,
+    title: "Recyclage",
+    image: "/photo.png",
+    summary: "Jusqu’à 70€ de remise en rapportant vos anciennes montures.",
+    details: "Cette démarche vise à encourager le recyclage, donner une seconde vie à vos lunettes tout en réduisant les déchets.",
+  },
+  {
+    id: 2,
+    title: "Deuxième paire",
+    image: "/photo.png",
+    summary: "Obtenez une deuxième paire à partir de 59€ selon vos besoins.",
+    details: `• 59€ : monture + verres unifocaux\n
+              • 89€ : verres progressifs\n
+              • Verres : antireflet durci ou solaires UV cat.3\n
+              • Origine France Garantie — Ophtalmic Vision.`,
+  },
 ];
 
-export default function Offres() {
-	const [visible, setVisible] = useState(false);
+export default function Offers() {
+  const [openCard, setOpenCard] = useState<number | null>(null);
 
-	useEffect(() => {
-		const timeout = setTimeout(() => setVisible(true), 400);
-		return () => clearTimeout(timeout);
-	}, []);
+  return (
+    <section className="w-full py-24 px-4">
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h2 className="text-6xl font-extrabold">Offres du moment</h2>
+      </div>
 
-	return (
-		<SectionContainer
-			id="offres"
-			className="min-h-screen py-16 sm:py-24 px-6 sm:px-12"
-		>
-			<SectionTitle text="Des offres pour faire du bien à vos yeux et à votre budget" />
-			<div className="max-w-7xl mx-auto">
-				<div className="grid gap-12 grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-					{offres.map((offre, index) => (
-						<motion.div
-							key={offre.title}
-							initial={{ opacity: 0, y: 30 }}
-							animate={visible ? { opacity: 1, y: 0 } : {}}
-							transition={{ delay: index * 0.3, duration: 0.6 }}
-							tabIndex={0}
-							className="relative w-full focus:outline-none"
-						>
-							<div className="card-lens w-full flex flex-col justify-center items-start gap-4 group">
-								<h3 className="text-4xl font-bold font-serif text-balance text-purple leading-tight">
-									{offre.title}
-								</h3>
-
-								<p
-									className={`
-      text-base leading-relaxed text-primary/80 transition-opacity duration-300
-      md:opacity-100
-      opacity-0 group-hover:opacity-100 group-focus-within:opacity-100
-      max-h-0 md:max-h-none overflow-hidden md:overflow-visible
-    `}
-								>
-									{offre.description}
-								</p>
-							</div>
-						</motion.div>
-					))}
-				</div>
-			</div>
-		</SectionContainer>
-	);
+      <StaggerGroup>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+          {offers.map((offer, index) => (
+            <FadeInUp key={offer.id} delay={index * 0.2}>
+              <TiltCard>
+                <motion.div
+                  className="bg-beige border-4 border-primary overflow-hidden flex flex-col justify-between h-full min-h-[500px] md:min-h-[600px] cursor-pointer"
+                  onClick={() => setOpenCard(openCard === offer.id ? null : offer.id)}
+                  layout
+                >
+                  <AnimatePresence mode="wait">
+                    {openCard === offer.id ? (
+                      <motion.div
+                        key="details"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="p-10 flex flex-col justify-between h-full"
+                      >
+                        <h3 className="text-3xl font-serif font-bold mb-4">{offer.title}</h3>
+                        <p className="text-lg whitespace-pre-line">{offer.details}</p>
+                        <button type="button" className="underline font-bold self-start mt-6">Réduire</button>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="summary"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex flex-col h-full"
+                      >
+                        <img
+                          src={offer.image}
+                          alt={offer.title}
+                          className="w-full h-72 md:h-96 object-cover border-b-4 border-primary"
+                        />
+                        <div className="p-10 flex flex-col justify-between h-full">
+                          <h3 className="text-3xl font-serif font-bold mb-4">{offer.title}</h3>
+                          <p className="text-lg mb-6">{offer.summary}</p>
+                          <button type="button" className="underline font-bold self-start">En savoir plus</button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </TiltCard>
+            </FadeInUp>
+          ))}
+        </div>
+      </StaggerGroup>
+    </section>
+  );
 }

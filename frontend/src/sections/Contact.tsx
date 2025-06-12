@@ -1,0 +1,109 @@
+// src/sections/Contact.tsx
+
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import SectionContainer from '@/components/common/SectionContainer';
+
+type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+export default function Contact() {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>();
+
+  const [success, setSuccess] = useState(false);
+
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du message.");
+      }
+
+      setSuccess(true);
+      reset();
+    } catch (err) {
+      console.error(err);
+      alert('Une erreur est survenue. Veuillez réessayer plus tard.');
+    }
+  };
+
+  return (
+    <SectionContainer id="contact">
+      <div className="mx-auto mb-20 max-w-7xl text-center">
+        <h2 className="text-4xl font-extrabold md:text-6xl">Contact</h2>
+      </div>
+
+      <div className="mx-auto max-w-4xl border-4 border-primary bg-beige p-10">
+        {success && (
+          <div className="mb-6 font-semibold text-green-700">Votre message a bien été envoyé !</div>
+        )}
+
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+          <div className="flex flex-col">
+            <label htmlFor="name" className="mb-2 font-bold">
+              Nom
+            </label>
+            <input
+              id="name"
+              type="text"
+              className="border-2 border-primary p-4"
+              {...register('name', { required: 'Le nom est requis' })}
+            />
+            {errors.name && <span className="mt-1 text-red-600">{errors.name.message}</span>}
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="email" className="mb-2 font-bold">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="border-2 border-primary p-4"
+              {...register('email', {
+                required: "L'email est requis",
+                pattern: { value: /^\S+@\S+$/i, message: 'Email invalide' },
+              })}
+            />
+            {errors.email && <span className="mt-1 text-red-600">{errors.email.message}</span>}
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="message" className="mb-2 font-bold">
+              Message
+            </label>
+            <textarea
+              id="message"
+              className="border-2 border-primary p-4"
+              rows={5}
+              {...register('message', { required: 'Le message est requis' })}
+            />
+            {errors.message && <span className="mt-1 text-red-600">{errors.message.message}</span>}
+          </div>
+
+          <button
+            type="submit"
+            className="button-primary self-start transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange focus:ring-offset-2 active:scale-95"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+          </button>
+        </form>
+      </div>
+    </SectionContainer>
+  );
+}
