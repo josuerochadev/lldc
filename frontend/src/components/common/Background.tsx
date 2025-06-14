@@ -4,7 +4,7 @@ export default function Background() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       <div
-        className="absolute inset-0 animate-radialShift"
+        className="animate-radialShift absolute inset-0"
         style={{
           backgroundImage: `radial-gradient(
             circle at var(--radial-x, 50%) var(--radial-y, 50%),

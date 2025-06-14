@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
-import { use3DTilt } from "@/hooks/use3DTilt";
+import { use3DTilt } from '@/hooks/use3DTilt';
 
 export default function TiltCard({ children }: { children: ReactNode }) {
   const ref = use3DTilt();
@@ -11,7 +11,7 @@ export default function TiltCard({ children }: { children: ReactNode }) {
       className="relative"
       style={{
         perspective: 1000,
-        transformStyle: "preserve-3d",
+        transformStyle: 'preserve-3d',
       }}
     >
       {children}
