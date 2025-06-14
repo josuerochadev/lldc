@@ -1,5 +1,5 @@
 import type React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, forwardRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import SplitText from '@/components/motion/SplitText';
@@ -11,7 +11,7 @@ const phrases = [
   'Payez vos lunettes moins cher en recyclant vos anciennes paires',
 ];
 
-const Hero: React.FC = () => {
+const Hero = forwardRef<HTMLElement>((props, ref) => {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="grid min-h-screen w-full grid-rows-[auto_1fr_auto] bg-beige px-4">
+    <section ref={ref} className="grid min-h-screen w-full grid-rows-[auto_1fr_auto] bg-beige px-4">
       <div className="mx-auto flex w-full max-w-7xl justify-center pt-16 md:pt-32">
         <FadeInUp delay={0.1}>
           <img
@@ -66,6 +66,6 @@ const Hero: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Hero;

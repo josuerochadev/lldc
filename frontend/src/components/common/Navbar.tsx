@@ -1,77 +1,34 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
+import type React from 'react';
+import { useState, useEffect } from 'react';
 
-function scrollToId(id: string) {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+import MenuButton from './MenuButton';
+import FullScreenMenu from './FullScreenMenu';
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+const Navbar: React.FC = () => {
+  const [menuRequested, setMenuRequested] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
-  const handleClick = (id: string) => {
-    scrollToId(id);
-    setIsOpen(false);
+  useEffect(() => {
+    if (menuRequested) {
+      setMenuVisible(true);
+    } else {
+      const timeout = setTimeout(() => setMenuVisible(false), 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [menuRequested]);
+
+  const handleToggle = () => {
+    // Bloqueia toggle durante o exit
+    if (!menuRequested && menuVisible) return;
+    setMenuRequested(!menuRequested);
   };
 
   return (
-    <motion.div
-      className="fixed right-4 top-4 z-50 flex flex-col items-end space-y-3"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
-    >
-      {/* Botão principal */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="button-primary flex items-center gap-2"
-        aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-      >
-        {isOpen ? (
-          <>
-            <HiOutlineX size={20} /> Fermer
-          </>
-        ) : (
-          <>
-            <HiOutlineMenu size={20} /> Menu
-          </>
-        )}
-      </button>
-
-      {/* Dropdown */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.ul
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-col items-end space-y-3"
-          >
-            {[
-              { id: 'offres', label: 'Offres' },
-              { id: 'services', label: 'Services' },
-              { id: 'concept', label: 'Concept' },
-              { id: 'contact', label: 'Contactez-nous' },
-              { id: 'rdv', label: 'Prendre RDV !' },
-            ].map(({ id, label }) => (
-              <li key={id}>
-                <button
-                  type="button"
-                  onClick={() => handleClick(id)}
-                  className="button-primary text-center"
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
-    </motion.div>
+    <>
+      <MenuButton isOpen={menuVisible} onClick={handleToggle} />
+      <FullScreenMenu isOpen={menuRequested || menuVisible} onClose={() => setMenuRequested(false)} />
+    </>
   );
-}
+};
+
+export default Navbar;

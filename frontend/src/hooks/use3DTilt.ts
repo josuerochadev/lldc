@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect } from 'react';
 
 export function use3DTilt(maxTilt = 7, transition = 'transform 0.25s ease-out') {
   const ref = useRef<HTMLDivElement>(null);

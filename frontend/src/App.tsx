@@ -14,6 +14,7 @@ import Services from '@/sections/Services';
 import Testimonials from '@/sections/Testimonials';
 
 export default function App() {
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1, // ligeiramente mais rápido, mantendo fluidez
