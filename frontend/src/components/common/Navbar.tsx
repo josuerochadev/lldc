@@ -26,7 +26,10 @@ const Navbar: React.FC = () => {
   return (
     <>
       <MenuButton isOpen={menuVisible} onClick={handleToggle} />
-      <FullScreenMenu isOpen={menuRequested || menuVisible} onClose={() => setMenuRequested(false)} />
+      <FullScreenMenu
+        isOpen={menuRequested || menuVisible}
+        onClose={() => setMenuRequested(false)}
+      />
     </>
   );
 };

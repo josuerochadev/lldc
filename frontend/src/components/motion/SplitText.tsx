@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 type Props = {
   text: string;
+  className?: string;
 };
 
 export default function SplitText({ text }: Props) {

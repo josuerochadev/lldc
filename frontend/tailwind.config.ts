@@ -23,18 +23,18 @@ const config: Config = {
 				sans: ['"League Spartan"', "sans-serif"],
 				serif: ['"Imbue"', "serif"],
 			},
-			// keyframes: {
-			// 	radialShift: {
-			// 		"0%": { backgroundPosition: "20% 30%" },
-			// 		"25%": { backgroundPosition: "40% 50%" },
-			// 		"50%": { backgroundPosition: "60% 40%" },
-			// 		"75%": { backgroundPosition: "50% 70%" },
-			// 		"100%": { backgroundPosition: "20% 30%" },
-			// 	},
-			// },
-			// animation: {
-			// 	radialShift: "radialShift 30s ease-in-out infinite",
-			// },
+			keyframes: {
+			radialShift: {
+			 		"0%": { backgroundPosition: "20% 30%" },
+			 		"25%": { backgroundPosition: "40% 50%" },
+			 		"50%": { backgroundPosition: "60% 40%" },
+			 		"75%": { backgroundPosition: "50% 70%" },
+			 		"100%": { backgroundPosition: "20% 30%" },
+			},
+			},
+			animation: {
+			radialShift: "radialShift 30s ease-in-out infinite",
+			},
 			screens: {
 				"3xl": "1920px", // Full HD Desktop
 				"4xl": "2560px", // WQHD 2K

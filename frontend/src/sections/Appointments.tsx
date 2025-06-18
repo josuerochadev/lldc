@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
 
 import SectionContainer from '@/components/common/SectionContainer';
+import SectionTitle from '@/components/common/SectionTitle';
 
 type AppointmentFormData = {
   name: string;
@@ -64,8 +65,8 @@ export default function Appointment() {
 
   return (
     <SectionContainer id="appointment">
-      <div className="mx-auto mb-20 max-w-7xl text-center">
-        <h2 className="text-4xl font-extrabold md:text-6xl">Prendre Rendez-vous</h2>
+      <div className="mx-auto mb-16 max-w-7xl">
+        <SectionTitle title="Prendre Rendez-vous" />
       </div>
 
       <div className="mx-auto max-w-4xl border-4 border-primary bg-beige p-10">
