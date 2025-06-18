@@ -1,11 +1,12 @@
 import SectionContainer from '@/components/common/SectionContainer';
+import SectionTitle from '@/components/common/SectionTitle';
 
 // src/sections/Photos.tsx
 export default function Photos() {
   return (
     <SectionContainer id="photos">
-      <div className="mx-auto mb-20 max-w-7xl text-center">
-        <h2 className="text-4xl font-extrabold md:text-6xl">La Boutique</h2>
+      <div className="mx-auto mb-16 max-w-7xl">
+        <SectionTitle title="La Boutique" />
       </div>
 
       <div className="mx-auto max-w-7xl">

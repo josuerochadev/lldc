@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import SectionContainer from '@/components/common/SectionContainer';
+import SectionTitle from '@/components/common/SectionTitle';
 
 type ContactFormData = {
   name: string;
@@ -43,8 +44,8 @@ export default function Contact() {
 
   return (
     <SectionContainer id="contact">
-      <div className="mx-auto mb-20 max-w-7xl text-center">
-        <h2 className="text-4xl font-extrabold md:text-6xl">Contact</h2>
+      <div className="mx-auto mb-16 max-w-7xl">
+        <SectionTitle title="Nous contacter" />
       </div>
 
       <div className="mx-auto max-w-4xl border-4 border-primary bg-beige p-10">

@@ -4,6 +4,7 @@ import Lenis from '@studio-freight/lenis';
 
 import Contact from './sections/Contact';
 import Appointments from './sections/Appointments';
+import Background from './components/common/Background';
 
 import Layout from '@/components/common/Layout';
 import Hero from '@/sections/Hero';
@@ -11,10 +12,9 @@ import Offers from '@/sections/Offers';
 import Photos from '@/sections/Photos';
 import Concept from '@/sections/Concept';
 import Services from '@/sections/Services';
-import Testimonials from '@/sections/Testimonials';
+// import Testimonials from '@/sections/Testimonials';
 
 export default function App() {
-
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1, // ligeiramente mais rápido, mantendo fluidez
@@ -42,15 +42,20 @@ export default function App() {
   }, []);
 
   return (
-    <Layout>
-      <Hero />
-      <Offers />
-      <Services />
-      <Testimonials />
-      <Concept />
-      <Photos />
-      <Contact />
-      <Appointments />
-    </Layout>
+    <>
+      <Background />
+      <div className="relative z-10">
+        <Layout>
+          <Hero />
+          <Offers />
+          <Services />
+          {/* <Testimonials /> */}
+          <Concept />
+          <Photos />
+          <Contact />
+          <Appointments />
+        </Layout>
+      </div>
+    </>
   );
 }

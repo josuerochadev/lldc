@@ -1,9 +1,8 @@
-import type React from 'react';
-import { useEffect, useState, forwardRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { useState, forwardRef } from 'react';
 
 import SplitText from '@/components/motion/SplitText';
 import FadeInUp from '@/components/motion/FadeInUp';
+import LogoEye from '@/assets/logo/logo-eye.svg?react';
 
 const phrases = [
   'Des lunettes qui ont du style, une démarche qui a du sens',
@@ -11,46 +10,39 @@ const phrases = [
   'Payez vos lunettes moins cher en recyclant vos anciennes paires',
 ];
 
-const Hero = forwardRef<HTMLElement>((props, ref) => {
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
+const Hero = forwardRef<HTMLElement>((_props, ref) => {
+  const [currentPhrase] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    return phrases[randomIndex];
+  });
 
   return (
-    <section ref={ref} className="grid min-h-screen w-full grid-rows-[auto_1fr_auto] bg-beige px-4">
-      <div className="mx-auto flex w-full max-w-7xl justify-center pt-16 md:pt-32">
+    <section ref={ref} className="relative min-h-screen w-full overflow-hidden">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center space-y-4 px-4 sm:space-y-6 md:space-y-8">
         <FadeInUp delay={0.1}>
-          <img
-            src="/src/assets/logo/logo.svg"
-            alt="La Lunetterie du Coin"
-            className="w-40 md:w-56"
-          />
+          <div className="aspect-[146/85] w-[90px] sm:w-[110px] md:w-[130px] lg:w-[160px]">
+            <LogoEye className="h-full w-full" />
+          </div>
         </FadeInUp>
-      </div>
 
-      <div />
-
-      <div className="mx-auto w-full max-w-7xl pb-16 md:pb-32">
-        <div className="mx-auto max-w-5xl text-left">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={phrases[currentPhraseIndex]}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.8 }}
-            >
-              <SplitText text={phrases[currentPhraseIndex]} />
-            </motion.div>
-          </AnimatePresence>
+        <div className="w-full max-w-[90%] space-y-4 sm:max-w-[85%] sm:space-y-6 md:max-w-4xl md:space-y-8">
+          <FadeInUp delay={0.3}>
+            <SplitText text={currentPhrase} className="break-words leading-snug" />
+          </FadeInUp>
 
           <FadeInUp delay={0.6}>
+            <header>
+              <h1 className="text-2xl leading-tight tracking-wide sm:text-3xl md:text-4xl md:tracking-normal">
+                <span className="font-thin">－</span>
+                <span className="font-thin">LA</span>
+                <span className="font-extrabold">LUNETTERIE</span>
+                <span className="font-thin">DU</span>
+                <span className="font-extrabold">COIN</span>
+              </h1>
+            </header>
+          </FadeInUp>
+
+          <FadeInUp delay={0.8}>
             <button
               type="button"
               aria-label="Prendre rendez-vous"
