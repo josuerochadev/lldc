@@ -24,7 +24,7 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <SectionContainer id="testimonials">
-      <div className="mx-auto mb-16 max-w-7xl">
+      <div className="mx-auto mb-8 max-w-7xl">
         <SectionTitle title="Ils nous font confiance" />
       </div>
 

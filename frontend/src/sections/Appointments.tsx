@@ -65,7 +65,7 @@ export default function Appointment() {
 
   return (
     <SectionContainer id="appointment">
-      <div className="mx-auto mb-16 max-w-7xl">
+      <div className="mx-auto mb-8 max-w-7xl">
         <SectionTitle title="Prendre Rendez-vous" />
       </div>
 

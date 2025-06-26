@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 };
 
-export default function SplitText({ text }: Props) {
+export default function SplitText({ text, className = '' }: Props) {
   const words = text.split(' ');
 
   const container = {
@@ -24,18 +24,18 @@ export default function SplitText({ text }: Props) {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut' as const, // 👈 ESTA LINHA
+        ease: 'easeOut' as const,
       },
     },
   };
 
   return (
-    <motion.h1
-      className="mb-8 text-5xl font-extrabold uppercase leading-tight md:text-7xl"
+    <motion.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
       variants={container}
+      className={className}
     >
       {words.map((word, index) => {
         const uniqueKey = `${word}-${index}-${Math.random().toString(36).substr(2, 9)}`;
@@ -45,6 +45,6 @@ export default function SplitText({ text }: Props) {
           </motion.span>
         );
       })}
-    </motion.h1>
+    </motion.div>
   );
 }

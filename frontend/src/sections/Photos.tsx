@@ -1,23 +1,135 @@
-import SectionContainer from '@/components/common/SectionContainer';
-import SectionTitle from '@/components/common/SectionTitle';
+'use client';
 
-// src/sections/Photos.tsx
+import { useRef, useState, useEffect } from 'react';
+import { motion, AnimatePresence, useAnimationFrame } from 'framer-motion';
+
+const images = Array(10).fill('/photo.png');
+
 export default function Photos() {
-  return (
-    <SectionContainer id="photos">
-      <div className="mx-auto mb-16 max-w-7xl">
-        <SectionTitle title="La Boutique" />
-      </div>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const x = useRef(0);
 
-      <div className="mx-auto max-w-7xl">
-        <div className="w-full border-4 border-primary bg-beige p-10">
-          <img
-            src="/public/photo.png" // adapte si besoin le chemin
-            alt="Intérieur de la boutique"
-            className="h-auto max-h-[600px] w-full object-cover"
-          />
+  const [isSlowed, setIsSlowed] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const [dragStartX, setDragStartX] = useState<number | null>(null);
+  const [zoomSrc, setZoomSrc] = useState<string | null>(null);
+  const [hasDragged, setHasDragged] = useState(false);
+
+  const normalSpeed = 0.2;
+  const slowSpeed = 0.05;
+
+  useAnimationFrame((_, delta) => {
+    if (!trackRef.current || dragging) return;
+    const currentSpeed = isSlowed ? slowSpeed : normalSpeed;
+    x.current -= (currentSpeed * delta) / 10;
+    trackRef.current.style.transform = `translateX(${x.current}px)`;
+  });
+
+  useEffect(() => {
+    const totalWidth = trackRef.current?.scrollWidth ?? 0;
+    const interval = setInterval(() => {
+      if (-x.current >= totalWidth / 2) x.current = 0;
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    setDragging(true);
+    setHasDragged(false);
+    setDragStartX(e.clientX);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!dragging || dragStartX === null || !trackRef.current) return;
+    const deltaX = e.clientX - dragStartX;
+    x.current += deltaX;
+    trackRef.current.style.transform = `translateX(${x.current}px)`;
+    setDragStartX(e.clientX);
+    setHasDragged(true);
+  };
+
+  const handlePointerUp = () => {
+    setDragging(false);
+    setDragStartX(null);
+  };
+
+  const handleClick = (src: string) => {
+    if (!hasDragged) setZoomSrc(src);
+  };
+
+  return (
+    <div
+      id="photos"
+      className="relative w-screen overflow-hidden bg-primary py-4 shadow-xl"
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+    >
+<div
+  ref={containerRef}
+  className="relative mx-auto w-full overflow-hidden touch-none"
+  style={{
+    maskImage:
+      'linear-gradient(to right, transparent 1%, black 5%, black 95%, transparent 99%)',
+    WebkitMaskImage:
+      'linear-gradient(to right, transparent 1%, black 5%, black 95%, transparent 99%)',
+  }}
+>
+        <div
+          ref={trackRef}
+          className="flex w-max gap-4 px-4"
+          onMouseEnter={() => setIsSlowed(true)}
+          onMouseLeave={() => setIsSlowed(false)}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          style={{ touchAction: 'pan-y', cursor: dragging ? 'grabbing' : 'grab' }}
+        >
+          {[...images, ...images].map((src, idx) => (
+            <div
+              key={idx}
+              className="flex-shrink-0 overflow-hidden rounded-xl bg-white shadow-md"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleClick(src)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleClick(src);
+                }
+              }}
+            >
+              <motion.img
+                src={src}
+                alt={`Gallery item ${idx + 1}`}
+                className="aspect-[9/16] h-[500px] w-auto object-cover transition-transform duration-300 ease-out hover:scale-105"
+                draggable={false}
+              />
+            </div>
+          ))}
         </div>
       </div>
-    </SectionContainer>
+
+      {/* Zoom modal */}
+      <AnimatePresence>
+        {zoomSrc && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoomSrc(null)}
+          >
+            <motion.img
+              src={zoomSrc}
+              alt="Zoomed view of gallery item"
+              className="max-h-[90vh] max-w-[90vw] rounded-xl shadow-2xl"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
