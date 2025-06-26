@@ -18,18 +18,24 @@ const Hero = forwardRef<HTMLElement>((_props, ref) => {
 
   return (
     <section ref={ref} className="relative min-h-screen w-full overflow-hidden">
-      <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-start justify-center space-y-4 px-4 sm:space-y-6 md:space-y-8">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-start justify-center space-y-4 px-4 sm:space-y-6 md:space-y-8">
+        {/* Logo */}
         <FadeInUp delay={0.1}>
           <div className="aspect-[146/85] w-[90px] sm:w-[110px] md:w-[130px] lg:w-[160px]">
             <LogoEye className="h-full w-full" />
           </div>
         </FadeInUp>
 
+        {/* Punchline */}
         <div className="w-full max-w-[90%] space-y-4 sm:max-w-[85%] sm:space-y-6 md:max-w-4xl md:space-y-8">
           <FadeInUp delay={0.3}>
-            <SplitText text={currentPhrase} className="break-words leading-snug" />
+            <SplitText
+              text={currentPhrase}
+              className="mb-8 text-5xl font-extrabold uppercase leading-tight md:text-7xl"
+            />
           </FadeInUp>
 
+          {/* Titre */}
           <FadeInUp delay={0.6}>
             <header>
               <h1 className="text-2xl leading-tight tracking-wide sm:text-3xl md:text-4xl md:tracking-normal">
@@ -42,6 +48,7 @@ const Hero = forwardRef<HTMLElement>((_props, ref) => {
             </header>
           </FadeInUp>
 
+          {/* CTA */}
           <FadeInUp delay={0.8}>
             <button
               type="button"

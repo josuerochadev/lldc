@@ -44,7 +44,7 @@ export default function Contact() {
 
   return (
     <SectionContainer id="contact">
-      <div className="mx-auto mb-16 max-w-7xl">
+      <div className="mx-auto mb-8 max-w-7xl">
         <SectionTitle title="Nous contacter" />
       </div>
 

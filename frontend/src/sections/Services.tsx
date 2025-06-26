@@ -10,7 +10,6 @@ import TiltCard from '@/components/motion/TiltCard';
 import FadeInUp from '@/components/motion/FadeInUp';
 import StaggerGroup from '@/components/motion/StaggerGroup';
 
-
 const services = [
   {
     title: 'Lunettes neuves et d’occasion',
@@ -37,7 +36,7 @@ const services = [
 export default function Services() {
   return (
     <SectionContainer id="services">
-      <div className="mx-auto mb-16 max-w-7xl">
+      <div className="mx-auto mb-8 max-w-7xl">
         <SectionTitle title="Nos Services" />
       </div>
 

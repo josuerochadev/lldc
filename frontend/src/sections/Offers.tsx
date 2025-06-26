@@ -36,7 +36,7 @@ export default function Offers() {
 
   return (
     <section id="offers" className="w-full px-4 py-24">
-      <div className="mx-auto mb-16 max-w-7xl">
+      <div className="mx-auto mb-8 max-w-7xl">
         <SectionTitle title="Nos Offres" />
       </div>
 
@@ -50,7 +50,7 @@ export default function Offers() {
                 <TiltCard>
                   <button
                     type="button"
-                    className="relative h-[500px] w-full cursor-pointer overflow-hidden rounded-md border-2 border-primary bg-beige md:h-[650px]"
+                    className="relative h-[500px] w-full cursor-pointer overflow-hidden rounded-md shadow-md md:h-[650px]"
                     onClick={() => toggleCard(offer.id)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -65,7 +65,7 @@ export default function Offers() {
                     />
 
                     <motion.div
-                      className="absolute inset-4 flex flex-col justify-start bg-primary px-6 py-8 text-beige rounded-md transition-all duration-500"
+                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-primary/30 px-6 py-8 text-beige backdrop-blur-2xl transition-all duration-500"
                       initial={false}
                       animate={{ height: isOpen ? '95%' : '45%' }}
                       transition={{ type: 'spring', damping: 20, stiffness: 200 }}

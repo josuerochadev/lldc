@@ -10,7 +10,7 @@ type FadeInUpProps = {
   className?: string;
 };
 
-export default function FadeInUp({ children, delay = 0.1, className = '' }: FadeInUpProps) {
+export default function FadeInUp({ children, delay = 0.2, className = '' }: FadeInUpProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
   const controls = useAnimation();
@@ -28,7 +28,7 @@ export default function FadeInUp({ children, delay = 0.1, className = '' }: Fade
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },
       }}
     >
