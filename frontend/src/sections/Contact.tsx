@@ -48,7 +48,7 @@ export default function Contact() {
         <SectionTitle title="Nous contacter" />
       </div>
 
-      <div className="mx-auto max-w-4xl border-4 border-primary bg-beige p-10">
+      <div className="mx-auto max-w-2xl rounded-md border-2 border-primary bg-beige/45 p-8 shadow-lg backdrop-blur-xl">
         {success && (
           <div className="mb-6 font-semibold text-green-700">Votre message a bien été envoyé !</div>
         )}
@@ -61,7 +61,7 @@ export default function Contact() {
             <input
               id="name"
               type="text"
-              className="border-2 border-primary p-4"
+              className="rounded-md border-2 border-primary p-4"
               {...register('name', { required: 'Le nom est requis' })}
             />
             {errors.name && <span className="mt-1 text-red-600">{errors.name.message}</span>}
@@ -74,7 +74,7 @@ export default function Contact() {
             <input
               id="email"
               type="email"
-              className="border-2 border-primary p-4"
+              className="rounded-md border-2 border-primary p-4"
               {...register('email', {
                 required: "L'email est requis",
                 pattern: { value: /^\S+@\S+$/i, message: 'Email invalide' },
@@ -89,7 +89,7 @@ export default function Contact() {
             </label>
             <textarea
               id="message"
-              className="border-2 border-primary p-4"
+              className="rounded-md border-2 border-primary p-4"
               rows={5}
               {...register('message', { required: 'Le message est requis' })}
             />

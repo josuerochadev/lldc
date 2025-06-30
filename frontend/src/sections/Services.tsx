@@ -1,75 +1,93 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
-import EyeglassesIcon from '@/assets/ui/eyeglasses.svg?react';
-import OphthalmologyIcon from '@/assets/ui/ophthalmology.svg?react';
-import ShoppingCartIcon from '@/assets/ui/shopping_cart.svg?react';
-import SymptomsIcon from '@/assets/ui/symptoms.svg?react';
 import TiltCard from '@/components/motion/TiltCard';
-import FadeInUp from '@/components/motion/FadeInUp';
-import StaggerGroup from '@/components/motion/StaggerGroup';
 
 const services = [
   {
     title: 'Lunettes neuves et d’occasion',
     description: 'Large choix de montures neuves et de seconde main, soigneusement sélectionnées.',
-    icon: EyeglassesIcon,
+    image: '/assets/illustrations/eyeframe.png',
   },
   {
     title: 'Lentilles de contact',
     description: 'Conseils personnalisés et adaptation pour tous types de lentilles.',
-    icon: SymptomsIcon,
+    image: '/assets/illustrations/contact-lenses.png',
   },
   {
     title: 'Examens de vue',
     description: 'Contrôle visuel complet réalisé par un opticien diplômé.',
-    icon: OphthalmologyIcon,
-  },
-  {
-    title: 'Boutique en ligne (Vinted)',
-    description: 'Retrouvez notre sélection de modèles sur Vinted.',
-    icon: ShoppingCartIcon,
+    image: '/assets/illustrations/test-vision.png',
   },
 ];
 
 export default function Services() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selected = services[selectedIndex];
+
   return (
     <SectionContainer id="services">
-      <div className="mx-auto mb-8 max-w-7xl">
+      <div className="mx-auto mb-6 max-w-7xl text-left">
         <SectionTitle title="Nos Services" />
       </div>
 
-      <StaggerGroup>
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 sm:grid-cols-2">
-          {services.map((service, index) => {
-            const Icon = service.icon;
+      <div className="mx-auto flex max-w-7xl flex-col gap-y-6 gap-x-12 md:flex-row md:items-center md:justify-evenly">
+        {/* Coluna esquerda: imagem principal + miniatures */}
+        <div className="flex flex-col items-center md:items-start">
+          <motion.img
+            key={selected.image}
+            src={selected.image}
+            alt={selected.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="h-auto w-[320px] sm:w-[360px] md:w-[440px] lg:w-[500px]"
+          />
 
-            return (
-              <FadeInUp key={service.title} delay={index * 0.2}>
-                <TiltCard>
-                  <div className="flex h-full flex-col items-start rounded-md border-2 border-primary bg-beige p-10 transition-all duration-300 hover:scale-[1.02]">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: -3 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                      className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10"
-                    >
-                      <Icon className="h-10 w-10 text-purple" />
-                    </motion.div>
-
-                    <h3 className="mb-2 font-serif text-[clamp(1.75rem,5vw,2.5rem)] font-bold leading-tight">
-                      {service.title}
-                    </h3>
-                    <p className="mx-auto max-w-xs text-[clamp(1.2rem,3vw,1.4rem)] leading-snug text-primary/90">
-                      {service.description}
-                    </p>
-                  </div>
-                </TiltCard>
-              </FadeInUp>
-            );
-          })}
+            <div className="mt-3 flex w-full justify-center gap-2 md:justify-center">
+              {services.map((service, index) => (
+              <button
+                key={service.title}
+                type="button"
+                onClick={() => setSelectedIndex(index)}
+                className={`transition-transform duration-300 hover:scale-105 focus:outline-none ${
+                  selectedIndex === index ? 'opacity-100' : 'opacity-60'
+                }`}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="h-16 w-auto object-contain"
+                />
+              </button>
+            ))}
+          </div>
         </div>
-      </StaggerGroup>
+
+        {/* Coluna direita: texto */}
+        <AnimatePresence mode="wait">
+          <TiltCard>
+<motion.div
+            key={selected.title}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-xl self-center rounded-md border-2 border-primary bg-beige/45 p-6 shadow-md backdrop-blur"
+          >
+            <h3 className="mb-4 font-serif text-[clamp(2rem,4vw,2.6rem)] font-black text-primary">
+              {selected.title}
+            </h3>
+            <p className="text-[clamp(1.1rem,2.5vw,1.4rem)] leading-snug tracking-wide text-primary">
+              {selected.description}
+            </p>
+          </motion.div>
+          </TiltCard>
+        </AnimatePresence>
+      </div>
     </SectionContainer>
   );
 }
