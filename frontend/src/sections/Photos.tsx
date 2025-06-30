@@ -1,9 +1,13 @@
 'use client';
 
+import type React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimationFrame } from 'framer-motion';
 
-const images = Array(10).fill('/photo.png');
+const images = Array.from({ length: 10 }, (_, i) => ({
+  id: `photo-${i}`,
+  src: '/photo.png',
+}));
 
 export default function Photos() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,10 +23,19 @@ export default function Photos() {
   const normalSpeed = 0.2;
   const slowSpeed = 0.05;
 
-  useAnimationFrame((_, delta) => {
+  useAnimationFrame(() => {
     if (!trackRef.current || dragging) return;
-    const currentSpeed = isSlowed ? slowSpeed : normalSpeed;
-    x.current -= (currentSpeed * delta) / 10;
+
+    const totalWidth = trackRef.current.scrollWidth;
+
+    if (-x.current >= totalWidth / 2) {
+      x.current = 0;
+      trackRef.current.style.transform = 'translateX(0px)';
+      return;
+    }
+
+    const speed = isSlowed ? slowSpeed : normalSpeed;
+    x.current -= speed;
     trackRef.current.style.transform = `translateX(${x.current}px)`;
   });
 
@@ -65,16 +78,16 @@ export default function Photos() {
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerUp}
     >
-<div
-  ref={containerRef}
-  className="relative mx-auto w-full overflow-hidden touch-none"
-  style={{
-    maskImage:
-      'linear-gradient(to right, transparent 1%, black 5%, black 95%, transparent 99%)',
-    WebkitMaskImage:
-      'linear-gradient(to right, transparent 1%, black 5%, black 95%, transparent 99%)',
-  }}
->
+      <div
+        ref={containerRef}
+        className="relative mx-auto w-full touch-none overflow-hidden"
+        style={{
+          maskImage:
+            'linear-gradient(to right, transparent 1%, black 5%, black 95%, transparent 99%)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent 1%, black 5%, black 95%, transparent 99%)',
+        }}
+      >
         <div
           ref={trackRef}
           className="flex w-max gap-4 px-4"
@@ -84,11 +97,11 @@ export default function Photos() {
           onPointerMove={handlePointerMove}
           style={{ touchAction: 'pan-y', cursor: dragging ? 'grabbing' : 'grab' }}
         >
-          {[...images, ...images].map((src, idx) => (
-            <div
-              key={idx}
+          {[...images, ...images].map(({ id, src }) => (
+            <button
+              type="button"
+              key={id}
               className="flex-shrink-0 overflow-hidden rounded-xl bg-white shadow-md"
-              role="button"
               tabIndex={0}
               onClick={() => handleClick(src)}
               onKeyDown={(e) => {
@@ -100,11 +113,11 @@ export default function Photos() {
             >
               <motion.img
                 src={src}
-                alt={`Gallery item ${idx + 1}`}
+                alt={`Gallery item ${id + 1}`}
                 className="aspect-[9/16] h-[500px] w-auto object-cover transition-transform duration-300 ease-out hover:scale-105"
                 draggable={false}
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function Appointment() {
         <SectionTitle title="Prendre Rendez-vous" />
       </div>
 
-      <div className="mx-auto max-w-4xl border-4 border-primary bg-beige p-10">
+      <div className="mx-auto max-w-2xl rounded-md border-2 border-primary bg-beige/45 p-8 shadow-lg backdrop-blur-xl">
         {success && (
           <div className="mb-6 font-semibold text-green-700">
             Votre demande de rendez-vous a bien été enregistrée !
