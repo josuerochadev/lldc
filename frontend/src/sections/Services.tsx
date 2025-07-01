@@ -31,15 +31,15 @@ export default function Services() {
   return (
     <SectionContainer
       id="services"
-      backgroundImage="/backgrounds/services-background.png"
-      className="py-16 bg-no-repeat bg-cover bg-center shadow-xl"
+      backgroundImage="/backgrounds/forest-background.png"
+      className="bg-cover bg-center bg-no-repeat py-16 shadow-xl"
       overlayClassName="bg-primary backdrop-blur-sm"
     >
-      <div className="mx-auto mb-6 max-w-7xl text-beige text-left">
+      <div className="mx-auto mb-6 max-w-7xl text-left text-beige">
         <SectionTitle title="Nos Services" />
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-y-6 gap-x-12 md:flex-row md:items-center md:justify-center">
+      <div className="mx-auto flex max-w-7xl flex-col gap-x-12 gap-y-6 md:flex-row md:items-center md:justify-center">
         {/* Coluna esquerda: imagem principal + miniaturas */}
         <div className="flex flex-col items-center">
           <motion.img

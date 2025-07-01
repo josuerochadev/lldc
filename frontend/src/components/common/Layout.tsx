@@ -10,7 +10,7 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="relative min-h-screen font-sans text-primary">
+    <div className="relative min-h-screen font-sans text-purple">
       <Navbar />
       <main>{children}</main>
       <Footer />

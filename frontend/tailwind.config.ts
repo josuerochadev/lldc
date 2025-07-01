@@ -34,11 +34,10 @@ const config: Config = {
 		plugin(({ addBase }) => {
 			addBase({
 				':root': {
-					'--color-primary-rgb': '53, 47, 47',
+					'--color-primary-rgb': '46, 51, 9',
 					'--color-orange-rgb': '252, 135, 26',
-					'--color-purple-rgb': '100, 81, 150',
-					'--color-beige-rgb': '239, 216, 209',
-					'--color-yellow-rgb': '234, 211, 0',
+					'--color-purple-rgb': '55, 39, 77',
+					'--color-beige-rgb': '235, 228, 242',
 				},
 			});
 		}),
