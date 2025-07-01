@@ -11,7 +11,6 @@ import Offers from '@/sections/Offers';
 import Photos from '@/sections/Photos';
 import Concept from '@/sections/Concept';
 import Services from '@/sections/Services';
-// import Testimonials from '@/sections/Testimonials';
 
 export default function App() {
   useSmoothScroll();
@@ -23,7 +22,6 @@ export default function App() {
           <Hero />
           <Offers />
           <Services />
-          {/* <Testimonials /> */}
           <Concept />
           <Photos />
           <Contact />
