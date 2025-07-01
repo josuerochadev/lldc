@@ -10,7 +10,7 @@ const offers = [
   {
     id: 1,
     title: 'Recyclage',
-    image: '/photo.png',
+    image: '/illustrations/recycle.png',
     summary: 'Jusqu’à 70€ de remise en rapportant vos anciennes montures.',
     details:
       'Cette démarche vise à encourager le recyclage, donner une seconde vie à vos lunettes tout en réduisant les déchets.',
@@ -18,7 +18,7 @@ const offers = [
   {
     id: 2,
     title: 'Deuxième paire',
-    image: '/photo.png',
+    image: '/illustrations/two-eyeframes.png',
     summary: 'Obtenez une deuxième paire à partir de 59€ selon vos besoins.',
     details:
       '59€ : monture + verres unifocaux\n89€ : verres progressifs\nVerres antireflet durci ou solaires UV cat.3\nOrigine France Garantie — Ophtalmic Vision.',
@@ -65,7 +65,7 @@ export default function Offers() {
                     />
 
                     <motion.div
-                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-primary/30 px-6 py-8 text-beige shadow-lg backdrop-blur-2xl transition-all duration-500"
+                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-primary/30 px-6 py-8 text-beige/80 shadow-lg backdrop-blur-2xl transition-all duration-500"
                       initial={false}
                       animate={{ height: isOpen ? '95%' : '45%' }}
                       transition={{ type: 'spring', damping: 20, stiffness: 200 }}
