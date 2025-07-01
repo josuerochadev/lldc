@@ -1,3 +1,4 @@
+// src/sections/Services.tsx
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,17 +10,17 @@ const services = [
   {
     title: 'Lunettes neuves et d’occasion',
     description: 'Large choix de montures neuves et de seconde main, soigneusement sélectionnées.',
-    image: '/assets/illustrations/eyeframe.png',
+    image: '/illustrations/eyeframe.png',
   },
   {
     title: 'Lentilles de contact',
     description: 'Conseils personnalisés et adaptation pour tous types de lentilles.',
-    image: '/assets/illustrations/contact-lenses.png',
+    image: '/illustrations/contact-lenses.png',
   },
   {
     title: 'Examens de vue',
     description: 'Contrôle visuel complet réalisé par un opticien diplômé.',
-    image: '/assets/illustrations/test-vision.png',
+    image: '/illustrations/test-vision.png',
   },
 ];
 
@@ -28,14 +29,19 @@ export default function Services() {
   const selected = services[selectedIndex];
 
   return (
-    <SectionContainer id="services">
-      <div className="mx-auto mb-6 max-w-7xl text-left">
+    <SectionContainer
+      id="services"
+      backgroundImage="/backgrounds/services-background.png"
+      className="py-16 bg-no-repeat bg-cover bg-center shadow-xl"
+      overlayClassName="bg-primary backdrop-blur-sm"
+    >
+      <div className="mx-auto mb-6 max-w-7xl text-beige text-left">
         <SectionTitle title="Nos Services" />
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-col gap-y-6 gap-x-12 md:flex-row md:items-center md:justify-evenly">
-        {/* Coluna esquerda: imagem principal + miniatures */}
-        <div className="flex flex-col items-center md:items-start">
+      <div className="mx-auto flex max-w-7xl flex-col gap-y-6 gap-x-12 md:flex-row md:items-center md:justify-center">
+        {/* Coluna esquerda: imagem principal + miniaturas */}
+        <div className="flex flex-col items-center">
           <motion.img
             key={selected.image}
             src={selected.image}
@@ -47,8 +53,8 @@ export default function Services() {
             className="h-auto w-[320px] sm:w-[360px] md:w-[440px] lg:w-[500px]"
           />
 
-            <div className="mt-3 flex w-full justify-center gap-2 md:justify-center">
-              {services.map((service, index) => (
+          <div className="mt-3 flex w-full justify-center gap-2">
+            {services.map((service, index) => (
               <button
                 key={service.title}
                 type="button"
@@ -70,21 +76,21 @@ export default function Services() {
         {/* Coluna direita: texto */}
         <AnimatePresence mode="wait">
           <TiltCard>
-<motion.div
-            key={selected.title}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-xl self-center rounded-md border-2 border-primary bg-beige/45 p-6 shadow-md backdrop-blur"
-          >
-            <h3 className="mb-4 font-serif text-[clamp(2rem,4vw,2.6rem)] font-black text-primary">
-              {selected.title}
-            </h3>
-            <p className="text-[clamp(1.1rem,2.5vw,1.4rem)] leading-snug tracking-wide text-primary">
-              {selected.description}
-            </p>
-          </motion.div>
+            <motion.div
+              key={selected.title}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.5 }}
+              className="w-full max-w-xl self-center rounded-md bg-primary/30 px-6 py-8 shadow-lg backdrop-blur-2xl"
+            >
+              <h3 className="mb-4 font-serif text-[clamp(2rem,4vw,2.6rem)] font-black text-beige/90">
+                {selected.title}
+              </h3>
+              <p className="text-[clamp(1.1rem,2.5vw,1.4rem)] leading-snug tracking-wide text-beige/80">
+                {selected.description}
+              </p>
+            </motion.div>
           </TiltCard>
         </AnimatePresence>
       </div>

@@ -6,7 +6,7 @@ import { motion, AnimatePresence, useAnimationFrame } from 'framer-motion';
 
 const images = Array.from({ length: 10 }, (_, i) => ({
   id: `photo-${i}`,
-  src: '/photo.png',
+  src: '/photos/photo.png',
 }));
 
 export default function Photos() {
