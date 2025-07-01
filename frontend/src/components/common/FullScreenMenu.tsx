@@ -78,8 +78,8 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
           {/* Bottom: Mini Footer */}
           <div className="space-y-2 text-center text-xs leading-relaxed">
             <h2 className="text-lg font-extrabold tracking-wide">
-              <span className="font-thin">LA </span>LUNETTERIE{' '}
-              <span className="font-thin">DU </span>COIN
+              <span className="font-thin">LA</span>LUNETTERIE
+              <span className="font-thin">DU</span>COIN
             </h2>
             <p>24 Rue du Faubourg-de-Pierre, 67000 Strasbourg</p>
             <p>

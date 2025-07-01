@@ -30,18 +30,10 @@ export default function SectionContainer({
       }
     >
       {backgroundImage && (
-        <div
-          aria-hidden="true"
-          className={cn(
-            'absolute inset-0 -z-10',
-            overlayClassName
-          )}
-        />
+        <div aria-hidden="true" className={cn('absolute inset-0 -z-10', overlayClassName)} />
       )}
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl">
-        {children}
-      </div>
+      <div className="relative z-10 mx-auto w-full max-w-7xl">{children}</div>
     </section>
   );
 }

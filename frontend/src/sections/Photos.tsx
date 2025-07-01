@@ -4,9 +4,21 @@ import type React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, useAnimationFrame } from 'framer-motion';
 
-const images = Array.from({ length: 10 }, (_, i) => ({
+const imageFilenames = [
+  'store-front.png',
+  'store-entry.png',
+  'store-side.png',
+  'glasses-wall.png',
+  'glasses-second-hand.png',
+  'sunglasses.png',
+  'lens-cleaner.png',
+  'poster-sidewalk.png',
+  'mascot-retine.png',
+];
+
+const images = imageFilenames.map((filename, i) => ({
   id: `photo-${i}`,
-  src: '/photos/photo.png',
+  src: `/photos/${filename}`,
 }));
 
 export default function Photos() {

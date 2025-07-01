@@ -50,7 +50,7 @@ export default function Offers() {
                 <TiltCard>
                   <button
                     type="button"
-                    className="relative h-[500px] w-full cursor-pointer overflow-hidden rounded-md shadow-md md:h-[650px]"
+                    className="relative h-[500px] w-full cursor-pointer overflow-hidden rounded-md shadow-lg md:h-[650px]"
                     onClick={() => toggleCard(offer.id)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
@@ -65,7 +65,7 @@ export default function Offers() {
                     />
 
                     <motion.div
-                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-primary/30 px-6 py-8 text-beige/80 shadow-lg backdrop-blur-2xl transition-all duration-500"
+                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-primary/30 px-6 py-8 text-beige backdrop-blur-2xl transition-all duration-500"
                       initial={false}
                       animate={{ height: isOpen ? '95%' : '45%' }}
                       transition={{ type: 'spring', damping: 20, stiffness: 200 }}

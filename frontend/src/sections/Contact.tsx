@@ -48,7 +48,7 @@ export default function Contact() {
         <SectionTitle title="Nous contacter" />
       </div>
 
-      <div className="mx-auto max-w-2xl rounded-md border-2 border-primary bg-beige/45 p-8 shadow-lg backdrop-blur-xl">
+      <div className="mx-auto max-w-2xl rounded-md border-2 border-primary bg-beige/50 p-8 shadow-lg backdrop-blur-xl">
         {success && (
           <div className="mb-6 font-semibold text-green-700">Votre message a bien été envoyé !</div>
         )}

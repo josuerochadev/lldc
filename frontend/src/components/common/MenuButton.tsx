@@ -13,7 +13,7 @@ const MenuButton: React.FC<MenuButtonProps> = ({ isOpen, onClick }) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6, ease: 'easeOut' }}
-        className="px-4 text-lg font-extrabold uppercase text-primary focus:outline-none sm:text-xl md:text-2xl"
+        className="px-4 text-lg font-extrabold uppercase focus:outline-none sm:text-xl md:text-2xl"
         onClick={onClick}
       >
         {isOpen ? 'Fermer' : 'Menu'}
