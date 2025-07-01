@@ -32,7 +32,7 @@ export default function Testimonials() {
         {testimonials.map((testimonial) => (
           <div
             key={testimonial.name}
-            className="flex h-full flex-col border-4 border-primary bg-beige p-10 transition-all duration-300 hover:scale-[1.02]"
+            className="flex h-full flex-col border-4 border-purple bg-violet p-10 transition-all duration-300 hover:scale-[1.02]"
           >
             <p className="mb-10 text-lg italic leading-relaxed md:text-xl">
               &ldquo;{testimonial.feedback}&rdquo;

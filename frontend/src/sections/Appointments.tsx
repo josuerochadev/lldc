@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
+import Button from '@/components/common/Button';
 
 type AppointmentFormData = {
   name: string;
@@ -69,7 +70,7 @@ export default function Appointment() {
         <SectionTitle title="Prendre Rendez-vous" />
       </div>
 
-      <div className="mx-auto max-w-2xl rounded-md border-2 border-primary bg-beige/45 p-8 shadow-lg backdrop-blur-xl">
+      <div className="mx-auto max-w-2xl rounded-md border-2 border-purple bg-violet/45 p-8 shadow-lg backdrop-blur-xl">
         {success && (
           <div className="mb-6 font-semibold text-green-700">
             Votre demande de rendez-vous a bien été enregistrée !
@@ -89,7 +90,7 @@ export default function Appointment() {
               </label>
               <select
                 id="startsAt"
-                className="border-2 border-primary p-4"
+                className="border-2 border-purple p-4"
                 {...register('startsAt', { required: 'Sélectionnez un créneau' })}
               >
                 <option value="">-- Sélectionnez --</option>
@@ -119,7 +120,7 @@ export default function Appointment() {
               <input
                 id="name"
                 type="text"
-                className="border-2 border-primary p-4"
+                className="border-2 border-purple p-4"
                 {...register('name', { required: 'Le nom est requis' })}
               />
               {errors.name && <span className="mt-1 text-red-600">{errors.name.message}</span>}
@@ -133,7 +134,7 @@ export default function Appointment() {
               <input
                 id="email"
                 type="email"
-                className="border-2 border-primary p-4"
+                className="border-2 border-purple p-4"
                 {...register('email', {
                   required: "L'email est requis",
                   pattern: { value: /^\S+@\S+$/i, message: 'Email invalide' },
@@ -150,7 +151,7 @@ export default function Appointment() {
               <input
                 id="phone"
                 type="tel"
-                className="border-2 border-primary p-4"
+                className="border-2 border-purple p-4"
                 {...register('phone', { required: 'Le téléphone est requis' })}
               />
               {errors.phone && <span className="mt-1 text-red-600">{errors.phone.message}</span>}
@@ -163,7 +164,7 @@ export default function Appointment() {
               </label>
               <select
                 id="preferredNotification"
-                className="border-2 border-primary p-4"
+                className="border-2 border-purple p-4"
                 {...register('preferredNotification', {
                   required: 'Choisissez un mode de notification',
                 })}
@@ -178,13 +179,13 @@ export default function Appointment() {
               )}
             </div>
 
-            <button
+            <Button
               type="submit"
-              className="button-primary self-start transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange focus:ring-offset-2 active:scale-95"
+              className="self-start transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange focus:ring-offset-2 active:scale-95"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Envoi en cours...' : 'Prendre rendez-vous'}
-            </button>
+            </Button>
           </form>
         )}
       </div>

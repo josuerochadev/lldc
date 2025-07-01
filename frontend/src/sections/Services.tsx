@@ -33,9 +33,9 @@ export default function Services() {
       id="services"
       backgroundImage="/backgrounds/forest-background.png"
       className="bg-cover bg-center bg-no-repeat py-16 shadow-xl"
-      overlayClassName="bg-primary backdrop-blur-sm"
+      overlayClassName="bg-purple backdrop-blur-sm"
     >
-      <div className="mx-auto mb-6 max-w-7xl text-left text-beige">
+      <div className="mx-auto mb-6 max-w-7xl text-left text-violet">
         <SectionTitle title="Nos Services" />
       </div>
 
@@ -82,12 +82,12 @@ export default function Services() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.5 }}
-              className="w-full max-w-xl self-center rounded-md bg-primary/30 px-6 py-8 shadow-lg backdrop-blur-2xl"
+              className="w-full max-w-xl self-center rounded-md bg-purple/30 px-6 py-8 shadow-lg backdrop-blur-2xl"
             >
-              <h3 className="mb-4 font-serif text-[clamp(2rem,4vw,2.6rem)] font-black text-beige/90">
+              <h3 className="mb-4 font-serif text-[clamp(2rem,4vw,2.6rem)] font-black text-violet/90">
                 {selected.title}
               </h3>
-              <p className="text-[clamp(1.1rem,2.5vw,1.4rem)] leading-snug tracking-wide text-beige/80">
+              <p className="text-[clamp(1.1rem,2.5vw,1.4rem)] leading-snug tracking-wide text-violet/80">
                 {selected.description}
               </p>
             </motion.div>

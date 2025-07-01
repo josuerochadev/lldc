@@ -65,7 +65,7 @@ export default function Offers() {
                     />
 
                     <motion.div
-                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-primary/30 px-6 py-8 text-beige backdrop-blur-2xl transition-all duration-500"
+                      className="absolute inset-4 flex flex-col justify-start rounded-md bg-purple/30 px-6 py-8 text-violet backdrop-blur-2xl transition-all duration-500"
                       initial={false}
                       animate={{ height: isOpen ? '95%' : '45%' }}
                       transition={{ type: 'spring', damping: 20, stiffness: 200 }}

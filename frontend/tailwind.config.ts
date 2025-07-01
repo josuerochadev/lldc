@@ -1,4 +1,3 @@
-import plugin from 'tailwindcss/plugin';
 import type { Config } from 'tailwindcss';
 
 const withOpacity = (variableName: string) => {
@@ -13,11 +12,11 @@ const config: Config = {
 	theme: {
 		extend: {
 			colors: {
-				primary: withOpacity('--color-primary-rgb') as unknown as string,
 				orange: withOpacity('--color-orange-rgb') as unknown as string,
 				purple: withOpacity('--color-purple-rgb') as unknown as string,
-				beige: withOpacity('--color-beige-rgb') as unknown as string,
-				yellow: withOpacity('--color-yellow-rgb') as unknown as string,
+				violet: withOpacity('--color-violet-rgb') as unknown as string,
+				'dark-green': withOpacity('--color-dark-green-rgb') as unknown as string,
+				'light-green': withOpacity('--color-light-green-rgb') as unknown as string,
 			},
 			fontFamily: {
 				sans: ['"League Spartan"', 'sans-serif'],
@@ -28,20 +27,31 @@ const config: Config = {
 				'4xl': '2560px',
 				'5xl': '3840px',
 			},
+			spacing: {
+				section: '8rem',     // paddings verticais para seções
+				gutter: '2rem',      // padding lateral entre colunas
+				'1.5': '0.375rem',   // útil para precisão em spacing
+			},
+			borderRadius: {
+				lg: '12px',
+				xl: '16px',
+				'2xl': '24px',
+			},
+			boxShadow: {
+				card: '0 4px 10px rgba(0, 0, 0, 0.05)',
+				soft: '0 2px 4px rgba(0, 0, 0, 0.03)',
+			},
+			zIndex: {
+				base: '10',
+				menu: '50',
+				modal: '100',
+				overlay: '200',
+			},
+			transitionDuration: {
+				250: '250ms',
+			},
 		},
 	},
-	plugins: [
-		plugin(({ addBase }) => {
-			addBase({
-				':root': {
-					'--color-primary-rgb': '46, 51, 9',
-					'--color-orange-rgb': '252, 135, 26',
-					'--color-purple-rgb': '55, 39, 77',
-					'--color-beige-rgb': '235, 228, 242',
-				},
-			});
-		}),
-	],
 };
 
 export default config;

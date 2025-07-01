@@ -86,7 +86,7 @@ export default function Photos() {
   return (
     <div
       id="photos"
-      className="relative w-screen overflow-hidden bg-primary py-4 shadow-xl"
+      className="relative w-screen overflow-hidden bg-purple py-4 shadow-xl"
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerUp}
     >
