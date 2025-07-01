@@ -47,7 +47,7 @@ const Ripple = React.memo(function Ripple({
                 animation,
                 borderStyle: 'solid',
                 borderWidth: '0.5px',
-                borderColor: 'var(--primary)',
+                borderColor: 'var(--purple)',
                 top: `${top}%`,
                 left: `${left}%`,
                 transform: 'translate(-50%, -50%) scale(1)',
@@ -66,7 +66,7 @@ export default function Background() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       {/* Halo focal no canto inferior direito */}
-      <div className="absolute bottom-[10%] right-[15%] z-10 h-[400px] w-[400px] rounded-full bg-beige opacity-10 blur-[100px]" />
+      <div className="absolute bottom-[10%] right-[15%] z-10 h-[400px] w-[400px] rounded-full bg-violet opacity-10 blur-[100px]" />
 
       {/* Cercle + anneaux concêntricos */}
       <Ripple className="z-0" scrollProgress={scrollProgress} />

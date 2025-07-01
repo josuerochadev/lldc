@@ -5,14 +5,13 @@ import Footer from './Footer';
 
 type LayoutProps = {
   children: React.ReactNode;
-  observeRef?: React.RefObject<HTMLElement>;
 };
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="relative min-h-screen font-sans text-purple">
+    <div className="relative min-h-screen text-purple">
       <Navbar />
-      <main>{children}</main>
+      <main className="min-h-screen">{children}</main>
       <Footer />
     </div>
   );

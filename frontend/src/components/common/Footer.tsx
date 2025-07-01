@@ -12,7 +12,7 @@ export default function Footer({ className = '', ...rest }: FooterProps) {
   return (
     <footer
       {...rest}
-      className={clsx('relative z-10 w-full bg-primary px-6 py-20 text-beige', className)}
+      className={clsx('relative z-10 w-full bg-purple px-6 py-20 text-violet', className)}
     >
       {/* ---------- Nom de la boutique ---------- */}
       <h2 className="mx-auto mb-12 max-w-xs text-center text-2xl font-extrabold tracking-wide">

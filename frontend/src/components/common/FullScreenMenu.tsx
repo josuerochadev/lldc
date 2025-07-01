@@ -41,7 +41,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40 flex flex-col justify-between bg-beige/60 p-6 pt-32 backdrop-blur-[100px] md:pt-36 3xl:pt-48"
+          className="fixed inset-0 z-40 flex flex-col justify-between bg-violet/60 p-6 pt-32 backdrop-blur-[100px] md:pt-36 3xl:pt-48"
         >
           {/* Center: Liste des liens */}
           <div

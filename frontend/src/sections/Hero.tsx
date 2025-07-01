@@ -3,6 +3,7 @@ import { useState, forwardRef } from 'react';
 import SplitText from '@/components/motion/SplitText';
 import FadeInUp from '@/components/motion/FadeInUp';
 import LogoEye from '@/assets/logo/logo-eye.svg?react';
+import Button from '@/components/common/Button';
 
 const phrases = [
   'Des lunettes qui ont du style, une démarche qui a du sens',
@@ -50,16 +51,16 @@ const Hero = forwardRef<HTMLElement>((_props, ref) => {
 
           {/* CTA */}
           <FadeInUp delay={0.8}>
-            <button
+            <Button
               type="button"
               aria-label="Prendre rendez-vous"
               onClick={() => {
                 window.location.href = '#appointment';
               }}
-              className="button-primary transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange focus:ring-offset-2 active:scale-95"
+              className="transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange focus:ring-offset-2 active:scale-95"
             >
               Prendre rendez-vous
-            </button>
+            </Button>
           </FadeInUp>
         </div>
       </div>
