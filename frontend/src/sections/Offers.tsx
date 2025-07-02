@@ -36,9 +36,7 @@ export default function Offers() {
 
   return (
     <section id="offers" className="w-full px-4 py-24">
-      <div className="mx-auto mb-8 max-w-7xl">
-        <SectionTitle title="Nos Offres" />
-      </div>
+      <SectionTitle title="Nos Offres" />
 
       <StaggerGroup>
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2">

@@ -2,6 +2,8 @@ import type React from 'react';
 import { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import MenuLinkItem from './MenuLinkItem';
+
 type FullScreenMenuProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -38,6 +40,10 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          id="main-menu"
+          aria-modal="true"
+          // biome-ignore lint/a11y/useSemanticElements: <explanation>
+          role="dialog"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -48,31 +54,9 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
             ref={menuRef}
             className="mx-auto flex max-w-[95%] flex-col items-start space-y-2 sm:max-w-[80%] sm:space-y-6 lg:max-w-[70%]"
           >
-            {links.map((link, index) => {
-              const words = link.label.split(' ');
-              const firstWord = words[0];
-              const remainingWords = words.slice(1).join(' ');
-
-              return (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-baseline py-1 text-left uppercase transition hover:scale-110 sm:py-0"
-                  onClick={onClose}
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <span className="mr-4 text-base font-thin sm:text-2xl md:text-3xl 3xl:text-4xl">
-                    {index + 1}.
-                  </span>
-                  <span className="text-2xl font-thin sm:text-4xl md:text-5xl 3xl:text-6xl">
-                    {firstWord}
-                  </span>
-                  <span className="text-2xl font-extrabold sm:text-4xl md:text-5xl 3xl:text-6xl">
-                    &nbsp;{remainingWords}
-                  </span>
-                </motion.a>
-              );
-            })}
+            {links.map((link, index) => (
+              <MenuLinkItem key={link.href} {...link} index={index} onClick={onClose} />
+            ))}
           </div>
 
           {/* Bottom: Mini Footer */}

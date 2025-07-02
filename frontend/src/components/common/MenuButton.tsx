@@ -8,8 +8,12 @@ type MenuButtonProps = {
 
 const MenuButton: React.FC<MenuButtonProps> = ({ isOpen, onClick }) => {
   return (
-    <div className="fixed left-0 right-0 top-6 z-50 flex justify-start sm:justify-center">
+    <div className="fixed left-0 right-0 top-gutter z-50 flex justify-start sm:justify-center">
       <motion.button
+        type="button"
+        aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+        aria-expanded={isOpen}
+        aria-controls="main-menu"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2, duration: 0.6, ease: 'easeOut' }}

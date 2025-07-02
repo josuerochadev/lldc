@@ -22,7 +22,10 @@ export default function SectionContainer({
   return (
     <section
       id={id}
-      className={cn('relative w-full px-4 py-32', className)}
+      className={cn(
+        'relative w-full bg-cover bg-center bg-no-repeat py-section sm:px-gutter',
+        className,
+      )}
       style={
         backgroundImage
           ? ({ backgroundImage: `url('${backgroundImage}')` } as CSSProperties)
@@ -33,7 +36,9 @@ export default function SectionContainer({
         <div aria-hidden="true" className={cn('absolute inset-0 -z-10', overlayClassName)} />
       )}
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl">{children}</div>
+      <div className="relative z-10 mx-auto w-full max-w-[95vw] sm:max-w-[90vw] lg:max-w-screen-xl 3xl:max-w-[1800px] 4xl:max-w-[2400px] 5xl:max-w-[3600px]">
+        {children}
+      </div>
     </section>
   );
 }
