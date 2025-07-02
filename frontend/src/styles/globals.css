@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --color-orange-rgb: 219, 98, 0;
-  --color-purple-rgb: 51, 41, 92;
-  --color-violet-rgb: 179, 169, 217;
-  --color-light-green-rgb: 140, 182, 110;
-  --color-dark-green-rgb: 25, 61, 0;
+  --color-orange-rgb: 255, 132, 0;
+  --color-purple-rgb: 61, 27, 88;
+  --color-violet-rgb: 236, 222, 255;
+  --color-light-green-rgb: 204, 252, 211;
+  --color-dark-green-rgb: 0, 45, 6;
 }
 
 @layer base {
@@ -29,6 +29,11 @@
 }
 
 @layer components {
+  .section-title {
+    @apply text-balance;
+    @apply mb-8 text-left text-[clamp(3.5rem,7vw,8rem)] uppercase leading-none tracking-tighter;
+  }
+
   .button-primary {
     @apply inline-flex items-center justify-center text-base font-semibold sm:text-lg;
     @apply px-5 py-3 sm:px-6 sm:py-4;

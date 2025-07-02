@@ -5,31 +5,28 @@ import MenuButton from './MenuButton';
 import FullScreenMenu from './FullScreenMenu';
 
 const Navbar: React.FC = () => {
-  const [menuRequested, setMenuRequested] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuActive, setMenuActive] = useState(false);
+  const [menuRendered, setMenuRendered] = useState(false);
 
   useEffect(() => {
-    if (menuRequested) {
-      setMenuVisible(true);
+    if (menuActive) {
+      setMenuRendered(true);
     } else {
-      const timeout = setTimeout(() => setMenuVisible(false), 300);
+      const timeout = setTimeout(() => setMenuRendered(false), 300);
       return () => clearTimeout(timeout);
     }
-  }, [menuRequested]);
+  }, [menuActive]);
 
   const handleToggle = () => {
     // Bloqueia toggle durante o exit
-    if (!menuRequested && menuVisible) return;
-    setMenuRequested(!menuRequested);
+    if (!menuActive && menuRendered) return;
+    setMenuActive(!menuActive);
   };
 
   return (
     <>
-      <MenuButton isOpen={menuVisible} onClick={handleToggle} />
-      <FullScreenMenu
-        isOpen={menuRequested || menuVisible}
-        onClose={() => setMenuRequested(false)}
-      />
+      <MenuButton isOpen={menuActive} onClick={handleToggle} />
+      <FullScreenMenu isOpen={menuActive} onClose={() => setMenuActive(false)} />
     </>
   );
 };

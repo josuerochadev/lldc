@@ -66,7 +66,7 @@ export default function Background() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       {/* Halo focal no canto inferior direito */}
-      <div className="absolute bottom-[10%] right-[15%] z-10 h-[400px] w-[400px] rounded-full bg-violet opacity-10 blur-[100px]" />
+      <div className="absolute bottom-[10%] right-[15%] z-10 h-[400px] w-[400px] rounded-full bg-light-green opacity-10 blur-[100px]" />
 
       {/* Cercle + anneaux concêntricos */}
       <Ripple className="z-0" scrollProgress={scrollProgress} />

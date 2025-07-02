@@ -28,9 +28,8 @@ const config: Config = {
 				'5xl': '3840px',
 			},
 			spacing: {
-				section: '8rem',     // paddings verticais para seções
-				gutter: '2rem',      // padding lateral entre colunas
-				'1.5': '0.375rem',   // útil para precisão em spacing
+				section: '6rem',     // paddings verticais para seções
+				gutter: '3rem', 
 			},
 			borderRadius: {
 				lg: '12px',

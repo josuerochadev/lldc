@@ -5,16 +5,12 @@ import SplitText from '@/components/motion/SplitText';
 export default function Concept() {
   return (
     <SectionContainer id="concept">
-      <div className="mx-auto mb-8 max-w-7xl">
-        <SectionTitle title="Le Concept" />
-      </div>
+      <SectionTitle title="Le Concept" />
 
-      <div className="mx-auto max-w-7xl">
-        <SplitText
-          text="✷ LA LUNETTERIE DU COIN, c’est un opticien pas comme les autres. Depuis 2016, on mixe style ☆ et conscience ◇ en plein Strasbourg. Des lunettes neuves, oui — mais aussi des montures recyclées ✷ restaurées avec soin. Ramenez vos anciennes paires. → Jusqu’à 70€ de réduction. ✧ Donnez-leur une seconde vie. On voit clair, ○ sans fermer les yeux sur l’impact écologique. ▲ La mode change. ◆ La planète, non."
-          className="font-serif text-2xl leading-loose tracking-wider sm:text-4xl md:text-3xl"
-        />
-      </div>
+      <SplitText
+        text="✷ LA LUNETTERIE DU COIN, c’est un opticien pas comme les autres. Depuis 2016, on mixe style ☆ et conscience ◇ en plein Strasbourg. Des lunettes neuves, oui — mais aussi des montures recyclées ✷ restaurées avec soin. Ramenez vos anciennes paires. → Jusqu’à 70€ de réduction. ✧ Donnez-leur une seconde vie. On voit clair, ○ sans fermer les yeux sur l’impact écologique. ▲ La mode change. ◆ La planète, non."
+        className="font-serif text-2xl leading-loose tracking-wider sm:text-4xl md:text-3xl"
+      />
     </SectionContainer>
   );
 }
