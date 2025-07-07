@@ -4,34 +4,33 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import MenuLinkItem from './MenuLinkItem';
 
+import { LINKS } from '@/config/constants';
+
 type FullScreenMenuProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const links = [
-  { label: 'Nos offres', href: '#offers' },
-  { label: 'Nos services', href: '#services' },
-  { label: 'Le concept', href: '#concept' },
-  { label: 'Nous contacter', href: '#contact' },
-  { label: 'Prendre rendez‑vous', href: '#appointment' }, // com non-breaking hyphen
-];
-
 const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         onClose();
       }
-    }
+    };
 
     if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
+      document.removeEventListener('keydown', handleEscape);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
@@ -39,28 +38,25 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <motion.nav
           id="main-menu"
           aria-modal="true"
-          // biome-ignore lint/a11y/useSemanticElements: <explanation>
-          role="dialog"
+          aria-label="Navigation principale"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40 flex flex-col justify-between bg-violet/60 p-6 pt-32 backdrop-blur-[100px] md:pt-36 3xl:pt-48"
+          className="fixed inset-0 z-menu flex flex-col justify-between bg-violet/60 p-6 pt-32 backdrop-blur-[100px] md:pt-36 3xl:pt-48"
         >
-          {/* Center: Liste des liens */}
           <div
             ref={menuRef}
-            className="mx-auto flex max-w-[95%] flex-col items-start space-y-2 sm:max-w-[80%] sm:space-y-6 lg:max-w-[70%]"
+            className="mx-auto flex max-w-[95%] flex-col items-start space-y-4 text-[clamp(1.2rem,2vw,3.5rem)] sm:max-w-[80%] sm:space-y-6 lg:max-w-[70%] 4xl:space-y-8"
           >
-            {links.map((link, index) => (
+            {LINKS.map((link, index) => (
               <MenuLinkItem key={link.href} {...link} index={index} onClick={onClose} />
             ))}
           </div>
 
-          {/* Bottom: Mini Footer */}
-          <div className="space-y-2 text-center text-xs leading-relaxed">
+          <div className="space-y-2 text-center text-sm leading-relaxed md:text-base">
             <h2 className="text-lg font-extrabold tracking-wide">
               <span className="font-thin">LA</span>LUNETTERIE
               <span className="font-thin">DU</span>COIN
@@ -74,7 +70,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
             <p>Du lundi au samedi : 10 h–14 h / 15 h–19 h</p>
             <p>Dimanche : fermé</p>
           </div>
-        </motion.div>
+        </motion.nav>
       )}
     </AnimatePresence>
   );

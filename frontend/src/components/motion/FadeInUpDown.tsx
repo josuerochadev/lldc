@@ -1,13 +1,15 @@
-import { motion, useAnimation, useInView } from 'framer-motion';
-import type { ReactNode } from 'react';
-import { useEffect, useRef } from 'react';
+// src/components/motion/FadeInUpDown.tsx
+
+import type React from 'react';
+import { motion } from 'framer-motion';
+import type { JSX, ReactNode } from 'react';
 
 type FadeInUpDownProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
   direction?: 'up' | 'down';
-  as?: 'div' | 'section' | 'article' | 'span' | 'h1' | 'h2' | 'h3' | 'p';
+  as?: keyof JSX.IntrinsicElements;
 };
 
 export default function FadeInUpDown({
@@ -17,32 +19,13 @@ export default function FadeInUpDown({
   direction = 'down',
   as = 'div',
 }: FadeInUpDownProps) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [inView, controls]);
-
-  const MotionTag = motion[as] as typeof motion.div;
-
+  const MotionTag = (motion as unknown as Record<string, React.ElementType>)[as];
   return (
     <MotionTag
-      ref={ref}
       className={className}
-      initial="hidden"
-      animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: direction === 'down' ? -50 : 50 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, delay },
-        },
-      }}
+      initial={{ opacity: 0, y: direction === 'down' ? -50 : 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
     >
       {children}
     </MotionTag>

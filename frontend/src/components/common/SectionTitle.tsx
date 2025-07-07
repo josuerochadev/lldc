@@ -9,7 +9,7 @@ const SectionTitle = ({ title }: SectionTitleProps) => {
 
   return (
     <FadeInUpDown>
-      <h2 className="section-title">
+      <h2 className="text-title-xl uppercase">
         {words.map(({ id, word }, index) => (
           <span key={id} className={index % 2 === 0 ? 'font-thin' : 'font-extrabold'}>
             {word}{' '}

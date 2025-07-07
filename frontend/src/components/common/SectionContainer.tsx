@@ -1,6 +1,6 @@
 // src/components/common/SectionContainer.tsx
 
-import type { ReactNode, CSSProperties } from 'react';
+import type { ReactNode, CSSProperties, JSX } from 'react';
 
 import { cn } from '@/lib/cn';
 
@@ -10,6 +10,7 @@ type SectionContainerProps = {
   children: ReactNode;
   backgroundImage?: string; // Ex: "/backgrounds/services-background.png"
   overlayClassName?: string; // Ex: "bg-white/40 backdrop-blur"
+  as?: keyof JSX.IntrinsicElements; // Allows using different HTML elements like 'div', 'section', etc.
 };
 
 export default function SectionContainer({
@@ -18,27 +19,33 @@ export default function SectionContainer({
   children,
   backgroundImage,
   overlayClassName = 'bg-white/40 backdrop-blur-sm',
+  as: Element = 'section',
 }: SectionContainerProps) {
+  const backgroundStyle: CSSProperties = backgroundImage
+    ? {
+        backgroundImage: `url('${backgroundImage}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }
+    : {};
+
   return (
-    <section
+    <Element
       id={id}
+      style={backgroundStyle}
       className={cn(
-        'relative w-full bg-cover bg-center bg-no-repeat py-section sm:px-gutter',
+        'relative w-full px-container-x py-section',
+        backgroundImage && 'bg-cover bg-center',
         className,
       )}
-      style={
-        backgroundImage
-          ? ({ backgroundImage: `url('${backgroundImage}')` } as CSSProperties)
-          : undefined
-      }
+      role="banner"
     >
       {backgroundImage && (
-        <div aria-hidden="true" className={cn('absolute inset-0 -z-10', overlayClassName)} />
+        <div aria-hidden="true" className={cn('absolute inset-0 -z-base', overlayClassName)} />
       )}
 
-      <div className="relative z-10 mx-auto w-full max-w-[95vw] sm:max-w-[90vw] lg:max-w-screen-xl 3xl:max-w-[1800px] 4xl:max-w-[2400px] 5xl:max-w-[3600px]">
-        {children}
-      </div>
-    </section>
+      <div className="relative mx-auto w-full">{children}</div>
+    </Element>
   );
 }

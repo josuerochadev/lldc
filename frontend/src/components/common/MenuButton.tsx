@@ -1,29 +1,31 @@
-import type React from 'react';
-import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
+
+import FadeInUpDown from '@/components/motion/FadeInUpDown';
 
 type MenuButtonProps = {
   isOpen: boolean;
   onClick: () => void;
 };
 
-const MenuButton: React.FC<MenuButtonProps> = ({ isOpen, onClick }) => {
+const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onClick }, ref) => {
   return (
-    <div className="fixed left-0 right-0 top-gutter z-50 flex justify-start sm:justify-center">
-      <motion.button
-        type="button"
-        aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-        aria-expanded={isOpen}
-        aria-controls="main-menu"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.6, ease: 'easeOut' }}
-        className="px-4 text-lg font-extrabold uppercase focus:outline-none sm:text-xl md:text-2xl"
-        onClick={onClick}
-      >
-        {isOpen ? 'Fermer' : 'Menu'}
-      </motion.button>
+    <div className="fixed left-0 right-0 z-overlay flex justify-start p-section-gap sm:justify-center">
+      <FadeInUpDown>
+        <button
+          ref={ref}
+          type="button"
+          id="menu-toggle"
+          onClick={onClick}
+          aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={isOpen}
+          aria-controls="main-menu"
+          className="menu-toggle-button hover:font-black focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-light-green"
+        >
+          {isOpen ? 'Fermer' : 'Menu'}
+        </button>
+      </FadeInUpDown>
     </div>
   );
-};
+});
 
 export default MenuButton;
