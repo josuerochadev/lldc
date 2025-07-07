@@ -14,7 +14,7 @@ export default function Footer({ className = '', ...rest }: FooterProps) {
   return (
     <footer {...rest} className={clsx('relative z-10 w-full bg-purple text-violet', className)}>
       <SectionContainer className="pt-10">
-        <h2 className="mx-auto mb-8 text-center text-2xl font-extrabold tracking-wide sm:text-3xl md:text-4xl 3xl:text-5xl 4xl:text-6xl 5xl:text-7xl">
+        <h2 className="mx-auto mb-8 text-center text-title-md font-extrabold tracking-wide">
           <span className="font-thin">LA</span>
           LUNETTERIE
           <span className="font-thin">DU</span>
