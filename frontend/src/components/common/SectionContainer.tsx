@@ -10,6 +10,7 @@ type SectionContainerProps = {
   children: ReactNode;
   backgroundImage?: string; // Ex: "/backgrounds/services-background.png"
   overlayClassName?: string; // Ex: "bg-white/40 backdrop-blur"
+  noSpacing?: boolean;
   as?: keyof JSX.IntrinsicElements; // Allows using different HTML elements like 'div', 'section', etc.
 };
 
@@ -19,6 +20,7 @@ export default function SectionContainer({
   children,
   backgroundImage,
   overlayClassName = 'bg-white/40 backdrop-blur-sm',
+  noSpacing,
   as: Element = 'section',
 }: SectionContainerProps) {
   const backgroundStyle: CSSProperties = backgroundImage
@@ -35,11 +37,12 @@ export default function SectionContainer({
       id={id}
       style={backgroundStyle}
       className={cn(
-        'relative w-full px-container-x py-section',
+        'relative w-full',
+        !noSpacing && 'px-container-x py-section',
         backgroundImage && 'bg-cover bg-center',
         className,
       )}
-      role="banner"
+      role={id === 'hero' ? 'banner' : undefined}
     >
       {backgroundImage && (
         <div aria-hidden="true" className={cn('absolute inset-0 -z-base', overlayClassName)} />

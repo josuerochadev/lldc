@@ -29,11 +29,6 @@
 }
 
 @layer components {
-  .section-title {
-    @apply text-balance;
-    @apply mb-8 text-left uppercase;
-  }
-
   .menu-toggle-button {
     @apply text-title-sm font-semibold uppercase;
     @apply min-h-[44px] min-w-[44px] rounded-btn;

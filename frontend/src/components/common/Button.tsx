@@ -5,5 +5,11 @@ import { cn } from '@/lib/cn';
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function Button({ className, ...props }: ButtonProps) {
-  return <button className={cn('button-primary font-semibold', className)} {...props} />;
+  return (
+    <button
+      type={props.type}
+      className={cn('button-primary font-semibold', className)}
+      {...props}
+    />
+  );
 }
