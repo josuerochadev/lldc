@@ -18,7 +18,7 @@ const Hero = forwardRef<HTMLElement>(() => {
       {/* Logo */}
       <FadeInUp delay={0.1}>
         <div className="mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)]">
-          <LogoEye className="h-full w-full" />
+          <LogoEye aria-hidden="true" focusable="false" className="h-full w-full" />
         </div>
       </FadeInUp>
 
@@ -31,7 +31,7 @@ const Hero = forwardRef<HTMLElement>(() => {
         {/* Titre */}
         <FadeInUp delay={0.6}>
           <header>
-            <h1 className="text-title-md">
+            <h1 className="text-title-md" aria-label="La Lunetterie du Coin">
               <span className="font-thin">－</span>
               <span className="font-thin">LA</span>
               <span className="font-black">LUNETTERIE</span>

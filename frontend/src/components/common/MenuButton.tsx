@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import FadeInUpDown from '@/components/motion/FadeInUpDown';
+import MenuButtonEntrance from '@/components/motion/MenuButtonEntrance';
 
 type MenuButtonProps = {
   isOpen: boolean;
@@ -10,7 +10,7 @@ type MenuButtonProps = {
 const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onClick }, ref) => {
   return (
     <div className="fixed left-0 right-0 z-overlay flex justify-start p-section-gap sm:justify-center">
-      <FadeInUpDown>
+      <MenuButtonEntrance>
         <button
           ref={ref}
           type="button"
@@ -23,7 +23,7 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onC
         >
           {isOpen ? 'Fermer' : 'Menu'}
         </button>
-      </FadeInUpDown>
+      </MenuButtonEntrance>
     </div>
   );
 });

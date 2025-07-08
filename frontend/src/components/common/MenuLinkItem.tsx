@@ -18,11 +18,11 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
       className="flex items-baseline py-1 text-left uppercase transition hover:scale-110 sm:py-0"
       whileHover={{ scale: 1.1 }}
     >
-      <span className="mr-4 text-base font-thin sm:text-2xl md:text-3xl 3xl:text-4xl">
-        {index + 1}.
+      <span className="mr-4 text-title-sm font-thin">{index + 1}.</span>
+      <span className="flex flex-wrap gap-x-1 text-title-lg">
+        <span className="font-thin">{first}</span>
+        <span className="font-extrabold">{last}</span>
       </span>
-      <span className="text-2xl font-thin sm:text-4xl md:text-5xl 3xl:text-6xl">{first}</span>
-      <span className="text-2xl font-extrabold sm:text-4xl md:text-5xl 3xl:text-6xl">{last}</span>
     </motion.a>
   );
 }
