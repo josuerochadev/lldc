@@ -4,6 +4,8 @@ import type React from 'react';
 import { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import FadeInUp from '../motion/FadeInUp';
+
 import MenuLinkItem from './MenuLinkItem';
 import Footer from './Footer';
 
@@ -70,9 +72,9 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
           </motion.div>
 
           {/* Footer com padding e espaçamento seguros */}
-          <div className="p-section-gap">
-            <Footer variant="menu" className="text-purple" />
-          </div>
+<FadeInUp delay={0.6} className="p-section-gap">
+  <Footer variant="menu" className="text-purple" />
+</FadeInUp>
         </motion.nav>
       )}
     </AnimatePresence>
