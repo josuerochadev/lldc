@@ -24,7 +24,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
       )}
     >
       <SectionContainer noSpacing={isMenu} className={isMenu ? '' : 'pt-8'}>
-        <h2 className="mx-auto mb-3 text-center text-title-md font-extrabold tracking-wide">
+        <h2 className="mx-auto mb-3 text-center text-title-md font-extrabold">
           <span className="font-thin">LA</span>
           LUNETTERIE
           <span className="font-thin">DU</span>
@@ -33,16 +33,15 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
 
         <div
           className={clsx(
-            'mx-auto w-fit max-w-5xl',
+            'mx-auto w-fit',
             isMenu
               ? 'flex flex-col items-center space-y-2'
-              : 'grid sm:grid-cols-2 sm:gap-x-12 md:gap-x-16 3xl:gap-x-20 4xl:gap-x-24 5xl:gap-x-28',
+              : 'items-baseline grid sm:grid-cols-2 gap-x-section-gap',
           )}
         >
-          {' '}
           <address
             aria-label="Adresse et horaires de la boutique"
-            className="space-y-1 text-center text-text-base not-italic leading-relaxed sm:text-left"
+            className="space-y-1 text-center text-text-footer not-italic leading-relaxed sm:text-left"
           >
             <p>
               24&nbsp;Rue&nbsp;du&nbsp;Faubourg-de-Pierre,
@@ -60,7 +59,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
           {!isMenu && (
             <nav
               aria-label="Navigation de bas de page"
-              className="flex flex-col items-center space-y-4 text-text-base sm:items-start"
+              className="flex flex-col items-center space-y-4 text-text-footer sm:items-start"
             >
               <a className={footerLinkBase} href="/mentions-legales">
                 Mentions légales
@@ -72,7 +71,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                 Gestion des rendez-vous
               </a>
 
-              <p className="text-center text-text-base">
+              <p className="text-center pt-3 text-text-footer">
                 Développé&nbsp;par{' '}
                 <a
                   href="https://josuexrocha.github.io/portfolio/"
