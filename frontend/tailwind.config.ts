@@ -28,7 +28,8 @@ const config: Config = {
 				'title-md': ['clamp(1.5rem, 2.5vw, 5rem)', '1.2'],
 				'title-sm': ['clamp(1.25rem, 2vw, 3.5rem)', '1.3'],
 				'text-cta': ['clamp(1.25rem, 1.5vw, 2.5rem)', '1.2'],
-				'text-base': ['clamp(1.3rem, 2vw, 2rem)', '1.4'],
+				'text-base': ['clamp(1rem, 1.5vw, 2rem)', '1.4'],
+				'text-footer': ['clamp(0.9rem, 1.5vw, 2.5rem)', '1.1'],
 			},
 			screens: {
 				'3xl': '1920px',
