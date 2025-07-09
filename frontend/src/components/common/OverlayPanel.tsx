@@ -36,7 +36,7 @@ export default function OverlayPanel({
       }}
       transition={{ type: 'spring', damping: 20, stiffness: 200 }}
     >
-      <h3 className="mb-4 text-left font-serif text-title-md font-bold">{title}</h3>
+      <h3 className="mb-4 text-left font-serif text-title-lg font-bold">{title}</h3>
 
       {children}
 
@@ -59,7 +59,7 @@ export default function OverlayPanel({
 
       {expandable && (
         <div className="mt-auto flex justify-center">
-          <button type="button" className="text-text-base font-bold underline">
+          <button type="button" className="text-text-footer font-bold underline">
             {expanded ? 'Réduire' : buttonLabel}
           </button>
         </div>

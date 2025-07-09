@@ -24,11 +24,11 @@ const config: Config = {
 			},
 			fontSize: {
 				'title-xl': ['clamp(3.5rem, 5vw, 15rem)', '0.95'],
-				'title-lg': ['clamp(2rem, 4vw, 10rem)', '1.1'],
+				'title-lg': ['clamp(2rem, 3vw, 10rem)', '1.1'],
 				'title-md': ['clamp(1.5rem, 2.5vw, 5rem)', '1.2'],
 				'title-sm': ['clamp(1.25rem, 2vw, 3.5rem)', '1.3'],
 				'text-cta': ['clamp(1.25rem, 1.5vw, 2.5rem)', '1.2'],
-				'text-base': ['clamp(1rem, 1.5vw, 2rem)', '1.4'],
+				'text-base': ['clamp(1rem, 1.5vw, 3.5rem)', '1.4'],
 				'text-footer': ['clamp(0.9rem, 1.1vw, 2.5rem)', '1.1'],
 			},
 			screens: {
@@ -58,7 +58,7 @@ const config: Config = {
 			},
 			borderRadius: {
 				btn: '1.2rem',
-				card: '0.8rem',
+				card: '1.5rem',
 			},
 			boxShadow: {
 				card: '0 4px 8px rgba(0, 0, 0, 0.05)',
