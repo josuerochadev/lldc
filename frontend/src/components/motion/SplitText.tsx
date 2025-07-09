@@ -40,7 +40,7 @@ export default function SplitText({ text, className = '' }: Props) {
       {words.map((word, index) => {
         const uniqueKey = `${word}-${index}-${Math.random().toString(36).substr(2, 9)}`;
         return (
-          <motion.span key={uniqueKey} className="mr-2 inline-block" variants={child}>
+          <motion.span key={uniqueKey} className="mr-word-gap inline-block" variants={child}>
             {word}
           </motion.span>
         );

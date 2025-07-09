@@ -16,10 +16,10 @@ export default function Offers() {
   };
 
   return (
-    <section id="offers" className="w-full px-4 py-24">
+    <section id="offers" className="w-full px-container-x py-section">
       <SectionTitle title="Nos Offres" />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 md:grid-cols-2">
+      <div className="mx-auto grid max-w-content grid-cols-1 gap-section-gap md:grid-cols-2">
         {OFFERS.map((offer, index) => {
           const isOpen = openCards.includes(offer.id);
 
@@ -28,17 +28,20 @@ export default function Offers() {
               <TiltCard>
                 <button
                   type="button"
-                  className="relative h-[500px] w-full cursor-pointer overflow-hidden rounded-card shadow-card md:h-[650px]"
+                  className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card"
                   onClick={() => toggleCard(offer.id)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') toggleCard(offer.id);
                   }}
                 >
+                  {/* Imagem de fundo sempre visível */}
                   <img
                     src={offer.image}
                     alt={offer.title}
                     className="absolute inset-0 -z-base h-full w-full object-cover"
                   />
+
+                  {/* Overlay que cobre parcialmente e depois se expande */}
                   <OverlayPanel
                     title={offer.title}
                     summary={offer.summary}

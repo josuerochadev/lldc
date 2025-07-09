@@ -1,4 +1,3 @@
-// components/common/OverlayPanel.tsx
 import { AnimatePresence, motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
@@ -28,14 +27,16 @@ export default function OverlayPanel({
   return (
     <motion.div
       className={cn(
-        'absolute inset-4 z-10 flex flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet backdrop-blur-2xl transition-all duration-500',
+        'absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500',
         className,
       )}
       initial={false}
-      animate={{ height: expandable ? (expanded ? '95%' : '45%') : 'auto' }}
+      animate={{
+        height: expandable ? (expanded ? '95%' : '50%') : 'auto',
+      }}
       transition={{ type: 'spring', damping: 20, stiffness: 200 }}
     >
-      <h3 className="mb-4 font-serif text-title-md text-left font-bold">{title}</h3>
+      <h3 className="mb-4 text-left font-serif text-title-md font-bold">{title}</h3>
 
       {children}
 
@@ -47,8 +48,9 @@ export default function OverlayPanel({
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4 }}
+            className="overflow-hidden"
           >
-            <p className="max-w-[90%] whitespace-pre-line text-left leading-snug">
+            <p className="max-w-[90%] whitespace-pre-line text-left text-text-base leading-snug">
               {expanded ? details : summary}
             </p>
           </motion.div>
@@ -57,7 +59,7 @@ export default function OverlayPanel({
 
       {expandable && (
         <div className="mt-auto flex justify-center">
-          <button type="button" className="font-bold underline">
+          <button type="button" className="text-text-base font-bold underline">
             {expanded ? 'Réduire' : buttonLabel}
           </button>
         </div>
