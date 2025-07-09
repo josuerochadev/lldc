@@ -23,12 +23,12 @@ const config: Config = {
 				serif: ['"Imbue"', 'serif'],
 			},
 			fontSize: {
-				'title-xl': ['clamp(3.5rem, 5vw, 15rem)', '0.9'],
+				'title-xl': ['clamp(3.5rem, 5vw, 15rem)', '0.95'],
 				'title-lg': ['clamp(2rem, 5vw, 10rem)', '1.1'],
 				'title-md': ['clamp(1.5rem, 2.5vw, 5rem)', '1.2'],
 				'title-sm': ['clamp(1.25rem, 2vw, 3.5rem)', '1.3'],
 				'text-cta': ['clamp(1.25rem, 1.5vw, 2.5rem)', '1.2'],
-				'text-base': ['clamp(1.25rem, 2vw, 3rem)', '1.5'],
+				'text-base': ['clamp(1.3rem, 2vw, 2rem)', '1.4'],
 			},
 			screens: {
 				'3xl': '1920px',
@@ -38,12 +38,17 @@ const config: Config = {
 			maxWidth: {
  				'content': '120rem', // Maximum width for main content
 				},
+			height: {
+			'card': 'clamp(32rem, 70vh, 90rem)', // mínimo maior, máximo maior, % mais generosa
+			},
 			spacing: {
 				'section': 'clamp(6rem, 10vw, 10rem)', // General section spacing
 				'section-sm': 'clamp(4rem, 8vw, 8rem)', // Smaller section spacing
 				'section-gap': 'clamp(1rem, 5vw, 3rem)', // Gap between sections
+				'title-gap': 'clamp(2rem, 2.5vw, 4rem)', // Gap below titles
 				'btn-x': 'clamp(1.5rem, 2vw, 3rem)',
   				'btn-y': 'clamp(1.25rem, 1vw, 2.5rem)',
+				'word-gap': 'clamp(1rem, 1.5vw, 2rem)', // Gap between words in titles
 			},
 			padding: {
 				'container-x': 'clamp(1rem, 5vw, 3rem)',
