@@ -15,7 +15,7 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
     <motion.a
       href={href}
       onClick={onClick}
-      className="flex items-baseline py-1 text-left uppercase transition hover:scale-110 sm:py-0"
+      className="flex items-baseline uppercase transition hover:scale-110"
       whileHover={{ scale: 1.1 }}
     >
       <span className="mr-4 text-title-sm font-thin">{index + 1}.</span>

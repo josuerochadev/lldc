@@ -36,18 +36,14 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
             'mx-auto w-fit',
             isMenu
               ? 'flex flex-col items-center space-y-2'
-              : 'items-baseline grid sm:grid-cols-2 gap-x-section-gap',
+              : 'grid items-baseline gap-x-section-gap sm:grid-cols-2',
           )}
         >
           <address
             aria-label="Adresse et horaires de la boutique"
             className="space-y-1 text-center text-text-footer not-italic leading-relaxed sm:text-left"
           >
-            <p>
-              24&nbsp;Rue&nbsp;du&nbsp;Faubourg-de-Pierre,
-              <br />
-              67000&nbsp;Strasbourg
-            </p>
+            <p>24&nbsp;Rue&nbsp;du&nbsp;Faubourg-de-Pierre&nbsp;67000&nbsp;STRASBOURG</p>
             <p>
               <a href="tel:+33388512440" className={footerLinkBase}>
                 03&nbsp;88&nbsp;51&nbsp;24&nbsp;40
@@ -71,7 +67,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                 Gestion des rendez-vous
               </a>
 
-              <p className="text-center pt-3 text-text-footer">
+              <p className="pt-3 text-center text-text-footer">
                 Développé&nbsp;par{' '}
                 <a
                   href="https://josuexrocha.github.io/portfolio/"
