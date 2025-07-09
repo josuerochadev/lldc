@@ -25,7 +25,10 @@ const Hero = forwardRef<HTMLElement>(() => {
       <div className="w-full space-y-section-gap">
         {/* Punchline */}
         <FadeInUp delay={0.3}>
-          <SplitText text={currentPhrase} className="text-title-xl tracking-wide font-black uppercase" />
+          <SplitText
+            text={currentPhrase}
+            className="text-title-xl font-black uppercase tracking-wide"
+          />
         </FadeInUp>
 
         {/* Titre */}
