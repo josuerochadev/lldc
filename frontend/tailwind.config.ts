@@ -54,7 +54,6 @@ const config: Config = {
 			padding: {
 				'container-x': 'clamp(1rem, 5vw, 3rem)',
 				'container-y': 'clamp(2rem, 5vw, 4rem)',
-
 			},
 			borderRadius: {
 				btn: '1.2rem',

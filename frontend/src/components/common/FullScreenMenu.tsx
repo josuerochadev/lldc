@@ -72,9 +72,9 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
           </motion.div>
 
           {/* Footer com padding e espaçamento seguros */}
-<FadeInUp delay={0.6} className="p-section-gap">
-  <Footer variant="menu" className="text-purple" />
-</FadeInUp>
+          <FadeInUp delay={0.6} className="p-section-gap">
+            <Footer variant="menu" className="text-purple" />
+          </FadeInUp>
         </motion.nav>
       )}
     </AnimatePresence>
