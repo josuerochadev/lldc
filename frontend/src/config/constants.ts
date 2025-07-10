@@ -30,3 +30,21 @@ export const OFFERS = [
       '59€ : monture + verres unifocaux\n89€ : verres progressifs\nVerres antireflet durci ou solaires UV cat.3\nOrigine France Garantie — Ophtalmic Vision.',
   },
 ];
+
+export const SERVICES = [
+  {
+    title: 'Lunettes neuves et d’occasion',
+    description: 'Large choix de montures neuves et de seconde main, soigneusement sélectionnées.',
+    image: '/illustrations/eyeframe.png',
+  },
+  {
+    title: 'Lentilles de contact',
+    description: 'Conseils personnalisés et adaptation pour tous types de lentilles.',
+    image: '/illustrations/contact-lenses.png',
+  },
+  {
+    title: 'Examens de vue',
+    description: 'Contrôle visuel complet réalisé par un opticien diplômé.',
+    image: '/illustrations/test-vision.png',
+  },
+];

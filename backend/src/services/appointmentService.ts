@@ -3,7 +3,7 @@ import { Status } from "@prisma/client";
 import { AppError } from "../middlewares/errorHandler";
 import logger from "../middlewares/logger";
 import crypto from "node:crypto";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { sendNotification } from "./notificationService";
 import { ENV } from "../config/env";
 
