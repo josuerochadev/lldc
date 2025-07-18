@@ -6,6 +6,7 @@ import { cn } from '@/lib/cn';
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import TiltCard from '@/components/motion/TiltCard';
+import OverlayPanel from '@/components/common/OverlayPanel';
 import { SERVICES } from '@/config/constants';
 
 export default function Services() {
@@ -22,7 +23,7 @@ export default function Services() {
       <SectionTitle title="Nos Services" />
 
       <div className="mx-auto flex flex-col md:flex-row md:items-center md:justify-center">
-        {/* Coluna esquerda: imagem principal + miniatures */}
+        {/* Coluna esquerda: imagem + miniaturas */}
         <div className="flex flex-col items-center py-container-y px-container-x">
           <AnimatePresence mode="wait">
             <motion.img
@@ -59,22 +60,15 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Coluna direita: texto */}
-        <AnimatePresence mode="wait">
-          <TiltCard>
-            <motion.div
-              key={selected.title}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.5 }}
-              className="w-[clamp(18rem,42vw,120rem)] flex-shrink-0 self-center rounded-card bg-purple/30 px-container-x py-container-y shadow-card backdrop-blur-2xl"
-            >
-              <h3 className="mb-4 font-serif text-title-lg font-black">{selected.title}</h3>
-              <p className="text-text-base leading-snug tracking-wide">{selected.description}</p>
-            </motion.div>
-          </TiltCard>
-        </AnimatePresence>
+        {/* Coluna direita: conteúdo textual via OverlayPanel */}
+        <TiltCard>
+          <OverlayPanel
+            title={selected.title}
+            className="relative w-[clamp(18rem,42vw,120rem)] self-center"
+          >
+            <p className="text-text-base leading-snug tracking-wide">{selected.description}</p>
+          </OverlayPanel>
+        </TiltCard>
       </div>
     </SectionContainer>
   );
