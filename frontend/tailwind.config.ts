@@ -39,6 +39,9 @@ const config: Config = {
 			maxWidth: {
  				content: '100%', // Maximum width for main content
 				},
+			width: {
+				'service-img': 'clamp(20rem, 25vw, 42rem)',
+			},
 			height: {
 				'card': 'clamp(32rem, 70vh, 90rem)', // mínimo maior, máximo maior, % mais generosa
 			},
