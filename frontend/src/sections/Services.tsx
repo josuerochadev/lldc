@@ -24,7 +24,7 @@ export default function Services() {
 
       <div className="mx-auto flex flex-col md:flex-row md:items-center md:justify-center">
         {/* Coluna esquerda: imagem + miniaturas */}
-        <div className="flex flex-col items-center py-container-y px-container-x">
+        <div className="flex flex-col items-center px-container-x py-container-y">
           <AnimatePresence mode="wait">
             <motion.img
               key={selected.image}
@@ -34,7 +34,7 @@ export default function Services() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="max-w-full h-auto w-service-img"
+              className="h-auto w-service-img max-w-full object-contain"
             />
           </AnimatePresence>
 
@@ -50,25 +50,31 @@ export default function Services() {
                   selectedIndex === index ? 'opacity-100' : 'opacity-60',
                 )}
               >
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="h-24 w-24 object-contain"
-                />
+                <img src={service.image} alt={service.title} className="h-24 w-24 object-contain" />
               </button>
             ))}
           </div>
         </div>
 
-        {/* Coluna direita: conteúdo textual via OverlayPanel */}
-        <TiltCard>
-          <OverlayPanel
-            title={selected.title}
-            className="relative w-[clamp(18rem,42vw,120rem)] self-center"
-          >
-            <p className="text-text-base leading-snug tracking-wide">{selected.description}</p>
-          </OverlayPanel>
-        </TiltCard>
+        {/* Coluna direita: conteúdo textual via OverlayPanel com transição */}
+        <AnimatePresence mode="wait">
+          <TiltCard key={selected.title}>
+            <motion.div
+              key={selected.title}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.5 }}
+            >
+              <OverlayPanel
+                title={selected.title}
+                className="relative w-[clamp(18rem,42vw,120rem)] self-center"
+              >
+                <p className="text-text-base leading-snug tracking-wide">{selected.description}</p>
+              </OverlayPanel>
+            </motion.div>
+          </TiltCard>
+        </AnimatePresence>
       </div>
     </SectionContainer>
   );
