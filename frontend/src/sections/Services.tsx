@@ -17,8 +17,8 @@ export default function Services() {
     <SectionContainer
       id="services"
       backgroundImage="/backgrounds/forest-background.png"
-      className="bg-cover bg-center bg-no-repeat text-violet shadow-xl"
-      overlayClassName="bg-purple backdrop-blur-sm"
+      className="relative bg-cover bg-center bg-no-repeat text-violet shadow-xl"
+      overlayClassName="bg-transparent"
     >
       <SectionTitle title="Nos Services" />
 
