@@ -45,11 +45,11 @@ export default function Contact() {
     <SectionContainer id="contact">
       <SectionTitle title="Nous contacter" />
 
-      <div className="mx-auto mb-8 max-w-2xl rounded-md border-2 border-purple bg-violet/50 p-8 shadow-lg backdrop-blur-xl">
+      <div className="mx-auto max-w-2xl mb-title-gap rounded-btn border-2 border-purple bg-violet/45 py-container-y px-container-x shadow-card backdrop-blur-xl">
         {success ? (
-          <div className="mb-6 font-semibold text-green-700">Votre message a bien été envoyé !</div>
+          <div className="font-semibold text-green-700">Votre message a bien été envoyé !</div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-word-gap">
             <div className="flex flex-col">
               <label htmlFor="name" className="mb-2 font-bold">
                 Nom
@@ -58,7 +58,7 @@ export default function Contact() {
                 id="name"
                 name="name"
                 type="text"
-                className="rounded-md border-2 border-purple p-4"
+                className="rounded-btn border-2 border-purple p-4"
                 required
                 placeholder="Votre nom"
               />
@@ -72,7 +72,7 @@ export default function Contact() {
                 id="email"
                 name="email"
                 type="email"
-                className="rounded-md border-2 border-purple p-4"
+                className="rounded-btn border-2 border-purple p-4"
                 required
                 placeholder="Votre email"
               />
@@ -85,7 +85,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 name="message"
-                className="rounded-md border-2 border-purple p-4"
+                className="rounded-btn border-2 border-purple p-4"
                 rows={5}
                 required
                 placeholder="Votre message..."

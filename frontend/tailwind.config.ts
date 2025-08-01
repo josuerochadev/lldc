@@ -59,7 +59,7 @@ const config: Config = {
 				'container-y': 'clamp(2rem, 5vw, 4rem)',
 			},
 			borderRadius: {
-				btn: '1.2rem',
+				btn: '0.8rem',
 				card: '1.5rem',
 			},
 			boxShadow: {

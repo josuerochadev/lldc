@@ -3,7 +3,7 @@ export const LINKS = [
   { label: 'Nos services', href: '#services' },
   { label: 'Le concept', href: '#concept' },
   { label: 'Nous contacter', href: '#contact' },
-  { label: 'Prendre rendez‑vous', href: '#appointment' }, // com non-breaking hyphen
+  { label: 'Prendre rendez‑vous', href: 'https://calendly.com/josuexr' }, // com non-breaking hyphen
 ];
 
 export const HERO_PHRASES = [
