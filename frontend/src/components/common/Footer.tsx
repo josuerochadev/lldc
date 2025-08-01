@@ -70,7 +70,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
               <p className="pt-3 text-center text-text-footer">
                 Développé&nbsp;par{' '}
                 <a
-                  href="https://josuexrocha.github.io/portfolio/"
+                  href="https://josuerochadev.github.io/portfolio/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={footerLinkBase}
