@@ -16,6 +16,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
 
   return (
     <footer
+      id="footer"
       {...rest}
       className={clsx(
         'relative z-10 w-full',
@@ -62,9 +63,6 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
               </a>
               <a className={footerLinkBase} href="/conditions-de-vente">
                 Conditions de vente
-              </a>
-              <a className={footerLinkBase} href="/gestion-rendez-vous">
-                Gestion des rendez-vous
               </a>
 
               <p className="pt-3 text-center text-text-footer">

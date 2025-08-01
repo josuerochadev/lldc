@@ -35,7 +35,7 @@ export default function Contact() {
         alert("Erreur lors de l'envoi, essayez plus tard.");
       }
     } catch {
-      alert("Erreur de connexion.");
+      alert('Erreur de connexion.');
     } finally {
       setSending(false);
     }
@@ -45,11 +45,9 @@ export default function Contact() {
     <SectionContainer id="contact">
       <SectionTitle title="Nous contacter" />
 
-      <div className="mx-auto max-w-2xl rounded-md border-2 border-purple bg-violet/50 p-8 shadow-lg backdrop-blur-xl">
+      <div className="mx-auto mb-8 max-w-2xl rounded-md border-2 border-purple bg-violet/50 p-8 shadow-lg backdrop-blur-xl">
         {success ? (
-          <div className="mb-6 font-semibold text-green-700">
-            Votre message a bien été envoyé !
-          </div>
+          <div className="mb-6 font-semibold text-green-700">Votre message a bien été envoyé !</div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-8">
             <div className="flex flex-col">
@@ -94,11 +92,7 @@ export default function Contact() {
               />
             </div>
 
-            <Button
-              type="submit"
-              disabled={sending}
-              className="self-start"
-            >
+            <Button type="submit" disabled={sending} className="self-start">
               {sending ? 'Envoi en cours...' : 'Envoyer'}
             </Button>
           </form>

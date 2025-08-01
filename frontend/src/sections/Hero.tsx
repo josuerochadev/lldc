@@ -46,7 +46,7 @@ const Hero = forwardRef<HTMLElement>(() => {
 
         {/* CTA */}
         <FadeInUp delay={0.8}>
-          <Button className="text-text-cta" aria-label="Prendre rendez-vous">
+          <Button id="hero-cta" className="text-text-cta" aria-label="Prendre rendez-vous">
             Prendre rendez-vous
           </Button>
         </FadeInUp>
