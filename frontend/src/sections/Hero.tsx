@@ -1,7 +1,7 @@
 import { useState, forwardRef } from 'react';
 
 import SplitText from '@/components/motion/SplitText';
-import FadeInUp from '@/components/motion/FadeInUp';
+import AnimatedItem from '@/components/motion/AnimatedItem';
 import LogoEye from '@/assets/logo/logo-eye.svg?react';
 import Button from '@/components/common/Button';
 import { HERO_PHRASES } from '@/config/constants';
@@ -12,27 +12,31 @@ const Hero = forwardRef<HTMLElement>(() => {
   const [currentPhrase] = useState(() => getRandomHeroPhrase(HERO_PHRASES));
 
   return (
-    <SectionContainer id="hero" className="flex min-h-[100dvh] items-center justify-center">
+    <SectionContainer
+      id="hero"
+      className="flex min-h-[100dvh] items-center justify-center"
+      aria-labelledby="hero-title"
+    >
       {/* Logo */}
-      <FadeInUp delay={0.1}>
+      <AnimatedItem index={0}>
         <div className="mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)]">
           <LogoEye aria-hidden="true" focusable="false" className="h-full w-full" />
         </div>
-      </FadeInUp>
+      </AnimatedItem>
 
       <div className="w-full space-y-section-gap">
         {/* Punchline */}
-        <FadeInUp delay={0.3}>
+        <AnimatedItem index={1}>
           <SplitText
             text={currentPhrase}
             className="text-title-xl font-black uppercase tracking-wide"
           />
-        </FadeInUp>
+        </AnimatedItem>
 
         {/* Titre */}
-        <FadeInUp delay={0.6}>
+        <AnimatedItem index={2}>
           <header>
-            <h1 className="text-title-md" aria-label="La Lunetterie du Coin">
+            <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
               <span className="font-thin">－</span>
               <span className="font-thin">LA</span>
               <span className="font-black">LUNETTERIE</span>
@@ -40,14 +44,14 @@ const Hero = forwardRef<HTMLElement>(() => {
               <span className="font-black">COIN</span>
             </h1>
           </header>
-        </FadeInUp>
+        </AnimatedItem>
 
         {/* CTA */}
-        <FadeInUp delay={0.8}>
+        <AnimatedItem index={3}>
           <Button id="hero-cta" className="text-text-cta" aria-label="Prendre rendez-vous">
             Prendre rendez-vous
           </Button>
-        </FadeInUp>
+        </AnimatedItem>
       </div>
     </SectionContainer>
   );

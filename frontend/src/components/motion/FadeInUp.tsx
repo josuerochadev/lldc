@@ -11,7 +11,7 @@ type FadeInUpProps = {
 };
 
 export default function FadeInUp({ children, delay = 0.2, className = '' }: FadeInUpProps) {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
   const controls = useAnimation();
 
