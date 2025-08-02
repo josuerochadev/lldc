@@ -1,7 +1,6 @@
 // src/App.tsx
 
 import Contact from './sections/Contact';
-// import Appointments from './sections/Appointments';
 import Background from './components/common/Background';
 import FloatingCTA from './components/common/FloatingCTA';
 
@@ -9,7 +8,6 @@ import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import Layout from '@/components/common/Layout';
 import Hero from '@/sections/Hero';
 import Offers from '@/sections/Offers';
-// import Photos from '@/sections/Photos';
 import Concept from '@/sections/Concept';
 import Services from '@/sections/Services';
 
@@ -24,9 +22,7 @@ export default function App() {
           <Offers />
           <Services />
           <Concept />
-          {/* <Photos /> */}
           <Contact />
-          {/* <Appointments /> */}
           <FloatingCTA />
         </Layout>
       </div>

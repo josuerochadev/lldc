@@ -45,7 +45,7 @@ export default function Contact() {
     <SectionContainer id="contact">
       <SectionTitle title="Nous contacter" />
 
-      <div className="mx-auto max-w-2xl mb-title-gap rounded-btn border-2 border-purple bg-violet/45 py-container-y px-container-x shadow-card backdrop-blur-xl">
+      <div className="mx-auto mb-title-gap max-w-2xl rounded-btn border-2 border-purple bg-violet/45 px-container-x py-container-y shadow-card backdrop-blur-xl">
         {success ? (
           <div className="font-semibold text-green-700">Votre message a bien été envoyé !</div>
         ) : (

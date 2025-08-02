@@ -5,13 +5,11 @@ import FadeInUp from '@/components/motion/FadeInUp';
 import LogoEye from '@/assets/logo/logo-eye.svg?react';
 import Button from '@/components/common/Button';
 import { HERO_PHRASES } from '@/config/constants';
+import { getRandomHeroPhrase } from '@/lib/hero';
 import SectionContainer from '@/components/common/SectionContainer';
 
 const Hero = forwardRef<HTMLElement>(() => {
-  const [currentPhrase] = useState(() => {
-    const randomIndex = Math.floor(Math.random() * HERO_PHRASES.length);
-    return HERO_PHRASES[randomIndex];
-  });
+  const [currentPhrase] = useState(() => getRandomHeroPhrase(HERO_PHRASES));
 
   return (
     <SectionContainer id="hero" className="flex min-h-[100dvh] items-center justify-center">
