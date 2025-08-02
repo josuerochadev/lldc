@@ -4,6 +4,17 @@ import type { ReactNode, CSSProperties, JSX } from 'react';
 
 import { cn } from '@/lib/cn';
 
+/**
+ * Composant de conteneur de section standardisé, gérant la largeur, les espacements, et l’accessibilité des grandes zones du site.
+ *
+ * @component
+ * @param {object} props
+ * @param {string} [props.id] - ID unique pour l’ancre et l’accessibilité.
+ * @param {string} [props.className] - Classes CSS additionnelles.
+ * @param {React.ReactNode} props.children - Contenu de la section.
+ * @returns {JSX.Element}
+ */
+
 type SectionContainerProps = {
   id?: string;
   className?: string;

@@ -1,5 +1,15 @@
 import { motion } from 'framer-motion';
 
+/**
+ * Affiche un texte animé lettre par lettre (ou mot à mot) pour un effet de reveal, principalement utilisé pour les punchlines Hero.
+ *
+ * @component
+ * @param {object} props
+ * @param {string} props.text - Texte à afficher et à animer.
+ * @param {string} [props.className] - Classes CSS additionnelles.
+ * @returns {JSX.Element}
+ */
+
 type Props = {
   text: string;
   className?: string;
