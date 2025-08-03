@@ -29,7 +29,7 @@ export default function OverlayPanel({
   children,
 }: OverlayPanelProps) {
   return (
-    <motion.section
+    <motion.aside
       id={id}
       aria-labelledby={titleId}
       className={cn(
@@ -72,6 +72,6 @@ export default function OverlayPanel({
           </button>
         </div>
       )}
-    </motion.section>
+    </motion.aside>
   );
 }

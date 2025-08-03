@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { clsx } from 'clsx';
 
-import SectionContainer from './SectionContainer';
+import SectionContainer from '../components/common/SectionContainer';
 
 type FooterProps = ComponentPropsWithoutRef<'footer'> & {
   variant?: 'default' | 'menu';

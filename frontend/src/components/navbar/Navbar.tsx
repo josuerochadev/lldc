@@ -1,7 +1,8 @@
 import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
-import MenuButton from './MenuButton';
+import MenuButton from '../../sections/MenuButton';
+
 import FullScreenMenu from './FullScreenMenu';
 
 const Navbar: React.FC = () => {

@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn';
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import TiltCard from '@/components/motion/TiltCard';
-import OverlayPanel from '@/components/common/OverlayPanel';
+import OverlayPanel from '@/components/offers/OverlayPanel';
 import { SERVICES } from '@/config/constants';
 
 export default function Services() {

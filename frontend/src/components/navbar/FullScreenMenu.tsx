@@ -5,9 +5,10 @@ import { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import FadeInUp from '../motion/FadeInUp';
+import Footer from '../../sections/Footer';
 
 import MenuLinkItem from './MenuLinkItem';
-import Footer from './Footer';
+
 
 import { LINKS } from '@/config/constants';
 import { menuItemVariants, menuStaggerVariants } from '@/components/motion/menuVariants';

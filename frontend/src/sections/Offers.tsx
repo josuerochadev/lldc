@@ -4,7 +4,7 @@ import AnimatedItem from '@/components/motion/AnimatedItem';
 import TiltCard from '@/components/motion/TiltCard';
 import SectionTitle from '@/components/common/SectionTitle';
 import { OFFERS } from '@/config/constants';
-import OverlayPanel from '@/components/common/OverlayPanel';
+import OverlayPanel from '@/components/offers/OverlayPanel';
 import { isToggleKey } from '@/lib/keyboard';
 
 export default function Offers() {
