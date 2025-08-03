@@ -1,13 +1,10 @@
-// src/sections/Services.tsx
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
-import { cn } from '@/lib/cn';
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
-import TiltCard from '@/components/motion/TiltCard';
-import OverlayPanel from '@/components/offers/OverlayPanel';
 import { SERVICES } from '@/config/constants';
+import ServiceCard from '@/components/services/ServiceCard';
 
 export default function Services() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -23,17 +20,13 @@ export default function Services() {
       <SectionTitle title="Nos Services" />
 
       <div className="mx-auto flex flex-col md:flex-row md:items-center md:justify-center">
-        {/* Coluna esquerda: imagem + miniaturas */}
+        {/* Colonne gauche : image + miniatures */}
         <div className="flex flex-col items-center px-container-x py-container-y">
           <AnimatePresence mode="wait">
-            <motion.img
+            <img
               key={selected.image}
               src={selected.image}
               alt={selected.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
               className="h-auto w-service-img max-w-full object-contain"
             />
           </AnimatePresence>
@@ -45,10 +38,11 @@ export default function Services() {
                 type="button"
                 onClick={() => setSelectedIndex(index)}
                 aria-label={`Voir ${service.title}`}
-                className={cn(
-                  'transition-transform duration-250 hover:scale-105 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange',
-                  selectedIndex === index ? 'opacity-100' : 'opacity-60',
-                )}
+                className={
+                  selectedIndex === index
+                    ? 'transition-transform duration-250 hover:scale-105 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange opacity-100'
+                    : 'transition-transform duration-250 hover:scale-105 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange opacity-60'
+                }
               >
                 <img src={service.image} alt={service.title} className="h-24 w-24 object-contain" />
               </button>
@@ -56,24 +50,13 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Coluna direita: conteúdo textual via OverlayPanel com transição */}
+        {/* Colonne droite : carte de service */}
         <AnimatePresence mode="wait">
-          <TiltCard key={selected.title}>
-            <motion.div
-              key={selected.title}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.5 }}
-            >
-              <OverlayPanel
-                title={selected.title}
-                className="relative w-[clamp(18rem,42vw,120rem)] self-center"
-              >
-                <p className="text-text-base leading-snug tracking-wide">{selected.description}</p>
-              </OverlayPanel>
-            </motion.div>
-          </TiltCard>
+          <ServiceCard
+            key={selected.title}
+            service={selected}
+            className="relative w-[clamp(18rem,42vw,120rem)] self-center"
+          />
         </AnimatePresence>
       </div>
     </SectionContainer>
