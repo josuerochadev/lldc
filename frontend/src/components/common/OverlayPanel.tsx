@@ -5,6 +5,7 @@ import { cn } from '@/lib/cn';
 
 type OverlayPanelProps = {
   title: string;
+  id?: string; // Optional ID for accessibility or targeting
   summary?: string;
   details?: string;
   expanded?: boolean;

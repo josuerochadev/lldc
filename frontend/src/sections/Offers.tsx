@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import FadeInUp from '@/components/motion/FadeInUp';
+import AnimatedItem from '@/components/motion/AnimatedItem';
 import TiltCard from '@/components/motion/TiltCard';
 import SectionTitle from '@/components/common/SectionTitle';
 import { OFFERS } from '@/config/constants';
 import OverlayPanel from '@/components/common/OverlayPanel';
+import { isToggleKey } from '@/lib/keyboard';
 
 export default function Offers() {
   const [openCards, setOpenCards] = useState<number[]>([]);
@@ -24,14 +25,16 @@ export default function Offers() {
           const isOpen = openCards.includes(offer.id);
 
           return (
-            <FadeInUp key={offer.id} delay={index * 0.2}>
+            <AnimatedItem key={offer.id} index={index}>
               <TiltCard>
                 <button
                   type="button"
                   className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card"
+                  aria-expanded={isOpen}
+                  aria-controls={`offer-panel-${offer.id}`}
                   onClick={() => toggleCard(offer.id)}
                   onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') toggleCard(offer.id);
+                    if (isToggleKey(e)) toggleCard(offer.id);
                   }}
                 >
                   {/* Imagem de fundo sempre visível */}
@@ -44,6 +47,7 @@ export default function Offers() {
                   {/* Overlay que cobre parcialmente e depois se expande */}
                   <OverlayPanel
                     title={offer.title}
+                    id={`offer-panel-${offer.id}`}
                     summary={offer.summary}
                     details={offer.details}
                     expanded={isOpen}
@@ -51,7 +55,7 @@ export default function Offers() {
                   />
                 </button>
               </TiltCard>
-            </FadeInUp>
+            </AnimatedItem>
           );
         })}
       </div>
