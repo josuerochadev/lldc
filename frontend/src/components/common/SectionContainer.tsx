@@ -4,6 +4,16 @@ import type { ReactNode, CSSProperties, JSX } from 'react';
 
 import { cn } from '@/lib/cn';
 
+type SectionContainerProps = {
+  id?: string;
+  className?: string;
+  children: ReactNode;
+  backgroundImage?: string; // Ex: "/backgrounds/services-background.png"
+  overlayClassName?: string; // Ex: "bg-white/40 backdrop-blur"
+  noSpacing?: boolean;
+  as?: keyof JSX.IntrinsicElements; // Allows using different HTML elements like 'div', 'section', etc.
+};
+
 /**
  * Composant de conteneur de section standardisé, gérant la largeur, les espacements, et l’accessibilité des grandes zones du site.
  *
@@ -14,16 +24,6 @@ import { cn } from '@/lib/cn';
  * @param {React.ReactNode} props.children - Contenu de la section.
  * @returns {JSX.Element}
  */
-
-type SectionContainerProps = {
-  id?: string;
-  className?: string;
-  children: ReactNode;
-  backgroundImage?: string; // Ex: "/backgrounds/services-background.png"
-  overlayClassName?: string; // Ex: "bg-white/40 backdrop-blur"
-  noSpacing?: boolean;
-  as?: keyof JSX.IntrinsicElements; // Allows using different HTML elements like 'div', 'section', etc.
-};
 
 export default function SectionContainer({
   id,

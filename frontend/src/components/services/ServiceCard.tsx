@@ -14,6 +14,18 @@ type ServiceCardProps = {
   className?: string;
 };
 
+/**
+ * Composant React pour afficher une carte de service avec un effet de tilt et une animation.
+ *
+ * @param {ServiceCardProps} props - Les propriétés du composant.
+ * @param {object} props.service - L'objet représentant le service à afficher.
+ * @param {string} props.service.title - Le titre du service.
+ * @param {string} props.service.description - La description du service.
+ * @param {string} [props.className] - Classe(s) CSS supplémentaire(s) à appliquer à la carte.
+ *
+ * @returns {JSX.Element} Une carte stylisée présentant le service, avec animation et accessibilité.
+ */
+
 export default function ServiceCard({ service, className }: ServiceCardProps) {
   return (
     <TiltCard>

@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
 
+type Props = {
+  text: string;
+  className?: string;
+};
+
 /**
  * Affiche un texte animé lettre par lettre (ou mot à mot) pour un effet de reveal, principalement utilisé pour les punchlines Hero.
  *
@@ -9,11 +14,6 @@ import { motion } from 'framer-motion';
  * @param {string} [props.className] - Classes CSS additionnelles.
  * @returns {JSX.Element}
  */
-
-type Props = {
-  text: string;
-  className?: string;
-};
 
 export default function SplitText({ text, className = '' }: Props) {
   const words = text.split(' ');

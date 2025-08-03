@@ -4,6 +4,12 @@ import type React from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
+type FadeInUpProps = {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+};
+
 /**
  * Anime le contenu en fade-in avec un léger déplacement vers le haut lors de l'entrée dans le viewport.
  *
@@ -14,12 +20,6 @@ import { useEffect, useRef } from 'react';
  * @param {string} [props.className] - Classes CSS additionnelles.
  * @returns {JSX.Element}
  */
-
-type FadeInUpProps = {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-};
 
 export default function FadeInUp({ children, delay = 0.2, className = '' }: FadeInUpProps) {
   const ref = useRef<HTMLDivElement>(null);

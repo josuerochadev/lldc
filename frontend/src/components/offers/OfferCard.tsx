@@ -21,6 +21,20 @@ type OfferCardProps = {
   index: number;
 };
 
+/**
+ * Composant `OfferCard`
+ *
+ * Affiche une carte interactive représentant une offre, avec une animation de tilt et des transitions animées.
+ * Permet d'afficher un résumé ou les détails complets de l'offre selon l'état d'ouverture.
+ *
+ * @param offer - L'objet représentant l'offre à afficher (doit contenir au moins `id`, `image`, `title`, `summary`, `details`).
+ * @param isOpen - Indique si la carte est ouverte (affichage des détails) ou fermée (affichage du résumé).
+ * @param onToggle - Fonction appelée lors du clic ou de l'activation clavier pour ouvrir/fermer la carte (reçoit l'identifiant de l'offre).
+ * @param index - Index de la carte dans la liste, utilisé pour l'animation.
+ *
+ * @returns Un composant React affichant la carte de l'offre avec animations et accessibilité.
+ */
+
 export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardProps) {
 
   return (
