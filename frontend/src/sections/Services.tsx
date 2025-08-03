@@ -46,7 +46,7 @@ export default function Services() {
                 onClick={() => setSelectedIndex(index)}
                 aria-label={`Voir ${service.title}`}
                 className={cn(
-                  'transition-transform duration-250 hover:scale-105 focus:outline-none',
+                  'transition-transform duration-250 hover:scale-105 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange',
                   selectedIndex === index ? 'opacity-100' : 'opacity-60',
                 )}
               >

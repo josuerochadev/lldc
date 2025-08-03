@@ -5,7 +5,8 @@ import { cn } from '@/lib/cn';
 
 type OverlayPanelProps = {
   title: string;
-  id?: string; // Optional ID for accessibility or targeting
+  id?: string; // ID du panel (pour aria-controls)
+  titleId?: string; // ID du titre (pour aria-labelledby)
   summary?: string;
   details?: string;
   expanded?: boolean;
@@ -17,6 +18,8 @@ type OverlayPanelProps = {
 
 export default function OverlayPanel({
   title,
+  id,
+  titleId,
   summary,
   details,
   expanded = false,
@@ -26,7 +29,9 @@ export default function OverlayPanel({
   children,
 }: OverlayPanelProps) {
   return (
-    <motion.div
+    <motion.section
+      id={id}
+      aria-labelledby={titleId}
       className={cn(
         'absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500',
         className,
@@ -37,7 +42,9 @@ export default function OverlayPanel({
       }}
       transition={{ type: 'spring', damping: 20, stiffness: 200 }}
     >
-      <h3 className="mb-4 text-left font-serif text-title-lg font-bold">{title}</h3>
+      <h3 id={titleId} className="mb-4 text-left font-serif text-title-lg font-bold">
+        {title}
+      </h3>
 
       {children}
 
@@ -65,6 +72,6 @@ export default function OverlayPanel({
           </button>
         </div>
       )}
-    </motion.div>
+    </motion.section>
   );
 }

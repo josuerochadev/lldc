@@ -12,7 +12,7 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
 export default function Footer({ className = '', variant = 'default', ...rest }: FooterProps) {
   const isMenu = variant === 'menu';
   const footerLinkBase =
-    'font-semibold transition-colors duration-300 hover:text-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange';
+    'font-semibold transition-colors duration-300 hover:text-orange focus-visible:outline-none focus-visible:rounded-md focus-visible:ring-orange';
 
   return (
     <footer

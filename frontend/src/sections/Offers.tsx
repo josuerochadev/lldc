@@ -29,7 +29,7 @@ export default function Offers() {
               <TiltCard>
                 <button
                   type="button"
-                  className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card"
+                  className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange"
                   aria-expanded={isOpen}
                   aria-controls={`offer-panel-${offer.id}`}
                   onClick={() => toggleCard(offer.id)}
@@ -48,6 +48,7 @@ export default function Offers() {
                   <OverlayPanel
                     title={offer.title}
                     id={`offer-panel-${offer.id}`}
+                    titleId={`offer-title-${offer.id}`}
                     summary={offer.summary}
                     details={offer.details}
                     expanded={isOpen}
