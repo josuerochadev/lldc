@@ -1,14 +1,26 @@
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import SplitText from '@/components/motion/SplitText';
+import { CONCEPT } from '@/config/constants';
 
+/**
+ * composant React qui affiche la section "Le Concept" de la page.
+ *
+ * Ce composant utilise `SectionContainer` pour structurer la section,
+ * `SectionTitle` pour afficher le titre, et `SplitText` pour présenter
+ * le texte du concept avec un style spécifique.
+ *
+ * @component
+ * @returns {JSX.Element} Élément JSX représentant la section concept.
+ */
 export default function Concept() {
   return (
     <SectionContainer id="concept">
       <SectionTitle title="Le Concept" />
 
       <SplitText
-        text="✷ Depuis 2016, on mixe style ☆ et conscience ◇ en plein Strasbourg. Des lunettes neuves, oui — mais aussi des montures recyclées ✷ restaurées avec soin. Ramenez vos anciennes paires. → Jusqu’à 70€ de réduction. ✧ Donnez-leur une seconde vie. On voit clair, ○ sans fermer les yeux sur l’impact écologique. ▲ La mode change. ◆ La planète, non."
+        text={CONCEPT}
+        as="p"
         className="font-serif text-title-md font-bold tracking-wider"
       />
     </SectionContainer>

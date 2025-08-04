@@ -1,21 +1,30 @@
 import { motion } from 'framer-motion';
+import type { ComponentPropsWithoutRef, ElementType, JSX } from 'react';
 
-type Props = {
+type SplitTextProps<T extends ElementType = 'p'> = {
   text: string;
   className?: string;
-};
+  as?: T;
+} & ComponentPropsWithoutRef<T>;
 
 /**
- * Affiche un texte animé lettre par lettre (ou mot à mot) pour un effet de reveal, principalement utilisé pour les punchlines Hero.
+ * Composant React animé pour révéler un texte mot par mot avec Framer Motion.
+ * Possibilité de personnaliser la balise HTML (`as`) pour assurer la sémantique (p, span, h1…).
  *
- * @component
- * @param {object} props
- * @param {string} props.text - Texte à afficher et à animer.
- * @param {string} [props.className] - Classes CSS additionnelles.
- * @returns {JSX.Element}
+ * @template T - Type de l’élément HTML utilisé (par défaut, <p>).
+ * @param {string} text - Texte à afficher et animer.
+ * @param {string} [className] - Classes Tailwind CSS optionnelles.
+ * @param {T} [as] - Balise HTML utilisée (p, h2, span, etc.)
+ *
+ * @returns {JSX.Element} Composant animé et sémantiquement correct.
  */
 
-export default function SplitText({ text, className = '' }: Props) {
+export default function SplitText<T extends ElementType = 'p'>({
+  text,
+  className = '',
+  as,
+}: SplitTextProps<T>): JSX.Element {
+  const Element = as || 'p';
   const words = text.split(' ');
 
   const container = {
@@ -46,11 +55,19 @@ export default function SplitText({ text, className = '' }: Props) {
       viewport={{ once: true }}
       variants={container}
       className={className}
+      aria-label={text} // pour les screenreaders
     >
+      <Element className="sr-only">{text}</Element>
+
       {words.map((word, index) => {
-        const uniqueKey = `${word}-${index}-${Math.random().toString(36).substr(2, 9)}`;
+        const key = `${word}-${index}-${Math.random().toString(36).substring(2, 6)}`;
         return (
-          <motion.span key={uniqueKey} className="mr-word-gap inline-block" variants={child}>
+          <motion.span
+            key={key}
+            className="mr-word-gap inline-block"
+            variants={child}
+            aria-hidden="true"
+          >
             {word}
           </motion.span>
         );
