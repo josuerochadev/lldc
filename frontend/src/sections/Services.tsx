@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import clsx from 'clsx';
 
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -51,11 +52,10 @@ export default function Services() {
                 aria-selected={selectedIndex === index}
                 tabIndex={selectedIndex === index ? 0 : -1}
                 id={`tab-${index}`}
-                className={
-                  selectedIndex === index
-                    ? 'focus-style opacity-100 transition-transform duration-250 hover:scale-105'
-                    : 'focus-style opacity-60 transition-transform duration-250 hover:scale-105'
-                }
+                className={clsx(
+                  'focus-style transition-transform duration-250 hover:scale-105',
+                  selectedIndex === index ? 'opacity-100' : 'opacity-60',
+                )}
               >
                 <img src={service.image} alt={service.title} className="h-24 w-24 object-contain" />
               </button>
