@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -23,11 +23,16 @@ export default function Services() {
         {/* Colonne gauche : image + miniatures */}
         <div className="flex flex-col items-center px-container-x py-container-y">
           <AnimatePresence mode="wait">
-            <img
+            <motion.img
               key={selected.image}
               src={selected.image}
               alt={selected.title}
               className="h-auto w-service-img max-w-full object-contain"
+initial={{ opacity: 0, scale: 0.98 }}
+animate={{ opacity: 1, scale: 1 }}
+exit={{ opacity: 0, scale: 1.01 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+
             />
           </AnimatePresence>
 
