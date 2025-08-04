@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import clsx from 'clsx';
 
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import { SERVICES } from '@/config/constants';
 import ServiceCard from '@/components/services/ServiceCard';
+import ServiceThumbnail from '@/components/services/ServiceThumbnail';
 
 export default function Services() {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -42,23 +42,14 @@ export default function Services() {
             className="mt-3 flex w-full justify-center gap-word-gap"
           >
             {SERVICES.map((service, index) => (
-              <button
+              <ServiceThumbnail
                 key={service.title}
-                type="button"
-                role="tab"
+                image={service.image}
+                title={service.title}
+                isActive={selectedIndex === index}
+                index={index}
                 onClick={() => setSelectedIndex(index)}
-                aria-label={`Voir ${service.title}`}
-                aria-controls={`tabpanel-${index}`}
-                aria-selected={selectedIndex === index}
-                tabIndex={selectedIndex === index ? 0 : -1}
-                id={`tab-${index}`}
-                className={clsx(
-                  'focus-style transition-transform duration-250 hover:scale-105',
-                  selectedIndex === index ? 'opacity-100' : 'opacity-60',
-                )}
-              >
-                <img src={service.image} alt={service.title} className="h-24 w-24 object-contain" />
-              </button>
+              />
             ))}
           </div>
         </div>
