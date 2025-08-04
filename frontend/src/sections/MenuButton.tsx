@@ -19,7 +19,7 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onC
           aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           aria-expanded={isOpen}
           aria-controls="main-menu"
-          className="menu-toggle-button hover:font-black focus-style"
+          className="menu-toggle-button focus-style hover:font-black"
         >
           {isOpen ? 'Fermer' : 'Menu'}
         </button>

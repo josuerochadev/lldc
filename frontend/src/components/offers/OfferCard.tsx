@@ -36,13 +36,12 @@ type OfferCardProps = {
  */
 
 export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardProps) {
-
   return (
     <AnimatedItem index={index}>
       <TiltCard>
         <button
           type="button"
-          className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card focus-style"
+          className="focus-style relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card"
           aria-expanded={isOpen}
           aria-controls={`offer-panel-${offer.id}`}
           onClick={() => onToggle(offer.id)}
@@ -60,7 +59,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
             id={`offer-panel-${offer.id}`}
             aria-labelledby={`offer-title-${offer.id}`}
             className={cn(
-              'absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500'
+              'absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500',
             )}
             initial={false}
             animate={{
@@ -68,7 +67,10 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
             }}
             transition={{ type: 'spring', damping: 20, stiffness: 200 }}
           >
-            <h3 id={`offer-title-${offer.id}`} className="mb-4 text-left font-serif text-title-lg font-bold">
+            <h3
+              id={`offer-title-${offer.id}`}
+              className="mb-4 text-left font-serif text-title-lg font-bold"
+            >
               {offer.title}
             </h3>
             <AnimatePresence mode="wait">
@@ -86,7 +88,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
               </motion.div>
             </AnimatePresence>
             <div className="mt-auto flex justify-center">
-              <span className="text-text-footer font-bold underline cursor-pointer">
+              <span className="cursor-pointer text-text-footer font-bold underline">
                 {isOpen ? 'Réduire' : 'En savoir plus'}
               </span>
             </div>

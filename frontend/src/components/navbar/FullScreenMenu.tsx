@@ -9,7 +9,6 @@ import Footer from '../../sections/Footer';
 
 import MenuLinkItem from './MenuLinkItem';
 
-
 import { LINKS } from '@/config/constants';
 import { menuItemVariants, menuStaggerVariants } from '@/components/motion/menuVariants';
 

@@ -19,7 +19,7 @@ export default function Offers() {
 
   const toggleCard = (id: number) => {
     setOpenCards((prev) =>
-      prev.includes(id) ? prev.filter((cardId) => cardId !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((cardId) => cardId !== id) : [...prev, id],
     );
   };
 

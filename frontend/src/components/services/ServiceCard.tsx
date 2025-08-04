@@ -30,9 +30,11 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
   return (
     <TiltCard>
       <motion.section
+        role="tabpanel"
+        id={`tabpanel-${service.title.replace(/\s+/g, '-').toLowerCase()}`}
         className={cn(
-          'relative w-[clamp(18rem,42vw,120rem)] self-center flex flex-col rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl',
-          className
+          'relative flex w-[clamp(18rem,42vw,120rem)] flex-col self-center rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl',
+          className,
         )}
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}

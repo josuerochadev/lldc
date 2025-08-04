@@ -33,7 +33,7 @@
 @layer components {
   /* Style d'accessibilité pour le focus */
   .focus-style:focus-visible {
-    @apply ring-2 ring-light-green outline-none outline-offset-2 rounded-md;
+    @apply rounded-md outline-none outline-offset-2 ring-2 ring-light-green;
   }
 
   /* Bouton pour le menu burger ou mobile */
@@ -157,7 +157,7 @@
 
   /* Style d'accessibilité pour le bouton principal */
   .button-primary:focus-visible {
-    @apply ring-2 ring-light-green outline-none outline-offset-2;
+    @apply outline-none outline-offset-2 ring-2 ring-light-green;
   }
 }
 

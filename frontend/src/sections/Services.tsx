@@ -28,25 +28,33 @@ export default function Services() {
               src={selected.image}
               alt={selected.title}
               className="h-auto w-service-img max-w-full object-contain"
-initial={{ opacity: 0, scale: 0.98 }}
-animate={{ opacity: 1, scale: 1 }}
-exit={{ opacity: 0, scale: 1.01 }}
-                transition={{ duration: 0.3, ease: 'easeInOut' }}
-
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.01 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
             />
           </AnimatePresence>
 
-          <div className="mt-3 flex w-full justify-center gap-word-gap">
+          <div
+            role="tablist"
+            aria-label="Liste des services"
+            className="mt-3 flex w-full justify-center gap-word-gap"
+          >
             {SERVICES.map((service, index) => (
               <button
                 key={service.title}
                 type="button"
+                role="tab"
                 onClick={() => setSelectedIndex(index)}
                 aria-label={`Voir ${service.title}`}
+                aria-controls={`tabpanel-${index}`}
+                aria-selected={selectedIndex === index}
+                tabIndex={selectedIndex === index ? 0 : -1}
+                id={`tab-${index}`}
                 className={
                   selectedIndex === index
-                    ? 'transition-transform duration-250 hover:scale-105 focus-style opacity-100'
-                    : 'transition-transform duration-250 hover:scale-105 focus-style opacity-60'
+                    ? 'focus-style opacity-100 transition-transform duration-250 hover:scale-105'
+                    : 'focus-style opacity-60 transition-transform duration-250 hover:scale-105'
                 }
               >
                 <img src={service.image} alt={service.title} className="h-24 w-24 object-contain" />
