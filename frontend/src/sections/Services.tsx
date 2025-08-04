@@ -7,6 +7,20 @@ import { SERVICES } from '@/config/constants';
 import ServiceCard from '@/components/services/ServiceCard';
 import ServiceThumbnail from '@/components/services/ServiceThumbnail';
 
+/**
+ * Composant principal pour la section "Nos Services".
+ *
+ * Affiche une liste de services avec une image principale animée, des miniatures pour la sélection,
+ * et une carte détaillée du service sélectionné. Permet à l'utilisateur de naviguer entre les différents
+ * services proposés via des miniatures interactives.
+ *
+ * @component
+ * @returns {JSX.Element} La section des services avec navigation et animation.
+ *
+ * @example
+ * <Services />
+ */
+
 export default function Services() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const selected = SERVICES[selectedIndex];

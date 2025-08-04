@@ -9,6 +9,19 @@ interface ServiceThumbnailProps {
   onClick: () => void;
 }
 
+/**
+ * Composant React pour afficher une miniature de service sous forme de bouton accessible.
+ *
+ * @param {object} props - Les propriétés du composant.
+ * @param {string} props.image - L'URL de l'image à afficher comme miniature.
+ * @param {string} props.title - Le titre du service, utilisé pour l'accessibilité.
+ * @param {boolean} props.isActive - Indique si la miniature est active (sélectionnée).
+ * @param {number} props.index - L'index de la miniature, utilisé pour les attributs ARIA.
+ * @param {() => void} props.onClick - Fonction appelée lors du clic sur la miniature.
+ *
+ * @returns {JSX.Element} Un bouton stylisé contenant l'image du service.
+ */
+
 export default function ServiceThumbnail({
   image,
   title,
