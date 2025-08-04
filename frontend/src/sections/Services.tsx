@@ -45,8 +45,8 @@ exit={{ opacity: 0, scale: 1.01 }}
                 aria-label={`Voir ${service.title}`}
                 className={
                   selectedIndex === index
-                    ? 'transition-transform duration-250 hover:scale-105 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange opacity-100'
-                    : 'transition-transform duration-250 hover:scale-105 focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange opacity-60'
+                    ? 'transition-transform duration-250 hover:scale-105 focus-style opacity-100'
+                    : 'transition-transform duration-250 hover:scale-105 focus-style opacity-60'
                 }
               >
                 <img src={service.image} alt={service.title} className="h-24 w-24 object-contain" />

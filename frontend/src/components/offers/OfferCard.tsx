@@ -42,7 +42,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
       <TiltCard>
         <button
           type="button"
-          className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-orange"
+          className="relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card focus-style"
           aria-expanded={isOpen}
           aria-controls={`offer-panel-${offer.id}`}
           onClick={() => onToggle(offer.id)}

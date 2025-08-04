@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Définition des couleurs principales en variables CSS */
 :root {
   --color-orange-rgb: 255, 132, 0;
   --color-purple-rgb: 61, 27, 88;
@@ -11,6 +12,7 @@
 }
 
 @layer base {
+  /* Styles de base pour html, body et #root */
   html,
   body,
   #root {
@@ -29,6 +31,12 @@
 }
 
 @layer components {
+  /* Style d'accessibilité pour le focus */
+  .focus-style:focus-visible {
+    @apply ring-2 ring-light-green outline-none outline-offset-2 rounded-md;
+  }
+
+  /* Bouton pour le menu burger ou mobile */
   .menu-toggle-button {
     @apply text-title-sm font-semibold uppercase;
     @apply min-h-[44px] min-w-[44px] rounded-btn;
@@ -36,6 +44,7 @@
     @apply transform transition-all duration-250;
   }
 
+  /* Bouton principal avec effets visuels avancés */
   .button-primary {
     @apply inline-flex items-center justify-center text-text-cta font-semibold;
     @apply px-btn-x py-btn-y;
@@ -49,7 +58,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 
-    /* Visual Effects */
+    /* Effets de fond en dégradé */
     background-image:
       linear-gradient(
         to right,
@@ -69,6 +78,7 @@
       100% 100%;
     background-repeat: no-repeat;
 
+    /* Ombres internes et externes */
     box-shadow:
       inset -4px -10px 0px rgba(255, 255, 255, 0.1),
       inset -4px -8px 0px rgba(var(--color-dark-green-rgb), 0.4),
@@ -78,6 +88,7 @@
     transform: perspective(70px) rotateX(5deg);
   }
 
+  /* Pseudo-éléments pour effets de superposition sur le bouton principal */
   .button-primary::before,
   .button-primary::after {
     content: '';
@@ -116,11 +127,13 @@
       );
   }
 
+  /* Effet au survol du bouton principal */
   .button-primary:hover {
     transform: perspective(80px) rotateX(4deg) rotateY(1deg) translateY(2px) scale(1.02);
     color: rgb(var(--color-orange-rgb));
   }
 
+  /* Effet lors du clic sur le bouton principal */
   .button-primary:active {
     transform: perspective(80px) rotateX(5deg) rotateY(1deg) translateY(3px) scale(0.96);
     border: 1px solid rgba(var(--color-dark-green-rgb), 0.3);
@@ -131,6 +144,7 @@
       0px 1px 0px rgba(var(--color-light-green-rgb), 0.1);
   }
 
+  /* Effet visuel supplémentaire lors du clic */
   .button-primary:active::before {
     background-color: rgba(var(--color-light-green-rgb), 0.1);
     animation: overlay 0.1s ease-in-out;
@@ -141,12 +155,13 @@
     height: 80%;
   }
 
+  /* Style d'accessibilité pour le bouton principal */
   .button-primary:focus-visible {
-    outline: 2px solid rgba(var(--color-orange-rgb), 0.9);
-    outline-offset: 4px;
+    @apply ring-2 ring-light-green outline-none outline-offset-2;
   }
 }
 
+/* Animation pour effet ripple (non utilisée dans ce code mais prête à l'emploi) */
 @keyframes ripple {
   0%,
   100% {
