@@ -53,10 +53,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       tabIndex={-1}
       className="fixed inset-0 z-menu flex min-h-dvh flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
     >
-      <div
-        ref={menuRef}
-        className="flex w-full flex-1 flex-col items-center justify-center"
-      >
+      <div ref={menuRef} className="flex w-full flex-1 flex-col items-center justify-center">
         <div className="w-fit space-y-4 text-left">
           {LINKS.map((link, i) => (
             <AnimatedItem

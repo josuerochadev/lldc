@@ -7,12 +7,7 @@ type FadeInOptions = {
   scale?: number;
 };
 
-export function makeFadeIn({
-  y = 30,
-  x = 0,
-  opacity = 0,
-  scale,
-}: FadeInOptions = {}) {
+export function makeFadeIn({ y = 30, x = 0, opacity = 0, scale }: FadeInOptions = {}) {
   const hidden: {
     opacity: number;
     y: number;

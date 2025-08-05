@@ -1,7 +1,7 @@
-import type React from "react";
-import { motion, type Variants } from "framer-motion";
+import type React from 'react';
+import { motion, type Variants } from 'framer-motion';
 
-import { fadeInUp } from "./variants/fade";
+import { fadeInUp } from './variants/fade';
 
 export type AnimatedItemProps = {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export type AnimatedItemProps = {
 };
 
 const DEFAULT_EASE = [0.25, 0.46, 0.45, 0.94];
-const DEFAULT_STAGGER = 0.08;
+const DEFAULT_STAGGER = 0.12; // 120ms stagger
 const DEFAULT_STIFFNESS = 60;
 const DEFAULT_DAMPING = 20;
 
@@ -36,7 +36,7 @@ export default function AnimatedItem({
       viewport={viewport}
       variants={variant}
       transition={{
-        type: "spring",
+        type: 'spring',
         stiffness: DEFAULT_STIFFNESS,
         damping: DEFAULT_DAMPING,
         duration,
