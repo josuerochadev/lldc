@@ -1,5 +1,3 @@
-// src/components/motion/AnimatedItem.tsx
-
 import type React from "react";
 import { motion, type Variants } from "framer-motion";
 
@@ -10,12 +8,15 @@ export type AnimatedItemProps = {
   className?: string;
   delay?: number;
   duration?: number;
-  index?: number; // Pour le stagger/cascade
-  variant?: Variants; // Custom variant si besoin (ex: fadeInDown, etc.)
-  viewport?: object; // Pour customiser la détection de visibilité
+  index?: number;
+  variant?: Variants;
+  viewport?: object;
 };
 
 const DEFAULT_EASE = [0.25, 0.46, 0.45, 0.94];
+const DEFAULT_STAGGER = 0.08;
+const DEFAULT_STIFFNESS = 60;
+const DEFAULT_DAMPING = 20;
 
 export default function AnimatedItem({
   children,
@@ -26,7 +27,7 @@ export default function AnimatedItem({
   variant = fadeInUp,
   viewport = { once: true, amount: 0.3 },
 }: AnimatedItemProps) {
-  const calculatedDelay = delay + (index ? index * 0.08 : 0);
+  const calculatedDelay = delay + index * DEFAULT_STAGGER;
 
   return (
     <motion.div
@@ -35,6 +36,9 @@ export default function AnimatedItem({
       viewport={viewport}
       variants={variant}
       transition={{
+        type: "spring",
+        stiffness: DEFAULT_STIFFNESS,
+        damping: DEFAULT_DAMPING,
         duration,
         delay: calculatedDelay,
         ease: DEFAULT_EASE,
