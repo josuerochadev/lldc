@@ -2,24 +2,12 @@ import { useState, forwardRef } from 'react';
 
 import SplitText from '@/components/motion/text/SplitText';
 import AnimatedItem from '@/components/motion/AnimatedItem';
+import { fadeInUp } from '@/components/motion/variants/fade';
 import LogoEye from '@/assets/logo/logo-eye.svg?react';
 import Button from '@/components/common/Button';
 import { HERO_PHRASES } from '@/config/constants';
 import { getRandomHeroPhrase } from '@/lib/hero';
 import SectionContainer from '@/components/common/SectionContainer';
-
-/**
- * Composant principal de la section "Hero" de la page d'accueil.
- *
- * Affiche le logo animé, une phrase d'accroche aléatoire, le titre du site
- * "La Lunetterie du Coin" et un bouton d'appel à l'action pour prendre rendez-vous.
- *
- * Utilise des animations pour chaque élément via le composant `AnimatedItem`.
- *
- * @component
- * @example
- * <Hero ref={myRef} />
- */
 
 const Hero = forwardRef<HTMLElement>(() => {
   const [currentPhrase] = useState(() => getRandomHeroPhrase(HERO_PHRASES));
@@ -31,7 +19,7 @@ const Hero = forwardRef<HTMLElement>(() => {
       aria-labelledby="hero-title"
     >
       {/* Logo */}
-      <AnimatedItem index={0}>
+      <AnimatedItem index={0} variant={fadeInUp}>
         <div className="mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)]">
           <LogoEye aria-hidden="true" focusable="false" className="h-full w-full" />
         </div>
@@ -39,15 +27,13 @@ const Hero = forwardRef<HTMLElement>(() => {
 
       <div className="w-full space-y-section-gap">
         {/* Punchline */}
-        <AnimatedItem index={1}>
-          <SplitText
-            text={currentPhrase}
-            className="text-title-xl font-black uppercase tracking-wide"
-          />
-        </AnimatedItem>
+        <SplitText
+          text={currentPhrase}
+          className="text-title-xl font-black uppercase tracking-wide"
+        />
 
         {/* Titre */}
-        <AnimatedItem index={2}>
+        <AnimatedItem index={1} variant={fadeInUp}>
           <header>
             <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
               <span className="font-thin">－</span>
@@ -60,7 +46,7 @@ const Hero = forwardRef<HTMLElement>(() => {
         </AnimatedItem>
 
         {/* CTA */}
-        <AnimatedItem index={3}>
+        <AnimatedItem index={2} variant={fadeInUp}>
           <Button id="hero-cta" className="text-text-cta" aria-label="Prendre rendez-vous">
             Prendre rendez-vous
           </Button>
