@@ -1,16 +1,13 @@
-import type React from 'react';
 import { useRef, useEffect } from 'react';
+import type React from 'react';
 
 import Footer from '../../sections/Footer';
 
 import MenuLinkItem from './MenuLinkItem';
 
 import AnimatedItem from '@/components/motion/AnimatedItem';
+import { fadeInDown } from '@/components/motion/variants/fade';
 import { LINKS } from '@/config/constants';
-import {  } from '@/components/motion/AnimatedItem';
-
-// Default stagger value for AnimatedItem components
-const DEFAULT_STAGGER = 0.08;
 
 type FullScreenMenuProps = {
   isOpen: boolean;
@@ -41,6 +38,12 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (isOpen && menuRef.current) {
+      menuRef.current.focus(); // focus clavier pour accessibilité
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -57,10 +60,10 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
         <div className="w-fit space-y-4 text-left">
           {LINKS.map((link, i) => (
             <AnimatedItem
-              index={i}
-              stagger={DEFAULT_STAGGER}
-              duration={0.4}
               key={link.href}
+              index={i}
+              duration={0.4}
+              variant={fadeInDown}
               className="block"
             >
               <MenuLinkItem {...link} index={i} onClick={onClose} />
@@ -69,11 +72,10 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
         </div>
       </div>
 
-      {/* Footer animé après les liens */}
       <AnimatedItem
         index={LINKS.length}
-        stagger={DEFAULT_STAGGER}
         duration={0.4}
+        variant={fadeInDown}
         className="p-section-gap"
       >
         <Footer variant="menu" className="text-purple" />
