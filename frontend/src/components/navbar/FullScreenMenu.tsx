@@ -7,7 +7,10 @@ import MenuLinkItem from './MenuLinkItem';
 
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { LINKS } from '@/config/constants';
-import { DEFAULT_STAGGER } from '@/components/motion/AnimatedItem';
+import {  } from '@/components/motion/AnimatedItem';
+
+// Default stagger value for AnimatedItem components
+const DEFAULT_STAGGER = 0.08;
 
 type FullScreenMenuProps = {
   isOpen: boolean;
