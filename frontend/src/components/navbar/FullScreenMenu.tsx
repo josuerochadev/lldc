@@ -1,17 +1,13 @@
-// src/components/common/FullScreenMenu.tsx
-
 import type React from 'react';
 import { useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 import Footer from '../../sections/Footer';
 
 import MenuLinkItem from './MenuLinkItem';
 
 import AnimatedItem from '@/components/motion/AnimatedItem';
-import { fadeInUp } from '@/components/motion/variants/fade';
 import { LINKS } from '@/config/constants';
-import { menuItemVariants, menuStaggerVariants } from '@/components/motion/variants/menu';
+import { DEFAULT_STAGGER } from '@/components/motion/AnimatedItem';
 
 type FullScreenMenuProps = {
   isOpen: boolean;
@@ -42,44 +38,44 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.nav
-          id="main-menu"
-          aria-modal="true"
-          aria-label="Navigation principale"
-          tabIndex={-1}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-menu flex min-h-dvh flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
-        >
-          {/* Header com padding e espaçamento seguros */}
-          <motion.div
-            ref={menuRef}
-            variants={menuStaggerVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="flex w-full flex-1 flex-col items-center justify-center"
-          >
-            <div className="w-fit space-y-4 text-left">
-              {LINKS.map((link, index) => (
-                <motion.div key={link.href} variants={menuItemVariants}>
-                  <MenuLinkItem {...link} index={index} onClick={onClose} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+  if (!isOpen) return null;
 
-          {/* Footer com padding e espaçamento seguros */}
-          <AnimatedItem variants={fadeInUp} delay={0.6} className="p-section-gap">
-            <Footer variant="menu" className="text-purple" />
-          </AnimatedItem>
-        </motion.nav>
-      )}
-    </AnimatePresence>
+  return (
+    <nav
+      id="main-menu"
+      aria-label="Navigation principale"
+      tabIndex={-1}
+      className="fixed inset-0 z-menu flex min-h-dvh flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
+    >
+      <div
+        ref={menuRef}
+        className="flex w-full flex-1 flex-col items-center justify-center"
+      >
+        <div className="w-fit space-y-4 text-left">
+          {LINKS.map((link, i) => (
+            <AnimatedItem
+              index={i}
+              stagger={DEFAULT_STAGGER}
+              duration={0.4}
+              key={link.href}
+              className="block"
+            >
+              <MenuLinkItem {...link} index={i} onClick={onClose} />
+            </AnimatedItem>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer animé après les liens */}
+      <AnimatedItem
+        index={LINKS.length}
+        stagger={DEFAULT_STAGGER}
+        duration={0.4}
+        className="p-section-gap"
+      >
+        <Footer variant="menu" className="text-purple" />
+      </AnimatedItem>
+    </nav>
   );
 };
 
