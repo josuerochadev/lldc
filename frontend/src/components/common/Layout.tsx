@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import Navbar from '../navbar/Navbar';
+import Navbar from '../../sections/Navbar';
 import Footer from '../../sections/Footer';
 
 type LayoutProps = {

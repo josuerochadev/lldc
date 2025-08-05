@@ -1,6 +1,6 @@
-// src/config/variants/menuVariants.ts
+import type { Variants } from 'framer-motion';
 
-export const menuStaggerVariants = {
+export const menuStaggerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -10,12 +10,8 @@ export const menuStaggerVariants = {
   },
 };
 
-export const menuItemVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-    transition: { duration: 0.3, ease: 'easeOut' },
-  },
+export const menuItemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,

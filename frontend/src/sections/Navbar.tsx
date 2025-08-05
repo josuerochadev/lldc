@@ -1,9 +1,8 @@
 import type React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
-import MenuButton from '../../sections/MenuButton';
-
-import FullScreenMenu from './FullScreenMenu';
+import MenuButton from '@/components/navbar/MenuButton';
+import FullScreenMenu from '@/components/navbar/FullScreenMenu';
 
 const Navbar: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false);

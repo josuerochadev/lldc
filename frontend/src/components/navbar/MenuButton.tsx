@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 
-import MenuButtonEntrance from '@/components/motion/MenuButtonEntrance';
+import AnimatedItem from '@/components/motion/AnimatedItem';
+import { fadeInDown } from '@/components/motion/variants/fade';
 
 type MenuButtonProps = {
   isOpen: boolean;
@@ -10,7 +11,7 @@ type MenuButtonProps = {
 const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onClick }, ref) => {
   return (
     <div className="fixed left-0 right-0 z-overlay flex justify-start p-section-gap sm:justify-center">
-      <MenuButtonEntrance>
+      <AnimatedItem variants={fadeInDown} delay={1.2}>
         <button
           ref={ref}
           type="button"
@@ -23,7 +24,7 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onC
         >
           {isOpen ? 'Fermer' : 'Menu'}
         </button>
-      </MenuButtonEntrance>
+      </AnimatedItem>
     </div>
   );
 });

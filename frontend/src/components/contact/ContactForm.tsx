@@ -52,14 +52,14 @@ export default function ContactForm() {
         }, 100);
       } else {
         setStatus('error');
-        setError("Une erreur est survenue. Vérifiez votre connexion ou réessayez plus tard.");
+        setError('Une erreur est survenue. Vérifiez votre connexion ou réessayez plus tard.');
         setTimeout(() => {
           messageRef.current?.focus();
         }, 100);
       }
     } catch {
       setStatus('error');
-      setError("Impossible de contacter le serveur. Veuillez réessayer plus tard.");
+      setError('Impossible de contacter le serveur. Veuillez réessayer plus tard.');
       setTimeout(() => {
         messageRef.current?.focus();
       }, 100);
@@ -79,13 +79,9 @@ export default function ContactForm() {
         className="mb-4 outline-none"
       >
         {status === 'success' && (
-          <div className="font-semibold text-green-700">
-            ✅ Votre message a bien été envoyé !
-          </div>
+          <div className="font-semibold text-green-700">✅ Votre message a bien été envoyé !</div>
         )}
-        {status === 'error' && (
-          <div className="font-semibold text-red-700">{error}</div>
-        )}
+        {status === 'error' && <div className="font-semibold text-red-700">{error}</div>}
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-word-gap">
@@ -105,12 +101,10 @@ export default function ContactForm() {
             placeholder="Votre nom"
             onInvalid={(e) =>
               (e.currentTarget as HTMLInputElement).setCustomValidity(
-                'Veuillez entrer votre nom (2 caractères minimum).'
+                'Veuillez entrer votre nom (2 caractères minimum).',
               )
             }
-            onInput={(e) =>
-              (e.currentTarget as HTMLInputElement).setCustomValidity('')
-            }
+            onInput={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity('')}
           />
         </div>
 
@@ -129,12 +123,10 @@ export default function ContactForm() {
             placeholder="Votre email"
             onInvalid={(e) =>
               (e.currentTarget as HTMLInputElement).setCustomValidity(
-                'Veuillez entrer une adresse email valide.'
+                'Veuillez entrer une adresse email valide.',
               )
             }
-            onInput={(e) =>
-              (e.currentTarget as HTMLInputElement).setCustomValidity('')
-            }
+            onInput={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity('')}
           />
         </div>
 
@@ -154,12 +146,10 @@ export default function ContactForm() {
             placeholder="Votre message..."
             onInvalid={(e) =>
               (e.currentTarget as HTMLTextAreaElement).setCustomValidity(
-                'Votre message doit contenir au moins 10 caractères.'
+                'Votre message doit contenir au moins 10 caractères.',
               )
             }
-            onInput={(e) =>
-              (e.currentTarget as HTMLTextAreaElement).setCustomValidity('')
-            }
+            onInput={(e) => (e.currentTarget as HTMLTextAreaElement).setCustomValidity('')}
           />
         </div>
 

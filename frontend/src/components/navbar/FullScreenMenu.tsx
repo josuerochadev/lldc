@@ -4,13 +4,14 @@ import type React from 'react';
 import { useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import FadeInUp from '../motion/FadeInUp';
 import Footer from '../../sections/Footer';
 
 import MenuLinkItem from './MenuLinkItem';
 
+import AnimatedItem from '@/components/motion/AnimatedItem';
+import { fadeInUp } from '@/components/motion/variants/fade';
 import { LINKS } from '@/config/constants';
-import { menuItemVariants, menuStaggerVariants } from '@/components/motion/menuVariants';
+import { menuItemVariants, menuStaggerVariants } from '@/components/motion/variants/menu';
 
 type FullScreenMenuProps = {
   isOpen: boolean;
@@ -48,6 +49,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
           id="main-menu"
           aria-modal="true"
           aria-label="Navigation principale"
+          tabIndex={-1}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -72,9 +74,9 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
           </motion.div>
 
           {/* Footer com padding e espaçamento seguros */}
-          <FadeInUp delay={0.6} className="p-section-gap">
+          <AnimatedItem variants={fadeInUp} delay={0.6} className="p-section-gap">
             <Footer variant="menu" className="text-purple" />
-          </FadeInUp>
+          </AnimatedItem>
         </motion.nav>
       )}
     </AnimatePresence>

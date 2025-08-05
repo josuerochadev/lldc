@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import TiltCard from '@/components/motion/TiltCard';
+import TiltCard from '@/components/motion/interactive/TiltCard';
 import { cn } from '@/lib/cn';
 
 type Service = {

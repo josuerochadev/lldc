@@ -1,6 +1,6 @@
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
-import SplitText from '@/components/motion/SplitText';
+import SplitText from '@/components/motion/text/SplitText';
 import { CONCEPT } from '@/config/constants';
 
 /**

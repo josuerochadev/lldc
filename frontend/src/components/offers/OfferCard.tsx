@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
-import TiltCard from '@/components/motion/TiltCard';
+import TiltCard from '@/components/motion/interactive/TiltCard';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { isToggleKey } from '@/lib/keyboard';
 import { cn } from '@/lib/cn';
