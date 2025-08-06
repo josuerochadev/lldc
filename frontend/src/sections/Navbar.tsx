@@ -37,8 +37,10 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <MenuButton isOpen={menuActive} onClick={handleToggle} ref={buttonRef} />
-      {menuRendered && <FullScreenMenu isOpen={menuActive} onClose={handleClose} />}
+      <div aria-hidden={menuRendered}>
+        <MenuButton isOpen={menuActive} onClick={handleToggle} ref={buttonRef} />
+        {menuRendered && <FullScreenMenu isOpen={menuActive} onClose={handleClose} />}
+      </div>
     </>
   );
 };
