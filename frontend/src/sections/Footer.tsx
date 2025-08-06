@@ -1,9 +1,10 @@
-// src/components/common/Footer.tsx
-
 import type { ComponentPropsWithoutRef } from 'react';
 import { clsx } from 'clsx';
+import { Facebook, Instagram } from 'lucide-react';
 
 import SectionContainer from '../components/common/SectionContainer';
+
+import { FOOTER_LINKS, FOOTER_SOCIALS } from '@/config/constants';
 
 type FooterProps = ComponentPropsWithoutRef<'footer'> & {
   variant?: 'default' | 'menu';
@@ -40,6 +41,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
               : 'grid items-baseline gap-x-section-gap sm:grid-cols-2',
           )}
         >
+          {/* Adresse et horaires */}
           <address
             aria-label="Adresse et horaires de la boutique"
             className="space-y-1 text-center text-text-footer not-italic leading-relaxed sm:text-left"
@@ -58,13 +60,38 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
               aria-label="Navigation de bas de page"
               className="flex flex-col items-center space-y-4 text-text-footer sm:items-start"
             >
-              <a className={footerLinkBase} href="/mentions-legales">
-                Mentions légales
-              </a>
-              <a className={footerLinkBase} href="/conditions-de-vente">
-                Conditions de vente
-              </a>
+              {/* Réseaux sociaux en premier */}
+              <div className="flex space-x-4 pt-2" aria-label="Réseaux sociaux">
+                {FOOTER_SOCIALS.map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    className={footerLinkBase}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                  >
+                    {social.icon === 'facebook' && <Facebook size={18} className="mr-1 inline" />}
+                    {social.icon === 'instagram' && <Instagram size={18} className="mr-1 inline" />}
+                    <span className="sr-only">{social.label}</span>
+                  </a>
+                ))}
+              </div>
 
+              {/* Liens légaux ensuite */}
+              {FOOTER_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  className={footerLinkBase}
+                  href={link.href}
+                  target={link.type === 'external' ? '_blank' : undefined}
+                  rel={link.type === 'external' ? 'noopener noreferrer' : undefined}
+                >
+                  {link.label}
+                </a>
+              ))}
+
+              {/* Signature */}
               <p className="pt-3 text-center text-text-footer">
                 Développé&nbsp;par{' '}
                 <a

@@ -19,6 +19,7 @@
 		"@tanstack/react-query-devtools": "^5.81.5",
 		"clsx": "^2.1.1",
 		"framer-motion": "^12.12.1",
+		"lucide-react": "^0.536.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-hook-form": "^7.57.0",
