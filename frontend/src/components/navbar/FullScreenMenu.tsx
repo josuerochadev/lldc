@@ -18,31 +18,29 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    if (!isOpen) return;
+
+    function handleEscape(e: KeyboardEvent) {
       if (e.key === 'Escape') onClose();
-    };
-    const handleClickOutside = (e: MouseEvent) => {
+    }
+
+    function handleClickOutside(e: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         onClose();
       }
-    };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.addEventListener('mousedown', handleClickOutside);
     }
+
+    // Gestion du focus à l’ouverture pour l’accessibilité
+    menuRef.current?.focus();
+
+    document.addEventListener('keydown', handleEscape);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
-
-  useEffect(() => {
-    if (isOpen && menuRef.current) {
-      menuRef.current.focus(); // focus clavier pour accessibilité
-    }
-  }, [isOpen]);
 
   if (!isOpen) return null;
 
