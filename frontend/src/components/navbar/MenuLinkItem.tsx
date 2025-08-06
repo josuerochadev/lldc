@@ -21,7 +21,7 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
       <span className="mr-4 text-title-sm font-thin">{index + 1}.</span>
       <span className="flex flex-wrap gap-x-1 text-title-lg">
         <span className="font-thin">{first}</span>
-        <span className="font-extrabold">{last}</span>
+        {last && <span className="font-extrabold">{last}</span>}
       </span>
     </motion.a>
   );

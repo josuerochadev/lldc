@@ -9,25 +9,27 @@ type MenuButtonProps = {
   id?: string;
 };
 
-const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(({ isOpen, onClick, id = "menu-toggle" }, ref) => {
-  return (
-    <div className="fixed left-0 right-0 z-overlay flex justify-start p-section-gap sm:justify-center">
-      <AnimatedItem variant={fadeInDown} duration={0.6} viewport={{ once: true }}>
-        <button
-          ref={ref}
-          type="button"
-          id={id}
-          onClick={onClick}
-          aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-          aria-expanded={isOpen}
-          aria-controls="main-menu"
-          className="menu-toggle-button focus-style hover:font-bold"
-        >
-          {isOpen ? 'Fermer' : 'Menu'}
-        </button>
-      </AnimatedItem>
-    </div>
-  );
-});
+const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
+  ({ isOpen, onClick, id = 'menu-toggle' }, ref) => {
+    return (
+      <div className="fixed left-0 right-0 z-overlay flex justify-start p-section-gap sm:justify-center">
+        <AnimatedItem variant={fadeInDown} duration={0.6} viewport={{ once: true }}>
+          <button
+            ref={ref}
+            type="button"
+            id={id}
+            onClick={onClick}
+            aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={isOpen}
+            aria-controls="main-menu"
+            className="menu-toggle-button focus-style hover:font-bold"
+          >
+            {isOpen ? 'Fermer' : 'Menu'}
+          </button>
+        </AnimatedItem>
+      </div>
+    );
+  },
+);
 
 export default MenuButton;
