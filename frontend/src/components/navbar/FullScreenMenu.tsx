@@ -1,14 +1,14 @@
-import { useRef, useEffect } from 'react';
 import type React from 'react';
+import { useRef, useEffect } from 'react';
 
 import Footer from '../../sections/Footer';
 
 import MenuLinkItem from './MenuLinkItem';
 
+import { useClickOutside } from '@/hooks/useClickOutside';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { fadeInDown } from '@/components/motion/variants/fade';
 import { LINKS } from '@/config/constants';
-
 
 type FullScreenMenuProps = {
   isOpen: boolean;
@@ -18,6 +18,9 @@ type FullScreenMenuProps = {
 const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // Gère la fermeture au clic hors du menu uniquement si ouvert
+  useClickOutside(menuRef, () => onClose(), isOpen);
+
   useEffect(() => {
     if (!isOpen) return;
 
@@ -25,22 +28,11 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       if (e.key === 'Escape') onClose();
     }
 
-    function handleClickOutside(e: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    }
-
-    // Gestion du focus à l’ouverture pour l’accessibilité
+    // Gestion du focus à l’ouverture
     menuRef.current?.focus();
 
     document.addEventListener('keydown', handleEscape);
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
