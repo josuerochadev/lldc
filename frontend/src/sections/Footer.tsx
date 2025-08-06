@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { clsx } from 'clsx';
 import { Facebook, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import SectionContainer from '../components/common/SectionContainer';
 
@@ -80,15 +81,9 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
 
               {/* Liens légaux ensuite */}
               {FOOTER_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  className={footerLinkBase}
-                  href={link.href}
-                  target={link.type === 'external' ? '_blank' : undefined}
-                  rel={link.type === 'external' ? 'noopener noreferrer' : undefined}
-                >
+                <Link key={link.href} className={footerLinkBase} to={link.href}>
                   {link.label}
-                </a>
+                </Link>
               ))}
 
               {/* Signature */}
