@@ -11,6 +11,26 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
   variant?: 'default' | 'menu';
 };
 
+/**
+ * Composant Footer pour l'affichage du pied de page du site.
+ *
+ * Affiche l'adresse, les horaires, les liens sociaux, les liens légaux et une signature de développement.
+ * Le rendu varie selon la variante passée en props :
+ * - `variant="menu"` : version compacte pour affichage dans un menu.
+ * - `variant="default"` (par défaut) : version complète avec navigation et réseaux sociaux.
+ *
+ * @component
+ * @param {FooterProps} props - Propriétés du composant Footer.
+ * @param {string} [props.className] - Classes CSS additionnelles à appliquer au footer.
+ * @param {'default' | 'menu'} [props.variant] - Variante d'affichage du footer.
+ * @param {object} [props.rest] - Autres propriétés passées au composant.
+ *
+ * @example
+ * ```tsx
+ * <Footer />
+ * <Footer variant="menu" className="my-custom-class" />
+ * ```
+ */
 export default function Footer({ className = '', variant = 'default', ...rest }: FooterProps) {
   const isMenu = variant === 'menu';
   const footerLinkBase =

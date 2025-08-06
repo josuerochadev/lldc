@@ -15,6 +15,27 @@ type FullScreenMenuProps = {
   onClose: () => void;
 };
 
+/**
+ * Composant `FullScreenMenu`
+ *
+ * Affiche un menu de navigation plein écran, accessible et animé, qui s'ouvre en superposition.
+ * 
+ * Fonctionnalités principales :
+ * - Affichage conditionnel selon l’état `isOpen`.
+ * - Fermeture automatique lors d’un clic en dehors du menu ou à l’appui sur la touche Échap.
+ * - Gestion du focus à l’ouverture pour l’accessibilité.
+ * - Affichage d’une liste de liens principaux animés et d’un pied de page personnalisé.
+ *
+ * Props :
+ * @param {boolean} isOpen - Indique si le menu est ouvert.
+ * @param {() => void} onClose - Fonction appelée pour fermer le menu.
+ *
+ * Accessibilité :
+ * - Utilise `aria-label` et `tabIndex` pour une meilleure navigation clavier.
+ * - Gère le focus et la fermeture via la touche Échap.
+ *
+ * @component
+ */
 const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 

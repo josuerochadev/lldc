@@ -18,6 +18,25 @@ const DEFAULT_STAGGER = 0.12; // 120ms stagger
 const DEFAULT_STIFFNESS = 60;
 const DEFAULT_DAMPING = 20;
 
+/**
+ * Composant React pour animer un élément enfant avec Framer Motion.
+ *
+ * @param {object} props - Les propriétés du composant.
+ * @param {React.ReactNode} props.children - Les éléments enfants à animer.
+ * @param {string} [props.className] - Classe(s) CSS optionnelle(s) à appliquer au conteneur animé.
+ * @param {number} [props.delay=0] - Délai initial (en secondes) avant le début de l'animation.
+ * @param {number} [props.duration=0.6] - Durée de l'animation (en secondes).
+ * @param {number} [props.index=0] - Index de l'élément, utilisé pour calculer le délai de décalage lors d'une animation en cascade.
+ * @param {object} [props.variant=fadeInUp] - Objet variant Framer Motion définissant les états d'animation.
+ * @param {object} [props.viewport={ once: true, amount: 0.4 }] - Options de déclenchement de l'animation selon la visibilité dans la fenêtre.
+ *
+ * @returns {JSX.Element} Élément <motion.div> animé contenant les enfants.
+ *
+ * @example
+ * <AnimatedItem index={2} className="my-class">
+ *   <p>Texte animé</p>
+ * </AnimatedItem>
+ */
 export default function AnimatedItem({
   children,
   className,

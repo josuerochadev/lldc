@@ -2,6 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useScrollProgress } from './useScrollProgress';
 
+/**
+ * Hook React permettant de lisser la progression du scroll avec un effet d'inertie.
+ *
+ * Ce hook retourne une valeur de progression de scroll (entre 0 et 1) qui suit la valeur réelle
+ * mais avec un effet de lissage configurable via le paramètre `smoothing`.
+ * Utile pour créer des animations ou effets visuels réactifs au scroll sans à-coups.
+ *
+ * @param smoothing - Facteur de lissage (compris entre 0 et 1). Plus la valeur est faible, plus le lissage est fort (par défaut : 0.05).
+ * @returns La progression du scroll lissée, mise à jour à chaque frame d'animation.
+ */
 export function useSmoothedScrollProgress(smoothing = 0.05) {
   const target = useScrollProgress();
   const [smoothProgress, setSmoothProgress] = useState(target);

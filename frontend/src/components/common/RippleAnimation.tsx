@@ -17,6 +17,21 @@ const DEFAULTS = {
   baseOpacity: 0.3,
 };
 
+/**
+ * Composant React optimisé pour afficher une animation de vagues concentriques ("ripple").
+ *
+ * @param scrollProgress - Progression du scroll (valeur entre 0 et 1) utilisée pour ajuster la position verticale des cercles.
+ * @param circleCount - Nombre de cercles à afficher dans l'animation (par défaut : DEFAULTS.circleCount).
+ * @param baseSize - Taille de base du premier cercle (par défaut : DEFAULTS.baseSize).
+ * @param baseOpacity - Opacité de base du premier cercle (par défaut : DEFAULTS.baseOpacity).
+ * @param className - Classe CSS personnalisée à appliquer au conteneur principal.
+ * @param props - Autres propriétés passées au conteneur principal.
+ *
+ * Chaque cercle est animé avec un délai croissant, une taille et une opacité dégressives,
+ * créant un effet visuel de propagation. Les styles sont calculés dynamiquement pour chaque cercle.
+ *
+ * @returns Un conteneur `<div>` positionné en absolu contenant plusieurs cercles animés.
+ */
 export const RippleAnimation = React.memo(function RippleAnimation({
   scrollProgress,
   circleCount = DEFAULTS.circleCount,

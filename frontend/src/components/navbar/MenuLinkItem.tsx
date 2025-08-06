@@ -7,6 +7,19 @@ type MenuLinkItemProps = {
   onClick: () => void;
 };
 
+/**
+ * Composant React représentant un lien de menu stylisé.
+ *
+ * Affiche un lien avec un index, où le premier mot du label est en police fine
+ * et le reste en police extra-gras. Ajoute une animation de mise à l'échelle au survol.
+ *
+ * @param label - Le texte à afficher pour le lien de menu.
+ * @param href - L'URL vers laquelle le lien pointe.
+ * @param index - L'index du lien dans la liste, utilisé pour l'affichage de l'ordre.
+ * @param onClick - Fonction appelée lors du clic sur le lien.
+ *
+ * @returns Un élément de lien animé pour le menu de navigation.
+ */
 export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkItemProps) {
   const [first, ...rest] = label.split(' ');
   const last = rest.join(' ');

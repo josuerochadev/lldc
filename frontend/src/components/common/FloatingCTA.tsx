@@ -3,6 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Button from '@/components/common/Button';
 
+/**
+ * Composant React FloatingCTA
+ *
+ * Ce composant affiche un bouton d'appel à l'action (CTA) flottant en bas à droite de l'écran.
+ * Il devient visible lorsque le bouton principal de la section "hero" n'est plus visible à l'écran.
+ * Le composant ajuste dynamiquement sa position pour éviter de chevaucher le footer.
+ * 
+ * Fonctionnalités principales :
+ * - Affichage conditionnel du bouton flottant selon la visibilité du bouton "hero-cta".
+ * - Animation d'apparition/disparition avec framer-motion.
+ * - Ajustement automatique de l'offset bas pour ne pas recouvrir le footer.
+ * - Lien externe vers une page de prise de rendez-vous (Calendly).
+ *
+ * @component
+ * @example
+ * <FloatingCTA />
+ *
+ * @returns {JSX.Element} Le bouton CTA flottant animé.
+ */
 export default function FloatingCTA() {
   const [show, setShow] = useState(false);
   const [bottomOffset, setBottomOffset] = useState(24);

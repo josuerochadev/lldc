@@ -9,6 +9,16 @@ type Props = {
   as?: keyof JSX.IntrinsicElements;
 };
 
+/**
+ * Composant React pour afficher un texte avec une animation de révélation mot par mot.
+ *
+ * @param text - Le texte à afficher et à animer.
+ * @param className - (Optionnel) Classe(s) CSS supplémentaire(s) à appliquer au conteneur.
+ *
+ * Ce composant utilise `RevealText` pour animer chaque mot du texte séparément,
+ * tout en préservant l'espacement entre les mots.
+ * Chaque mot est encapsulé dans une balise `<span>` avec la classe `inline-block`.
+ */
 export default function SplitText({ text, className = '' }: Props) {
   return (
     <RevealText

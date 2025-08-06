@@ -11,11 +11,11 @@ type LayoutProps = {
  * Composant de disposition principal de l'application.
  *
  * Ce composant enveloppe le contenu de l'application avec une barre de navigation en haut
- * et un pied de page en bas. Il assure également que le contenu principal occupe au moins
- * la hauteur de l'écran.
+ * et un pied de page en bas. Il assure également que le contenu principal occupe au minimum
+ * toute la hauteur de l'écran.
  *
- * @param {LayoutProps} props - Les propriétés du composant, incluant les éléments enfants à afficher.
- * @returns {JSX.Element} Le composant de disposition avec la barre de navigation, le contenu principal et le pied de page.
+ * @param children Les éléments React à afficher dans la section principale de la page.
+ * @returns Le layout global avec la barre de navigation, le contenu principal et le pied de page.
  */
 
 export default function Layout({ children }: LayoutProps) {

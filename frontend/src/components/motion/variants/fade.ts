@@ -7,6 +7,20 @@ type FadeInOptions = {
   scale?: number;
 };
 
+/**
+ * Génère des variantes d'animation pour un effet de fondu en entrée (fade-in).
+ *
+ * @param options - Options pour personnaliser l'animation de fondu.
+ * @param options.y - Décalage vertical initial (en pixels). Par défaut à 30.
+ * @param options.x - Décalage horizontal initial (en pixels). Par défaut à 0.
+ * @param options.opacity - Opacité initiale. Par défaut à 0.
+ * @param options.scale - Échelle initiale (optionnelle).
+ * @returns Un objet contenant les états `hidden` (caché) et `visible` (visible) pour l'animation.
+ *
+ * @example
+ * const variants = makeFadeIn({ y: 50, opacity: 0.2 });
+ * // Utilisez `variants.hidden` et `variants.visible` dans vos composants animés.
+ */
 export function makeFadeIn({ y = 30, x = 0, opacity = 0, scale }: FadeInOptions = {}) {
   const hidden: {
     opacity: number;

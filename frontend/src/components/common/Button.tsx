@@ -13,6 +13,13 @@ import { cn } from '@/lib/cn';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
+/**
+ * Composant bouton réutilisable.
+ *
+ * @param className - Classes CSS supplémentaires à appliquer au bouton.
+ * @param props - Autres propriétés du bouton (par exemple, type, onClick, etc.).
+ * @returns Un élément bouton stylisé avec les propriétés spécifiées.
+ */
 export default function Button({ className, ...props }: ButtonProps) {
   return (
     <button

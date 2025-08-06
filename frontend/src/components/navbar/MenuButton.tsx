@@ -9,6 +9,21 @@ type MenuButtonProps = {
   id?: string;
 };
 
+/**
+ * MenuButton est un composant React permettant d'afficher un bouton pour ouvrir ou fermer le menu principal.
+ *
+ * @component
+ * @param {MenuButtonProps} props - Les propriétés du composant.
+ * @param {boolean} props.isOpen - Indique si le menu est actuellement ouvert.
+ * @param {() => void} props.onClick - Fonction appelée lors du clic sur le bouton.
+ * @param {string} [props.id='menu-toggle'] - Identifiant unique pour le bouton (optionnel).
+ * @param {React.Ref<HTMLButtonElement>} ref - Référence vers l'élément bouton.
+ *
+ * @returns {JSX.Element} Un bouton animé permettant d'ouvrir ou de fermer le menu principal.
+ *
+ * @example
+ * <MenuButton isOpen={menuOuvert} onClick={gererClicMenu} />
+ */
 const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   ({ isOpen, onClick, id = 'menu-toggle' }, ref) => {
     return (

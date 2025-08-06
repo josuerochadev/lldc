@@ -1,5 +1,20 @@
 import { useRef, useEffect } from 'react';
 
+/**
+ * Hook React pour appliquer un effet de tilt 3D à un élément div.
+ *
+ * Ce hook retourne une référence (`ref`) à attacher à un élément HTMLDivElement.
+ * Lorsque la souris se déplace sur l'élément, celui-ci s'incline en fonction de la position du curseur,
+ * créant un effet de perspective 3D interactif. L'inclinaison maximale et la transition peuvent être personnalisées.
+ *
+ * @param maxTilt - Inclinaison maximale en degrés (par défaut : 7).
+ * @param transition - Propriété CSS de transition appliquée à la transformation (par défaut : 'transform 0.25s ease-out').
+ * @returns Une référence React à attacher à l'élément cible.
+ *
+ * @example
+ * const tiltRef = use3DTilt(10, 'transform 0.3s cubic-bezier(.03,.98,.52,.99)');
+ * return <div ref={tiltRef}>Carte avec effet 3D</div>;
+ */
 export function use3DTilt(maxTilt = 7, transition = 'transform 0.25s ease-out') {
   const ref = useRef<HTMLDivElement>(null);
 

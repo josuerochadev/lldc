@@ -13,6 +13,19 @@ type Props = {
   renderPart?: (part: string, index: number) => JSX.Element;
 };
 
+/**
+ * Composant React pour révéler du texte avec une animation de type "stagger" (décalage progressif).
+ * 
+ * @param text Le texte à afficher et à animer.
+ * @param delay (optionnel) Délai initial avant le début de l'animation (en secondes).
+ * @param baseDelay (optionnel) Délai entre chaque partie animée (en secondes, par défaut 0.06).
+ * @param className (optionnel) Classe CSS à appliquer au conteneur principal.
+ * @param splitBy (optionnel) Méthode de découpage du texte : 'word' (mot) ou 'letter' (lettre). Par défaut 'word'.
+ * @param preserveWordSpacing (optionnel) Si vrai, conserve l'espacement entre les mots lors du découpage par mot.
+ * @param renderPart (optionnel) Fonction de rendu personnalisée pour chaque partie (mot ou lettre) du texte.
+ * 
+ * @returns Un composant React qui affiche le texte avec une animation de révélation progressive.
+ */
 export default function RevealText({
   text,
   delay = 0,

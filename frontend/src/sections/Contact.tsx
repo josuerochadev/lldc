@@ -4,6 +4,14 @@ import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import ContactForm from '@/components/contact/ContactForm';
 
+/**
+ * Composant principal pour la section "Nous contacter" de la page.
+ *
+ * Affiche un conteneur stylisé avec un titre de section et un formulaire de contact.
+ *
+ * @component
+ * @returns {JSX.Element} La section de contact à afficher.
+ */
 export default function Contact() {
   return (
     <SectionContainer id="contact">

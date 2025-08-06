@@ -9,6 +9,21 @@ import { HERO_PHRASES } from '@/config/constants';
 import { getRandomHeroPhrase } from '@/lib/hero';
 import SectionContainer from '@/components/common/SectionContainer';
 
+/**
+ * Composant principal de la section "Hero" de la page d'accueil.
+ *
+ * Affiche le logo animé, une phrase d'accroche aléatoire, le titre principal
+ * "La Lunetterie du Coin" avec une mise en forme typographique, ainsi qu'un bouton
+ * d'appel à l'action pour prendre rendez-vous.
+ *
+ * @component
+ * @param {React.Ref<HTMLElement>} ref - Référence transmise à la section principale.
+ *
+ * @example
+ * <Hero ref={myRef} />
+ *
+ * @returns {JSX.Element} La section Hero avec logo, punchline, titre et bouton CTA.
+ */
 const Hero = forwardRef<HTMLElement>(() => {
   const [currentPhrase] = useState(() => getRandomHeroPhrase(HERO_PHRASES));
 
