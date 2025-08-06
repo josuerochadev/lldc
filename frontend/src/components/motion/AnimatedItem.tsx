@@ -25,7 +25,7 @@ export default function AnimatedItem({
   duration = 0.6,
   index = 0,
   variant = fadeInUp,
-  viewport = { once: true, amount: 0.3 },
+  viewport = { once: true, amount: 0.4 },
 }: AnimatedItemProps) {
   const calculatedDelay = delay + index * DEFAULT_STAGGER;
 

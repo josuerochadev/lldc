@@ -18,10 +18,10 @@ export default function SectionTitleReveal({ title, className = '', as: Tag = 'h
         text={title}
         splitBy="word"
         baseDelay={0.1}
+        preserveWordSpacing={false} // ✅ plus d’espace entre les mots
         renderPart={(word, index = 0) => (
           <span className={index % 2 === 0 ? 'font-thin' : 'font-extrabold'}>{word}</span>
         )}
-        preserveWordSpacing={false} // ✅ ou par défaut non passé
       />
     </Tag>
   );

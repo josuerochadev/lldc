@@ -13,10 +13,11 @@ export default function SplitText({ text, className = '' }: Props) {
   return (
     <RevealText
       text={text}
-      splitBy="letter" // ou "word" si besoin
-      baseDelay={0.03}
+      splitBy="word"
       className={className}
-      preserveWordSpacing={true}
+      baseDelay={0.1}
+      preserveWordSpacing={true} // ✅ garantit l’espace entre les mots
+      renderPart={(word) => <span className="inline-block">{word}</span>}
     />
   );
 }

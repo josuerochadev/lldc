@@ -29,7 +29,7 @@ const Hero = forwardRef<HTMLElement>(() => {
         {/* Punchline */}
         <SplitText
           text={currentPhrase}
-          className="text-title-xl font-black uppercase tracking-wide"
+          className="text-title-xl font-black uppercase"
         />
 
         {/* Titre */}
