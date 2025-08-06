@@ -1,3 +1,5 @@
+export const MENU_ANIMATION_DURATION = 300;
+
 export const LINKS = [
   { label: 'Nos offres', href: '#offers' },
   { label: 'Nos services', href: '#services' },

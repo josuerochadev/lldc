@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import MenuButton from '@/components/navbar/MenuButton';
 import FullScreenMenu from '@/components/navbar/FullScreenMenu';
+import { MENU_ANIMATION_DURATION } from '@/config/constants';
 
 const Navbar: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -14,13 +15,18 @@ const Navbar: React.FC = () => {
     if (menuActive) {
       setMenuRendered(true);
     } else {
-      const timeout = setTimeout(() => setMenuRendered(false), 300); // mesmo tempo que a animação de saída
+      const timeout = setTimeout(() => setMenuRendered(false), MENU_ANIMATION_DURATION);
       return () => clearTimeout(timeout);
     }
   }, [menuActive]);
 
+  // Empêche le double toggle lors de la fermeture (évite la réouverture si l'animation de fermeture n'est pas terminée)
+  function isToggleBlocked(menuActive: boolean, menuRendered: boolean): boolean {
+    return !menuActive && menuRendered;
+  }
+
   const handleToggle = () => {
-    if (!menuActive && menuRendered) return; // previne reabertura no click duplo
+    if (isToggleBlocked(menuActive, menuRendered)) return;
     setMenuActive(!menuActive);
   };
 

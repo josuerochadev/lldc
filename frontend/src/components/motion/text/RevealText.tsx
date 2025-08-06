@@ -59,15 +59,21 @@ export default function RevealText({
     >
       {parts.map((part, i) => {
         // Generate a unique key using the part and its position in the string
-        const key = splitBy === 'letter'
-          ? `${part}-${text.indexOf(part, i)}`
-          : `${part}-${text.split(' ').slice(0, i + 1).join(' ').length}`;
+        const key =
+          splitBy === 'letter'
+            ? `${part}-${text.indexOf(part, i)}`
+            : `${part}-${
+                text
+                  .split(' ')
+                  .slice(0, i + 1)
+                  .join(' ').length
+              }`;
         return (
           <motion.span
             key={key}
             variants={child}
             className={
-              splitBy === 'word' && preserveWordSpacing ? 'inline-block mr-[0.4em]' : 'inline-block'
+              splitBy === 'word' && preserveWordSpacing ? 'mr-[0.4em] inline-block' : 'inline-block'
             }
           >
             {renderPart ? renderPart(part, i) : part}
