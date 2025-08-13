@@ -3,31 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import Button from '@/components/common/Button';
 
-/**
- * Composant React FloatingCTA
- *
- * Ce composant affiche un bouton d'appel à l'action (CTA) flottant en bas à droite de l'écran.
- * Il devient visible lorsque le bouton principal de la section "hero" n'est plus visible à l'écran.
- * Le composant ajuste dynamiquement sa position pour éviter de chevaucher le footer.
- * 
- * Fonctionnalités principales :
- * - Affichage conditionnel du bouton flottant selon la visibilité du bouton "hero-cta".
- * - Animation d'apparition/disparition avec framer-motion.
- * - Ajustement automatique de l'offset bas pour ne pas recouvrir le footer.
- * - Lien externe vers une page de prise de rendez-vous (Calendly).
- *
- * @component
- * @example
- * <FloatingCTA />
- *
- * @returns {JSX.Element} Le bouton CTA flottant animé.
- */
 export default function FloatingCTA() {
   const [show, setShow] = useState(false);
   const [bottomOffset, setBottomOffset] = useState(24);
+  const [menuOpen, setMenuOpen] = useState(false); // NEW
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  // Observa o botão da hero section
+  // Observe hero CTA visibility (unchanged)
   useEffect(() => {
     const ctaBtn = document.getElementById('hero-cta');
     if (!ctaBtn) return;
@@ -41,7 +23,7 @@ export default function FloatingCTA() {
     return () => observer.disconnect();
   }, []);
 
-  // Calcula o offset em relação ao footer
+  // Adjust bottom offset to avoid footer overlap (unchanged)
   useEffect(() => {
     const footer = document.getElementById('footer');
     if (!footer) return;
@@ -68,16 +50,27 @@ export default function FloatingCTA() {
     };
   }, []);
 
-  // Motion variants para animação (fade + up)
+  // NEW — Detect if the full-screen menu is mounted (#main-menu present)
+  useEffect(() => {
+    const update = () => setMenuOpen(Boolean(document.getElementById('main-menu')));
+    const observer = new MutationObserver(update);
+    // Observe DOM changes where the menu mounts/unmounts
+    observer.observe(document.body, { childList: true, subtree: true });
+    update(); // initialize state on mount
+    return () => observer.disconnect();
+  }, []);
+
   const variants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
     exit: { opacity: 0, y: 50, transition: { duration: 0.4 } },
   };
 
+  const shouldRender = show && !menuOpen; // <- key change
+
   return (
     <AnimatePresence>
-      {show && (
+      {shouldRender && (
         <motion.div
           ref={ctaRef}
           className="fixed right-6 z-50"
@@ -86,10 +79,7 @@ export default function FloatingCTA() {
           exit="exit"
           variants={variants}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-          style={{
-            bottom: `${bottomOffset}px`,
-            pointerEvents: 'auto',
-          }}
+          style={{ bottom: `${bottomOffset}px`, pointerEvents: 'auto' }}
         >
           <a
             href="https://calendly.com/josuexr"
