@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Button from '@/components/common/Button';
+import { CALENDLY_URL } from '@/config/constants';
 
 export default function FloatingCTA() {
   const [show, setShow] = useState(false);
@@ -82,7 +83,7 @@ export default function FloatingCTA() {
           style={{ bottom: `${bottomOffset}px`, pointerEvents: 'auto' }}
         >
           <a
-            href="https://calendly.com/josuexr"
+            href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Prendre rendez-vous"

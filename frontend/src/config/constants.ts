@@ -1,11 +1,15 @@
 export const MENU_ANIMATION_DURATION = 300;
 
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xanbvzql';
+
+export const CALENDLY_URL = "https://calendly.com/lalunetterieducoin";
+
 export const LINKS = [
   { label: 'Nos offres', href: '#offers' },
   { label: 'Nos services', href: '#services' },
   { label: 'Le concept', href: '#concept' },
   { label: 'Nous contacter', href: '#contact' },
-  { label: 'Prendre rendez‑vous', href: 'https://calendly.com/josuexr' }, // com non-breaking hyphen
+  { label: 'Prendre rendez‑vous', href: CALENDLY_URL },
 ];
 
 export const HERO_PHRASES = [
@@ -46,7 +50,7 @@ export const SERVICES = [
   },
   {
     title: 'Examens de vue',
-    description: 'Contrôle visuel complet réalisé par un opticien diplômé.',
+    description: 'Contrôle visuel complet réalisé par Romain, l\'opticien fondateur de La Lunetterie du Coin.',
     image: '/illustrations/test-vision.png',
   },
 ];

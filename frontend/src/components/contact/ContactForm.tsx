@@ -2,10 +2,9 @@ import type React from 'react';
 import { useRef, useState } from 'react';
 
 import Button from '@/components/common/Button';
+import { FORMSPREE_ENDPOINT } from '@/config/constants';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
-
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjkoodpw';
 
 /**
  * Formulaire de contact permettant aux utilisateurs d'envoyer un message via un endpoint Formspree.
