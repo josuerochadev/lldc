@@ -70,8 +70,10 @@ export const RippleAnimation = React.memo(function RippleAnimation({
     <div className={cn('pointer-events-none absolute inset-0', className)} {...props}>
       {Array.from({ length: circleCount }).map((_, i) => (
         <div
-          key={`ripple-${// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-i}`}
+          key={`ripple-${
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+            i
+          }`}
           className="absolute rounded-full border bg-orange/15 shadow-xl"
           style={computeStyle(i)}
         />

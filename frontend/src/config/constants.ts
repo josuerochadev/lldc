@@ -2,7 +2,7 @@ export const MENU_ANIMATION_DURATION = 300;
 
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xanbvzql';
 
-export const CALENDLY_URL = "https://calendly.com/lalunetterieducoin";
+export const CALENDLY_URL = 'https://calendly.com/lalunetterieducoin';
 
 export const LINKS = [
   { label: 'Nos offres', href: '#offers' },
@@ -50,7 +50,8 @@ export const SERVICES = [
   },
   {
     title: 'Examens de vue',
-    description: 'Contrôle visuel complet réalisé par Romain, l\'opticien fondateur de La Lunetterie du Coin.',
+    description:
+      "Contrôle visuel complet réalisé par Romain, l'opticien fondateur de La Lunetterie du Coin.",
     image: '/illustrations/test-vision.png',
   },
 ];
@@ -79,22 +80,22 @@ export const FOOTER_SOCIALS = [
 ];
 
 // --- Legal / Company ---
-export const COMPANY_NAME = "La Lunetterie Du Coin Neuf & Occasion";
-export const COMPANY_LEGAL_FORM = "SASU";
-export const COMPANY_ADDRESS = "24 rue du Faubourg de Pierre, 67000 Strasbourg, France";
-export const COMPANY_SIRET = "81765775200017";
-export const COMPANY_RCS = "817 657 752 RCS Strasbourg";
-export const PUBLICATION_DIRECTOR = "CORATO Romain-Guy";
+export const COMPANY_NAME = 'La Lunetterie Du Coin Neuf & Occasion';
+export const COMPANY_LEGAL_FORM = 'SASU';
+export const COMPANY_ADDRESS = '24 rue du Faubourg de Pierre, 67000 Strasbourg, France';
+export const COMPANY_SIRET = '81765775200017';
+export const COMPANY_RCS = '817 657 752 RCS Strasbourg';
+export const PUBLICATION_DIRECTOR = 'CORATO Romain-Guy';
 
 // Optionnels mais recommandés
-export const COMPANY_SHARE_CAPITAL = ""; // ex: "5 000 €"
-export const COMPANY_VAT = ""; // ex: "FRxx 817657752"
+export const COMPANY_SHARE_CAPITAL = ''; // ex: "5 000 €"
+export const COMPANY_VAT = ''; // ex: "FRxx 817657752"
 
 // Contact (à compléter si publics)
-export const COMPANY_EMAIL = ""; // ex: "contact@lalunetterieducoin.fr"
-export const COMPANY_PHONE = ""; // ex: "03 XX XX XX XX"
+export const COMPANY_EMAIL = ''; // ex: "contact@lalunetterieducoin.fr"
+export const COMPANY_PHONE = ''; // ex: "03 XX XX XX XX"
 
 // Hébergeur (à compléter dès choix)
-export const HOST_NAME = "";
-export const HOST_ADDRESS = "";
-export const HOST_PHONE = "";
+export const HOST_NAME = '';
+export const HOST_ADDRESS = '';
+export const HOST_PHONE = '';

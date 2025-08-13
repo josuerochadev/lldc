@@ -19,7 +19,7 @@ type FullScreenMenuProps = {
  * Composant `FullScreenMenu`
  *
  * Affiche un menu de navigation plein écran, accessible et animé, qui s'ouvre en superposition.
- * 
+ *
  * Fonctionnalités principales :
  * - Affichage conditionnel selon l’état `isOpen`.
  * - Fermeture automatique lors d’un clic en dehors du menu ou à l’appui sur la touche Échap.

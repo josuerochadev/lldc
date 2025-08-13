@@ -40,7 +40,7 @@ type OfferCardProps = {
  *
  * Cette carte présente un résumé ou les détails d'une offre selon son état (ouverte ou fermée).
  * Elle utilise des animations pour la transition entre les états et gère l'accessibilité via les attributs ARIA.
- * 
+ *
  * @param offer - L'objet représentant l'offre à afficher, contenant notamment l'image, le titre, le résumé et les détails.
  * @param isOpen - Booléen indiquant si la carte est ouverte (affiche les détails) ou fermée (affiche le résumé).
  * @param onToggle - Fonction appelée lors du clic ou de l'activation clavier pour ouvrir ou fermer la carte.
