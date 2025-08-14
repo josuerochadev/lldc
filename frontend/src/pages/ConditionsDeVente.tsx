@@ -1,10 +1,8 @@
 // src/pages/ConditionsDeVente.tsx
-import { Link } from 'react-router-dom';
-
 import Background from '@/components/common/Background';
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
-import SectionTitle from '@/components/common/SectionTitle';
+import PageHeader from '@/components/common/PageHeader';
 
 export default function ConditionsDeVente() {
   return (
@@ -13,18 +11,7 @@ export default function ConditionsDeVente() {
       <div className="relative z-10">
         <Layout>
           <SectionContainer className="pb-section pt-section-sm">
-            <header className="mb-title-gap">
-              <SectionTitle title="Conditions Générales de Vente" />
-              <nav aria-label="Fil d’Ariane" className="mt-word-gap">
-                <Link
-                  to="/"
-                  className="inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline focus:outline-none focus-visible:ring"
-                  aria-label="Revenir à la page d’accueil"
-                >
-                  ← Retour à l’accueil
-                </Link>
-              </nav>
-            </header>
+            <PageHeader title="Conditions Générales de Vente" />
 
             <article className="max-w-content space-y-section-gap">
               <h2 className="text-title-md font-extrabold">La Lunetterie du Coin</h2>
