@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ConditionsDeVente from './pages/ConditionsDeVente';
 import MentionsLegales from './pages/MentionsLegales';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/mentions-legales" element={<MentionsLegales />} />
       <Route path="/conditions-de-vente" element={<ConditionsDeVente />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
