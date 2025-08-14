@@ -8,6 +8,7 @@ import { HelmetProvider } from '@dr.pogodin/react-helmet';
 
 import App from './App';
 
+import { MotionProvider } from '@/a11y/MotionProvider';
 import ScrollToTop from '@/components/routing/ScrollToTop';
 
 const queryClient = new QueryClient();
@@ -17,13 +18,13 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <HelmetProvider>
-        {' '}
-        {/* ⬅️ même API */}
-        <QueryClientProvider client={queryClient}>
-          <ScrollToTop />
-          <App />
-          {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-        </QueryClientProvider>
+        <MotionProvider>
+          <QueryClientProvider client={queryClient}>
+            <ScrollToTop />
+            <App />
+            {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+          </QueryClientProvider>
+        </MotionProvider>
       </HelmetProvider>
     </BrowserRouter>
   </React.StrictMode>,

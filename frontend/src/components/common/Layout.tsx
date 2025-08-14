@@ -3,6 +3,9 @@ import type React from 'react';
 import Navbar from '../navbar/Navbar';
 import Footer from '../../sections/Footer';
 
+import SkipLink from '@/components/common/SkipLink';
+
+
 type LayoutProps = {
   children: React.ReactNode;
 };
@@ -21,6 +24,7 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps) {
   return (
     <div className="relative min-h-screen text-purple">
+      <SkipLink />
       <Navbar />
       <main className="min-h-screen">{children}</main>
       <Footer />
