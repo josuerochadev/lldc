@@ -1,17 +1,12 @@
+// sections/Concept.tsx
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import SplitText from '@/components/motion/text/SplitText';
 import { CONCEPT } from '@/config/constants';
+import Picture from '@/components/common/Picture';
 
 /**
  * composant React qui affiche la section "Le Concept" de la page.
- *
- * Ce composant utilise `SectionContainer` pour structurer la section,
- * `SectionTitle` pour afficher le titre, et `SplitText` pour présenter
- * le texte du concept avec un style spécifique.
- *
- * @component
- * @returns {JSX.Element} Élément JSX représentant la section concept.
  */
 export default function Concept() {
   return (
@@ -23,6 +18,18 @@ export default function Concept() {
         as="p"
         className="font-serif text-title-md font-bold tracking-wider"
       />
+
+      {/* Wrapper ratio pour éviter tout CLS */}
+      <div className="relative py-container-y aspect-[3/2] overflow-hidden rounded-card">
+        <Picture
+          srcBase="/photos/photo"
+          fallbackSrc="/photos/photo.png"
+          disableSources={true} // ← TEMPORAIRE : on remettra false après génération AVIF/WebP
+          alt="Intérieur de la boutique : présentoirs élégants, montures mises en valeur, ambiance lumineuse et chaleureuse."
+          priority={false}
+          className="h-full w-full object-cover"
+        />
+      </div>
     </SectionContainer>
   );
 }

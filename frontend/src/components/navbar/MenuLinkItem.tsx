@@ -105,7 +105,11 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
   if (isInternalPath(href)) {
     return (
       <motion.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
-        <Link to={href} onClick={onClick} className="flex items-baseline uppercase transition hover:scale-110">
+        <Link
+          to={href}
+          onClick={onClick}
+          className="flex items-baseline uppercase transition hover:scale-110"
+        >
           {content}
         </Link>
       </motion.div>

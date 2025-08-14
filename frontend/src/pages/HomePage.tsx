@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Background />
-      <div className="relative z-10">
+      <div className="relative z-base">
         <Layout>
           <Hero />
           <Offers />

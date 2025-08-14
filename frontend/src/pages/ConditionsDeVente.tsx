@@ -8,7 +8,7 @@ export default function ConditionsDeVente() {
   return (
     <>
       <Background />
-      <div className="relative z-10">
+      <div className="relative z-base">
         <Layout>
           <SectionContainer className="pb-section pt-section-sm">
             <PageHeader title="Conditions Générales de Vente" />

@@ -22,10 +22,10 @@ export default function MentionsLegales() {
   return (
     <>
       <Background />
-      <div className="relative z-10">
+      <div className="relative z-base">
         <Layout>
           <SectionContainer className="pb-section pt-section-sm">
-            <PageHeader title="Mentions légales"/>
+            <PageHeader title="Mentions légales" />
             <article className="max-w-content space-y-section-gap">
               <h2 className="text-title-md font-extrabold">Éditeur du site</h2>
               <p className="text-text-base">

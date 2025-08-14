@@ -8,13 +8,13 @@ export default function NotFound() {
   return (
     <>
       <Background />
-      <div className="relative z-10">
+      <div className="relative z-base">
         <Layout>
-          <SectionContainer className="pt-section-sm pb-section">
+          <SectionContainer className="pb-section pt-section-sm">
             {/* En-tête avec titre et lien retour */}
             <PageHeader title="Page non trouvée" />
 
-            <p className="mt-title-gap mx-auto max-w-content text-text-base">
+            <p className="mx-auto mt-title-gap max-w-content text-text-base">
               Oups&nbsp;! La page que vous recherchez n’existe pas ou a été déplacée.
             </p>
           </SectionContainer>
