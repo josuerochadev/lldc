@@ -1,41 +1,126 @@
-import { motion } from 'framer-motion';
+import type React from 'react';
+import { useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+
+import { MENU_ANIMATION_DURATION } from '@/config/constants';
 
 type MenuLinkItemProps = {
   label: string;
   href: string;
   index: number;
-  onClick: () => void;
+  onClick: () => void; // <- ferme le menu (FullScreenMenu reçoit onClose)
 };
 
-/**
- * Composant React représentant un lien de menu stylisé.
- *
- * Affiche un lien avec un index, où le premier mot du label est en police fine
- * et le reste en police extra-gras. Ajoute une animation de mise à l'échelle au survol.
- *
- * @param label - Le texte à afficher pour le lien de menu.
- * @param href - L'URL vers laquelle le lien pointe.
- * @param index - L'index du lien dans la liste, utilisé pour l'affichage de l'ordre.
- * @param onClick - Fonction appelée lors du clic sur le lien.
- *
- * @returns Un élément de lien animé pour le menu de navigation.
- */
+// Helpers
+const isHash = (s: string) => s.startsWith('#');
+const isExternal = (s: string) => /^https?:\/\//i.test(s);
+const isInternalPath = (s: string) => s.startsWith('/') && !s.startsWith('//');
+
 export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkItemProps) {
+  const prefersReduced = useReducedMotion();
+  const { pathname } = useLocation();
+
   const [first, ...rest] = label.split(' ');
   const last = rest.join(' ');
 
-  return (
-    <motion.a
-      href={href}
-      onClick={onClick}
-      className="flex items-baseline uppercase transition hover:scale-110"
-      whileHover={{ scale: 1.1 }}
-    >
+  // Smooth scroll vers l’ancre si on est déjà sur la Home
+  const handleHashClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!isHash(href)) return;
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      e.preventDefault();
+      // 1) Ferme le menu
+      onClick();
+      // 2) Scroll après l’animation de fermeture pour éviter le jank
+      const delay = prefersReduced ? 0 : MENU_ANIMATION_DURATION;
+      window.setTimeout(() => {
+        target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        // Optionnel: corriger un offset top (ex. navbar) :
+        // window.scrollBy({ top: -24, behavior: 'auto' });
+      }, delay);
+    },
+    [href, onClick, prefersReduced],
+  );
+
+  const content = (
+    <>
       <span className="mr-4 text-title-sm font-thin">{index + 1}.</span>
       <span className="flex flex-wrap gap-x-1 text-title-lg">
         <span className="font-thin">{first}</span>
         {last && <span className="font-extrabold">{last}</span>}
       </span>
+    </>
+  );
+
+  // 1) Lien externe (Calendly)
+  if (isExternal(href)) {
+    return (
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onClick}
+        className="flex items-baseline uppercase transition hover:scale-110"
+        whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+      >
+        {content}
+      </motion.a>
+    );
+  }
+
+  // 2) Ancre interne
+  if (isHash(href)) {
+    // Si déjà sur la Home → smooth scroll
+    if (pathname === '/') {
+      return (
+        <motion.a
+          href={href}
+          onClick={handleHashClick}
+          className="flex items-baseline uppercase transition hover:scale-110"
+          whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+        >
+          {content}
+        </motion.a>
+      );
+    }
+    // Sinon, on route vers "/" + hash (le scroll natif s’appliquera)
+    return (
+      <motion.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
+        <Link
+          to={{ pathname: '/', hash: href }}
+          onClick={onClick}
+          className="flex items-baseline uppercase transition hover:scale-110"
+        >
+          {content}
+        </Link>
+      </motion.div>
+    );
+  }
+
+  // 3) Route interne (au cas où tu en ajoutes plus tard)
+  if (isInternalPath(href)) {
+    return (
+      <motion.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
+        <Link to={href} onClick={onClick} className="flex items-baseline uppercase transition hover:scale-110">
+          {content}
+        </Link>
+      </motion.div>
+    );
+  }
+
+  // Fallback (devrait être inutile)
+  return (
+    <motion.a
+      href={href}
+      onClick={onClick}
+      className="flex items-baseline uppercase transition hover:scale-110"
+      whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+    >
+      {content}
     </motion.a>
   );
 }
