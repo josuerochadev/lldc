@@ -13,22 +13,35 @@ export default function Concept() {
     <SectionContainer id="concept">
       <SectionTitle title="Le Concept" />
 
+      {/* Texte du concept */}
       <SplitText
         text={CONCEPT}
         as="p"
-        className="font-serif text-title-md font-bold tracking-wider"
+        className="mt-4 font-serif text-title-md font-bold tracking-wider"
       />
 
-      {/* Wrapper ratio pour éviter tout CLS */}
-      <div className="relative py-container-y aspect-[3/2] overflow-hidden rounded-card">
-        <Picture
-          srcBase="/photos/photo"
-          fallbackSrc="/photos/photo.png"
-          disableSources={true} // ← TEMPORAIRE : on remettra false après génération AVIF/WebP
-          alt="Intérieur de la boutique : présentoirs élégants, montures mises en valeur, ambiance lumineuse et chaleureuse."
-          priority={false}
-          className="h-full w-full object-cover"
-        />
+      {/* Galerie 2 images (verticales) : 1 col -> 2 cols */}
+      <div className="mx-auto py-container-y grid max-w-content grid-cols-1 gap-section-gap md:grid-cols-2">
+        {/* Photo 1 */}
+        <div className="relative overflow-hidden rounded-card aspect-[2/3]">
+          <Picture
+            srcBase="/photos/glasses"
+            fallbackSrc="/photos/glasses.jpg"
+            alt="Sélection de montures exposées, éclairage doux et matériaux premium."
+            // Sous le fold → lazy par défaut (priority=false)
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* Photo 2 */}
+        <div className="relative overflow-hidden rounded-2xl aspect-[2/3]">
+          <Picture
+            srcBase="/photos/romain"
+            fallbackSrc="/photos/romain.jpg"
+            alt="Romain en conseil client à la boutique, essayage de montures."
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </SectionContainer>
   );
