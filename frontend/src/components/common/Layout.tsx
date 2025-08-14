@@ -1,6 +1,5 @@
 import type React from 'react';
 
-
 import Navbar from '../navbar/Navbar';
 import Footer from '../../sections/Footer';
 

@@ -26,13 +26,13 @@ export default function MentionsLegales() {
       <Background />
       <div className="relative z-10">
         <Layout>
-          <SectionContainer className="py-section">
-            <header className="mb-8">
+<SectionContainer className="pt-section-sm pb-section">
+  <header className="mb-title-gap">
               <SectionTitle title="Mentions légales" />
-              <nav aria-label="Fil d’Ariane" className="mt-4">
+    <nav aria-label="Fil d’Ariane" className="mt-word-gap">
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline focus:outline-none focus-visible:ring"
+        className="inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline focus:outline-none focus-visible:ring"
                   aria-label="Revenir à la page d’accueil"
                 >
                   ← Retour à l’accueil
@@ -40,9 +40,9 @@ export default function MentionsLegales() {
               </nav>
             </header>
 
-            <article className="prose prose-lg max-w-none">
-              <h2>Éditeur du site</h2>
-              <p>
+  <article className="max-w-content space-y-section-gap">
+              <h2 className="text-title-md font-extrabold">Éditeur du site</h2>
+              <p className='text-text-base'>
                 <strong>Nom&nbsp;:</strong> {COMPANY_NAME}
                 <br />
                 <strong>Forme juridique&nbsp;:</strong> {COMPANY_LEGAL_FORM}{' '}
@@ -59,15 +59,15 @@ export default function MentionsLegales() {
                 <strong>Directeur de la publication&nbsp;:</strong> {PUBLICATION_DIRECTOR}
               </p>
 
-              <h2>Contact</h2>
-              <p>
+              <h2 className="text-title-md font-extrabold">Contact</h2>
+              <p className='text-text-base'>
                 Email&nbsp;: {COMPANY_EMAIL || '—'}
                 <br />
                 Téléphone&nbsp;: {COMPANY_PHONE || '—'}
               </p>
 
-              <h2>Hébergeur</h2>
-              <p>
+              <h2 className="text-title-md font-extrabold">Hébergeur</h2>
+              <p className='text-text-base'>
                 {HOST_NAME ? (
                   <>
                     {HOST_NAME}
@@ -81,22 +81,22 @@ export default function MentionsLegales() {
                 )}
               </p>
 
-              <h2>Propriété intellectuelle</h2>
-              <p>
+              <h2 className="text-title-md font-extrabold">Propriété intellectuelle</h2>
+              <p className='text-text-base'>
                 Le site et l’ensemble de ses contenus (textes, images, logos, éléments graphiques)
                 sont protégés par le droit d’auteur. Toute reproduction ou représentation, totale ou
                 partielle, sans autorisation préalable, est interdite.
               </p>
 
-              <h2>Données personnelles & cookies</h2>
-              <p>
+              <h2 className="text-title-md font-extrabold">Données personnelles & cookies</h2>
+              <p className='text-text-base'>
                 Pour toute demande relative à la protection des données, contactez l’éditeur aux
                 coordonnées ci-dessus. Si des traceurs/cookies tiers sont utilisés, une politique de
                 confidentialité et une bannière cookies doivent être mises en place.
               </p>
 
-              <h2>Médiation de la consommation</h2>
-              <p>
+              <h2 className="text-title-md font-extrabold">Médiation de la consommation</h2>
+              <p className='text-text-base'>
                 Conformément à l’article L.612-1 du Code de la consommation, le client peut recourir
                 à un médiateur de la consommation gratuitement. À compléter&nbsp;: organisme de
                 médiation choisi et modalités de saisine.

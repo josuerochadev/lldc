@@ -12,10 +12,10 @@ export default function ConditionsDeVente() {
       <Background />
       <div className="relative z-10">
         <Layout>
-          <SectionContainer className="py-section">
-            <header className="mb-8">
+          <SectionContainer className="pb-section pt-section-sm">
+            <header className="mb-title-gap">
               <SectionTitle title="Conditions Générales de Vente" />
-              <nav aria-label="Fil d’Ariane" className="mt-4">
+              <nav aria-label="Fil d’Ariane" className="mt-word-gap">
                 <Link
                   to="/"
                   className="inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline focus:outline-none focus-visible:ring"
@@ -26,17 +26,17 @@ export default function ConditionsDeVente() {
               </nav>
             </header>
 
-            <article className="prose prose-lg max-w-none">
-              <h2>La Lunetterie du Coin</h2>
-              <p>
+            <article className="max-w-content space-y-section-gap">
+              <h2 className="text-title-md font-extrabold">La Lunetterie du Coin</h2>
+              <p className="text-text-base">
                 Les lunettes sont manufacturées par nos spécialistes expérimentés et conçues à
                 partir de matériaux nobles. Il est important de traiter vos lunettes avec
                 délicatesse. Les ajustages, nettoyages ainsi que le remplacement des plaquettes et
                 visseries sont gratuits pour nos client·es.
               </p>
 
-              <h3>Politique de retour</h3>
-              <p>
+              <h3 className="text-title-sm font-bold">Politique de retour</h3>
+              <p className="text-text-base">
                 Il n&apos;existe aucun droit de rétractation pour l&apos;achat de produits
                 personnalisés en boutique.
                 <br />
@@ -49,28 +49,28 @@ export default function ConditionsDeVente() {
                 soumise à d&apos;autres conditions.
               </p>
 
-              <h3>Changement de puissance des verres</h3>
-              <p>
+              <h3 className="text-title-sm font-bold">Changement de puissance des verres</h3>
+              <p className="text-text-base">
                 En cas de changement de puissance des verres dans les trente (30) jours suivant la
                 livraison, une franchise de 90&nbsp;€ pour les verres progressifs et 45&nbsp;€ pour
                 les verres unifocaux est appliquée pour l&apos;ensemble de la commande.
               </p>
 
-              <h3>Règlement par chèque et tiers payant</h3>
-              <p>
+              <h3 className="text-title-sm font-bold">Règlement par chèque et tiers payant</h3>
+              <p className="text-text-base">
                 Les règlements par chèque sont acceptés sur présentation d&apos;une pièce
                 d&apos;identité concordante. Nous nous réservons le droit d&apos;annuler le
                 règlement par tiers payant.
               </p>
 
-              <h3>Offres commerciales</h3>
-              <ul>
-                <li>
+              <h3 className="text-title-sm font-bold">Offres commerciales</h3>
+              <ul className="list-disc space-y-2 pl-6">
+                <li className="text-text-base">
                   <strong>Remise à la reprise&nbsp;</strong>: limitée à une monture par transaction.
                   Valable uniquement avec l’achat d’un équipement de classe B. Non cumulable avec
                   d&apos;autres promotions exceptionnelles.
                 </li>
-                <li>
+                <li className="text-text-base">
                   <strong>Seconde paire&nbsp;</strong>: valable sur la monture la moins coûteuse
                   pour l&apos;achat d&apos;un équipement de classe B, cumulable avec la remise à la
                   reprise. Non valable pour double équipement Komono et Myorelax. Moyennant
