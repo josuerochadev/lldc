@@ -3,10 +3,17 @@ import Background from '@/components/common/Background';
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
 import PageHeader from '@/components/common/PageHeader';
+import { Seo } from '@/seo/Seo';
 
 export default function ConditionsDeVente() {
   return (
     <>
+      <Seo
+        title="Page introuvable"
+        description="La page demandée n'existe pas."
+        canonicalPath="/404"
+        noIndex
+      />
       <Background />
       <div className="relative z-base">
         <Layout>

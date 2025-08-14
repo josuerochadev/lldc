@@ -17,10 +17,16 @@ import {
   HOST_ADDRESS,
   HOST_PHONE,
 } from '@/config/constants';
+import { Seo } from '@/seo/Seo';
 
 export default function MentionsLegales() {
   return (
     <>
+      <Seo
+        title="Mentions légales"
+        description="Informations légales de La Lunetterie Du Coin Neuf & Occasion."
+        canonicalPath="/mentions-legales"
+      />
       <Background />
       <div className="relative z-base">
         <Layout>
