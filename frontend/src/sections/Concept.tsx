@@ -14,7 +14,7 @@ export default function Concept() {
       <SplitText
         text={CONCEPT}
         as="p"
-        className="mt-4 font-serif text-title-md font-bold tracking-wider"
+        className="mt-4 font-serif text-title-md font-semibold tracking-wider"
       />
 
       <div className="mx-auto grid max-w-content grid-cols-1 gap-section-gap py-container-y md:grid-cols-2">

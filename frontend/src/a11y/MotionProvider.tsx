@@ -9,10 +9,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   const prm = usePrefersReducedMotion();
 
   useEffect(() => {
-    document.documentElement.setAttribute(
-      'data-prm',
-      prm ? 'reduce' : 'no-preference'
-    );
+    document.documentElement.setAttribute('data-prm', prm ? 'reduce' : 'no-preference');
   }, [prm]);
 
   return <MotionCtx.Provider value={prm}>{children}</MotionCtx.Provider>;

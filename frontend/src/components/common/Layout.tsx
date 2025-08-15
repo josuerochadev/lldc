@@ -5,7 +5,6 @@ import Footer from '../../sections/Footer';
 
 import SkipLink from '@/components/common/SkipLink';
 
-
 type LayoutProps = {
   children: React.ReactNode;
 };
