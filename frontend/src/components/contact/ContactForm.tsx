@@ -86,7 +86,7 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-word-gap">
         {/* Champ Nom */}
         <div className="flex flex-col">
-          <label htmlFor="name" className="mb-2 font-bold">
+          <label htmlFor="name" className="mb-2">
             Nom
           </label>
           <input
@@ -96,7 +96,7 @@ export default function ContactForm() {
             required
             minLength={2}
             maxLength={50}
-            className="rounded-btn border-2 border-purple p-4"
+            className="rounded-btn border-2 border-purple p-4 font-serif tracking-wider"
             placeholder="Votre nom"
             onInvalid={(e) =>
               (e.currentTarget as HTMLInputElement).setCustomValidity(
@@ -109,7 +109,7 @@ export default function ContactForm() {
 
         {/* Champ Email */}
         <div className="flex flex-col">
-          <label htmlFor="email" className="mb-2 font-bold">
+          <label htmlFor="email" className="mb-2">
             Email
           </label>
           <input
@@ -118,7 +118,7 @@ export default function ContactForm() {
             type="email"
             required
             maxLength={64}
-            className="rounded-btn border-2 border-purple p-4"
+            className="rounded-btn border-2 border-purple p-4 font-serif tracking-wider"
             placeholder="Votre email"
             onInvalid={(e) =>
               (e.currentTarget as HTMLInputElement).setCustomValidity(
@@ -131,7 +131,7 @@ export default function ContactForm() {
 
         {/* Champ Message */}
         <div className="flex flex-col">
-          <label htmlFor="message" className="mb-2 font-bold">
+          <label htmlFor="message" className="mb-2">
             Message
           </label>
           <textarea
@@ -141,7 +141,7 @@ export default function ContactForm() {
             required
             minLength={10}
             maxLength={1000}
-            className="rounded-btn border-2 border-purple p-4"
+            className="rounded-btn border-2 border-purple p-4 font-serif tracking-wider"
             placeholder="Votre message..."
             onInvalid={(e) =>
               (e.currentTarget as HTMLTextAreaElement).setCustomValidity(

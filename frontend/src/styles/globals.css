@@ -25,7 +25,7 @@
   }
 
   body {
-    @apply font-sans text-purple;
+    @apply font-sans text-purple text-text-base;
     overflow-x: hidden;
     margin: 0;
     padding: 0;

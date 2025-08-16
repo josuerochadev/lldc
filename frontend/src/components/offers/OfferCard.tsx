@@ -101,7 +101,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
               </motion.div>
             </AnimatePresence>
             <div className="mt-auto flex justify-center">
-              <span className="cursor-pointer text-text-footer font-bold underline">
+              <span className="cursor-pointer text-text-footer underline">
                 {isOpen ? 'Réduire' : 'En savoir plus'}
               </span>
             </div>

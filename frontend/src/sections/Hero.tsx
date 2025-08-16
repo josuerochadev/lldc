@@ -59,7 +59,7 @@ const Hero = forwardRef<HTMLElement>(() => {
 
         {/* CTA */}
         <AnimatedItem index={2} variant={fadeInUp}>
-          <Button id="hero-cta" className="text-text-cta" aria-label="Prendre rendez-vous">
+          <Button id="hero-cta" aria-label="Prendre rendez-vous">
             Prendre rendez-vous
           </Button>
         </AnimatedItem>
