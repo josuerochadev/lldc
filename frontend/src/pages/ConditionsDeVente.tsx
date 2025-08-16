@@ -1,5 +1,4 @@
 // src/pages/ConditionsDeVente.tsx
-import Background from '@/components/common/Background';
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
 import PageHeader from '@/components/common/PageHeader';
@@ -14,7 +13,6 @@ export default function ConditionsDeVente() {
         canonicalPath="/404"
         noIndex
       />
-      <Background />
       <div className="relative z-base">
         <Layout>
           <SectionContainer className="pt-section-md pb-section">

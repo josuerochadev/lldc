@@ -1,5 +1,4 @@
 // src/pages/NotFound.tsx
-import Background from '@/components/common/Background';
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
 import PageHeader from '@/components/common/PageHeader';
@@ -7,7 +6,6 @@ import PageHeader from '@/components/common/PageHeader';
 export default function NotFound() {
   return (
     <>
-      <Background />
       <div className="relative z-base">
         <Layout>
           <SectionContainer className="pb-section pt-section-sm">

@@ -1,4 +1,3 @@
-import Background from '@/components/common/Background';
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
 import PageHeader from '@/components/common/PageHeader';
@@ -27,7 +26,6 @@ export default function MentionsLegales() {
         description="Informations légales de La Lunetterie Du Coin Neuf & Occasion."
         canonicalPath="/mentions-legales"
       />
-      <Background />
       <div className="relative z-base">
         <Layout>
           <SectionContainer className="pt-section-md pb-section">

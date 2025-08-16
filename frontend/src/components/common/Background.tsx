@@ -1,4 +1,5 @@
 // src/components/common/Background.tsx
+import { memo } from 'react';
 
 import { RippleAnimation } from './RippleAnimation';
 
@@ -19,16 +20,18 @@ import { useSmoothedScrollProgress } from '@/hooks/useSmoothedScrollProgress';
  *
  * @returns {JSX.Element} Élément JSX représentant l'arrière-plan animé.
  */
-export default function Background() {
+const Background = memo(function Background() {
   const scrollProgress = useSmoothedScrollProgress();
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0">
-      {/* Halo doux en bas à droite */}
-      <div className="absolute bottom-[10%] right-[15%] z-base h-[400px] w-[400px] rounded-full bg-light-green opacity-10 blur-[100px]" />
+    <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 bg-[rgb(var(--color-orange-rgb))]" />
 
-      {/* Animation d’ondulations concentriques */}
+      <div className="absolute inset-0 bg-[radial-gradient(1000px_700px_at_80%_20%,rgba(0,0,0,0.10),transparent_60%)]" />
+      <div className="absolute bottom-[10%] right-[15%] z-base h-[400px] w-[400px] rounded-full bg-light-green opacity-10 blur-[100px]" />
       <RippleAnimation className="z-0" scrollProgress={scrollProgress} />
     </div>
   );
-}
+});
+
+export default Background;

@@ -1,5 +1,4 @@
 import Contact from '@/sections/Contact';
-import Background from '@/components/common/Background';
 import FloatingCTA from '@/components/common/FloatingCTA';
 import Layout from '@/components/common/Layout';
 import Hero from '@/sections/Hero';
@@ -20,7 +19,6 @@ export default function HomePage() {
         canonicalPath="/"
       />
       <LocalBusinessJsonLd />
-      <Background />
       <div className="relative z-base">
         <Layout>
           <Hero />
