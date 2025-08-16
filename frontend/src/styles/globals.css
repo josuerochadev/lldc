@@ -175,9 +175,9 @@
     }
   }
 
-  /* Bouton principal avec effets visuels avancés */
+  /* Bouton principal avec effets visuels */
   .button-primary {
-    @apply inline-flex items-center justify-center rounded-btn border border-dark-green/20 bg-dark-green px-btn-x py-btn-y text-text-cta font-semibold text-light-green transition duration-250 focus:outline-none focus-visible:ring-2 focus-visible:ring-light-green;
+    @apply inline-flex items-center justify-center rounded-btn border border-dark-green/20 bg-dark-green px-btn-x py-btn-y text-text-cta font-semibold text-light-green focus:outline-none focus-visible:ring-2 focus-visible:ring-light-green;
 
     position: relative;
     cursor: pointer;
@@ -186,6 +186,12 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
+    --btn-tilt-x: 4deg;
+    --btn-tilt-y: 1deg;
+    --btn-ty-hover: 2px;
+    --btn-scale-hover: 1.015;
+    --btn-ty-active: 3px;
+    --btn-scale-active: 0.985;
 
     /* Effets de fond en dégradé */
     background-image:
@@ -214,7 +220,12 @@
       0px 2px 1px rgba(var(--color-dark-green-rgb), 0.4),
       0px 2px 1px rgba(var(--color-light-green-rgb), 0.05);
 
-    transform: perspective(70px) rotateX(5deg);
+    /* Transitions ciblées (pas de all) */
+    transition:
+      transform 250ms,
+      box-shadow 250ms,
+      color 250ms,
+      background-image 250ms;
   }
 
   /* Pseudo-éléments pour effets de superposition sur le bouton principal */
@@ -228,7 +239,10 @@
     right: 0;
     border-radius: inherit;
     z-index: -1;
-    transition: all 0.1s ease-in-out;
+    transition:
+      box-shadow 100ms ease-in-out,
+      background-image 100ms ease-in-out,
+      opacity 100ms ease-in-out;
   }
 
   .button-primary::after {
@@ -256,24 +270,26 @@
       );
   }
 
-  /* Effet au survol du bouton principal */
-  .button-primary:hover {
-    transform: perspective(80px) rotateX(4deg) rotateY(1deg) translateY(2px) scale(1.02);
-    color: rgb(var(--color-orange-rgb));
+  /* Effets hover/active (sur appareils qui “hover”) */
+  @media (hover: hover) {
+    .button-primary:hover {
+      transform: perspective(80px) rotateX(var(--btn-tilt-x)) rotateY(var(--btn-tilt-y))
+        translateY(var(--btn-ty-hover)) scale(var(--btn-scale-hover));
+      color: rgb(var(--color-orange-rgb));
+    }
+    .button-primary:active {
+      transform: perspective(80px) rotateX(calc(var(--btn-tilt-x) + 1deg))
+        rotateY(var(--btn-tilt-y)) translateY(var(--btn-ty-active)) scale(var(--btn-scale-active));
+      border: 1px solid rgba(var(--color-dark-green-rgb), 0.3);
+      box-shadow:
+        inset -4px -8px 0px rgba(var(--color-light-green-rgb), 0.1),
+        inset -4px -6px 0px rgba(var(--color-dark-green-rgb), 0.7),
+        0px 1px 0px rgba(var(--color-dark-green-rgb), 0.9),
+        0px 1px 0px rgba(var(--color-light-green-rgb), 0.1);
+    }
   }
 
-  /* Effet lors du clic sur le bouton principal */
-  .button-primary:active {
-    transform: perspective(80px) rotateX(5deg) rotateY(1deg) translateY(3px) scale(0.96);
-    border: 1px solid rgba(var(--color-dark-green-rgb), 0.3);
-    box-shadow:
-      inset -4px -8px 0px rgba(var(--color-light-green-rgb), 0.1),
-      inset -4px -6px 0px rgba(var(--color-dark-green-rgb), 0.7),
-      0px 1px 0px rgba(var(--color-dark-green-rgb), 0.9),
-      0px 1px 0px rgba(var(--color-light-green-rgb), 0.1);
-  }
-
-  /* Effet visuel supplémentaire lors du clic */
+  /* Effet visuel lors du clic */
   .button-primary:active::before {
     background-color: rgba(var(--color-light-green-rgb), 0.1);
     animation: overlay 0.1s ease-in-out;
@@ -307,6 +323,16 @@
     .button-primary:active::before {
       animation: none !important;
     }
+  }
+
+  /* Variante “hero” (plus punchy, même design) */
+  .button-primary[data-variant='hero'] {
+    --btn-tilt-x: 5deg;
+    --btn-tilt-y: 1.5deg;
+    --btn-ty-hover: 3px;
+    --btn-scale-hover: 1.02;
+    --btn-ty-active: 4px;
+    --btn-scale-active: 0.96;
   }
 }
 
