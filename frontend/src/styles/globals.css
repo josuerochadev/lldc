@@ -30,21 +30,6 @@
     background-color: transparent;
   }
 
-  /* Respecter la motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    html:focus-within {
-      scroll-behavior: auto;
-    }
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
-
   body {
     @apply font-sans text-text-body text-purple antialiased;
     overflow-x: hidden;
@@ -52,7 +37,7 @@
     padding: 0;
   }
 
-  /* Typo sémantique par défaut (garde DRY dans pages statiques) */
+  /* Typo sémantique par défaut (DRY) */
   h1 {
     @apply text-title-xl font-extrabold;
   }
@@ -68,24 +53,68 @@
   small {
     @apply text-text-meta;
   }
+
   a {
     @apply underline-offset-2;
   }
   a:focus-visible {
     @apply rounded-sm outline-none ring-2 ring-light-green;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 /* ====== COMPONENTS ====== */
 @layer components {
-  /* Focus utilitaire générique — à utiliser via className="focus-ring" */
+  /* Focus utilitaire unifié */
   .focus-ring:focus-visible {
     @apply rounded-sm outline-none ring-2 ring-light-green;
   }
 
-  /* Container padding sémantique, pour encadrer les sections */
-  .container-padding {
+  /* Conteneur standardisé pour sections */
+  .section-shell {
     @apply px-container-x py-container-y;
+  }
+
+  /* Gabarit pour pages statiques (CGV/mentions/blog) — DRY */
+  .prose-static {
+    @apply mx-auto max-w-content-readable space-y-section-gap text-text-body;
+  }
+  .prose-static h1 {
+    @apply text-title-xl font-extrabold;
+  }
+  .prose-static h2 {
+    @apply text-title-lg font-extrabold;
+  }
+  .prose-static h3 {
+    @apply text-title-md font-semibold;
+  }
+  .prose-static p {
+    @apply leading-relaxed;
+  }
+  .prose-static a {
+    @apply underline underline-offset-2;
+  }
+  .prose-static ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+  .prose-static ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+  .prose-static blockquote {
+    @apply border-l-4 pl-4 italic;
   }
 
   /* Accessibilité : utile pour les labels visuels non visibles */
@@ -103,22 +132,46 @@
 
   /* Bouton pour le menu burger ou mobile */
   .menu-toggle-button {
-    @apply min-h-[44px] min-w-[44px] transform rounded-btn bg-transparent text-title-sm font-semibold uppercase text-purple transition-all duration-250;
+    @apply inline-flex h-[44px] w-[44px] items-center justify-center rounded-btn bg-transparent text-title-sm font-semibold uppercase text-purple transition duration-250 focus:outline-none;
     -webkit-tap-highlight-color: transparent;
+    transition-duration: 0.01ms !important;
   }
-
   .menu-toggle-button:focus-visible {
-    outline: none;
-    --tw-ring-color: rgb(var(--color-light-green-rgb));
-    box-shadow: 0 0 0 3px rgba(var(--color-light-green-rgb), 0.6);
+    @apply focus-ring;
   }
 
+  .menu-toggle-icon {
+    @apply relative block h-5 w-6;
+  } /* 20×24 */
+  .menu-toggle-bar {
+    @apply absolute left-0 right-0 h-[2px] bg-current transition duration-250;
+  }
+  .menu-toggle-bar--top {
+    top: 0;
+  }
+  .menu-toggle-bar--middle {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .menu-toggle-bar--bottom {
+    bottom: 0;
+  }
+  .menu-toggle-button[data-state='open'] .menu-toggle-bar--top {
+    transform: translateY(10px) rotate(45deg);
+  }
+  .menu-toggle-button[data-state='open'] .menu-toggle-bar--middle {
+    opacity: 0;
+  }
+  .menu-toggle-button[data-state='open'] .menu-toggle-bar--bottom {
+    transform: translateY(-10px) rotate(-45deg);
+  }
   @media (prefers-reduced-motion: reduce) {
-    .menu-toggle-button,
-    .menu-toggle-button:hover,
-    .menu-toggle-button:active {
+    .menu-toggle-button[data-state='open'] .menu-toggle-bar--top,
+    .menu-toggle-button[data-state='open'] .menu-toggle-bar--bottom {
       transform: none !important;
-      transition-duration: 0.01ms !important;
+    }
+    .menu-toggle-button[data-state='open'] .menu-toggle-bar--middle {
+      opacity: 1 !important;
     }
   }
 
