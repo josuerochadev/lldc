@@ -30,10 +30,10 @@ export default function MentionsLegales() {
       <Background />
       <div className="relative z-base">
         <Layout>
-          <SectionContainer className="pb-section pt-section-md">
+          <SectionContainer className="pt-section-md pb-section">
             <PageHeader title="Mentions légales" />
             <article className="max-w-content space-y-section-gap">
-              <h2 className="text-title-lg font-extrabold">Éditeur du site</h2>
+              <h3 className="font-serif text-title-md font-bold">Éditeur du site</h3>
               <p className="text-text-base">
                 <strong>Nom&nbsp;:</strong> {COMPANY_NAME}
                 <br />
@@ -51,14 +51,14 @@ export default function MentionsLegales() {
                 <strong>Directeur de la publication&nbsp;:</strong> {PUBLICATION_DIRECTOR}
               </p>
 
-              <h2 className="text-title-lg font-extrabold">Contact</h2>
+              <h3 className="font-serif text-title-md font-bold">Contact</h3>
               <p className="text-text-base">
                 Email&nbsp;: {COMPANY_EMAIL || '—'}
                 <br />
                 Téléphone&nbsp;: {COMPANY_PHONE || '—'}
               </p>
 
-              <h2 className="text-title-lg font-extrabold">Hébergeur</h2>
+              <h3 className="font-serif text-title-md font-bold">Hébergeur</h3>
               <p className="text-text-base">
                 {HOST_NAME ? (
                   <>
@@ -73,20 +73,20 @@ export default function MentionsLegales() {
                 )}
               </p>
 
-              <h2 className="text-title-lg font-extrabold">Propriété intellectuelle</h2>
+              <h3 className="font-serif text-title-md font-bold">Propriété intellectuelle</h3>
               <p className="text-text-base">
                 Le site et l’ensemble de ses contenus (textes, images, logos, éléments graphiques)
                 sont protégés par le droit d’auteur. Toute reproduction ou représentation, totale ou
                 partielle, sans autorisation préalable, est interdite.
               </p>
 
-              <h2 className="text-title-lg font-extrabold">Données personnelles & cookies</h2>
+              <h3 className="font-serif text-title-md font-bold">Données personnelles & cookies</h3>
               <p className="text-text-base">
                 Pour toute demande relative à la protection des données, contactez l’éditeur aux
                 coordonnées ci-dessus. Si des traceurs/cookies tiers sont utilisés, une politique de
                 confidentialité et une bannière cookies doivent être mises en place.
               </p>
-              <h2 className="text-title-lg font-extrabold">Médiation de la consommation</h2>
+              <h3 className="font-serif text-title-md font-bold">Médiation de la consommation</h3>
               <p className="text-text-base">
                 Conformément à l’article L.612-1 du Code de la consommation, le client peut recourir
                 à un médiateur de la consommation gratuitement. À compléter&nbsp;: organisme de

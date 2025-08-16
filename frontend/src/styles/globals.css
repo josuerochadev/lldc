@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Définition des couleurs principales en variables CSS */
+/* ====== CSS VARIABLES (THEME) ====== */
 :root {
   --color-orange-rgb: 255, 132, 0;
   --color-purple-rgb: 61, 27, 88;
@@ -13,8 +13,14 @@
   --color-dark-green-rgb: 0, 45, 6;
 }
 
+/* ====== BASE ====== */
 @layer base {
-  /* Styles de base pour html, body et #root */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   html,
   body,
   #root {
@@ -24,34 +30,101 @@
     background-color: rgb(var(--color-orange-rgb));
   }
 
+  /* Respecter la motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   body {
-    @apply font-sans text-purple text-text-base;
+    @apply font-sans text-text-body text-purple antialiased;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
   }
+
+  /* Typo sémantique par défaut (garde DRY dans pages statiques) */
+  h1 {
+    @apply text-title-xl font-extrabold;
+  }
+  h2 {
+    @apply text-title-lg font-extrabold;
+  }
+  h3 {
+    @apply text-title-md font-semibold;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+  small {
+    @apply text-text-meta;
+  }
+  a {
+    @apply underline-offset-2;
+  }
+  a:focus-visible {
+    @apply rounded-sm outline-none ring-2 ring-light-green;
+  }
 }
 
+/* ====== COMPONENTS ====== */
 @layer components {
-  /* Style d'accessibilité pour le focus */
-  .focus-style:focus-visible {
-    @apply rounded-md outline-none outline-offset-2 ring-2 ring-light-green;
+  /* Focus utilitaire générique — à utiliser via className="focus-ring" */
+  .focus-ring:focus-visible {
+    @apply rounded-sm outline-none ring-2 ring-light-green;
+  }
+
+  /* Container padding sémantique, pour encadrer les sections */
+  .container-padding {
+    @apply px-container-x py-container-y;
+  }
+
+  /* Accessibilité : utile pour les labels visuels non visibles */
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
   }
 
   /* Bouton pour le menu burger ou mobile */
   .menu-toggle-button {
-    @apply text-title-sm font-semibold uppercase;
-    @apply min-h-[44px] min-w-[44px] rounded-btn;
-    @apply bg-transparent text-purple;
-    @apply transform transition-all duration-250;
+    @apply min-h-[44px] min-w-[44px] transform rounded-btn bg-transparent text-title-sm font-semibold uppercase text-purple transition-all duration-250;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .menu-toggle-button:focus-visible {
+    outline: none;
+    --tw-ring-color: rgb(var(--color-light-green-rgb));
+    box-shadow: 0 0 0 3px rgba(var(--color-light-green-rgb), 0.6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-toggle-button,
+    .menu-toggle-button:hover,
+    .menu-toggle-button:active {
+      transform: none !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* Bouton principal avec effets visuels avancés */
   .button-primary {
-    @apply inline-flex items-center justify-center text-text-cta font-semibold;
-    @apply px-btn-x py-btn-y;
-    @apply rounded-btn border border-dark-green/20 bg-dark-green text-light-green;
-    @apply transition duration-250;
+    @apply inline-flex items-center justify-center rounded-btn border border-dark-green/20 bg-dark-green px-btn-x py-btn-y text-text-cta font-semibold text-light-green transition duration-250 focus:outline-none focus-visible:ring-2 focus-visible:ring-light-green;
 
     position: relative;
     cursor: pointer;
@@ -59,6 +132,7 @@
     user-select: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
 
     /* Effets de fond en dégradé */
     background-image:
@@ -157,9 +231,41 @@
     height: 80%;
   }
 
-  /* Style d'accessibilité pour le bouton principal */
+  /* A11y & UX: focus visible cohérent */
   .button-primary:focus-visible {
-    @apply outline-none outline-offset-2 ring-2 ring-light-green;
+    outline: none;
+    --tw-ring-color: rgb(var(--color-light-green-rgb));
+    box-shadow:
+      0 0 0 3px rgba(var(--color-light-green-rgb), 0.6),
+      inset -4px -10px 0px rgba(255, 255, 255, 0.1),
+      inset -4px -8px 0px rgba(var(--color-dark-green-rgb), 0.4),
+      0px 2px 1px rgba(var(--color-dark-green-rgb), 0.4),
+      0px 2px 1px rgba(var(--color-light-green-rgb), 0.05);
+  }
+
+  /* Motion safety: respecte prefers-reduced-motion sans casser le look */
+  @media (prefers-reduced-motion: reduce) {
+    .button-primary,
+    .button-primary:hover,
+    .button-primary:active {
+      transform: none !important;
+      transition-duration: 0.01ms !important;
+    }
+    .button-primary:active::before {
+      animation: none !important;
+    }
+  }
+}
+
+/* Animation utilisée par .button-primary:active::before */
+@keyframes overlay {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

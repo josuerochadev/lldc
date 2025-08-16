@@ -9,6 +9,12 @@ export default function PageHeader({ title, backTo = '/' }: Props) {
   return (
     <header className="mb-title-gap">
       <SectionTitle title={title} />
+      <h2 className="text-title-lg font-extrabold">
+        <span className="font-thin">LA</span>
+        LUNETTERIE
+        <span className="font-thin">DU</span>
+        COIN
+      </h2>
       <nav aria-label="Fil d’Ariane" className="mt-word-gap">
         <Link
           to={backTo}

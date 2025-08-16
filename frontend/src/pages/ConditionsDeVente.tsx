@@ -17,16 +17,10 @@ export default function ConditionsDeVente() {
       <Background />
       <div className="relative z-base">
         <Layout>
-          <SectionContainer className="pb-section pt-section-md">
+          <SectionContainer className="pt-section-md pb-section">
             <PageHeader title="Conditions Générales de Vente" />
 
             <article className="max-w-content space-y-section-gap">
-              <h2 className="text-title-lg font-extrabold">
-                <span className="font-thin">LA</span>
-                LUNETTERIE
-                <span className="font-thin">DU</span>
-                COIN
-              </h2>
               <p className="text-text-base">
                 Les lunettes sont manufacturées par nos spécialistes expérimentés et conçues à
                 partir de matériaux nobles. Il est important de traiter vos lunettes avec
@@ -34,7 +28,7 @@ export default function ConditionsDeVente() {
                 visseries sont gratuits pour nos client·es.
               </p>
 
-              <h3 className="text-title-md font-bold">Politique de retour</h3>
+              <h3 className="font-serif text-title-md font-bold">Politique de retour</h3>
               <p className="text-text-base">
                 Il n&apos;existe aucun droit de rétractation pour l&apos;achat de produits
                 personnalisés en boutique.
@@ -48,21 +42,25 @@ export default function ConditionsDeVente() {
                 soumise à d&apos;autres conditions.
               </p>
 
-              <h3 className="text-title-md font-bold">Changement de puissance des verres</h3>
+              <h3 className="font-serif text-title-md font-bold">
+                Changement de puissance des verres
+              </h3>
               <p className="text-text-base">
                 En cas de changement de puissance des verres dans les trente (30) jours suivant la
                 livraison, une franchise de 90&nbsp;€ pour les verres progressifs et 45&nbsp;€ pour
                 les verres unifocaux est appliquée pour l&apos;ensemble de la commande.
               </p>
 
-              <h3 className="text-title-md font-bold">Règlement par chèque et tiers payant</h3>
+              <h3 className="font-serif text-title-md font-bold">
+                Règlement par chèque et tiers payant
+              </h3>
               <p className="text-text-base">
                 Les règlements par chèque sont acceptés sur présentation d&apos;une pièce
                 d&apos;identité concordante. Nous nous réservons le droit d&apos;annuler le
                 règlement par tiers payant.
               </p>
 
-              <h3 className="text-title-md font-bold">Offres commerciales</h3>
+              <h3 className="font-serif text-title-md font-bold">Offres commerciales</h3>
               <ul className="list-disc space-y-2 pl-6">
                 <li className="text-text-base">
                   <strong>Remise à la reprise&nbsp;</strong>: limitée à une monture par transaction.
