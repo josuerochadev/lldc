@@ -1,0 +1,7 @@
+/* ====== LAYOUT ====== */
+@layer components {
+  /* Conteneur standardisé pour sections */
+  .section-shell {
+    @apply px-container-x py-container-y;
+  }
+}

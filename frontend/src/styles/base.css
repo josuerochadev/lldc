@@ -1,0 +1,54 @@
+/* ====== CSS VARIABLES (THEME) ====== */
+:root {
+  --color-orange-rgb: 255, 132, 0;
+  --color-purple-rgb: 61, 27, 88;
+  --color-violet-rgb: 236, 222, 255;
+  --color-light-green-rgb: 204, 252, 211;
+  --color-dark-green-rgb: 0, 45, 6;
+}
+
+/* ====== BASE ====== */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    position: relative;
+    height: 100%;
+    min-height: 100dvh;
+    background-color: transparent;
+  }
+
+  body {
+    @apply font-sans text-text-body text-purple antialiased;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Typo sémantique par défaut (DRY) */
+  h1 { @apply text-title-xl font-extrabold; }
+  h2 { @apply text-title-lg font-extrabold; }
+  h3 { @apply text-title-md font-semibold; }
+  p  { @apply leading-relaxed; }
+  small { @apply text-text-meta; }
+
+  a { @apply underline-offset-2; }
+  a:focus-visible { @apply rounded-sm outline-none ring-2 ring-light-green; }
+
+  /* Motion safety global */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
