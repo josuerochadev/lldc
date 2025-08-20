@@ -8,12 +8,11 @@ type SectionContainerProps = {
   id?: string;
   className?: string;
   children: ReactNode;
-  backgroundImage?: string; // Ex: "/backgrounds/services-background.png"
-  overlayClassName?: string; // Ex: "bg-white/40 backdrop-blur"
+  backgroundImage?: string; // "/backgrounds/services-background.png"
+  overlayClassName?: string; // "bg-white/40 backdrop-blur"
   noSpacing?: boolean;
-  as?: keyof JSX.IntrinsicElements; // Allows using different HTML elements like 'div', 'section', etc.
+  as?: keyof JSX.IntrinsicElements; // "div" | "section" | ...
 };
-
 /**
  * Composant de conteneur de section standardisé, gérant la largeur, les espacements, et l’accessibilité des grandes zones du site.
  *
@@ -65,9 +64,9 @@ export default function SectionContainer({
       id={id}
       style={backgroundStyle}
       className={cn(
-        'relative w-full',
-        !noSpacing && 'px-container-x py-section',
-        backgroundImage && 'bg-cover bg-center',
+        'relative z-base w-full',
+        backgroundImage && 'bg-cover bg-center bg-no-repeat',
+        !noSpacing && 'section-shell',
         className,
       )}
       role={id === 'hero' ? 'banner' : undefined}

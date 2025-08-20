@@ -30,7 +30,7 @@ const Hero = forwardRef<HTMLElement>(() => {
   return (
     <SectionContainer
       id="hero"
-      className="flex min-h-[100dvh] items-center justify-center"
+      className="section-shell flex min-h-[100dvh] items-center justify-center"
       aria-labelledby="hero-title"
     >
       {/* Logo */}
