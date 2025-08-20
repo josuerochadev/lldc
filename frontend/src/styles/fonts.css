@@ -43,7 +43,7 @@
   font-family: 'Imbue';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/imbue-v28-latin-400.woff2') format('woff2');
+  src: url('/fonts/imbue/imbue-v28-latin-400.woff2') format('woff2');
 }
 @font-face {
   font-display: swap;
