@@ -1,13 +1,16 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
+import Picture from '../common/Picture';
+
 import TiltCard from '@/components/motion/interactive/TiltCard';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { isToggleKey } from '@/lib/keyboard';
 import { cn } from '@/lib/cn';
 
+
 type Offer = {
   id: number;
-  image: string;
+  imageBase: string;
   title: string;
   summary: string;
   details: string;
@@ -62,8 +65,8 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
             if (isToggleKey(e)) onToggle(offer.id);
           }}
         >
-          <img
-            src={offer.image}
+          <Picture
+            srcBase={offer.imageBase}
             alt={offer.title}
             className="absolute inset-0 -z-base h-full w-full object-cover"
           />

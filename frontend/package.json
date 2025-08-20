@@ -11,7 +11,8 @@
 		"a11y": "vite build && start-server-and-test preview http://localhost:4173 axe",
 		"lint": "eslint . --ext ts,tsx --max-warnings=0",
 		"format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"img:optimize": "node scripts/optimize-images.mjs"
 	},
 	"dependencies": {
 		"@dr.pogodin/react-helmet": "^3.0.2",

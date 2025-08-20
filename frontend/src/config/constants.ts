@@ -22,7 +22,7 @@ export const OFFERS = [
   {
     id: 1,
     title: 'Recyclage',
-    image: '/illustrations/recycle.png',
+    imageBase: '/illustrations/recycle',
     summary: 'Jusqu’à 70€ de remise en rapportant vos anciennes montures.',
     details:
       'Cette démarche vise à encourager le recyclage, donner une seconde vie à vos lunettes tout en réduisant les déchets.',
@@ -30,7 +30,7 @@ export const OFFERS = [
   {
     id: 2,
     title: 'Deuxième paire',
-    image: '/illustrations/two-eyeframes.png',
+    imageBase: '/illustrations/two-eyeframes',
     summary: 'Obtenez une deuxième paire à partir de 59€ selon vos besoins.',
     details:
       '59€ : monture + verres unifocaux\n89€ : verres progressifs\nVerres antireflet durci ou solaires UV cat.3\nOrigine France Garantie — Ophtalmic Vision.',
@@ -41,18 +41,18 @@ export const SERVICES = [
   {
     title: 'Lunettes neuves et d’occasion',
     description: 'Large choix de montures neuves et de seconde main, soigneusement sélectionnées.',
-    image: '/illustrations/eyeframe.png',
+    imageBase: '/illustrations/eyeframe',
   },
   {
     title: 'Lentilles de contact',
     description: 'Conseils personnalisés et adaptation pour tous types de lentilles.',
-    image: '/illustrations/contact-lenses.png',
+    imageBase: '/illustrations/contact-lenses',
   },
   {
     title: 'Examens de vue',
     description:
       "Contrôle visuel complet réalisé par Romain, l'opticien fondateur de La Lunetterie du Coin.",
-    image: '/illustrations/test-vision.png',
+    imageBase: '/illustrations/test-vision',
   },
 ];
 

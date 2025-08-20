@@ -4,9 +4,10 @@ import TiltCard from '@/components/motion/interactive/TiltCard';
 import { cn } from '@/lib/cn';
 
 type Service = {
-  image: string;
   title: string;
   description: string;
+  /** Optionnel si un jour tu veux y (ré)intégrer une image responsive */
+  imageBase?: string;
 };
 
 type ServiceCardProps = {

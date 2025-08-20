@@ -4,4 +4,16 @@
   .section-shell {
     @apply px-container-x py-container-y;
   }
+
+  /* Background optimisé pour la section Services */
+  .bg-forest {
+    background-image: image-set(
+      url('/backgrounds/forest-background-1600.avif') type('image/avif'),
+      url('/backgrounds/forest-background-1600.webp') type('image/webp'),
+      url('/backgrounds/forest-background.png') type('image/png')
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }

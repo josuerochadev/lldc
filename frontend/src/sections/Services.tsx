@@ -6,6 +6,7 @@ import SectionTitle from '@/components/common/SectionTitle';
 import { SERVICES } from '@/config/constants';
 import ServiceCard from '@/components/services/ServiceCard';
 import ServiceThumbnail from '@/components/services/ServiceThumbnail';
+import Picture from '@/components/common/Picture';
 
 /**
  * Composant principal pour la section "Nos Services".
@@ -26,28 +27,36 @@ export default function Services() {
   const selected = SERVICES[selectedIndex];
 
   return (
-    <SectionContainer
-      id="services"
-      backgroundImage="/backgrounds/forest-background.png"
-      className="relative bg-cover bg-center bg-no-repeat text-violet shadow-xl"
-      overlayClassName="bg-transparent"
-    >
+<SectionContainer
+  id="services"
+  className="relative bg-forest text-violet shadow-xl"
+  overlayClassName="bg-transparent"
+>
       <SectionTitle title="Nos Services" />
 
       <div className="mx-auto flex flex-col md:flex-row md:items-center md:justify-center">
         {/* Colonne gauche : image + miniatures */}
         <div className="flex flex-col items-center px-container-x py-container-y">
           <AnimatePresence mode="wait">
-            <motion.img
-              key={selected.image}
-              src={selected.image}
-              alt={selected.title}
-              className="h-auto w-service-img max-w-full object-contain"
+            <motion.div
+              key={selected.imageBase}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.01 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
-            />
+              className="h-auto w-service-img max-w-full"
+            >
+              <Picture
+                srcBase={selected.imageBase}
+                alt={selected.title}
+                /* Si tu connais la dimension native de l’illustration, dé-commente :
+                 width={1200}
+                 height={900}
+                 */
+                sizes="(min-width: 1024px) 42vw, (min-width: 768px) 60vw, 90vw"
+                className="h-auto w-full object-contain"
+              />
+            </motion.div>
           </AnimatePresence>
 
           <div
@@ -58,7 +67,7 @@ export default function Services() {
             {SERVICES.map((service, index) => (
               <ServiceThumbnail
                 key={service.title}
-                image={service.image}
+                imageBase={service.imageBase}
                 title={service.title}
                 isActive={selectedIndex === index}
                 index={index}

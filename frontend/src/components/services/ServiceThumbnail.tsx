@@ -1,8 +1,11 @@
 // src/components/services/ServiceThumbnail.tsx
 import clsx from 'clsx';
 
+import Picture from '../common/Picture';
+
 interface ServiceThumbnailProps {
-  image: string;
+  /** base path sans extension, ex: /illustrations/eyeframe */
+  imageBase: string;
   title: string;
   isActive: boolean;
   index: number;
@@ -21,9 +24,8 @@ interface ServiceThumbnailProps {
  *
  * @returns {JSX.Element} Un bouton stylisé contenant l'image du service.
  */
-
 export default function ServiceThumbnail({
-  image,
+  imageBase,
   title,
   isActive,
   index,
@@ -44,7 +46,15 @@ export default function ServiceThumbnail({
         isActive ? 'opacity-100' : 'opacity-60',
       )}
     >
-      <img src={image} alt={title} className="h-24 w-24 object-contain" />
+      <div className="h-24 w-24">
+        <Picture
+          srcBase={imageBase}
+          alt={title}
+          /* vignettes = petite cible ⇒ sizes fixe */
+          sizes="96px"
+          className="h-24 w-24 object-contain"
+        />
+      </div>
     </button>
   );
 }
