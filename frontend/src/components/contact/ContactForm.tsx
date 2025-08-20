@@ -107,6 +107,7 @@ return (
           maxLength={50}
           className="w-full rounded-btn border-2 border-purple p-4 font-serif tracking-wider"
           placeholder="Votre nom"
+          autoComplete='name'
           onInvalid={(e) =>
             (e.currentTarget as HTMLInputElement).setCustomValidity(
               'Veuillez entrer votre nom (2 caractères minimum).',
@@ -129,6 +130,7 @@ return (
           maxLength={64}
           className="w-full rounded-btn border-2 border-purple p-4 font-serif tracking-wider"
           placeholder="Votre email"
+          autoComplete='email'
           onInvalid={(e) =>
             (e.currentTarget as HTMLInputElement).setCustomValidity(
               'Veuillez entrer une adresse email valide.',
@@ -152,6 +154,7 @@ return (
           maxLength={1000}
           className="w-full rounded-btn border-2 border-purple p-4 font-serif tracking-wider"
           placeholder="Votre message..."
+          autoComplete='message'
           onInvalid={(e) =>
             (e.currentTarget as HTMLTextAreaElement).setCustomValidity(
               'Votre message doit contenir au moins 10 caractères.',
