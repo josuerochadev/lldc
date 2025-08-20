@@ -42,10 +42,16 @@ const Hero = forwardRef<HTMLElement>(() => {
 
       <div className="w-full space-y-section-gap">
         {/* Punchline */}
-        <SplitText text={currentPhrase} className="text-title-xl font-black uppercase" />
+        <AnimatedItem index={0} nonBlocking>
+          <SplitText
+            text={currentPhrase}
+            priority
+            className="text-title-xl font-black uppercase"
+          />
+        </AnimatedItem>
 
         {/* Titre */}
-        <AnimatedItem index={1} variant={fadeInUp}>
+        <AnimatedItem index={1} nonBlocking>
           <header>
             <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
               <span className="font-thin">－</span>

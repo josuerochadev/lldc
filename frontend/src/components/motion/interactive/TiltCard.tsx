@@ -8,12 +8,6 @@ import { use3DTilt } from '@/hooks/use3DTilt';
  * @param children Les éléments React à afficher à l'intérieur de la carte avec effet tilt.
  * @returns Un conteneur `<div>` avec un effet de perspective 3D appliqué.
  *
- * @example
- * ```tsx
- * <TiltCard>
- *   <img src="image.png" alt="Exemple" />
- * </TiltCard>
- * ```
  */
 
 export default function TiltCard({ children }: { children: ReactNode }) {

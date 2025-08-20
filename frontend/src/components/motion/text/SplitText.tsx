@@ -7,6 +7,8 @@ type Props = {
   text: string;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
+  /** true = rendu immédiat (ne bloque pas LCP), pas de reveal mot à mot */
+  priority?: boolean;
 };
 
 /**
@@ -19,15 +21,21 @@ type Props = {
  * tout en préservant l'espacement entre les mots.
  * Chaque mot est encapsulé dans une balise `<span>` avec la classe `inline-block`.
  */
-export default function SplitText({ text, className = '' }: Props) {
+ export default function SplitText({ text, className = '', as,
+  priority = false }: Props) {
+  if (priority) {
+    // Rendu direct sans animation (pro-LCP)
+    const Tag = (as ?? 'p') as keyof JSX.IntrinsicElements;
+    return <Tag className={className}>{text}</Tag>;
+  }
   return (
     <RevealText
       text={text}
       splitBy="word"
       className={className}
       baseDelay={0.1}
-      preserveWordSpacing={true} // ✅ garantit l’espace entre les mots
+      preserveWordSpacing={true}
       renderPart={(word) => <span className="inline-block">{word}</span>}
     />
   );
-}
+ }

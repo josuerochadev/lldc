@@ -11,6 +11,8 @@ export type AnimatedItemProps = {
   index?: number;
   variant?: Variants;
   viewport?: object;
+  /** Quand true, n'applique pas d'état 'hidden' avant la 1re peinture (ne bloque pas le LCP) */
+  nonBlocking?: boolean;
 };
 
 const DEFAULT_EASE = [0.25, 0.46, 0.45, 0.94];
@@ -45,9 +47,34 @@ export default function AnimatedItem({
   index = 0,
   variant = fadeInUp,
   viewport = { once: true, amount: 0.4 },
+  nonBlocking = false,
 }: AnimatedItemProps) {
   const calculatedDelay = delay + index * DEFAULT_STAGGER;
 
+  // Mode non-bloquant : ne cache rien avant paint, puis micro-anim post-montage.
+  if (nonBlocking) {
+    return (
+      <motion.div
+        initial={false}
+        animate={{ opacity: 1, y: 0 }}
+        // part d’un état quasi final pour éviter tout flicker
+        style={{ opacity: 1, transform: 'translateY(0)' }}
+        transition={{
+          type: 'spring',
+          stiffness: DEFAULT_STIFFNESS,
+          damping: DEFAULT_DAMPING,
+          duration,
+          delay: calculatedDelay,
+          ease: DEFAULT_EASE,
+        }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
+  // Mode standard (comme avant)
   return (
     <motion.div
       initial="hidden"
@@ -67,4 +94,4 @@ export default function AnimatedItem({
       {children}
     </motion.div>
   );
-}
+  }
