@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
@@ -27,18 +27,18 @@ export default function Services() {
   const selected = SERVICES[selectedIndex];
 
   return (
-<SectionContainer
-  id="services"
-  className="relative bg-forest text-violet shadow-xl"
-  overlayClassName="bg-transparent"
->
+    <SectionContainer
+      id="services"
+      className="bg-forest relative text-violet shadow-xl"
+      overlayClassName="bg-transparent"
+    >
       <SectionTitle title="Nos Services" />
 
       <div className="mx-auto flex flex-col md:flex-row md:items-center md:justify-center">
         {/* Colonne gauche : image + miniatures */}
         <div className="flex flex-col items-center px-container-x py-container-y">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={selected.imageBase}
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -56,7 +56,7 @@ export default function Services() {
                 sizes="(min-width: 1024px) 42vw, (min-width: 768px) 60vw, 90vw"
                 className="h-auto w-full object-contain"
               />
-            </motion.div>
+            </m.div>
           </AnimatePresence>
 
           <div

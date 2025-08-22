@@ -1,7 +1,10 @@
+// src/components/motion/AnimatedItem.tsx
 import type React from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { m, type Variants } from 'framer-motion';
 
 import { fadeInUp } from './variants/fade';
+
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 export type AnimatedItemProps = {
   children: React.ReactNode;
@@ -16,27 +19,17 @@ export type AnimatedItemProps = {
 };
 
 const DEFAULT_EASE = [0.25, 0.46, 0.45, 0.94];
-const DEFAULT_STAGGER = 0.12; // 120ms stagger
+const DEFAULT_STAGGER = 0.12; // 120ms entre chaque élément
 const DEFAULT_STIFFNESS = 60;
 const DEFAULT_DAMPING = 20;
 
 /**
  * Composant React pour animer un élément enfant avec Framer Motion.
- *
- * @param {object} props - Les propriétés du composant.
- * @param {React.ReactNode} props.children - Les éléments enfants à animer.
- * @param {string} [props.className] - Classe(s) CSS optionnelle(s) à appliquer au conteneur animé.
- * @param {number} [props.delay=0] - Délai initial (en secondes) avant le début de l'animation.
- * @param {number} [props.duration=0.6] - Durée de l'animation (en secondes).
- * @param {number} [props.index=0] - Index de l'élément, utilisé pour calculer le délai de décalage lors d'une animation en cascade.
- * @param {object} [props.variant=fadeInUp] - Objet variant Framer Motion définissant les états d'animation.
- * @param {object} [props.viewport={ once: true, amount: 0.4 }] - Options de déclenchement de l'animation selon la visibilité dans la fenêtre.
- *
- * @returns {JSX.Element} Élément <motion.div> animé contenant les enfants.
+ * Optimisé pour ne pas bloquer le LCP et respecter `prefers-reduced-motion`.
  *
  * @example
- * <AnimatedItem index={2} className="my-class">
- *   <p>Texte animé</p>
+ * <AnimatedItem index={1} nonBlocking>
+ *   <h1>La Lunetterie du Coin</h1>
  * </AnimatedItem>
  */
 export default function AnimatedItem({
@@ -50,14 +43,17 @@ export default function AnimatedItem({
   nonBlocking = false,
 }: AnimatedItemProps) {
   const calculatedDelay = delay + index * DEFAULT_STAGGER;
+  const reduce = usePrefersReducedMotion();
 
-  // Mode non-bloquant : ne cache rien avant paint, puis micro-anim post-montage.
+  // Mode accessibilité : pas d’animation
+  if (reduce) return <div className={className}>{children}</div>;
+
   if (nonBlocking) {
+    // ✅ Mode non-bloquant : pas de "hidden" avant la première peinture
     return (
-      <motion.div
+      <m.div
         initial={false}
         animate={{ opacity: 1, y: 0 }}
-        // part d’un état quasi final pour éviter tout flicker
         style={{ opacity: 1, transform: 'translateY(0)' }}
         transition={{
           type: 'spring',
@@ -70,13 +66,13 @@ export default function AnimatedItem({
         className={className}
       >
         {children}
-      </motion.div>
+      </m.div>
     );
   }
 
-  // Mode standard (comme avant)
+  // ✅ Mode standard : animation classique
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={viewport}
@@ -92,6 +88,6 @@ export default function AnimatedItem({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
-  }
+}

@@ -1,9 +1,10 @@
 // src/components/common/Background.tsx
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import { RippleAnimation } from './RippleAnimation';
 
 import { useSmoothedScrollProgress } from '@/hooks/useSmoothedScrollProgress';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 /**
  * Affiche le fond animé avec effets de halo et ondulations circulaires.
@@ -21,7 +22,27 @@ import { useSmoothedScrollProgress } from '@/hooks/useSmoothedScrollProgress';
  * @returns {JSX.Element} Élément JSX représentant l'arrière-plan animé.
  */
 const Background = memo(function Background() {
+  const prm = usePrefersReducedMotion();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Monte après la 1re peinture / quand le thread est calme
+    const cb = () => setMounted(true);
+    if ('requestIdleCallback' in window) {
+      const id = (window as Window & typeof globalThis).requestIdleCallback(cb, { timeout: 1500 });
+      return () => (window as Window & typeof globalThis).cancelIdleCallback?.(id);
+    }
+    // fallback
+    const t = setTimeout(cb, 0);
+    return () => clearTimeout(t);
+  }, []);
+
   const scrollProgress = useSmoothedScrollProgress();
+
+  // Rien du tout si PRM
+  if (prm) return null;
+  // Différer l’arrière-plan pour ne pas impacter le LCP
+  if (!mounted) return null;
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">

@@ -43,11 +43,7 @@ const Hero = forwardRef<HTMLElement>(() => {
       <div className="w-full space-y-section-gap">
         {/* Punchline */}
         <AnimatedItem index={0} nonBlocking>
-          <SplitText
-            text={currentPhrase}
-            priority
-            className="text-title-xl font-black uppercase"
-          />
+          <SplitText text={currentPhrase} priority className="text-title-xl font-black uppercase" />
         </AnimatedItem>
 
         {/* Titre */}

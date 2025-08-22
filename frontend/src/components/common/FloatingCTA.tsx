@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 import Button from '@/components/common/Button';
 import { CALENDLY_URL } from '@/config/constants';
@@ -72,7 +72,7 @@ export default function FloatingCTA() {
   return (
     <AnimatePresence>
       {shouldRender && (
-        <motion.div
+        <m.div
           ref={ctaRef}
           className="fixed right-6 z-50"
           initial="hidden"
@@ -90,7 +90,7 @@ export default function FloatingCTA() {
           >
             <Button>Prendre rendez-vous</Button>
           </a>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

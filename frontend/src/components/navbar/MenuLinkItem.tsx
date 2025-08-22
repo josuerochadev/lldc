@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 import { MENU_ANIMATION_DURATION } from '@/config/constants';
 
@@ -59,7 +59,7 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
   // 1) Lien externe (Calendly)
   if (isExternal(href)) {
     return (
-      <motion.a
+      <m.a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
@@ -68,7 +68,7 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
         whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
       >
         {content}
-      </motion.a>
+      </m.a>
     );
   }
 
@@ -77,19 +77,19 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
     // Si déjà sur la Home → smooth scroll
     if (pathname === '/') {
       return (
-        <motion.a
+        <m.a
           href={href}
           onClick={handleHashClick}
           className="flex items-baseline uppercase transition hover:scale-110"
           whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
         >
           {content}
-        </motion.a>
+        </m.a>
       );
     }
     // Sinon, on route vers "/" + hash (le scroll natif s’appliquera)
     return (
-      <motion.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
+      <m.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
         <Link
           to={{ pathname: '/', hash: href }}
           onClick={onClick}
@@ -97,14 +97,14 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
         >
           {content}
         </Link>
-      </motion.div>
+      </m.div>
     );
   }
 
   // 3) Route interne (au cas où tu en ajoutes plus tard)
   if (isInternalPath(href)) {
     return (
-      <motion.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
+      <m.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
         <Link
           to={href}
           onClick={onClick}
@@ -112,19 +112,19 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
         >
           {content}
         </Link>
-      </motion.div>
+      </m.div>
     );
   }
 
   // Fallback (devrait être inutile)
   return (
-    <motion.a
+    <m.a
       href={href}
       onClick={onClick}
       className="flex items-baseline uppercase transition hover:scale-110"
       whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
     >
       {content}
-    </motion.a>
+    </m.a>
   );
 }

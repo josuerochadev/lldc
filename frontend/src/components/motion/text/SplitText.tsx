@@ -21,8 +21,7 @@ type Props = {
  * tout en préservant l'espacement entre les mots.
  * Chaque mot est encapsulé dans une balise `<span>` avec la classe `inline-block`.
  */
- export default function SplitText({ text, className = '', as,
-  priority = false }: Props) {
+export default function SplitText({ text, className = '', as, priority = false }: Props) {
   if (priority) {
     // Rendu direct sans animation (pro-LCP)
     const Tag = (as ?? 'p') as keyof JSX.IntrinsicElements;
@@ -38,4 +37,4 @@ type Props = {
       renderPart={(word) => <span className="inline-block">{word}</span>}
     />
   );
- }
+}

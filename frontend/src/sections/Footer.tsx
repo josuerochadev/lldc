@@ -1,6 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react';
 import { clsx } from 'clsx';
-import { Facebook, Instagram } from 'lucide-react';
+import Facebook from 'lucide-react/dist/esm/icons/facebook';
+import Instagram from 'lucide-react/dist/esm/icons/instagram';
 import { Link } from 'react-router-dom';
 
 import SectionContainer from '../components/common/SectionContainer';
@@ -15,21 +16,9 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
  * Composant Footer pour l'affichage du pied de page du site.
  *
  * Affiche l'adresse, les horaires, les liens sociaux, les liens légaux et une signature de développement.
- * Le rendu varie selon la variante passée en props :
- * - `variant="menu"` : version compacte pour affichage dans un menu.
- * - `variant="default"` (par défaut) : version complète avec navigation et réseaux sociaux.
- *
- * @component
- * @param {FooterProps} props - Propriétés du composant Footer.
- * @param {string} [props.className] - Classes CSS additionnelles à appliquer au footer.
- * @param {'default' | 'menu'} [props.variant] - Variante d'affichage du footer.
- * @param {object} [props.rest] - Autres propriétés passées au composant.
- *
- * @example
- * ```tsx
- * <Footer />
- * <Footer variant="menu" className="my-custom-class" />
- * ```
+ * Variante:
+ * - `variant="menu"` : version compacte
+ * - `variant="default"` : version complète (par défaut)
  */
 export default function Footer({ className = '', variant = 'default', ...rest }: FooterProps) {
   const isMenu = variant === 'menu';
@@ -76,6 +65,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
             <p>Du lundi au samedi&nbsp;: 10&nbsp;h–14&nbsp;h / 15&nbsp;h–19&nbsp;h</p>
             <p>Dimanche&nbsp;: fermé</p>
           </address>
+
           {!isMenu && (
             <nav
               aria-label="Navigation de bas de page"
@@ -92,8 +82,17 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                     rel="noopener noreferrer"
                     aria-label={social.label}
                   >
-                    {social.icon === 'facebook' && <Facebook size={18} className="mr-1 inline" />}
-                    {social.icon === 'instagram' && <Instagram size={18} className="mr-1 inline" />}
+                    {social.icon === 'facebook' && (
+                      <Facebook width={18} height={18} className="mr-1 inline" aria-hidden="true" />
+                    )}
+                    {social.icon === 'instagram' && (
+                      <Instagram
+                        width={18}
+                        height={18}
+                        className="mr-1 inline"
+                        aria-hidden="true"
+                      />
+                    )}
                     <span className="sr-only">{social.label}</span>
                   </a>
                 ))}

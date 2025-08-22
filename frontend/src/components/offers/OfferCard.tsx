@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 
 import Picture from '../common/Picture';
 
@@ -6,7 +6,6 @@ import TiltCard from '@/components/motion/interactive/TiltCard';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { isToggleKey } from '@/lib/keyboard';
 import { cn } from '@/lib/cn';
-
 
 type Offer = {
   id: number;
@@ -71,7 +70,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
             className="absolute inset-0 -z-base h-full w-full object-cover"
           />
 
-          <motion.section
+          <m.section
             id={`offer-panel-${offer.id}`}
             aria-labelledby={`offer-title-${offer.id}`}
             className={cn(
@@ -90,7 +89,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
               {offer.title}
             </h3>
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={isOpen ? 'details' : 'summary'}
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
@@ -101,14 +100,14 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
                 <p className="max-w-[90%] whitespace-pre-line text-left text-text-base leading-snug">
                   {isOpen ? offer.details : offer.summary}
                 </p>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
             <div className="mt-auto flex justify-center">
               <span className="cursor-pointer text-text-footer underline">
                 {isOpen ? 'Réduire' : 'En savoir plus'}
               </span>
             </div>
-          </motion.section>
+          </m.section>
         </button>
       </TiltCard>
     </AnimatedItem>

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 import TiltCard from '@/components/motion/interactive/TiltCard';
 import { cn } from '@/lib/cn';
@@ -30,7 +30,7 @@ type ServiceCardProps = {
 export default function ServiceCard({ service, className }: ServiceCardProps) {
   return (
     <TiltCard>
-      <motion.section
+      <m.section
         role="tabpanel"
         id={`tabpanel-${service.title.replace(/\s+/g, '-').toLowerCase()}`}
         className={cn(
@@ -50,7 +50,7 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
           {service.title}
         </h3>
         <p className="text-text-base leading-snug tracking-wide">{service.description}</p>
-      </motion.section>
+      </m.section>
     </TiltCard>
   );
 }

@@ -44,6 +44,18 @@ export default tseslint.config(
 				"warn",
 				{ allowConstantExport: true },
 			],
+			'no-restricted-imports': [
+			'error',
+			{
+				paths: [
+				{
+					name: 'lucide-react',
+					message:
+					'N’importe pas depuis "lucide-react" (racine). Utilise les sous-imports icône: "lucide-react/dist/esm/icons/<name>".',
+				},
+				],
+			},
+			],
 		},
 		settings: { react: { version: "detect" } },
 	},

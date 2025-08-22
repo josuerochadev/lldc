@@ -13,6 +13,12 @@ export default defineConfig({
       },
     }),
   ],
+    optimizeDeps: {
+      include: [
+        'lucide-react/dist/esm/icons/facebook',
+        'lucide-react/dist/esm/icons/instagram',
+      ],
+  },
   server: {
   },
   resolve: {

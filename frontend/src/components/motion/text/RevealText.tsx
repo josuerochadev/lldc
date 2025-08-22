@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useMemo } from 'react';
 import type { JSX } from 'react';
 
@@ -63,7 +63,7 @@ export default function RevealText({
   };
 
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.4 }}
@@ -82,7 +82,7 @@ export default function RevealText({
                   .join(' ').length
               }`;
         return (
-          <motion.span
+          <m.span
             key={key}
             variants={child}
             className={
@@ -90,9 +90,9 @@ export default function RevealText({
             }
           >
             {renderPart ? renderPart(part, i) : part}
-          </motion.span>
+          </m.span>
         );
       })}
-    </motion.div>
+    </m.div>
   );
 }
