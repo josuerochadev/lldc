@@ -1,6 +1,5 @@
 import { useState, forwardRef } from 'react';
 
-import SplitText from '@/components/motion/text/SplitText';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { fadeInUp } from '@/components/motion/variants/fade';
 import LogoEye from '@/assets/logo/logo-eye.svg?react';
