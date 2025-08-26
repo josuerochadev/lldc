@@ -1,17 +1,41 @@
+// src/App.tsx
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
-import ConditionsDeVente from './pages/ConditionsDeVente';
-import MentionsLegales from './pages/MentionsLegales';
-import NotFound from './pages/NotFound';
+
+const MentionsLegales = lazy(() => import('./pages/MentionsLegales'));
+const ConditionsDeVente = lazy(() => import('./pages/ConditionsDeVente'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/mentions-legales" element={<MentionsLegales />} />
-      <Route path="/conditions-de-vente" element={<ConditionsDeVente />} />
-      <Route path="*" element={<NotFound />} />
+      <Route
+        path="/mentions-legales"
+        element={
+          <Suspense fallback={<div className="p-4 text-text-base">…</div>}>
+            <MentionsLegales />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/conditions-de-vente"
+        element={
+          <Suspense fallback={<div className="p-4 text-text-base">…</div>}>
+            <ConditionsDeVente />
+          </Suspense>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<div className="p-4 text-text-base">…</div>}>
+            <NotFound />
+          </Suspense>
+        }
+      />
     </Routes>
   );
 }

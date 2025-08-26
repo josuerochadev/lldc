@@ -1,3 +1,4 @@
+// src/a11y/MotionProvider.tsx
 import type React from 'react';
 import { useEffect } from 'react';
 
