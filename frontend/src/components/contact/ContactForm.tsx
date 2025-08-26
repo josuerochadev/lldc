@@ -1,5 +1,6 @@
 import type React from 'react';
 import { useRef, useState } from 'react';
+import Send from 'lucide-react/dist/esm/icons/send';
 
 import Button from '@/components/common/Button';
 import { FORMSPREE_ENDPOINT } from '@/config/constants';
@@ -152,7 +153,10 @@ export default function ContactForm() {
         {/* Bouton (alinha à esquerda e ocupa a linha inteira em lg+) */}
         <div className="lg:col-span-2">
           <Button type="submit" disabled={status === 'sending'} className="mt-2">
-            {status === 'sending' ? 'Envoi en cours...' : 'Envoyer'}
+            <span className="flex items-center gap-2">
+              <Send className="button-icon" />
+              {status === 'sending' ? 'Envoi en cours...' : 'Envoyer'}
+            </span>
           </Button>
         </div>
       </form>

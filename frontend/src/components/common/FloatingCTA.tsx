@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
 
 import Button from '@/components/common/Button';
 import { CALENDLY_URL } from '@/config/constants';
@@ -88,7 +89,12 @@ export default function FloatingCTA() {
             rel="noopener noreferrer"
             aria-label="Prendre rendez-vous"
           >
-            <Button>Prendre rendez-vous</Button>
+            <Button>
+              <span className="flex items-center gap-2">
+                <Calendar className="button-icon" />
+                Prendre rendez-vous
+              </span>
+            </Button>
           </a>
         </m.div>
       )}

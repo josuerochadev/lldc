@@ -81,10 +81,10 @@ const Hero = forwardRef<HTMLElement>(() => {
           <Button
             id="hero-cta"
             aria-label="Prendre rendez-vous"
-            className="group relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            className="group"
           >
             <span className="flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
-              <Calendar className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+              <Calendar className="button-icon group-hover:rotate-12" />
               Prendre rendez-vous
             </span>
           </Button>
