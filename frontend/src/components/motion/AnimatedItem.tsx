@@ -49,12 +49,12 @@ export default function AnimatedItem({
   if (reduce) return <div className={className}>{children}</div>;
 
   if (nonBlocking) {
-    // ✅ Mode non-bloquant : pas de "hidden" avant la première peinture
+    // ✅ Mode non-bloquant : visible immédiatement puis animation subtile
     return (
       <m.div
-        initial={false}
+        initial={{ opacity: 1, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        style={{ opacity: 1, transform: 'translateY(0)' }}
+        style={{ opacity: 1 }}
         transition={{
           type: 'spring',
           stiffness: DEFAULT_STIFFNESS,

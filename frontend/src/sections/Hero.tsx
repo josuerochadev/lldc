@@ -1,7 +1,11 @@
 import { useState, forwardRef } from 'react';
+import { useTransform, useScroll, m } from 'framer-motion';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
 
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { fadeInUp } from '@/components/motion/variants/fade';
+import SplitText from '@/components/motion/text/SplitText';
 import LogoEye from '@/assets/logo/logo-eye.svg?react';
 import Button from '@/components/common/Button';
 import { HERO_PHRASES } from '@/config/constants';
@@ -26,43 +30,78 @@ import SectionContainer from '@/components/common/SectionContainer';
 const Hero = forwardRef<HTMLElement>(() => {
   const [currentPhrase] = useState(() => getRandomHeroPhrase(HERO_PHRASES));
 
+  // Parallax effect pour le logo
+  const { scrollY } = useScroll();
+  const logoY = useTransform(scrollY, [0, 300], [0, -50]);
+  const logoScale = useTransform(scrollY, [0, 300], [1, 0.9]);
+
   return (
     <SectionContainer
       id="hero"
-      className="section-shell flex min-h-[100dvh] items-center justify-center"
+      className="section-shell relative flex min-h-[100dvh] items-center justify-center"
       aria-labelledby="hero-title"
     >
-      {/* Logo */}
+      {/* Logo avec effet parallax */}
       <AnimatedItem index={0} variant={fadeInUp}>
-        <div className="mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)]">
-          <LogoEye aria-hidden="true" focusable="false" className="h-full w-full" />
-        </div>
+        <m.button
+          type="button"
+          className="group mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)] cursor-pointer rounded-lg transition-transform duration-500 ease-out hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+          style={{ y: logoY, scale: logoScale }}
+          aria-label="Logo La Lunetterie du Coin"
+        >
+          <LogoEye
+            aria-hidden="true"
+            focusable="false"
+            className="h-full w-full transition-all duration-500 group-hover:drop-shadow-lg"
+          />
+        </m.button>
       </AnimatedItem>
 
       <div className="w-full space-y-section-gap">
-        {/* Punchline - Immediate render for LCP */}
+        {/* Punchline */}
         <div className="text-title-xl font-black uppercase">
-          {currentPhrase}
+          <SplitText text={currentPhrase} className="" priority={false} />
         </div>
 
-        {/* Titre - Immediate render for LCP */}
-        <header>
-          <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
-            <span className="font-thin">－</span>
-            <span className="font-thin">LA</span>
-            <span className="font-black">LUNETTERIE</span>
-            <span className="font-thin">DU</span>
-            <span className="font-black">COIN</span>
-          </h1>
-        </header>
+        {/* Titre - Animation non-bloquante pour LCP */}
+        <AnimatedItem index={1.5} variant={fadeInUp} nonBlocking>
+          <header>
+            <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
+              <span className="font-thin">－</span>
+              <span className="font-thin">LA</span>
+              <span className="font-black">LUNETTERIE</span>
+              <span className="font-thin">DU</span>
+              <span className="font-black">COIN</span>
+            </h1>
+          </header>
+        </AnimatedItem>
 
         {/* CTA */}
         <AnimatedItem index={2} variant={fadeInUp}>
-          <Button id="hero-cta" aria-label="Prendre rendez-vous">
-            Prendre rendez-vous
+          <Button
+            id="hero-cta"
+            aria-label="Prendre rendez-vous"
+            className="group relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+          >
+            <span className="flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
+              <Calendar className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+              Prendre rendez-vous
+            </span>
           </Button>
         </AnimatedItem>
       </div>
+
+      {/* Indicateur de scroll animé */}
+      <AnimatedItem index={3} variant={fadeInUp}>
+        <button
+          type="button"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+          aria-label="Faire défiler vers le bas"
+        >
+          <ChevronDown className="h-6 w-6" />
+        </button>
+      </AnimatedItem>
     </SectionContainer>
   );
 });
