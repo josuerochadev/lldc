@@ -41,23 +41,21 @@ const Hero = forwardRef<HTMLElement>(() => {
       </AnimatedItem>
 
       <div className="w-full space-y-section-gap">
-        {/* Punchline */}
-        <AnimatedItem index={0} nonBlocking>
-          <SplitText text={currentPhrase} priority className="text-title-xl font-black uppercase" />
-        </AnimatedItem>
+        {/* Punchline - Immediate render for LCP */}
+        <div className="text-title-xl font-black uppercase">
+          {currentPhrase}
+        </div>
 
-        {/* Titre */}
-        <AnimatedItem index={1} nonBlocking>
-          <header>
-            <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
-              <span className="font-thin">－</span>
-              <span className="font-thin">LA</span>
-              <span className="font-black">LUNETTERIE</span>
-              <span className="font-thin">DU</span>
-              <span className="font-black">COIN</span>
-            </h1>
-          </header>
-        </AnimatedItem>
+        {/* Titre - Immediate render for LCP */}
+        <header>
+          <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
+            <span className="font-thin">－</span>
+            <span className="font-thin">LA</span>
+            <span className="font-black">LUNETTERIE</span>
+            <span className="font-thin">DU</span>
+            <span className="font-black">COIN</span>
+          </h1>
+        </header>
 
         {/* CTA */}
         <AnimatedItem index={2} variant={fadeInUp}>

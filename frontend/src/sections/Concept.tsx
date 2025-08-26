@@ -28,6 +28,8 @@ export default function Concept() {
             srcBase="/photos/glasses"
             fallbackSrc="/photos/glasses.jpg"
             alt="Sélection de montures exposées, éclairage doux et matériaux premium."
+            width={4000}
+            height={6000}
             className="h-full w-full object-cover"
           />
         </AnimatedItem>
@@ -42,6 +44,8 @@ export default function Concept() {
             srcBase="/photos/romain"
             fallbackSrc="/photos/romain.jpg"
             alt="Romain en conseil client à la boutique, essayage de montures."
+            width={3644}
+            height={5466}
             className="h-full w-full object-cover"
           />
         </AnimatedItem>

@@ -55,10 +55,8 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <div aria-hidden={menuRendered}>
-        <MenuButton isOpen={menuActive} onClick={handleToggle} ref={buttonRef} />
-        {menuRendered && <FullScreenMenu isOpen={menuActive} onClose={handleClose} />}
-      </div>
+      <MenuButton isOpen={menuActive} onClick={handleToggle} ref={buttonRef} />
+      {menuRendered && <FullScreenMenu isOpen={menuActive} onClose={handleClose} />}
     </>
   );
 };

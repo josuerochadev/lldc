@@ -5,6 +5,22 @@
     @apply px-container-x py-container-y;
   }
 
+  /* Firefox performance optimizations */
+  @supports (-moz-appearance: none) {
+    /* Optimize animations for Firefox */
+    * {
+      will-change: auto;
+    }
+    
+    [style*="transform"] {
+      will-change: transform;
+    }
+    
+    [style*="opacity"] {
+      will-change: opacity;
+    }
+  }
+
   /* Background optimisé pour la section Services */
   .bg-forest {
     background-image: image-set(

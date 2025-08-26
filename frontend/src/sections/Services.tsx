@@ -49,10 +49,8 @@ export default function Services() {
               <Picture
                 srcBase={selected.imageBase}
                 alt={selected.title}
-                /* Si tu connais la dimension native de l’illustration, dé-commente :
-                 width={1200}
-                 height={900}
-                 */
+                width={857}
+                height={855}
                 sizes="(min-width: 1024px) 42vw, (min-width: 768px) 60vw, 90vw"
                 className="h-auto w-full object-contain"
               />

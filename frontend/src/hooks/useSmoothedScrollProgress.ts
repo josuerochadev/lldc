@@ -21,19 +21,27 @@ export function useSmoothedScrollProgress(smoothing = 0.05) {
     const animate = () => {
       setSmoothProgress((prev) => {
         const diff = target - prev;
-        if (Math.abs(diff) < 0.001) return target; // stop condition
+        if (Math.abs(diff) < 0.001) {
+          // Stop animation when close enough
+          return target;
+        }
+        // Continue animation only if there's a meaningful difference
+        animationFrame.current = requestAnimationFrame(animate);
         return prev + diff * smoothing;
       });
-      animationFrame.current = requestAnimationFrame(animate);
     };
 
-    animationFrame.current = requestAnimationFrame(animate);
+    // Only start animation if there's a difference
+    if (Math.abs(target - smoothProgress) > 0.001) {
+      animationFrame.current = requestAnimationFrame(animate);
+    }
+
     return () => {
       if (animationFrame.current !== undefined) {
         cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, [target, smoothing]);
+  }, [target, smoothing, smoothProgress]);
 
   return smoothProgress;
 }

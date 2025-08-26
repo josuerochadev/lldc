@@ -12,7 +12,7 @@ interface RippleAnimationProps extends ComponentPropsWithoutRef<'div'> {
 }
 
 const DEFAULTS = {
-  circleCount: 25,
+  circleCount: 15, // Reduced from 25 for Firefox performance
   baseSize: 300,
   baseOpacity: 0.3,
 };
