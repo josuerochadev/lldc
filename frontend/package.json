@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@dr.pogodin/react-helmet": "^3.0.2",
+    "@sentry/react": "^10.5.0",
+    "@sentry/vite-plugin": "^4.1.1",
     "@studio-freight/lenis": "^1.0.42",
     "clsx": "^2.1.1",
     "framer-motion": "^12.12.1",
