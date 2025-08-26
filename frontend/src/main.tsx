@@ -12,6 +12,11 @@ import App from './App';
 import { MotionProvider } from '@/a11y/MotionProvider';
 import ScrollToTop from '@/components/routing/ScrollToTop';
 import { loadFeatures } from '@/lib/loadMotionFeatures';
+import ErrorBoundary from '@/components/common/ErrorBoundary';
+import { validateEnvironment } from '@/lib/env';
+
+// Validate environment variables
+validateEnvironment();
 
 // Configuration Sentry
 if (import.meta.env.VITE_SENTRY_DSN) {
@@ -37,15 +42,17 @@ if (import.meta.env.VITE_SENTRY_DSN) {
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <HelmetProvider>
-        <MotionProvider>
-          <LazyMotion features={loadFeatures} strict>
-            <ScrollToTop />
-            <App />
-          </LazyMotion>
-        </MotionProvider>
-      </HelmetProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <HelmetProvider>
+          <MotionProvider>
+            <LazyMotion features={loadFeatures} strict>
+              <ScrollToTop />
+              <App />
+            </LazyMotion>
+          </MotionProvider>
+        </HelmetProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>,
 );

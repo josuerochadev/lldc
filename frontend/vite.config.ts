@@ -44,14 +44,33 @@ export default defineConfig(({ mode }) => {
       sourcemap: true, // Important pour Sentry
       rollupOptions: {
         output: {
-          // Compression sera gérée par le serveur web (Nginx/Apache)
-          // manualChunks pour optimiser le splitting
+          // Stratégie de chunking optimisée pour cache et performance
           manualChunks: {
+            // Core React (rarement mis à jour)
             vendor: ['react', 'react-dom'],
-            motion: ['framer-motion'],
+            
+            // Routing (change avec les features)
+            router: ['react-router-dom'],
+            
+            // Animation (gros module séparé)
+            motion: ['framer-motion', 'split-type'],
+            
+            // Forms (utilisé uniquement sur contact)
+            forms: ['react-hook-form'],
+            
+            // Monitoring (production uniquement)
+            sentry: ['@sentry/react'],
+            
+            // UI utilities (stable)
+            utils: ['clsx', '@dr.pogodin/react-helmet', 'tailwind-merge'],
+            
+            // Icons (chargés à la demande)
+            icons: ['lucide-react/dist/esm/icons/facebook', 'lucide-react/dist/esm/icons/instagram'],
           },
         },
       },
+      // Réduire le seuil d'avertissement pour forcer le splitting
+      chunkSizeWarningLimit: 300,
     },
   };
 });
