@@ -46,7 +46,12 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
  * <Footer variant="menu" className="text-purple" />
  * ```
  */
-export default function Footer({ className = '', variant = 'default', onLinkClick, ...rest }: FooterProps) {
+export default function Footer({
+  className = '',
+  variant = 'default',
+  onLinkClick,
+  ...rest
+}: FooterProps) {
   const isMenu = variant === 'menu';
 
   const footerLinkBase =
@@ -89,7 +94,8 @@ export default function Footer({ className = '', variant = 'default', onLinkClic
                 href="tel:+33388512440"
                 className={clsx(
                   footerLinkBase,
-                  !isMenu && 'text-lg font-bold text-orange hover:text-light-green hover:font-black',
+                  !isMenu &&
+                    'text-lg font-bold text-orange hover:font-black hover:text-light-green',
                 )}
               >
                 03&nbsp;88&nbsp;51&nbsp;24&nbsp;40

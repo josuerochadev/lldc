@@ -39,15 +39,12 @@ export function useActiveSection(
       // Trouve la section la plus visible
       const mostVisible = entries
         .filter((entry) => entry.isIntersecting)
-        .reduce<IntersectionObserverEntry | null>(
-          (max, entry) => {
-            if (!max || entry.intersectionRatio > max.intersectionRatio) {
-              return entry;
-            }
-            return max;
-          },
-          null,
-        );
+        .reduce<IntersectionObserverEntry | null>((max, entry) => {
+          if (!max || entry.intersectionRatio > max.intersectionRatio) {
+            return entry;
+          }
+          return max;
+        }, null);
 
       if (mostVisible) {
         setActiveSection(mostVisible.target.id);

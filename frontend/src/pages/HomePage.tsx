@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        title="Opticien à Strasbourg"
+        title="La Lunetterie du Coin - Opticien à Strasbourg"
         description="Montures neuves & d'occasion, conseils personnalisés, ajustage et services atelier à Strasbourg."
         canonicalPath="/"
       />

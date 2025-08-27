@@ -97,7 +97,7 @@ export const COMPANY_SHARE_CAPITAL = ''; // ex: "5 000 €"
 export const COMPANY_VAT = ''; // ex: "FRxx 817657752"
 
 // Contact
-export const COMPANY_EMAIL = 'contact@lalunetterieducoin.fr';
+export const COMPANY_EMAIL = 'strasbourg@lalunetterieducoin.fr';
 export const COMPANY_PHONE = '03 88 32 18 64';
 
 // Hébergeur
@@ -108,4 +108,5 @@ export const HOST_PHONE = '';
 // Médiation de la consommation
 export const MEDIATOR_NAME = 'Médiateur de la consommation';
 export const MEDIATOR_URL = 'https://www.economie.gouv.fr/mediation-conso';
-export const MEDIATOR_ADDRESS = 'Direction générale de la Concurrence, de la Consommation et de la Répression des fraudes';
+export const MEDIATOR_ADDRESS =
+  'Direction générale de la Concurrence, de la Consommation et de la Répression des fraudes';

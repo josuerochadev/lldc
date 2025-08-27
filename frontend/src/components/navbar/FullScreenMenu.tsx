@@ -76,7 +76,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
         {/* Groupe des liens principaux */}
         <section
           aria-label="Navigation principale"
-          className="flex flex-1 w-fit mx-auto items-center justify-center space-y-6 text-left sm:space-y-4"
+          className="mx-auto flex w-fit flex-1 items-center justify-center space-y-6 text-left sm:space-y-4"
         >
           <ul>
             {LINKS.map((link, i) => (

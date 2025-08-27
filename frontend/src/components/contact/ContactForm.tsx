@@ -76,7 +76,7 @@ export default function ContactForm() {
         }, 100);
       } else {
         setStatus('error');
-        
+
         // Try to get specific errors from response
         try {
           const errorData = await response.json();
@@ -95,7 +95,7 @@ export default function ContactForm() {
         } catch {
           setError('Une erreur est survenue. Vérifiez votre connexion ou réessayez plus tard.');
         }
-        
+
         setTimeout(() => {
           messageRef.current?.focus();
         }, 100);
@@ -103,13 +103,13 @@ export default function ContactForm() {
     } catch (err) {
       clearTimeout(timeoutId);
       setStatus('error');
-      
+
       if (err instanceof Error && err.name === 'AbortError') {
         setError('La requête a pris trop de temps. Vérifiez votre connexion et réessayez.');
       } else {
         setError('Impossible de contacter le serveur. Veuillez réessayer plus tard.');
       }
-      
+
       setTimeout(() => {
         messageRef.current?.focus();
       }, 100);
@@ -128,11 +128,18 @@ export default function ContactForm() {
         {status === 'error' && <div className="font-semibold text-red-700">{error}</div>}
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-word-gap lg:grid-cols-2" aria-busy={status === 'sending'}>
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 gap-word-gap lg:grid-cols-2"
+        aria-busy={status === 'sending'}
+      >
         {/* Champ Nom */}
         <div className="flex min-w-0 flex-col">
           <label htmlFor="name" className="mb-2">
-            Nom <span className="text-red-600" aria-label="requis">*</span>
+            Nom{' '}
+            <span className="text-red-600" aria-label="requis">
+              *
+            </span>
           </label>
           <input
             id="name"
@@ -156,7 +163,7 @@ export default function ContactForm() {
             onInput={(e) => {
               (e.currentTarget as HTMLInputElement).setCustomValidity('');
               if (fieldErrors.name) {
-                setFieldErrors(prev => ({ ...prev, name: undefined }));
+                setFieldErrors((prev) => ({ ...prev, name: undefined }));
               }
             }}
           />
@@ -173,7 +180,10 @@ export default function ContactForm() {
         {/* Champ Email */}
         <div className="flex min-w-0 flex-col">
           <label htmlFor="email" className="mb-2">
-            Email <span className="text-red-600" aria-label="requis">*</span>
+            Email{' '}
+            <span className="text-red-600" aria-label="requis">
+              *
+            </span>
           </label>
           <input
             id="email"
@@ -196,7 +206,7 @@ export default function ContactForm() {
             onInput={(e) => {
               (e.currentTarget as HTMLInputElement).setCustomValidity('');
               if (fieldErrors.email) {
-                setFieldErrors(prev => ({ ...prev, email: undefined }));
+                setFieldErrors((prev) => ({ ...prev, email: undefined }));
               }
             }}
           />
@@ -213,7 +223,10 @@ export default function ContactForm() {
         {/* Champ Message (ocupa a linha inteira em lg+) */}
         <div className="flex min-w-0 flex-col lg:col-span-2">
           <label htmlFor="message" className="mb-2">
-            Message <span className="text-red-600" aria-label="requis">*</span>
+            Message{' '}
+            <span className="text-red-600" aria-label="requis">
+              *
+            </span>
           </label>
           <textarea
             id="message"
@@ -222,7 +235,7 @@ export default function ContactForm() {
             required
             minLength={10}
             maxLength={1000}
-            className={`w-full rounded-btn border-2 p-4 font-serif tracking-wider resize-none ${
+            className={`w-full resize-none rounded-btn border-2 p-4 font-serif tracking-wider ${
               fieldErrors.message ? 'border-red-500' : 'border-purple'
             }`}
             placeholder="Votre message..."
@@ -237,7 +250,7 @@ export default function ContactForm() {
             onInput={(e) => {
               (e.currentTarget as HTMLTextAreaElement).setCustomValidity('');
               if (fieldErrors.message) {
-                setFieldErrors(prev => ({ ...prev, message: undefined }));
+                setFieldErrors((prev) => ({ ...prev, message: undefined }));
               }
             }}
           />

@@ -15,13 +15,13 @@ type LegalPageLayoutProps = {
 
 /**
  * Layout réutilisable pour les pages légales (Mentions légales, CGV, etc.)
- * 
+ *
  * Centralise la structure commune des pages légales avec :
  * - SEO optimisé
  * - Header avec navigation de retour
  * - Structure d'article accessible
  * - Date de mise à jour optionnelle
- * 
+ *
  * @component
  * @param {LegalPageLayoutProps} props - Les propriétés du composant
  * @returns {JSX.Element} Layout complet pour page légale
@@ -35,20 +35,18 @@ export default function LegalPageLayout({
 }: LegalPageLayoutProps) {
   return (
     <>
-      <Seo
-        title={title}
-        description={seoDescription}
-        canonicalPath={canonicalPath}
-      />
+      <Seo title={title} description={seoDescription} canonicalPath={canonicalPath} />
       <div className="relative z-base">
         <Layout>
-          <SectionContainer className="pt-section-md pb-section">
+          <SectionContainer className="pb-section pt-36">
             <PageHeader title={title} />
-            <article className="max-w-content space-y-section-gap">
+            <article className="mx-auto max-w-4xl space-y-16 px-8 text-text-base leading-relaxed">
               {lastUpdated && (
-                <p className="text-sm text-gray-600 border-l-4 border-gray-300 pl-4">
-                  <strong>Dernière mise à jour :</strong> {lastUpdated}
-                </p>
+                <div className="mb-2 border-l-4 border-dark-green py-2 pl-6">
+                  <p className="text-sm text-purple">
+                    <span className="font-semibold">Dernière mise à jour :</span> {lastUpdated}
+                  </p>
+                </div>
               )}
               {children}
             </article>
