@@ -11,12 +11,12 @@
     * {
       will-change: auto;
     }
-    
-    [style*="transform"] {
+
+    [style*='transform'] {
       will-change: transform;
     }
-    
-    [style*="opacity"] {
+
+    [style*='opacity'] {
       will-change: opacity;
     }
   }

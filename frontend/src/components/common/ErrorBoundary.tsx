@@ -64,15 +64,15 @@ export default class ErrorBoundary extends Component<Props, State> {
         <div className="flex min-h-screen flex-col items-center justify-center bg-violet px-4">
           <div className="mx-auto max-w-md text-center">
             <div className="mb-6">
-              <div className="mx-auto mb-4 h-16 w-16 rounded-full bg-orange/20 flex items-center justify-center">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange/20">
                 <span className="text-2xl">⚠️</span>
               </div>
               <h1 className="mb-4 text-title-md font-bold text-dark-green">
                 Oups ! Quelque chose s'est mal passé
               </h1>
               <p className="mb-6 text-text-base text-dark-green/80">
-                Une erreur inattendue s'est produite. Notre équipe a été automatiquement notifiée 
-                et nous travaillons pour résoudre le problème.
+                Une erreur inattendue s'est produite. Notre équipe a été automatiquement notifiée et
+                nous travaillons pour résoudre le problème.
               </p>
             </div>
 
@@ -85,7 +85,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               >
                 Recharger la page
               </Button>
-              
+
               <Button
                 variant="secondary"
                 onClick={this.handleGoHome}
@@ -99,9 +99,9 @@ export default class ErrorBoundary extends Component<Props, State> {
             <div className="mt-8 text-text-footer text-dark-green/60">
               <p>
                 Si le problème persiste, contactez-nous au{' '}
-                <a 
+                <a
                   href="tel:+33388512440"
-                  className="font-semibold text-orange hover:underline focus-style"
+                  className="focus-style font-semibold text-orange hover:underline"
                 >
                   03 88 51 24 40
                 </a>

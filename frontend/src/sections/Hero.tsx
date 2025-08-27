@@ -43,18 +43,16 @@ const Hero = forwardRef<HTMLElement>(() => {
     >
       {/* Logo avec effet parallax */}
       <AnimatedItem index={0} variant={fadeInUp}>
-        <m.button
-          type="button"
-          className="group mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)] cursor-pointer rounded-lg transition-transform duration-500 ease-out hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+        <m.div
+          className="mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)] transition-all duration-500 ease-out hover:drop-shadow-lg"
           style={{ y: logoY, scale: logoScale }}
-          aria-label="Logo La Lunetterie du Coin"
         >
           <LogoEye
             aria-hidden="true"
             focusable="false"
-            className="h-full w-full transition-all duration-500 group-hover:drop-shadow-lg"
+            className="h-full w-full"
           />
-        </m.button>
+        </m.div>
       </AnimatedItem>
 
       <div className="w-full space-y-section-gap">
@@ -66,7 +64,7 @@ const Hero = forwardRef<HTMLElement>(() => {
         {/* Titre - Animation non-bloquante pour LCP */}
         <AnimatedItem index={1.5} variant={fadeInUp} nonBlocking>
           <header>
-            <h1 id="hero-title" className="text-title-md" aria-label="La Lunetterie du Coin">
+            <h1 id="hero-title" className="text-title-md">
               <span className="font-thin">－</span>
               <span className="font-thin">LA</span>
               <span className="font-black">LUNETTERIE</span>
@@ -95,7 +93,7 @@ const Hero = forwardRef<HTMLElement>(() => {
       <AnimatedItem index={3} variant={fadeInUp}>
         <button
           type="button"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-500"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100 focus-ring-circular"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           aria-label="Faire défiler vers le bas"
         >

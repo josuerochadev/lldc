@@ -25,10 +25,14 @@ if (import.meta.env.VITE_SENTRY_DSN) {
     integrations: [
       Sentry.browserTracingIntegration(),
       // Replay seulement en production pour éviter le spam en dev
-      ...(import.meta.env.PROD ? [Sentry.replayIntegration({
-        maskAllText: false,
-        blockAllMedia: false,
-      })] : []),
+      ...(import.meta.env.PROD
+        ? [
+            Sentry.replayIntegration({
+              maskAllText: false,
+              blockAllMedia: false,
+            }),
+          ]
+        : []),
     ],
     tracesSampleRate: import.meta.env.DEV ? 1.0 : 0.1, // 100% en dev, 10% en prod
     replaysSessionSampleRate: import.meta.env.PROD ? 0.05 : 0,
@@ -37,7 +41,6 @@ if (import.meta.env.VITE_SENTRY_DSN) {
     debug: import.meta.env.DEV, // Logs Sentry en dev
   });
 }
-
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

@@ -41,10 +41,7 @@ export function validateEnvironment() {
 
   // Log warnings for missing optional variables
   if (missingOptional.length > 0) {
-    console.warn(
-      '⚠️ Missing optional environment variables:',
-      missingOptional.join(', ')
-    );
+    console.warn('⚠️ Missing optional environment variables:', missingOptional.join(', '));
     console.warn('Consider setting these for production deployment');
   }
 
@@ -52,7 +49,7 @@ export function validateEnvironment() {
   if (missingRequired.length > 0) {
     const message = `❌ Missing required environment variables: ${missingRequired.join(', ')}`;
     console.error(message);
-    
+
     if (import.meta.env.PROD) {
       throw new Error(message);
     }
