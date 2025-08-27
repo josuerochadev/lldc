@@ -98,7 +98,7 @@ export const COMPANY_VAT = ''; // ex: "FRxx 817657752"
 
 // Contact
 export const COMPANY_EMAIL = 'strasbourg@lalunetterieducoin.fr';
-export const COMPANY_PHONE = '03 88 32 18 64';
+export const COMPANY_PHONE = '03 88 51 24 40';
 
 // Hébergeur
 export const HOST_NAME = 'Vercel Inc.';

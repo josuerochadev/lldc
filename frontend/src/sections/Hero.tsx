@@ -1,6 +1,5 @@
 import { useState, forwardRef } from 'react';
 import { useTransform, useScroll, m } from 'framer-motion';
-import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
 import Calendar from 'lucide-react/dist/esm/icons/calendar';
 
 import AnimatedItem from '@/components/motion/AnimatedItem';
@@ -80,18 +79,6 @@ const Hero = forwardRef<HTMLElement>(() => {
           </Button>
         </AnimatedItem>
       </div>
-
-      {/* Indicateur de scroll animé */}
-      <AnimatedItem index={3} variant={fadeInUp}>
-        <button
-          type="button"
-          className="focus-ring-circular absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100"
-          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-          aria-label="Faire défiler vers le bas"
-        >
-          <ChevronDown className="h-6 w-6" />
-        </button>
-      </AnimatedItem>
     </SectionContainer>
   );
 });
