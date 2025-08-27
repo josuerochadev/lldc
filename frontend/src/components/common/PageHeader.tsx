@@ -12,7 +12,7 @@ export default function PageHeader({ title, backTo = '/' }: Props) {
       <nav aria-label="Fil d'Ariane" className="mt-8">
         <Link
           to={backTo}
-          className="focus-style inline-flex items-center gap-2 underline underline-offset-4 hover:no-underline"
+          className="focus-style inline-flex items-center underline-offset-8 transition-all duration-300 hover:underline"
           aria-label="Revenir à la page d'accueil"
         >
           ← Retour à l'accueil

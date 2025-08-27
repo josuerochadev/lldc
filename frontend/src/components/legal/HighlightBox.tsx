@@ -46,7 +46,10 @@ export default function HighlightBox({
   const style = variants[variant];
 
   return (
-    <div className={`${style.container} my-6 py-4 pl-6 ${className}`} role="note">
+    <div
+      className={`${style.container} my-6 py-4 pl-6 transition-all duration-300 hover:scale-[1.01] hover:shadow-sm ${className}`}
+      role="note"
+    >
       {title && <h4 className={`mb-3 ${style.title}`}>{title}</h4>}
       <div className={`${style.content} space-y-2`}>{children}</div>
     </div>

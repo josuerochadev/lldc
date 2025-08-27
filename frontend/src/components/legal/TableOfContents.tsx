@@ -1,5 +1,8 @@
 import type { MouseEvent } from 'react';
 
+import AnimatedItem from '@/components/motion/AnimatedItem';
+import { fadeInUp } from '@/components/motion/variants/fade';
+
 type TableOfContentsProps = {
   sections: Array<{
     id: string;
@@ -33,26 +36,32 @@ export default function TableOfContents({ sections, className = '' }: TableOfCon
   };
 
   return (
-    <nav aria-label="Table des matières" className={`mb-20 ${className}`}>
-      <h2 className="mb-8 font-serif text-title-lg font-bold text-purple">Sommaire</h2>
-      <ul className="space-y-6">
-        {sections.map((section, index) => (
-          <li key={section.id}>
-            <a
-              href={`#${section.id}`}
-              onClick={(e) => handleClick(e, section.id)}
-              className="focus-style group flex items-baseline gap-4 text-purple transition-all duration-200 focus:outline-none"
-            >
-              <span className="min-w-[2rem] text-title-sm font-thin">{index + 1}.</span>
-              <span className="flex flex-wrap gap-x-1">
-                <span className="font-futura text-title-sm font-bold tracking-wider transition-all duration-200 group-hover:tracking-widest">
-                  {section.title}
-                </span>
-              </span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <AnimatedItem index={2} variant={fadeInUp}>
+      <nav aria-label="Table des matières" className={`mb-20 ${className}`}>
+        <AnimatedItem index={2.2} variant={fadeInUp}>
+          <h2 className="mb-8 font-serif text-title-lg font-bold text-purple">Sommaire</h2>
+        </AnimatedItem>
+        <ul className="space-y-6">
+          {sections.map((section, index) => (
+            <AnimatedItem key={section.id} index={2.4 + index * 0.1} variant={fadeInUp}>
+              <li>
+                <a
+                  href={`#${section.id}`}
+                  onClick={(e) => handleClick(e, section.id)}
+                  className="focus-style group flex items-baseline gap-4 text-purple transition-all duration-200 focus:outline-none"
+                >
+                  <span className="min-w-[2rem] text-title-sm font-thin">{index + 1}.</span>
+                  <span className="flex flex-wrap gap-x-1">
+                    <span className="font-futura text-title-sm font-bold tracking-wider transition-all duration-200 group-hover:tracking-widest">
+                      {section.title}
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </AnimatedItem>
+          ))}
+        </ul>
+      </nav>
+    </AnimatedItem>
   );
 }
