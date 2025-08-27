@@ -25,6 +25,7 @@ export default function ScrollToTop() {
       left: 0,
       behavior: prm ? 'auto' : 'smooth',
     });
+
   }, [pathname, hash, prm]);
 
   return null;

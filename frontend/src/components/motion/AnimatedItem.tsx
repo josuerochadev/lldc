@@ -5,6 +5,7 @@ import { m, type Variants } from 'framer-motion';
 import { fadeInUp } from './variants/fade';
 
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { useLocation } from 'react-router-dom';
 
 export type AnimatedItemProps = {
   children: React.ReactNode;
@@ -44,6 +45,11 @@ export default function AnimatedItem({
 }: AnimatedItemProps) {
   const calculatedDelay = delay + index * DEFAULT_STAGGER;
   const reduce = usePrefersReducedMotion();
+  const location = useLocation();
+  
+  // Fix pour la home page : permettre aux animations de se rejouer après navigation
+  const shouldReplayOnce = location.pathname === '/' ? false : viewport.once ?? true;
+  const adjustedViewport = { ...viewport, once: shouldReplayOnce };
 
   // Mode accessibilité : pas d’animation
   if (reduce) return <div className={className}>{children}</div>;
@@ -75,7 +81,7 @@ export default function AnimatedItem({
     <m.div
       initial="hidden"
       whileInView="visible"
-      viewport={viewport}
+      viewport={adjustedViewport}
       variants={variant}
       transition={{
         type: 'spring',
