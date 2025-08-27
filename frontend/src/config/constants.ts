@@ -96,11 +96,16 @@ export const PUBLICATION_DIRECTOR = 'CORATO Romain-Guy';
 export const COMPANY_SHARE_CAPITAL = ''; // ex: "5 000 €"
 export const COMPANY_VAT = ''; // ex: "FRxx 817657752"
 
-// Contact (à compléter si publics)
-export const COMPANY_EMAIL = ''; // ex: "contact@lalunetterieducoin.fr"
-export const COMPANY_PHONE = ''; // ex: "03 XX XX XX XX"
+// Contact
+export const COMPANY_EMAIL = 'contact@lalunetterieducoin.fr';
+export const COMPANY_PHONE = '03 88 32 18 64';
 
-// Hébergeur (à compléter dès choix)
-export const HOST_NAME = '';
-export const HOST_ADDRESS = '';
+// Hébergeur
+export const HOST_NAME = 'Vercel Inc.';
+export const HOST_ADDRESS = '340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis';
 export const HOST_PHONE = '';
+
+// Médiation de la consommation
+export const MEDIATOR_NAME = 'Médiateur de la consommation';
+export const MEDIATOR_URL = 'https://www.economie.gouv.fr/mediation-conso';
+export const MEDIATOR_ADDRESS = 'Direction générale de la Concurrence, de la Consommation et de la Répression des fraudes';
