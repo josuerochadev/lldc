@@ -80,7 +80,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
             id={`offer-panel-${offer.id}`}
             aria-labelledby={`offer-title-${offer.id}`}
             className={cn(
-              'pointer-events-none absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500',
+              'pointer-events-none absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-primary/30 p-section-gap text-accent shadow-card backdrop-blur-2xl transition-all duration-500',
             )}
             initial={false}
             animate={{
@@ -90,7 +90,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
           >
             <h3
               id={`offer-title-${offer.id}`}
-              className="mb-4 text-left font-serif text-title-lg font-bold text-light-green transition-colors duration-200 group-hover:text-violet"
+              className="mb-4 text-left font-serif text-title-lg font-bold text-accent transition-colors duration-200 group-hover:text-accent"
             >
               {offer.title}
             </h3>
@@ -123,12 +123,12 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
                 <div
                   className={cn(
                     'max-w-[90%] whitespace-pre-line text-left text-text-base leading-snug',
-                    isOpen ? 'border-l-2 border-orange pl-4 font-medium' : 'text-violet/90',
+                    isOpen ? 'border-l-2 border-orange pl-4 font-medium' : 'text-accent/90',
                   )}
                 >
                   {isOpen ? (
                     <div className="space-y-2">
-                      <p className="text-sm font-semibold uppercase tracking-wide text-light-green">
+                      <p className="text-sm font-semibold uppercase tracking-wide text-accent">
                         Détails
                       </p>
                       <p>{offer.details}</p>
@@ -144,7 +144,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
                 </div>
               </m.div>
             </AnimatePresence>
-            <div className="mt-auto flex items-center justify-center gap-2 transition-colors duration-200 group-hover:text-light-green">
+            <div className="mt-auto flex items-center justify-center gap-2 transition-colors duration-200 group-hover:text-accent">
               <span className="text-text-footer font-medium">
                 {isOpen ? 'Réduire' : 'En savoir plus'}
               </span>

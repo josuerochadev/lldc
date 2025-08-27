@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
-import PageHeader from '@/components/common/PageHeader';
+import PageHeader from '@/components/legal/PageHeader';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 import { fadeInUp } from '@/components/motion/variants/fade';
 import { Seo } from '@/seo/Seo';
@@ -47,8 +47,8 @@ export default function LegalPageLayout({
             <article className="mx-auto max-w-4xl space-y-16 px-8 text-text-base leading-relaxed">
               {lastUpdated && (
                 <AnimatedItem index={1} variant={fadeInUp}>
-                  <div className="mb-2 border-l-4 border-dark-green py-2 pl-6">
-                    <p className="text-sm text-purple">
+                  <div className="border-dark-green mb-2 border-l-4 py-2 pl-6">
+                    <p className="text-sm text-primary">
                       <span className="font-semibold">Dernière mise à jour :</span> {lastUpdated}
                     </p>
                   </div>

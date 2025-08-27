@@ -1,7 +1,7 @@
 // src/pages/NotFound.tsx
 import Layout from '@/components/common/Layout';
 import SectionContainer from '@/components/common/SectionContainer';
-import PageHeader from '@/components/common/PageHeader';
+import PageHeader from '@/components/legal/PageHeader';
 
 export default function NotFound() {
   return (

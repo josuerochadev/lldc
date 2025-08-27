@@ -34,7 +34,7 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
         role="tabpanel"
         id={`tabpanel-${service.title.replace(/\s+/g, '-').toLowerCase()}`}
         className={cn(
-          'group relative flex w-[clamp(18rem,42vw,120rem)] flex-col self-center rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl',
+          'group relative flex w-[clamp(18rem,42vw,120rem)] flex-col self-center rounded-card bg-primary/30 p-section-gap text-accent shadow-card backdrop-blur-2xl',
           className,
         )}
         initial={{ opacity: 0, x: 30 }}
@@ -45,7 +45,7 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
       >
         <m.h3
           id={`service-title-${service.title.replace(/\s+/g, '-').toLowerCase()}`}
-          className="mb-4 text-left font-serif text-title-lg font-bold text-light-green transition-colors duration-200 group-hover:text-violet"
+          className="mb-4 text-left font-serif text-title-lg font-bold text-accent transition-colors duration-200 group-hover:text-accent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -54,7 +54,7 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
         </m.h3>
 
         <m.p
-          className="text-text-base leading-relaxed tracking-wide text-violet/90"
+          className="text-text-base leading-relaxed tracking-wide text-accent/90"
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}

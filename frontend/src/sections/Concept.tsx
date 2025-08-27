@@ -59,8 +59,8 @@ export default function Concept() {
             height={6000}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-green/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <div className="absolute bottom-0 left-0 right-0 translate-y-full transform p-6 text-violet transition-transform duration-300 group-hover:translate-y-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute bottom-0 left-0 right-0 translate-y-full transform p-6 text-accent transition-transform duration-300 group-hover:translate-y-0">
             <h3 className="mb-2 font-serif text-title-sm font-black">Notre Sélection</h3>
             <p className="text-text-footer font-medium leading-snug">
               Montures neuves et d'occasion soigneusement choisies pour allier style et durabilité.
@@ -82,8 +82,8 @@ export default function Concept() {
             height={5466}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-green/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <div className="absolute bottom-0 left-0 right-0 translate-y-full transform p-6 text-violet transition-transform duration-300 group-hover:translate-y-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute bottom-0 left-0 right-0 translate-y-full transform p-6 text-accent transition-transform duration-300 group-hover:translate-y-0">
             <h3 className="mb-2 font-serif text-title-sm font-black">L'Expertise Romain</h3>
             <p className="text-text-footer font-medium leading-snug">
               Conseil personnalisé et passion de l'optique depuis plus de 10 ans à Strasbourg.

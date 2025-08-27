@@ -69,7 +69,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       id="main-menu"
       aria-label="Navigation principale"
       tabIndex={-1}
-      className="fixed inset-0 z-menu flex min-h-dvh touch-pan-y flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
+      className="fixed inset-0 z-menu flex min-h-dvh touch-pan-y flex-col overflow-y-auto bg-accent/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
     >
       {/* Wrapper pour le menu - inclut maintenant le footer */}
       <div ref={menuRef} className="flex w-full flex-1 flex-col">
@@ -103,7 +103,7 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
             variant={fadeInDown}
             className="p-section-gap"
           >
-            <Footer variant="menu" className="text-purple" onLinkClick={onClose} />
+            <Footer variant="menu" className="text-primary" onLinkClick={onClose} />
           </AnimatedItem>
         </footer>
       </div>

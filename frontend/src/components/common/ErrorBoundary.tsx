@@ -62,16 +62,16 @@ export default class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-violet px-4">
+        <div className="flex min-h-screen flex-col items-center justify-center bg-accent px-4">
           <div className="mx-auto max-w-md text-center">
             <div className="mb-6">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange/20">
                 <span className="text-2xl">⚠️</span>
               </div>
-              <h1 className="mb-4 text-title-md font-bold text-dark-green">
+              <h1 className="mb-4 text-title-md font-bold text-primary">
                 Oups ! Quelque chose s'est mal passé
               </h1>
-              <p className="mb-6 text-text-base text-dark-green/80">
+              <p className="mb-6 text-text-base text-primary/80">
                 Une erreur inattendue s'est produite. Notre équipe a été automatiquement notifiée et
                 nous travaillons pour résoudre le problème.
               </p>
@@ -97,7 +97,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               </Button>
             </div>
 
-            <div className="mt-8 text-text-footer text-dark-green/60">
+            <div className="mt-8 text-text-footer text-primary/60">
               <p>
                 Si le problème persiste, contactez-nous au{' '}
                 <a
@@ -111,10 +111,10 @@ export default class ErrorBoundary extends Component<Props, State> {
 
             {import.meta.env.DEV && this.state.error && (
               <details className="mt-6 text-left">
-                <summary className="cursor-pointer text-sm text-dark-green/60">
+                <summary className="cursor-pointer text-sm text-primary/60">
                   Détails de l'erreur (dev uniquement)
                 </summary>
-                <pre className="mt-2 whitespace-pre-wrap rounded bg-dark-green/10 p-3 text-xs text-dark-green">
+                <pre className="mt-2 whitespace-pre-wrap rounded bg-primary/10 p-3 text-xs text-primary">
                   {this.state.error.toString()}
                 </pre>
               </details>

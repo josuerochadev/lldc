@@ -19,18 +19,21 @@ const config: Config = {
     extend: {
       /* ====== COLORS ====== */
       colors: {
+        /* ===== PALETTE BICOLORE ===== */
         orange: withOpacity('--color-orange-rgb') as unknown as string,
-        purple: withOpacity('--color-purple-rgb') as unknown as string,
-        violet: withOpacity('--color-violet-rgb') as unknown as string,
-        'dark-green': withOpacity('--color-dark-green-rgb') as unknown as string,
-        'light-green': withOpacity('--color-light-green-rgb') as unknown as string,
+        'mauve-dark': withOpacity('--color-mauve-dark-rgb') as unknown as string,
+        'violet-light': withOpacity('--color-violet-light-rgb') as unknown as string,
 
-        /* Aliases sémantiques (migration progressive) */
-        brand: withOpacity('--color-purple-rgb') as unknown as string,
-        accent: withOpacity('--color-orange-rgb') as unknown as string,
-        success: withOpacity('--color-light-green-rgb') as unknown as string,
-        surface: withOpacity('--color-violet-rgb') as unknown as string,
-        ink: withOpacity('--color-dark-green-rgb') as unknown as string,
+        /* Aliases sémantiques */
+        brand: withOpacity('--color-orange-rgb') as unknown as string,           // Orange = marque principale
+        text: withOpacity('--color-mauve-dark-rgb') as unknown as string,        // Mauve foncé = texte
+        'text-muted': withOpacity('--color-mauve-dark-rgb') as unknown as string, // Mauve foncé avec opacité
+        surface: withOpacity('--color-violet-light-rgb') as unknown as string,   // Violet très clair = surfaces
+        
+        /* Aliases fonctionnels */
+        primary: withOpacity('--color-mauve-dark-rgb') as unknown as string,     // Actions primaires (mauve foncé)
+        accent: withOpacity('--color-violet-light-rgb') as unknown as string,    // Accents subtils (violet clair)
+        background: withOpacity('--color-orange-rgb') as unknown as string,      // Fond principal
       },
 
       /* ====== TYPO ====== */

@@ -30,7 +30,7 @@ export default function Services() {
   return (
     <SectionContainer
       id="services"
-      className="bg-forest relative text-violet shadow-xl"
+      className="bg-forest relative text-accent shadow-xl"
       overlayClassName="bg-transparent"
     >
       <SectionTitle title="Nos Services" />

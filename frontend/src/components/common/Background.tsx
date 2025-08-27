@@ -49,7 +49,7 @@ const Background = memo(function Background() {
       <div className="absolute inset-0 bg-[rgb(var(--color-orange-rgb))]" />
 
       <div className="absolute inset-0 bg-[radial-gradient(1000px_700px_at_80%_20%,rgba(0,0,0,0.10),transparent_60%)]" />
-      <div className="absolute bottom-[10%] right-[15%] z-base h-[400px] w-[400px] rounded-full bg-light-green opacity-10 blur-[100px]" />
+      <div className="absolute bottom-[10%] right-[15%] z-base h-[400px] w-[400px] rounded-full bg-accent opacity-10 blur-[100px]" />
       <RippleAnimation className="z-0" scrollProgress={scrollProgress} />
     </div>
   );

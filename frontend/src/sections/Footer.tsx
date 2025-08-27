@@ -43,7 +43,7 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
  * <Footer />
  *
  * // Footer dans menu
- * <Footer variant="menu" className="text-purple" />
+ * <Footer variant="menu" className="text-primary" />
  * ```
  */
 export default function Footer({
@@ -63,7 +63,7 @@ export default function Footer({
       {...rest}
       className={clsx(
         'relative z-10 w-full',
-        isMenu ? 'bg-transparent py-2 text-center text-purple' : 'bg-purple text-violet',
+        isMenu ? 'bg-transparent py-2 text-center text-primary' : 'bg-primary text-accent',
         className,
       )}
     >
@@ -94,8 +94,7 @@ export default function Footer({
                 href="tel:+33388512440"
                 className={clsx(
                   footerLinkBase,
-                  !isMenu &&
-                    'text-lg font-bold text-orange hover:font-black hover:text-light-green',
+                  !isMenu && 'text-lg font-bold text-orange hover:font-black hover:text-primary',
                 )}
               >
                 03&nbsp;88&nbsp;51&nbsp;24&nbsp;40
@@ -123,7 +122,7 @@ export default function Footer({
                   <a
                     key={social.href}
                     href={social.href}
-                    className={clsx(footerLinkBase, isMenu && 'text-purple hover:text-orange')}
+                    className={clsx(footerLinkBase, isMenu && 'text-primary hover:text-orange')}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
@@ -149,7 +148,7 @@ export default function Footer({
                   key={link.href}
                   className={clsx(
                     footerLinkBase,
-                    isMenu && 'text-sm text-purple hover:text-orange',
+                    isMenu && 'text-sm text-primary hover:text-orange',
                   )}
                   to={link.href}
                   onClick={onLinkClick} // Ferme le menu si callback fourni

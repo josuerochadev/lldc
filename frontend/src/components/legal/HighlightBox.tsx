@@ -28,18 +28,18 @@ export default function HighlightBox({
   const variants = {
     info: {
       container: 'border-l-2 border-dark-green',
-      title: 'text-purple font-semibold',
-      content: 'text-purple',
+      title: 'text-primary font-semibold',
+      content: 'text-primary',
     },
     warning: {
       container: 'border-l-2 border-orange',
-      title: 'text-purple font-semibold',
-      content: 'text-purple',
+      title: 'text-primary font-semibold',
+      content: 'text-primary',
     },
     important: {
       container: 'border-l-2 border-dark-green',
-      title: 'text-purple font-bold',
-      content: 'text-purple font-medium',
+      title: 'text-primary font-bold',
+      content: 'text-primary font-medium',
     },
   };
 

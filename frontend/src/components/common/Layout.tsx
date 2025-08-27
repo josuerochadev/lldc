@@ -18,7 +18,7 @@ type LayoutProps = {
  */
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="relative min-h-screen text-purple">
+    <div className="relative min-h-screen text-primary">
       {/* Fond site-wide */}
       <Background />
 

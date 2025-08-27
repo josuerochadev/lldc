@@ -28,7 +28,7 @@ export default function ConditionsDeVente() {
         <section className="space-y-8">
           <h2
             id="introduction"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Fabrication et qualité
@@ -41,7 +41,7 @@ export default function ConditionsDeVente() {
             </p>
 
             <HighlightBox title="Services gratuits inclus" variant="info">
-              <ul className="space-y-2 text-purple">
+              <ul className="space-y-2 text-primary">
                 <li>
                   • <strong>Ajustages</strong> personnalisés
                 </li>
@@ -61,7 +61,7 @@ export default function ConditionsDeVente() {
         <section className="space-y-8">
           <h2
             id="politique-retour"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Politique de retour
@@ -71,18 +71,18 @@ export default function ConditionsDeVente() {
             <div className="space-y-3">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div className="text-center">
-                  <p className="text-lg font-bold text-purple">0</p>
-                  <p className="text-sm text-purple/80">
+                  <p className="text-lg font-bold text-primary">0</p>
+                  <p className="text-sm text-primary/80">
                     droit de rétractation pour produits personnalisés
                   </p>
                 </div>
                 <div className="text-center">
-                  <p className="text-lg font-bold text-purple">30</p>
-                  <p className="text-sm text-purple/80">jours pour retours produits neufs</p>
+                  <p className="text-lg font-bold text-primary">30</p>
+                  <p className="text-sm text-primary/80">jours pour retours produits neufs</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-lg font-bold text-purple">✗</p>
-                  <p className="text-sm text-purple/80">montures personnalisées non retournables</p>
+                  <p className="text-lg font-bold text-primary">✗</p>
+                  <p className="text-sm text-primary/80">montures personnalisées non retournables</p>
                 </div>
               </div>
             </div>
@@ -110,7 +110,7 @@ export default function ConditionsDeVente() {
         <section className="space-y-8">
           <h2
             id="changement-puissance"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Changement de puissance des verres
@@ -125,17 +125,17 @@ export default function ConditionsDeVente() {
             <HighlightBox title="Tarifs des franchises" variant="info">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="p-4 text-center">
-                  <p className="text-2xl font-bold text-purple">90€</p>
-                  <p className="font-semibold text-purple">Verres progressifs</p>
-                  <p className="text-sm text-purple/80">Franchise appliquée</p>
+                  <p className="text-2xl font-bold text-primary">90€</p>
+                  <p className="font-semibold text-primary">Verres progressifs</p>
+                  <p className="text-sm text-primary/80">Franchise appliquée</p>
                 </div>
                 <div className="p-4 text-center">
-                  <p className="text-2xl font-bold text-purple">45€</p>
-                  <p className="font-semibold text-purple">Verres unifocaux</p>
-                  <p className="text-sm text-purple/80">Franchise appliquée</p>
+                  <p className="text-2xl font-bold text-primary">45€</p>
+                  <p className="font-semibold text-primary">Verres unifocaux</p>
+                  <p className="text-sm text-primary/80">Franchise appliquée</p>
                 </div>
               </div>
-              <p className="mt-4 text-center text-sm text-purple/80">
+              <p className="mt-4 text-center text-sm text-primary/80">
                 <strong>Délai :</strong> 30 jours après livraison
               </p>
             </HighlightBox>
@@ -147,7 +147,7 @@ export default function ConditionsDeVente() {
         <section className="space-y-8">
           <h2
             id="reglement"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Règlement par chèque et tiers payant
@@ -155,12 +155,12 @@ export default function ConditionsDeVente() {
 
           <div className="space-y-4">
             <p className="text-text-base leading-relaxed">
-              <strong className="font-semibold text-purple">Règlement par chèque :</strong>
+              <strong className="font-semibold text-primary">Règlement par chèque :</strong>
               <br />
               Accepté sur présentation d'une pièce d'identité concordante.
             </p>
             <p className="text-text-base leading-relaxed">
-              <strong className="font-semibold text-purple">Tiers payant :</strong>
+              <strong className="font-semibold text-primary">Tiers payant :</strong>
               <br />
               Nous nous réservons le droit d'annuler le règlement par tiers payant.
             </p>
@@ -172,14 +172,14 @@ export default function ConditionsDeVente() {
         <section className="space-y-8">
           <h2
             id="offres-commerciales"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Offres commerciales
           </h2>
 
           <HighlightBox title="Conditions importantes" variant="important">
-            <p className="text-purple">
+            <p className="text-primary">
               Ces offres ne sont pas cumulables avec d'autres promotions exceptionnelles et sont
               soumises aux conditions détaillées ci-dessous.
             </p>
@@ -187,43 +187,43 @@ export default function ConditionsDeVente() {
 
           <div className="space-y-8">
             <div>
-              <h3 className="mb-4 text-title-sm font-bold text-purple">01. Remise à la reprise</h3>
-              <div className="space-y-3 border-l-2 border-dark-green pl-6">
+              <h3 className="mb-4 text-title-sm font-bold text-primary">01. Remise à la reprise</h3>
+              <div className="border-dark-green space-y-3 border-l-2 pl-6">
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Limitation :</strong> une monture par transaction
+                  <strong className="text-primary">Limitation :</strong> une monture par transaction
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Condition :</strong> valable uniquement avec
+                  <strong className="text-primary">Condition :</strong> valable uniquement avec
                   l'achat d'un équipement de classe B
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Cumul :</strong> non cumulable avec d'autres
+                  <strong className="text-primary">Cumul :</strong> non cumulable avec d'autres
                   promotions exceptionnelles
                 </p>
               </div>
             </div>
 
             <div>
-              <h3 className="mb-4 text-title-sm font-bold text-purple">02. Seconde paire</h3>
-              <div className="space-y-3 border-l-2 border-dark-green pl-6">
+              <h3 className="mb-4 text-title-sm font-bold text-primary">02. Seconde paire</h3>
+              <div className="border-dark-green space-y-3 border-l-2 pl-6">
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Tarification :</strong> valable sur la monture la
+                  <strong className="text-primary">Tarification :</strong> valable sur la monture la
                   moins coûteuse
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Condition :</strong> pour l'achat d'un équipement
+                  <strong className="text-primary">Condition :</strong> pour l'achat d'un équipement
                   de classe B
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Cumul :</strong> cumulable avec la remise à la
+                  <strong className="text-primary">Cumul :</strong> cumulable avec la remise à la
                   reprise
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Exclusions :</strong> non valable pour double
+                  <strong className="text-primary">Exclusions :</strong> non valable pour double
                   équipement Komono et Myorelax
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-purple">Options (+40€) :</strong> polarisation solaires ou
+                  <strong className="text-primary">Options (+40€) :</strong> polarisation solaires ou
                   double CozyLens
                 </p>
               </div>

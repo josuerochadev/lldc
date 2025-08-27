@@ -2,12 +2,12 @@
 @layer components {
   /* Focus utilitaire unifié */
   .focus-ring:focus-visible {
-    @apply rounded-sm outline-none ring-2 ring-light-green ring-offset-2;
+    @apply rounded-sm outline-none ring-2 ring-accent ring-offset-2;
   }
 
   /* Focus pour boutons circulaires */
   .focus-ring-circular:focus-visible {
-    @apply rounded-full outline-none ring-2 ring-light-green ring-offset-4;
+    @apply rounded-full outline-none ring-2 ring-accent ring-offset-4;
   }
 
   /* Accessibilité : utile pour les labels visuels non visibles */

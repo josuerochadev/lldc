@@ -46,7 +46,7 @@ export default function MentionsLegales() {
           <section className="space-y-8">
             <h2
               id="editeur"
-              className="font-serif text-title-lg font-bold text-purple"
+              className="font-serif text-title-lg font-bold text-primary"
               tabIndex={-1}
             >
               Éditeur du site
@@ -56,14 +56,14 @@ export default function MentionsLegales() {
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <p className="text-text-base leading-relaxed">
-                    <strong className="font-semibold text-purple">Nom :</strong>
+                    <strong className="font-semibold text-primary">Nom :</strong>
                     <br />
                     {COMPANY_NAME}
                   </p>
                 </div>
                 <div>
                   <p className="text-text-base leading-relaxed">
-                    <strong className="font-semibold text-purple">Forme juridique :</strong>
+                    <strong className="font-semibold text-primary">Forme juridique :</strong>
                     <br />
                     {COMPANY_LEGAL_FORM}{' '}
                     {COMPANY_SHARE_CAPITAL ? `(capital social : ${COMPANY_SHARE_CAPITAL})` : ''}
@@ -73,21 +73,21 @@ export default function MentionsLegales() {
 
               <div className="space-y-3 pt-4">
                 <p className="text-text-base leading-relaxed">
-                  <strong className="font-semibold text-purple">Siège social :</strong>
+                  <strong className="font-semibold text-primary">Siège social :</strong>
                   <br />
                   {COMPANY_ADDRESS}
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="font-semibold text-purple">SIRET :</strong> {COMPANY_SIRET}
+                  <strong className="font-semibold text-primary">SIRET :</strong> {COMPANY_SIRET}
                   <span className="mx-4">•</span>
-                  <strong className="font-semibold text-purple">RCS :</strong> {COMPANY_RCS}
+                  <strong className="font-semibold text-primary">RCS :</strong> {COMPANY_RCS}
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="font-semibold text-purple">TVA intracommunautaire :</strong>{' '}
+                  <strong className="font-semibold text-primary">TVA intracommunautaire :</strong>{' '}
                   {COMPANY_VAT || 'N/A'}
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="font-semibold text-purple">
+                  <strong className="font-semibold text-primary">
                     Directeur de la publication :
                   </strong>{' '}
                   {PUBLICATION_DIRECTOR}
@@ -100,28 +100,28 @@ export default function MentionsLegales() {
 
       <AnimatedItem index={5} variant={fadeInUp}>
         <section className="space-y-8">
-          <h2 id="contact" className="font-serif text-title-lg font-bold text-purple" tabIndex={-1}>
+          <h2 id="contact" className="font-serif text-title-lg font-bold text-primary" tabIndex={-1}>
             Contact
           </h2>
 
           <HighlightBox title="Nous contacter" variant="info">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <p className="text-purple">
+              <p className="text-primary">
                 <strong>Email :</strong>
                 <br />
                 <a
                   href={`mailto:${COMPANY_EMAIL}`}
-                  className="font-normal text-purple underline underline-offset-2 transition-all hover:font-semibold"
+                  className="font-normal text-primary underline underline-offset-2 transition-all hover:font-semibold"
                 >
                   {COMPANY_EMAIL}
                 </a>
               </p>
-              <p className="text-purple">
+              <p className="text-primary">
                 <strong>Téléphone :</strong>
                 <br />
                 <a
                   href={`tel:${COMPANY_PHONE}`}
-                  className="font-normal text-purple underline underline-offset-2 transition-all hover:font-semibold"
+                  className="font-normal text-primary underline underline-offset-2 transition-all hover:font-semibold"
                 >
                   {COMPANY_PHONE}
                 </a>
@@ -135,7 +135,7 @@ export default function MentionsLegales() {
         <section className="space-y-8">
           <h2
             id="hebergeur"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Hébergeur
@@ -143,9 +143,9 @@ export default function MentionsLegales() {
 
           <div className="space-y-3">
             <p className="text-text-base leading-relaxed">
-              <strong className="font-semibold text-purple">{HOST_NAME}</strong>
+              <strong className="font-semibold text-primary">{HOST_NAME}</strong>
             </p>
-            <p className="text-text-base leading-relaxed text-purple/80">{HOST_ADDRESS}</p>
+            <p className="text-text-base leading-relaxed text-primary/80">{HOST_ADDRESS}</p>
           </div>
         </section>
       </AnimatedItem>
@@ -154,7 +154,7 @@ export default function MentionsLegales() {
         <section className="space-y-8">
           <h2
             id="propriete-intellectuelle"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Propriété intellectuelle
@@ -172,7 +172,7 @@ export default function MentionsLegales() {
         <section className="space-y-8">
           <h2
             id="donnees-personnelles"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Données personnelles & cookies
@@ -190,7 +190,7 @@ export default function MentionsLegales() {
         <section className="space-y-8">
           <h2
             id="mediation"
-            className="font-serif text-title-lg font-bold text-purple"
+            className="font-serif text-title-lg font-bold text-primary"
             tabIndex={-1}
           >
             Médiation de la consommation
@@ -203,16 +203,16 @@ export default function MentionsLegales() {
 
           <HighlightBox title="Médiateur compétent" variant="important">
             <div className="space-y-3">
-              <p className="font-medium text-purple">
+              <p className="font-medium text-primary">
                 <strong>{MEDIATOR_NAME}</strong>
               </p>
-              <p className="leading-relaxed text-purple/80">{MEDIATOR_ADDRESS}</p>
+              <p className="leading-relaxed text-primary/80">{MEDIATOR_ADDRESS}</p>
               <p>
                 <a
                   href={MEDIATOR_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-purple underline underline-offset-2 transition-all hover:font-semibold"
+                  className="font-medium text-primary underline underline-offset-2 transition-all hover:font-semibold"
                 >
                   Plus d'informations sur la médiation →
                 </a>

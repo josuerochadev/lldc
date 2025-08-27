@@ -46,9 +46,9 @@ export default function AnimatedItem({
   const calculatedDelay = delay + index * DEFAULT_STAGGER;
   const reduce = usePrefersReducedMotion();
   const location = useLocation();
-  
+
   // Fix pour la home page : permettre aux animations de se rejouer après navigation
-  const shouldReplayOnce = location.pathname === '/' ? false : viewport.once ?? true;
+  const shouldReplayOnce = location.pathname === '/' ? false : (viewport.once ?? true);
   const adjustedViewport = { ...viewport, once: shouldReplayOnce };
 
   // Mode accessibilité : pas d’animation

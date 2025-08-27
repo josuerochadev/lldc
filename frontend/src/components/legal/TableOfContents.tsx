@@ -39,7 +39,7 @@ export default function TableOfContents({ sections, className = '' }: TableOfCon
     <AnimatedItem index={2} variant={fadeInUp}>
       <nav aria-label="Table des matières" className={`mb-20 ${className}`}>
         <AnimatedItem index={2.2} variant={fadeInUp}>
-          <h2 className="mb-8 font-serif text-title-lg font-bold text-purple">Sommaire</h2>
+          <h2 className="mb-8 font-serif text-title-lg font-bold text-primary">Sommaire</h2>
         </AnimatedItem>
         <ul className="space-y-6">
           {sections.map((section, index) => (
@@ -48,7 +48,7 @@ export default function TableOfContents({ sections, className = '' }: TableOfCon
                 <a
                   href={`#${section.id}`}
                   onClick={(e) => handleClick(e, section.id)}
-                  className="focus-style group flex items-baseline gap-4 text-purple transition-all duration-200 focus:outline-none"
+                  className="focus-style group flex items-baseline gap-4 text-primary transition-all duration-200 focus:outline-none"
                 >
                   <span className="min-w-[2rem] text-title-sm font-thin">{index + 1}.</span>
                   <span className="flex flex-wrap gap-x-1">

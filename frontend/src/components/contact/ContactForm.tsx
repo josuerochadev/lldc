@@ -123,7 +123,7 @@ export default function ContactForm() {
       {/* Área de mensagens (status/sucesso/erro) */}
       <div ref={messageRef} tabIndex={-1} aria-live="polite" className="mb-flow outline-none">
         {status === 'success' && (
-          <div className="font-semibold text-green-700">✅ Votre message a bien été envoyé !</div>
+          <div className="font-semibold text-primary">✅ Votre message a bien été envoyé !</div>
         )}
         {status === 'error' && <div className="font-semibold text-red-700">{error}</div>}
       </div>
@@ -149,7 +149,7 @@ export default function ContactForm() {
             minLength={2}
             maxLength={50}
             className={`w-full rounded-btn border-2 p-4 font-serif tracking-wider ${
-              fieldErrors.name ? 'border-red-500' : 'border-purple'
+              fieldErrors.name ? 'border-red-500' : 'border-primary'
             }`}
             placeholder="Votre nom"
             autoComplete="name"
@@ -192,7 +192,7 @@ export default function ContactForm() {
             required
             maxLength={64}
             className={`w-full rounded-btn border-2 p-4 font-serif tracking-wider ${
-              fieldErrors.email ? 'border-red-500' : 'border-purple'
+              fieldErrors.email ? 'border-red-500' : 'border-primary'
             }`}
             placeholder="Votre email"
             autoComplete="email"
@@ -236,7 +236,7 @@ export default function ContactForm() {
             minLength={10}
             maxLength={1000}
             className={`w-full resize-none rounded-btn border-2 p-4 font-serif tracking-wider ${
-              fieldErrors.message ? 'border-red-500' : 'border-purple'
+              fieldErrors.message ? 'border-red-500' : 'border-primary'
             }`}
             placeholder="Votre message..."
             autoComplete="message"
