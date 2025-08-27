@@ -38,8 +38,14 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
             aria-expanded={isOpen}
             aria-controls="main-menu"
             className="menu-toggle-button focus-style hover:font-bold"
+            data-state={isOpen ? 'open' : 'closed'}
           >
-            {isOpen ? 'Fermer' : 'Menu'}
+            <div className="menu-toggle-icon">
+              <span className="menu-toggle-bar menu-toggle-bar--top" />
+              <span className="menu-toggle-bar menu-toggle-bar--middle" />
+              <span className="menu-toggle-bar menu-toggle-bar--bottom" />
+            </div>
+            <span className="ml-2">{isOpen ? 'Fermer' : 'Menu'}</span>
           </button>
         </AnimatedItem>
       </div>

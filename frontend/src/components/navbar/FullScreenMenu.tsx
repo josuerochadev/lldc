@@ -49,11 +49,17 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       if (e.key === 'Escape') onClose();
     }
 
-    // Gestion du focus à l’ouverture
+    // Gestion du focus à l'ouverture
     menuRef.current?.focus();
 
+    // Empêche le scroll du body quand le menu est ouvert
+    document.body.style.overflow = 'hidden';
+
     document.addEventListener('keydown', handleEscape);
-    return () => document.removeEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -63,21 +69,21 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       id="main-menu"
       aria-label="Navigation principale"
       tabIndex={-1}
-      className="fixed inset-0 z-menu flex min-h-dvh flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
+      className="fixed inset-0 z-menu flex min-h-dvh flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px] touch-pan-y"
     >
       {/* Wrapper pour le menu */}
       <div ref={menuRef} className="flex w-full flex-1 flex-col items-center justify-center">
         {/* Groupe des liens principaux */}
-        <section aria-label="Navigation principale" className="w-fit space-y-4 text-left">
+        <section aria-label="Navigation principale" className="w-fit space-y-6 text-left sm:space-y-4">
           <ul>
             {LINKS.map((link, i) => (
-              <li key={link.href}>
+              <li key={link.href} className="touch-manipulation">
                 <AnimatedItem
                   key={link.href}
                   index={i}
                   duration={0.4}
                   variant={fadeInDown}
-                  className="block"
+                  className="block py-2 sm:py-0"
                 >
                   <MenuLinkItem {...link} index={i} onClick={onClose} />
                 </AnimatedItem>
