@@ -48,14 +48,9 @@
     }
   }
 
-  /* Bouton principal - Style touche clavier */
+  /* Bouton principal - Style glassmorphism moderne */
   .button-primary {
-    @apply inline-flex items-center justify-center px-btn-x py-btn-y text-body-lg font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
-
-    /* Variables pour les animations */
-    --key-press-distance: 3px;
-    --key-shadow-blur: 8px;
-    --key-shadow-spread: 0px;
+    @apply inline-flex items-center justify-center px-btn-x py-btn-y font-serif text-title-sm font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
 
     position: relative;
     cursor: pointer;
@@ -64,100 +59,72 @@
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
 
-    /* Forme de touche clavier */
-    border-radius: 8px;
-    border: 1px solid rgba(var(--color-mauve-dark-rgb), 0.3);
+    /* Forme moderne arrondie */
+    border-radius: 12px;
+    
+    /* Glassmorphism - fond violet clair avec blur */
+    background: rgba(var(--color-violet-light-rgb), 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Bordure */
+    border: 2px solid rgba(var(--color-mauve-dark-rgb));
+    
+    /* Texte mauve contrasté */
+    color: rgba(var(--color-mauve-dark-rgb), 0.9);
+    
+    /* Ombre douce moderne */
+    box-shadow: 
+      0 4px 16px rgba(var(--color-mauve-dark-rgb), 0.1),
+      0 2px 8px rgba(var(--color-mauve-dark-rgb), 0.05);
 
-    /* Surface de touche - fond sombre mat */
-    background: linear-gradient(
-      145deg,
-      rgba(var(--color-mauve-dark-rgb), 0.95) 0%,
-      rgba(var(--color-mauve-dark-rgb), 0.85) 50%,
-      rgba(var(--color-mauve-dark-rgb), 0.8) 100%
-    );
-
-    /* Texte clair contrasté pour lisibilité */
-    color: rgba(var(--color-violet-light-rgb), 0.92);
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
-
-    /* Ombre de touche surélevée */
-    box-shadow:
-      /* Bord supérieur éclairé */
-      inset 0 2px 0 rgba(var(--color-violet-light-rgb), 0.3),
-      /* Bord inférieur plus sombre */ inset 0 -2px 0 rgba(0, 0, 0, 0.4),
-      /* Ombre portée de la touche */ 0 var(--key-press-distance) var(--key-shadow-blur)
-        var(--key-shadow-spread) rgba(0, 0, 0, 0.4),
-      /* Halo subtil */ 0 1px 2px rgba(0, 0, 0, 0.2);
-
-    /* Transition fluide pour effet de pression */
+    /* Transition fluide */
     transition:
-      transform 120ms cubic-bezier(0.2, 0, 0.4, 1),
-      box-shadow 120ms cubic-bezier(0.2, 0, 0.4, 1),
-      background 120ms ease-out;
+      all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  /* Suppression des pseudo-éléments complexes pour simplicité */
 
   @media (hover: hover) {
     .button-primary:hover {
-      /* Légère élévation au hover */
-      transform: translateY(-1px);
-
-      /* Surface légèrement plus brillante */
-      background: linear-gradient(
-        145deg,
-        rgba(var(--color-mauve-dark-rgb), 0.98) 0%,
-        rgba(var(--color-mauve-dark-rgb), 0.88) 50%,
-        rgba(var(--color-mauve-dark-rgb), 0.83) 100%
-      );
-
-      /* Ombre plus marquée pour effet de relief */
-      box-shadow:
-        inset 0 2px 0 rgba(var(--color-violet-light-rgb), 0.4),
-        inset 0 -2px 0 rgba(0, 0, 0, 0.5),
-        0 calc(var(--key-press-distance) + 1px) calc(var(--key-shadow-blur) + 2px)
-          var(--key-shadow-spread) rgba(0, 0, 0, 0.5),
-        0 2px 4px rgba(0, 0, 0, 0.3);
+      /* Glassmorphism renforcé au hover */
+      background: rgba(var(--color-violet-light-rgb), 0.25);
+      border-color: rgba(var(--color-mauve-dark-rgb));
+      
+      /* Légère élévation moderne */
+      transform: translateY(-2px);
+      
+      /* Ombre plus marquée */
+      box-shadow: 
+        0 8px 24px rgba(var(--color-mauve-dark-rgb), 0.15),
+        0 4px 12px rgba(var(--color-mauve-dark-rgb), 0.1);
+      
+      /* Texte plus contrasté */
+      color: rgba(var(--color-mauve-dark-rgb), 1);
     }
 
     .button-primary:active {
-      /* Animation de pression - touche enfoncée */
-      transform: translateY(var(--key-press-distance));
-
-      /* Surface légèrement assombrie comme une vraie touche pressée */
-      background: linear-gradient(
-        145deg,
-        rgba(var(--color-mauve-dark-rgb), 0.85) 0%,
-        rgba(var(--color-mauve-dark-rgb), 0.75) 50%,
-        rgba(var(--color-mauve-dark-rgb), 0.7) 100%
-      );
-
-      /* Ombre réduite = touche au fond */
-      box-shadow:
-        inset 0 1px 0 rgba(var(--color-violet-light-rgb), 0.15),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.6),
-        0 1px 3px rgba(0, 0, 0, 0.4);
-
-      /* Transition plus rapide pour feedback immédiat */
-      transition:
-        transform 60ms cubic-bezier(0.2, 0, 0.4, 1),
-        box-shadow 60ms cubic-bezier(0.2, 0, 0.4, 1),
-        background 60ms ease-out;
+      /* Effet de pression moderne */
+      transform: translateY(-1px);
+      
+      /* Glassmorphism plus intense */
+      background: rgba(var(--color-violet-light-rgb), 0.35);
+      border-color: rgba(var(--color-mauve-dark-rgb));
+      
+      /* Ombre réduite */
+      box-shadow: 
+        0 4px 16px rgba(var(--color-mauve-dark-rgb), 0.2),
+        0 2px 8px rgba(var(--color-mauve-dark-rgb), 0.1);
     }
   }
 
-  /* Supprimé : ancien effet overlay */
-
   .button-primary:focus-visible {
     outline: none;
-    /* Ring focus avec le nouveau design */
+    /* Ring focus moderne avec glassmorphism */
     box-shadow:
       /* Ring de focus */
       0 0 0 3px rgba(var(--color-violet-light-rgb), 0.6),
-      /* Ombres de touche préservées */ inset 0 2px 0 rgba(var(--color-violet-light-rgb), 0.3),
-      inset 0 -2px 0 rgba(0, 0, 0, 0.4),
-      0 var(--key-press-distance) var(--key-shadow-blur) var(--key-shadow-spread) rgba(0, 0, 0, 0.4),
-      0 1px 2px rgba(0, 0, 0, 0.2);
+      /* Ombres normales préservées */
+      0 4px 16px rgba(var(--color-mauve-dark-rgb), 0.1),
+      0 2px 8px rgba(var(--color-mauve-dark-rgb), 0.05);
   }
 
   @media (prefers-reduced-motion: reduce) {
