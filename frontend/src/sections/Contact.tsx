@@ -16,7 +16,7 @@ export default function Contact() {
   return (
     <SectionContainer id="contact">
       <SectionTitle title="Nous contacter" />
-      <div className="mx-auto mb-title-gap max-w-4xl rounded-btn border-2 border-purple bg-violet/45 px-container-x py-container-y shadow-card backdrop-blur-xl lg:max-w-5xl">
+      <div className="mx-auto mb-title-gap max-w-4xl rounded-btn border-2 border-purple/80 bg-violet/60 px-container-x py-container-y shadow-card backdrop-blur-xl lg:max-w-5xl">
         <ContactForm />
       </div>
     </SectionContainer>
