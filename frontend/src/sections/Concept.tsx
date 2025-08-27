@@ -1,26 +1,53 @@
 // sections/Concept.tsx
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
-import SplitText from '@/components/motion/text/SplitText';
-import { CONCEPT } from '@/config/constants';
+import RevealText from '@/components/motion/text/RevealText';
+import { CONCEPT_PLAIN } from '@/config/constants';
 import Picture from '@/components/common/Picture';
 import AnimatedItem from '@/components/motion/AnimatedItem';
 
 export default function Concept() {
+  // Mots-clés à mettre en emphase
+  const keywords = [
+    'style',
+    'conscience',
+    'recyclées',
+    'réduction',
+    'seconde',
+    'vie',
+    'impact',
+    'écologique',
+  ];
+
   return (
     <SectionContainer id="concept">
       <SectionTitle title="Le Concept" />
 
-      <SplitText
-        text={CONCEPT}
-        as="p"
-        className="mt-4 font-serif text-text-base font-semibold tracking-wider"
-      />
+      <div className="mt-4 font-serif text-text-base font-semibold leading-relaxed tracking-wider">
+        <RevealText
+          text={CONCEPT_PLAIN}
+          splitBy="word"
+          className=""
+          baseDelay={0.1}
+          preserveWordSpacing={true}
+          renderPart={(word) => (
+            <span
+              className={`inline-block ${
+                keywords.some((keyword) => word.toLowerCase().includes(keyword.toLowerCase()))
+                  ? 'font-black'
+                  : ''
+              }`}
+            >
+              {word}
+            </span>
+          )}
+        />
+      </div>
 
       <div className="mx-auto grid max-w-content grid-cols-1 gap-section-gap py-container-y md:grid-cols-2">
         <AnimatedItem
-          index={0}
-          className="relative aspect-[2/3] overflow-hidden rounded-card"
+          index={1.2}
+          className="group relative aspect-[2/3] cursor-pointer overflow-hidden rounded-card"
           viewport={{ once: true, amount: 0.35 }}
           duration={0.6}
         >
@@ -30,13 +57,20 @@ export default function Concept() {
             alt="Sélection de montures exposées, éclairage doux et matériaux premium."
             width={4000}
             height={6000}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-green/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute bottom-0 left-0 right-0 translate-y-full transform p-6 text-violet transition-transform duration-300 group-hover:translate-y-0">
+            <h3 className="mb-2 font-serif text-title-sm font-black">Notre Sélection</h3>
+            <p className="text-text-footer font-medium leading-snug">
+              Montures neuves et d'occasion soigneusement choisies pour allier style et durabilité.
+            </p>
+          </div>
         </AnimatedItem>
 
         <AnimatedItem
-          index={1}
-          className="relative aspect-[2/3] overflow-hidden rounded-card"
+          index={1.5}
+          className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-card md:aspect-[2/3]"
           viewport={{ once: true, amount: 0.35 }}
           duration={0.6}
         >
@@ -46,8 +80,15 @@ export default function Concept() {
             alt="Romain en conseil client à la boutique, essayage de montures."
             width={3644}
             height={5466}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-green/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute bottom-0 left-0 right-0 translate-y-full transform p-6 text-violet transition-transform duration-300 group-hover:translate-y-0">
+            <h3 className="mb-2 font-serif text-title-sm font-black">L'Expertise Romain</h3>
+            <p className="text-text-footer font-medium leading-snug">
+              Conseil personnalisé et passion de l'optique depuis plus de 10 ans à Strasbourg.
+            </p>
+          </div>
         </AnimatedItem>
       </div>
     </SectionContainer>

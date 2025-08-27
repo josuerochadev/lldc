@@ -28,7 +28,7 @@ export function use3DTilt(maxTilt = 5, transition = 'transform 0.2s ease-out') {
     const handleMouseMove = (e: MouseEvent) => {
       // Éviter les transformations pendant les clics ou interactions
       if (e.buttons > 0 || isInteracting) return;
-      
+
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;

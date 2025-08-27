@@ -56,10 +56,15 @@ export const SERVICES = [
   },
 ];
 
-export const CONCEPT = `✷ Depuis 2016, on mixe style ☆ et conscience ◇ en plein Strasbourg. 
+export const CONCEPT = `✷ Depuis 2016, on mixe **style** ☆ et **conscience** ◇ en plein Strasbourg. 
+Des lunettes neuves, oui — mais aussi des montures **recyclées** ✷ restaurées avec soin. 
+Ramenez vos anciennes paires. → Jusqu'à **70€ de réduction**. ✧ Donnez-leur une **seconde vie**. 
+On voit clair, ○ sans fermer les yeux sur l'**impact écologique**. ▲ La mode change. ◆ La planète, non.`;
+
+export const CONCEPT_PLAIN = `✷ Depuis 2016, on mixe style ☆ et conscience ◇ en plein Strasbourg. 
 Des lunettes neuves, oui — mais aussi des montures recyclées ✷ restaurées avec soin. 
-Ramenez vos anciennes paires. → Jusqu’à 70€ de réduction. ✧ Donnez-leur une seconde vie. 
-On voit clair, ○ sans fermer les yeux sur l’impact écologique. ▲ La mode change. ◆ La planète, non.`;
+Ramenez vos anciennes paires. → Jusqu'à 70€ de réduction. ✧ Donnez-leur une seconde vie. 
+On voit clair, ○ sans fermer les yeux sur l'impact écologique. ▲ La mode change. ◆ La planète, non.`;
 
 export const FOOTER_LINKS = [
   { label: 'Mentions légales', href: '/mentions-legales', type: 'page' },

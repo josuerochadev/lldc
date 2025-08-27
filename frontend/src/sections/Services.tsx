@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 
 import AnimatedItem from '@/components/motion/AnimatedItem';
-
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import { SERVICES } from '@/config/constants';
@@ -45,10 +44,10 @@ export default function Services() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.05, y: -20 }}
-              transition={{ 
-                duration: 0.4, 
+              transition={{
+                duration: 0.4,
                 ease: 'easeInOut',
-                scale: { type: 'spring', stiffness: 300, damping: 25 }
+                scale: { type: 'spring', stiffness: 300, damping: 25 },
               }}
               className="h-auto w-service-img max-w-full"
             >

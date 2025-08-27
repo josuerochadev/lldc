@@ -43,9 +43,7 @@ export default function ServiceThumbnail({
       onClick={onClick}
       className={clsx(
         'focus-style cursor-pointer transition-all duration-300 hover:scale-105',
-        isActive 
-          ? 'opacity-100 scale-110' 
-          : 'opacity-70 hover:opacity-90',
+        isActive ? 'scale-110 opacity-100' : 'opacity-70 hover:opacity-90',
       )}
     >
       <div className="relative h-24 w-24">
@@ -54,8 +52,8 @@ export default function ServiceThumbnail({
           alt={title}
           sizes="96px"
           className={clsx(
-            "h-24 w-24 object-contain transition-all duration-300",
-            isActive ? "brightness-110" : "brightness-95 hover:brightness-105"
+            'h-24 w-24 object-contain transition-all duration-300',
+            isActive ? 'brightness-110' : 'brightness-95 hover:brightness-105',
           )}
         />
       </div>

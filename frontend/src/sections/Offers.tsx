@@ -7,16 +7,16 @@ import OfferCard from '@/components/offers/OfferCard';
 /**
  * Section "Nos Offres" - Cartes expandables des offres commerciales
  *
- * Affiche les offres de l'entreprise (recyclage, deuxième paire...) sous forme 
- * de cartes interactives expandables. Gère l'état d'expansion multiple et 
+ * Affiche les offres de l'entreprise (recyclage, deuxième paire...) sous forme
+ * de cartes interactives expandables. Gère l'état d'expansion multiple et
  * les animations pour une expérience utilisateur fluide.
  *
  * Fonctionnalités :
- * - Grid responsive 1 col mobile → 2 cols desktop  
+ * - Grid responsive 1 col mobile → 2 cols desktop
  * - Expansion/collapse individuelle des cartes
  * - Animations tilt + spring pour les interactions
  * - Accessibilité complète (ARIA + navigation clavier)
- * 
+ *
  * @returns Section des offres avec cartes interactives
  */
 export default function Offers() {

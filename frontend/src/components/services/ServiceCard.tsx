@@ -45,15 +45,15 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
       >
         <m.h3
           id={`service-title-${service.title.replace(/\s+/g, '-').toLowerCase()}`}
-          className="mb-4 text-left font-serif text-title-lg font-bold text-light-green group-hover:text-violet transition-colors duration-200"
+          className="mb-4 text-left font-serif text-title-lg font-bold text-light-green transition-colors duration-200 group-hover:text-violet"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           {service.title}
         </m.h3>
-        
-        <m.p 
+
+        <m.p
           className="text-text-base leading-relaxed tracking-wide text-violet/90"
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}

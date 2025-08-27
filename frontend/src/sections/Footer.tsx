@@ -17,37 +17,37 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
  *
  * Affiche l'adresse, les horaires, les liens sociaux, les liens légaux et une signature de développement.
  * Optimisé pour l'accessibilité avec structure sémantique et support screen readers.
- * 
+ *
  * @param variant - Type d'affichage du footer
- * @param className - Classes CSS additionnelles 
+ * @param className - Classes CSS additionnelles
  * @param rest - Props HTML standard transmises au footer
- * 
+ *
  * Variantes disponibles :
  * - `variant="default"` : Version complète pour page principale
  *   • Titre, adresse, horaires, téléphone (mis en valeur en orange/gras)
  *   • Réseaux sociaux avec icônes et labels
- *   • Liens légaux (mentions légales, CGV)  
+ *   • Liens légaux (mentions légales, CGV)
  *   • Signature développeur
- * 
+ *
  * - `variant="menu"` : Version compacte pour navbar full-screen
  *   • Titre et coordonnées centrés
  *   • Icônes réseaux sociaux (taille optimisée 20px)
  *   • Liens légaux en layout horizontal
  *   • Couleurs adaptées (violet sur transparent)
- * 
- * 
+ *
+ *
  * @example
  * ```tsx
  * // Footer principal
  * <Footer />
- * 
+ *
  * // Footer dans menu
  * <Footer variant="menu" className="text-purple" />
  * ```
  */
 export default function Footer({ className = '', variant = 'default', ...rest }: FooterProps) {
   const isMenu = variant === 'menu';
-  
+
   const footerLinkBase =
     'font-semibold transition-colors duration-300 hover:text-orange focus-style';
 
@@ -84,11 +84,11 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
           >
             <p>24&nbsp;Rue&nbsp;du&nbsp;Faubourg-de-Pierre&nbsp;67000&nbsp;STRASBOURG</p>
             <p>
-              <a 
-                href="tel:+33388512440" 
+              <a
+                href="tel:+33388512440"
                 className={clsx(
                   footerLinkBase,
-                  !isMenu && 'text-lg font-bold text-orange hover:text-light-green'
+                  !isMenu && 'text-lg font-bold text-orange hover:text-light-green',
                 )}
               >
                 03&nbsp;88&nbsp;51&nbsp;24&nbsp;40
@@ -111,7 +111,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                 const iconSize = isMenu ? 20 : 18;
                 const iconClassName = isMenu ? '' : 'mr-1 inline';
                 const IconComponent = social.icon === 'facebook' ? Facebook : Instagram;
-                
+
                 return (
                   <a
                     key={social.href}
@@ -121,11 +121,11 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                     rel="noopener noreferrer"
                     aria-label={social.label}
                   >
-                    <IconComponent 
-                      width={iconSize} 
-                      height={iconSize} 
-                      className={iconClassName} 
-                      aria-hidden="true" 
+                    <IconComponent
+                      width={iconSize}
+                      height={iconSize}
+                      className={iconClassName}
+                      aria-hidden="true"
                     />
                     <span className="sr-only">{social.label}</span>
                   </a>
@@ -134,14 +134,16 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
             </div>
 
             {/* Liens légaux */}
-            <div className={clsx('flex', isMenu ? 'space-x-6 text-text-footer' : 'flex-col space-y-4')}>
+            <div
+              className={clsx('flex', isMenu ? 'space-x-6 text-text-footer' : 'flex-col space-y-4')}
+            >
               {FOOTER_LINKS.map((link) => (
-                <Link 
-                  key={link.href} 
+                <Link
+                  key={link.href}
                   className={clsx(
                     footerLinkBase,
-                    isMenu && 'text-purple hover:text-orange text-sm'
-                  )} 
+                    isMenu && 'text-sm text-purple hover:text-orange',
+                  )}
                   to={link.href}
                 >
                   {link.label}

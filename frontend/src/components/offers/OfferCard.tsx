@@ -1,3 +1,4 @@
+import type React from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
 
@@ -27,14 +28,14 @@ type OfferCardProps = {
 /**
  * Composant `OfferCard` - Carte interactive d'offre avec animations
  *
- * Affiche une carte expandable avec effet tilt, permettant de basculer entre 
+ * Affiche une carte expandable avec effet tilt, permettant de basculer entre
  * résumé et détails complets d'une offre. Gère l'accessibilité et les animations fluides.
  *
  * @param offer - Objet offre (id, title, imageBase, summary, details)
  * @param isOpen - État d'expansion de la carte
  * @param onToggle - Callback de basculement d'état (reçoit offer.id)
  * @param index - Index pour l'animation d'entrée
- * 
+ *
  * @returns Carte d'offre interactive avec animations et accessibilité complète
  */
 export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardProps) {
@@ -58,11 +59,11 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
         <button
           type="button"
           className="focus-style group relative h-card w-full cursor-pointer overflow-hidden rounded-card shadow-card transition-all duration-300 hover:shadow-lg"
-          style={{ 
+          style={{
             touchAction: 'manipulation',
             userSelect: 'none',
             WebkitUserSelect: 'none',
-            WebkitTouchCallout: 'none'
+            WebkitTouchCallout: 'none',
           }}
           aria-expanded={isOpen}
           aria-controls={`offer-panel-${offer.id}`}
@@ -79,7 +80,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
             id={`offer-panel-${offer.id}`}
             aria-labelledby={`offer-title-${offer.id}`}
             className={cn(
-              'absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500 pointer-events-none',
+              'pointer-events-none absolute inset-4 z-10 flex w-auto flex-col justify-start rounded-card bg-purple/30 p-section-gap text-violet shadow-card backdrop-blur-2xl transition-all duration-500',
             )}
             initial={false}
             animate={{
@@ -89,52 +90,52 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
           >
             <h3
               id={`offer-title-${offer.id}`}
-              className="mb-4 text-left font-serif text-title-lg font-bold text-light-green group-hover:text-violet transition-colors duration-200"
+              className="mb-4 text-left font-serif text-title-lg font-bold text-light-green transition-colors duration-200 group-hover:text-violet"
             >
               {offer.title}
             </h3>
             <AnimatePresence mode="wait">
               <m.div
                 key={isOpen ? 'details' : 'summary'}
-                initial={{ 
-                  opacity: 0, 
+                initial={{
+                  opacity: 0,
                   height: 0,
-                  y: isOpen ? 10 : -10 
+                  y: isOpen ? 10 : -10,
                 }}
-                animate={{ 
-                  opacity: 1, 
+                animate={{
+                  opacity: 1,
                   height: 'auto',
-                  y: 0
+                  y: 0,
                 }}
-                exit={{ 
-                  opacity: 0, 
+                exit={{
+                  opacity: 0,
                   height: 0,
-                  y: isOpen ? -10 : 10 
+                  y: isOpen ? -10 : 10,
                 }}
-                transition={{ 
+                transition={{
                   duration: 0.5,
                   ease: 'easeInOut',
-                  opacity: { duration: 0.3 }
+                  opacity: { duration: 0.3 },
                 }}
                 className="overflow-hidden"
                 style={{ pointerEvents: 'none' }}
               >
-                <div className={cn(
-                  "max-w-[90%] whitespace-pre-line text-left text-text-base leading-snug",
-                  isOpen 
-                    ? "border-l-2 border-orange pl-4 font-medium" 
-                    : "text-violet/90"
-                )}>
+                <div
+                  className={cn(
+                    'max-w-[90%] whitespace-pre-line text-left text-text-base leading-snug',
+                    isOpen ? 'border-l-2 border-orange pl-4 font-medium' : 'text-violet/90',
+                  )}
+                >
                   {isOpen ? (
                     <div className="space-y-2">
-                      <p className="text-sm text-light-green font-semibold tracking-wide uppercase">
+                      <p className="text-sm font-semibold uppercase tracking-wide text-light-green">
                         Détails
                       </p>
                       <p>{offer.details}</p>
                     </div>
                   ) : (
                     <div>
-                      <p className="text-sm text-orange font-semibold tracking-wide uppercase mb-1">
+                      <p className="mb-1 text-sm font-semibold uppercase tracking-wide text-orange">
                         Résumé
                       </p>
                       <p>{offer.summary}</p>
@@ -143,24 +144,21 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
                 </div>
               </m.div>
             </AnimatePresence>
-            <div className="mt-auto flex items-center justify-center gap-2 group-hover:text-light-green transition-colors duration-200">
+            <div className="mt-auto flex items-center justify-center gap-2 transition-colors duration-200 group-hover:text-light-green">
               <span className="text-text-footer font-medium">
                 {isOpen ? 'Réduire' : 'En savoir plus'}
               </span>
               <m.div
-                animate={{ 
+                animate={{
                   rotate: isOpen ? 180 : 0,
-                  scale: isOpen ? 0.9 : 1 
+                  scale: isOpen ? 0.9 : 1,
                 }}
-                transition={{ 
-                  duration: 0.3, 
-                  ease: 'easeInOut' 
+                transition={{
+                  duration: 0.3,
+                  ease: 'easeInOut',
                 }}
               >
-                <ChevronDown 
-                  className="h-4 w-4 text-orange" 
-                  aria-hidden="true"
-                />
+                <ChevronDown className="h-4 w-4 text-orange" aria-hidden="true" />
               </m.div>
             </div>
           </m.section>

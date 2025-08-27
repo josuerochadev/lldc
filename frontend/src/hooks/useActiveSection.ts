@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+// Import the IntersectionObserverInit type for TypeScript
+type IntersectionObserverInit = ConstructorParameters<typeof IntersectionObserver>[1];
+
 /**
  * Hook pour détecter la section actuellement visible dans le viewport.
  * Utilise l'Intersection Observer API pour surveiller les sections de la page.
@@ -36,8 +39,13 @@ export function useActiveSection(
       // Trouve la section la plus visible
       const mostVisible = entries
         .filter((entry) => entry.isIntersecting)
-        .reduce(
-          (max, entry) => (entry.intersectionRatio > (max?.intersectionRatio || 0) ? entry : max),
+        .reduce<IntersectionObserverEntry | null>(
+          (max, entry) => {
+            if (!max || entry.intersectionRatio > max.intersectionRatio) {
+              return entry;
+            }
+            return max;
+          },
           null,
         );
 
@@ -47,10 +55,10 @@ export function useActiveSection(
     }, defaultOptions);
 
     // Observe toutes les sections
-    sectionIds.forEach((id) => {
+    for (const id of sectionIds) {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
-    });
+    }
 
     return () => observer.disconnect();
   }, [sectionIds, options]);

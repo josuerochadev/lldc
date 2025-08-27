@@ -61,14 +61,8 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
         {index + 1}.
       </span>
       <span className="flex flex-wrap gap-x-1 text-title-lg">
-        <span className={`font-thin ${isActive ? 'text-orange' : ''}`}>
-          {first}
-        </span>
-        {last && (
-          <span className={`font-extrabold ${isActive ? 'text-orange' : ''}`}>
-            {last}
-          </span>
-        )}
+        <span className={`font-thin ${isActive ? 'text-orange' : ''}`}>{first}</span>
+        {last && <span className={`font-extrabold ${isActive ? 'text-orange' : ''}`}>{last}</span>}
       </span>
       {isActive && (
         <span className="ml-2 text-orange" aria-hidden="true">
