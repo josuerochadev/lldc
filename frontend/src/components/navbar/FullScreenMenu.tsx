@@ -71,12 +71,12 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       tabIndex={-1}
       className="fixed inset-0 z-menu flex min-h-dvh touch-pan-y flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
     >
-      {/* Wrapper pour le menu */}
-      <div ref={menuRef} className="flex w-full flex-1 flex-col items-center justify-center">
+      {/* Wrapper pour le menu - inclut maintenant le footer */}
+      <div ref={menuRef} className="flex w-full flex-1 flex-col">
         {/* Groupe des liens principaux */}
         <section
           aria-label="Navigation principale"
-          className="w-fit space-y-6 text-left sm:space-y-4"
+          className="flex flex-1 w-fit mx-auto items-center justify-center space-y-6 text-left sm:space-y-4"
         >
           <ul>
             {LINKS.map((link, i) => (
@@ -94,19 +94,19 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
             ))}
           </ul>
         </section>
-      </div>
 
-      {/* Footer du menu */}
-      <footer className="w-full">
-        <AnimatedItem
-          index={LINKS.length}
-          duration={0.4}
-          variant={fadeInDown}
-          className="p-section-gap"
-        >
-          <Footer variant="menu" className="text-purple" />
-        </AnimatedItem>
-      </footer>
+        {/* Footer du menu - maintenant dans menuRef */}
+        <footer className="w-full">
+          <AnimatedItem
+            index={LINKS.length}
+            duration={0.4}
+            variant={fadeInDown}
+            className="p-section-gap"
+          >
+            <Footer variant="menu" className="text-purple" onLinkClick={onClose} />
+          </AnimatedItem>
+        </footer>
+      </div>
     </nav>
   );
 };

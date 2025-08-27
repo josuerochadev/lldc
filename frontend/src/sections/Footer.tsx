@@ -10,6 +10,7 @@ import { FOOTER_LINKS, FOOTER_SOCIALS } from '@/config/constants';
 
 type FooterProps = ComponentPropsWithoutRef<'footer'> & {
   variant?: 'default' | 'menu';
+  onLinkClick?: () => void; // Callback pour fermer le menu
 };
 
 /**
@@ -45,7 +46,7 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
  * <Footer variant="menu" className="text-purple" />
  * ```
  */
-export default function Footer({ className = '', variant = 'default', ...rest }: FooterProps) {
+export default function Footer({ className = '', variant = 'default', onLinkClick, ...rest }: FooterProps) {
   const isMenu = variant === 'menu';
 
   const footerLinkBase =
@@ -88,7 +89,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                 href="tel:+33388512440"
                 className={clsx(
                   footerLinkBase,
-                  !isMenu && 'text-lg font-bold text-orange hover:text-light-green',
+                  !isMenu && 'text-lg font-bold text-orange hover:text-light-green hover:font-black',
                 )}
               >
                 03&nbsp;88&nbsp;51&nbsp;24&nbsp;40
@@ -145,6 +146,7 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                     isMenu && 'text-sm text-purple hover:text-orange',
                   )}
                   to={link.href}
+                  onClick={onLinkClick} // Ferme le menu si callback fourni
                 >
                   {link.label}
                 </Link>
