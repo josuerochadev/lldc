@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 
+import AnimatedItem from '@/components/motion/AnimatedItem';
+
 import SectionContainer from '@/components/common/SectionContainer';
 import SectionTitle from '@/components/common/SectionTitle';
 import { SERVICES } from '@/config/constants';
@@ -34,16 +36,20 @@ export default function Services() {
     >
       <SectionTitle title="Nos Services" />
 
-      <div className="mx-auto flex flex-col md:flex-row md:items-center md:justify-center">
+      <div className="mx-auto flex flex-col items-center md:flex-row md:items-center md:justify-center">
         {/* Colonne gauche : image + miniatures */}
         <div className="flex flex-col items-center px-container-x py-container-y">
           <AnimatePresence mode="wait">
             <m.div
               key={selected.imageBase}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.01 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 1.05, y: -20 }}
+              transition={{ 
+                duration: 0.4, 
+                ease: 'easeInOut',
+                scale: { type: 'spring', stiffness: 300, damping: 25 }
+              }}
               className="h-auto w-service-img max-w-full"
             >
               <Picture
@@ -63,14 +69,15 @@ export default function Services() {
             className="mt-3 flex w-full justify-center gap-word-gap"
           >
             {SERVICES.map((service, index) => (
-              <ServiceThumbnail
-                key={service.title}
-                imageBase={service.imageBase}
-                title={service.title}
-                isActive={selectedIndex === index}
-                index={index}
-                onClick={() => setSelectedIndex(index)}
-              />
+              <AnimatedItem key={service.title} index={index * 0.5}>
+                <ServiceThumbnail
+                  imageBase={service.imageBase}
+                  title={service.title}
+                  isActive={selectedIndex === index}
+                  index={index}
+                  onClick={() => setSelectedIndex(index)}
+                />
+              </AnimatedItem>
             ))}
           </div>
         </div>

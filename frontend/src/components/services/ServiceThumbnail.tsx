@@ -42,17 +42,21 @@ export default function ServiceThumbnail({
       tabIndex={isActive ? 0 : -1}
       onClick={onClick}
       className={clsx(
-        'focus-style transition-transform duration-250 hover:scale-105',
-        isActive ? 'opacity-100' : 'opacity-60',
+        'focus-style cursor-pointer transition-all duration-300 hover:scale-105',
+        isActive 
+          ? 'opacity-100 scale-110' 
+          : 'opacity-70 hover:opacity-90',
       )}
     >
-      <div className="h-24 w-24">
+      <div className="relative h-24 w-24">
         <Picture
           srcBase={imageBase}
           alt={title}
-          /* vignettes = petite cible ⇒ sizes fixe */
           sizes="96px"
-          className="h-24 w-24 object-contain"
+          className={clsx(
+            "h-24 w-24 object-contain transition-all duration-300",
+            isActive ? "brightness-110" : "brightness-95 hover:brightness-105"
+          )}
         />
       </div>
     </button>
