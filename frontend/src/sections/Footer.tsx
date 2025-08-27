@@ -16,12 +16,38 @@ type FooterProps = ComponentPropsWithoutRef<'footer'> & {
  * Composant Footer pour l'affichage du pied de page du site.
  *
  * Affiche l'adresse, les horaires, les liens sociaux, les liens légaux et une signature de développement.
- * Variante:
- * - `variant="menu"` : version compacte
- * - `variant="default"` : version complète (par défaut)
+ * Optimisé pour l'accessibilité avec structure sémantique et support screen readers.
+ * 
+ * @param variant - Type d'affichage du footer
+ * @param className - Classes CSS additionnelles 
+ * @param rest - Props HTML standard transmises au footer
+ * 
+ * Variantes disponibles :
+ * - `variant="default"` : Version complète pour page principale
+ *   • Titre, adresse, horaires, téléphone (mis en valeur en orange/gras)
+ *   • Réseaux sociaux avec icônes et labels
+ *   • Liens légaux (mentions légales, CGV)  
+ *   • Signature développeur
+ * 
+ * - `variant="menu"` : Version compacte pour navbar full-screen
+ *   • Titre et coordonnées centrés
+ *   • Icônes réseaux sociaux (taille optimisée 20px)
+ *   • Liens légaux en layout horizontal
+ *   • Couleurs adaptées (violet sur transparent)
+ * 
+ * 
+ * @example
+ * ```tsx
+ * // Footer principal
+ * <Footer />
+ * 
+ * // Footer dans menu
+ * <Footer variant="menu" className="text-purple" />
+ * ```
  */
 export default function Footer({ className = '', variant = 'default', ...rest }: FooterProps) {
   const isMenu = variant === 'menu';
+  
   const footerLinkBase =
     'font-semibold transition-colors duration-300 hover:text-orange focus-style';
 
@@ -58,7 +84,13 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
           >
             <p>24&nbsp;Rue&nbsp;du&nbsp;Faubourg-de-Pierre&nbsp;67000&nbsp;STRASBOURG</p>
             <p>
-              <a href="tel:+33388512440" className={footerLinkBase}>
+              <a 
+                href="tel:+33388512440" 
+                className={clsx(
+                  footerLinkBase,
+                  !isMenu && 'text-lg font-bold text-orange hover:text-light-green'
+                )}
+              >
                 03&nbsp;88&nbsp;51&nbsp;24&nbsp;40
               </a>
             </p>
@@ -66,46 +98,59 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
             <p>Dimanche&nbsp;: fermé</p>
           </address>
 
-          {!isMenu && (
-            <nav
-              aria-label="Navigation de bas de page"
-              className="flex flex-col items-center space-y-4 text-text-footer sm:items-start"
-            >
-              {/* Réseaux sociaux en premier */}
-              <div className="flex space-x-4 pt-2" aria-label="Réseaux sociaux">
-                {FOOTER_SOCIALS.map((social) => (
+          <nav
+            aria-label="Navigation de bas de page"
+            className={clsx(
+              'flex flex-col items-center text-text-footer',
+              isMenu ? 'space-y-3 pt-2' : 'space-y-4 sm:items-start',
+            )}
+          >
+            {/* Réseaux sociaux */}
+            <div className={clsx('flex space-x-4', !isMenu && 'pt-2')} aria-label="Réseaux sociaux">
+              {FOOTER_SOCIALS.map((social) => {
+                const iconSize = isMenu ? 20 : 18;
+                const iconClassName = isMenu ? '' : 'mr-1 inline';
+                const IconComponent = social.icon === 'facebook' ? Facebook : Instagram;
+                
+                return (
                   <a
                     key={social.href}
                     href={social.href}
-                    className={footerLinkBase}
+                    className={clsx(footerLinkBase, isMenu && 'text-purple hover:text-orange')}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
                   >
-                    {social.icon === 'facebook' && (
-                      <Facebook width={18} height={18} className="mr-1 inline" aria-hidden="true" />
-                    )}
-                    {social.icon === 'instagram' && (
-                      <Instagram
-                        width={18}
-                        height={18}
-                        className="mr-1 inline"
-                        aria-hidden="true"
-                      />
-                    )}
+                    <IconComponent 
+                      width={iconSize} 
+                      height={iconSize} 
+                      className={iconClassName} 
+                      aria-hidden="true" 
+                    />
                     <span className="sr-only">{social.label}</span>
                   </a>
-                ))}
-              </div>
+                );
+              })}
+            </div>
 
-              {/* Liens légaux ensuite */}
+            {/* Liens légaux */}
+            <div className={clsx('flex', isMenu ? 'space-x-6 text-text-footer' : 'flex-col space-y-4')}>
               {FOOTER_LINKS.map((link) => (
-                <Link key={link.href} className={footerLinkBase} to={link.href}>
+                <Link 
+                  key={link.href} 
+                  className={clsx(
+                    footerLinkBase,
+                    isMenu && 'text-purple hover:text-orange text-sm'
+                  )} 
+                  to={link.href}
+                >
                   {link.label}
                 </Link>
               ))}
+            </div>
 
-              {/* Signature */}
+            {!isMenu && (
+              /* Signature */
               <p className="pt-3 text-center text-text-footer">
                 Développé&nbsp;par{' '}
                 <a
@@ -117,8 +162,8 @@ export default function Footer({ className = '', variant = 'default', ...rest }:
                   Josué&nbsp;Rocha
                 </a>
               </p>
-            </nav>
-          )}
+            )}
+          </nav>
         </div>
       </SectionContainer>
     </footer>

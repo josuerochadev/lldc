@@ -47,11 +47,7 @@ const Hero = forwardRef<HTMLElement>(() => {
           className="mb-section-gap aspect-[146/85] w-[clamp(5rem,10vw,20rem)] transition-all duration-500 ease-out hover:drop-shadow-lg"
           style={{ y: logoY, scale: logoScale }}
         >
-          <LogoEye
-            aria-hidden="true"
-            focusable="false"
-            className="h-full w-full"
-          />
+          <LogoEye aria-hidden="true" focusable="false" className="h-full w-full" />
         </m.div>
       </AnimatedItem>
 
@@ -76,11 +72,7 @@ const Hero = forwardRef<HTMLElement>(() => {
 
         {/* CTA */}
         <AnimatedItem index={2} variant={fadeInUp}>
-          <Button
-            id="hero-cta"
-            aria-label="Prendre rendez-vous"
-            className="group"
-          >
+          <Button id="hero-cta" aria-label="Prendre rendez-vous" className="group">
             <span className="flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
               <Calendar className="button-icon group-hover:rotate-12" />
               Prendre rendez-vous
@@ -93,7 +85,7 @@ const Hero = forwardRef<HTMLElement>(() => {
       <AnimatedItem index={3} variant={fadeInUp}>
         <button
           type="button"
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100 focus-ring-circular"
+          className="focus-ring-circular absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer rounded-full p-2 opacity-60 transition-opacity duration-300 hover:opacity-100"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
           aria-label="Faire défiler vers le bas"
         >

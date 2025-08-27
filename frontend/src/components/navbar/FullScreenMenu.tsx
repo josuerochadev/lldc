@@ -69,12 +69,15 @@ const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose }) => {
       id="main-menu"
       aria-label="Navigation principale"
       tabIndex={-1}
-      className="fixed inset-0 z-menu flex min-h-dvh flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px] touch-pan-y"
+      className="fixed inset-0 z-menu flex min-h-dvh touch-pan-y flex-col overflow-y-auto bg-light-green/60 px-container-x pt-[8rem] backdrop-blur-[100px]"
     >
       {/* Wrapper pour le menu */}
       <div ref={menuRef} className="flex w-full flex-1 flex-col items-center justify-center">
         {/* Groupe des liens principaux */}
-        <section aria-label="Navigation principale" className="w-fit space-y-6 text-left sm:space-y-4">
+        <section
+          aria-label="Navigation principale"
+          className="w-fit space-y-6 text-left sm:space-y-4"
+        >
           <ul>
             {LINKS.map((link, i) => (
               <li key={link.href} className="touch-manipulation">
