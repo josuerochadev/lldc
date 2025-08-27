@@ -35,7 +35,7 @@ export default function ConditionsDeVente() {
           </h2>
 
           <div className="space-y-sm">
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               Les lunettes sont manufacturées par nos spécialistes expérimentés et conçues à partir
               de matériaux nobles. Il est important de traiter vos lunettes avec délicatesse.
             </p>
@@ -91,16 +91,16 @@ export default function ConditionsDeVente() {
           </HighlightBox>
 
           <div className="space-y-sm">
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               Il n'existe aucun droit de rétractation pour l'achat de produits personnalisés en
               boutique.
             </p>
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               Seuls les produits neufs et en parfait état d'origine, accompagnés des accessoires,
               pourront être retournés contre un échange ou un avoir dans un délai de trente (30)
               jours à compter de la date d'achat.
             </p>
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               Les montures personnalisées et ajustées ne pourront pas être retournées. Cette
               politique s'ajoute aux garanties légales (conformité et vices cachés).
             </p>
@@ -119,7 +119,7 @@ export default function ConditionsDeVente() {
           </h2>
 
           <div className="space-y-6">
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               En cas de changement de puissance des verres dans les trente (30) jours suivant la
               livraison, une franchise s'applique pour l'ensemble de la commande.
             </p>
@@ -156,12 +156,12 @@ export default function ConditionsDeVente() {
           </h2>
 
           <div className="space-y-sm">
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               <strong className="font-semibold text-primary">Règlement par chèque :</strong>
               <br />
               Accepté sur présentation d'une pièce d'identité concordante.
             </p>
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               <strong className="font-semibold text-primary">Tiers payant :</strong>
               <br />
               Nous nous réservons le droit d'annuler le règlement par tiers payant.
@@ -191,14 +191,14 @@ export default function ConditionsDeVente() {
             <div>
               <h3 className="mb-4 text-title-sm font-bold text-primary">01. Remise à la reprise</h3>
               <div className="border-dark-green space-y-3 border-l-2 pl-6">
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Limitation :</strong> une monture par transaction
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Condition :</strong> valable uniquement avec
                   l'achat d'un équipement de classe B
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Cumul :</strong> non cumulable avec d'autres
                   promotions exceptionnelles
                 </p>
@@ -208,23 +208,23 @@ export default function ConditionsDeVente() {
             <div>
               <h3 className="mb-4 text-title-sm font-bold text-primary">02. Seconde paire</h3>
               <div className="border-dark-green space-y-3 border-l-2 pl-6">
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Tarification :</strong> valable sur la monture la
                   moins coûteuse
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Condition :</strong> pour l'achat d'un équipement
                   de classe B
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Cumul :</strong> cumulable avec la remise à la
                   reprise
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Exclusions :</strong> non valable pour double
                   équipement Komono et Myorelax
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="text-primary">Options (+40€) :</strong> polarisation solaires
                   ou double CozyLens
                 </p>

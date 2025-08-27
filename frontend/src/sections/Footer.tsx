@@ -86,7 +86,7 @@ export default function Footer({
           {/* Adresse et horaires */}
           <address
             aria-label="Adresse et horaires de la boutique"
-            className="space-y-1 text-center text-text-footer not-italic leading-relaxed sm:text-left"
+            className="space-y-1 text-center text-body-sm not-italic leading-relaxed sm:text-left"
           >
             <p>24&nbsp;Rue&nbsp;du&nbsp;Faubourg-de-Pierre&nbsp;67000&nbsp;STRASBOURG</p>
             <p>
@@ -107,7 +107,7 @@ export default function Footer({
           <nav
             aria-label="Navigation de bas de page"
             className={clsx(
-              'flex flex-col items-center text-text-footer',
+              'flex flex-col items-center text-body-sm',
               isMenu ? 'space-y-3 pt-2' : 'space-y-sm sm:items-start',
             )}
           >
@@ -141,7 +141,7 @@ export default function Footer({
 
             {/* Liens légaux */}
             <div
-              className={clsx('flex', isMenu ? 'space-x-6 text-text-footer' : 'flex-col space-y-sm')}
+              className={clsx('flex', isMenu ? 'space-x-6 text-body-sm' : 'flex-col space-y-sm')}
             >
               {FOOTER_LINKS.map((link) => (
                 <Link
@@ -160,7 +160,7 @@ export default function Footer({
 
             {!isMenu && (
               /* Signature */
-              <p className="pt-3 text-center text-text-footer">
+              <p className="pt-3 text-center text-body-sm">
                 Développé&nbsp;par{' '}
                 <a
                   href="https://josuerochadev.github.io/portfolio/"

@@ -30,7 +30,7 @@
   }
 
   body {
-    @apply font-sans text-text-body text-text antialiased;
+    @apply font-sans text-body text-text antialiased;
     overflow-x: hidden;
     margin: 0;
     padding: 0;
@@ -50,7 +50,7 @@
     @apply leading-relaxed;
   }
   small {
-    @apply text-text-meta;
+    @apply text-body-sm;
   }
 
   a {

@@ -12,7 +12,7 @@ export default function NotFound() {
             {/* En-tête avec titre et lien retour */}
             <PageHeader title="Page non trouvée" />
 
-            <p className="mx-auto mt-title-gap max-w-content text-text-base">
+            <p className="mx-auto mt-title-gap max-w-content text-body">
               Oups&nbsp;! La page que vous recherchez n’existe pas ou a été déplacée.
             </p>
           </SectionContainer>

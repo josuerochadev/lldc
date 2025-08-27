@@ -71,7 +71,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               <h1 className="mb-4 text-title-md font-bold text-primary">
                 Oups ! Quelque chose s'est mal passé
               </h1>
-              <p className="mb-md text-text-base text-primary/80">
+              <p className="mb-md text-body text-primary/80">
                 Une erreur inattendue s'est produite. Notre équipe a été automatiquement notifiée et
                 nous travaillons pour résoudre le problème.
               </p>
@@ -97,7 +97,7 @@ export default class ErrorBoundary extends Component<Props, State> {
               </Button>
             </div>
 
-            <div className="mt-8 text-text-footer text-primary/60">
+            <div className="mt-8 text-body-sm text-primary/60">
               <p>
                 Si le problème persiste, contactez-nous au{' '}
                 <a

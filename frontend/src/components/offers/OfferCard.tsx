@@ -122,7 +122,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
               >
                 <div
                   className={cn(
-                    'max-w-[90%] whitespace-pre-line text-left text-text-base leading-snug',
+                    'max-w-[90%] whitespace-pre-line text-left text-body leading-snug',
                     isOpen ? 'border-l-2 border-orange pl-4 font-medium' : 'text-accent/90',
                   )}
                 >
@@ -145,7 +145,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
               </m.div>
             </AnimatePresence>
             <div className="mt-auto flex items-center justify-center gap-2 transition-colors duration-200 group-hover:text-accent">
-              <span className="text-text-footer font-medium">
+              <span className="text-body-sm font-medium">
                 {isOpen ? 'Réduire' : 'En savoir plus'}
               </span>
               <m.div

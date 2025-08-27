@@ -2,7 +2,7 @@
 @layer components {
   /* Gabarit pour pages statiques (CGV/mentions/blog) — DRY */
   .prose-static {
-    @apply mx-auto max-w-content-readable space-y-section-gap text-text-body;
+    @apply mx-auto max-w-content-readable space-y-section-gap text-body;
   }
   .prose-static h1 {
     @apply text-title-xl font-extrabold;

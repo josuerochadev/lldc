@@ -55,14 +55,14 @@ export default function MentionsLegales() {
             <div className="space-y-sm">
               <div className="grid grid-cols-1 gap-md md:grid-cols-2">
                 <div>
-                  <p className="text-text-base leading-relaxed">
+                  <p className="text-body leading-relaxed">
                     <strong className="font-semibold text-primary">Nom :</strong>
                     <br />
                     {COMPANY_NAME}
                   </p>
                 </div>
                 <div>
-                  <p className="text-text-base leading-relaxed">
+                  <p className="text-body leading-relaxed">
                     <strong className="font-semibold text-primary">Forme juridique :</strong>
                     <br />
                     {COMPANY_LEGAL_FORM}{' '}
@@ -72,21 +72,21 @@ export default function MentionsLegales() {
               </div>
 
               <div className="space-y-3 pt-4">
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="font-semibold text-primary">Siège social :</strong>
                   <br />
                   {COMPANY_ADDRESS}
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="font-semibold text-primary">SIRET :</strong> {COMPANY_SIRET}
                   <span className="mx-4">•</span>
                   <strong className="font-semibold text-primary">RCS :</strong> {COMPANY_RCS}
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="font-semibold text-primary">TVA intracommunautaire :</strong>{' '}
                   {COMPANY_VAT || 'N/A'}
                 </p>
-                <p className="text-text-base leading-relaxed">
+                <p className="text-body leading-relaxed">
                   <strong className="font-semibold text-primary">
                     Directeur de la publication :
                   </strong>{' '}
@@ -146,10 +146,10 @@ export default function MentionsLegales() {
           </h2>
 
           <div className="space-y-3">
-            <p className="text-text-base leading-relaxed">
+            <p className="text-body leading-relaxed">
               <strong className="font-semibold text-primary">{HOST_NAME}</strong>
             </p>
-            <p className="text-text-base leading-relaxed text-primary/80">{HOST_ADDRESS}</p>
+            <p className="text-body leading-relaxed text-primary/80">{HOST_ADDRESS}</p>
           </div>
         </section>
       </AnimatedItem>
@@ -164,7 +164,7 @@ export default function MentionsLegales() {
             Propriété intellectuelle
           </h2>
 
-          <p className="text-text-base leading-relaxed">
+          <p className="text-body leading-relaxed">
             Le site et l'ensemble de ses contenus (textes, images, logos, éléments graphiques) sont
             protégés par le droit d'auteur. Toute reproduction ou représentation, totale ou
             partielle, sans autorisation préalable, est interdite.
@@ -182,7 +182,7 @@ export default function MentionsLegales() {
             Données personnelles & cookies
           </h2>
 
-          <p className="text-text-base leading-relaxed">
+          <p className="text-body leading-relaxed">
             Pour toute demande relative à la protection des données, contactez l'éditeur aux
             coordonnées ci-dessus. Si des traceurs/cookies tiers sont utilisés, une politique de
             confidentialité et une bannière cookies doivent être mises en place.
@@ -200,7 +200,7 @@ export default function MentionsLegales() {
             Médiation de la consommation
           </h2>
 
-          <p className="mb-md text-text-base leading-relaxed">
+          <p className="mb-md text-body leading-relaxed">
             Conformément à l'article L.612-1 du Code de la consommation, le client peut recourir à
             un médiateur de la consommation gratuitement.
           </p>

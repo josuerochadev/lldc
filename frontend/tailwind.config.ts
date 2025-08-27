@@ -42,19 +42,18 @@ const config: Config = {
         serif: ['"Imbue"', 'serif'],
       },
       fontSize: {
-        'title-xl': ['clamp(3.5rem, 5vw, 15rem)', '0.95'],
-        'title-lg': ['clamp(2rem, 3vw, 10rem)', '1.1'],
-        'title-md': ['clamp(1.5rem, 2.5vw, 5rem)', '1.2'],
-        'title-sm': ['clamp(1.25rem, 2vw, 3.5rem)', '1.3'],
-        'text-cta': ['clamp(1.25rem, 1.5vw, 2.5rem)', '1.2'],
-
-        // existant
-        'text-base': ['clamp(1rem, 1.5vw, 3.5rem)', '1.4'],
-        'text-footer': ['clamp(0.9rem, 1.1vw, 2.5rem)', '1.1'],
-
-        // alias sémantiques (préférés à terme)
-        'text-body': ['clamp(1rem, 1.5vw, 3.5rem)', '1.5'],
-        'text-meta': ['clamp(0.9rem, 1.1vw, 2.5rem)', '1.2'],
+        /* ===== HIÉRARCHIE STANDARDISÉE ===== */
+        // Titres - line-height serré pour impact
+        'title-xl': ['clamp(3.5rem, 5vw, 15rem)', '1.0'],    // Hero principal
+        'title-lg': ['clamp(2rem, 3vw, 10rem)', '1.1'],      // Sections principales  
+        'title-md': ['clamp(1.5rem, 2.5vw, 5rem)', '1.2'],   // Sous-sections
+        'title-sm': ['clamp(1.25rem, 2vw, 3.5rem)', '1.3'],  // Petits titres
+        
+        // Corps de texte - line-height optimisé pour lisibilité
+        'body-lg': ['clamp(1.25rem, 1.5vw, 2.5rem)', '1.4'], // CTA, textes importants
+        'body': ['clamp(1rem, 1.5vw, 3.5rem)', '1.5'],       // Corps principal
+        'body-sm': ['clamp(0.9rem, 1.1vw, 2.5rem)', '1.4'],  // Textes secondaires
+        
       },
 
       /* ====== LAYOUT ====== */

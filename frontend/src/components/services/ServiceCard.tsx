@@ -54,7 +54,7 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
         </m.h3>
 
         <m.p
-          className="text-text-base leading-relaxed tracking-wide text-accent/90"
+          className="text-body leading-relaxed tracking-wide text-accent/90"
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}

@@ -50,7 +50,7 @@
 
   /* Bouton principal - Style touche clavier */
   .button-primary {
-    @apply inline-flex items-center justify-center px-btn-x py-btn-y text-text-cta font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
+    @apply inline-flex items-center justify-center px-btn-x py-btn-y text-body-lg font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-accent;
 
     /* Variables pour les animations */
     --key-press-distance: 3px;

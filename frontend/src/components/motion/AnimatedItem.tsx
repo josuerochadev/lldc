@@ -1,11 +1,11 @@
 // src/components/motion/AnimatedItem.tsx
 import type React from 'react';
 import { m, type Variants } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 import { fadeInUp } from './variants/fade';
 
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { useLocation } from 'react-router-dom';
 
 export type AnimatedItemProps = {
   children: React.ReactNode;

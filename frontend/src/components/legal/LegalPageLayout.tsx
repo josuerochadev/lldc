@@ -44,7 +44,7 @@ export default function LegalPageLayout({
             <AnimatedItem index={0} variant={fadeInUp}>
               <PageHeader title={title} />
             </AnimatedItem>
-            <article className="mx-auto max-w-4xl space-y-16 px-8 text-text-base leading-relaxed">
+            <article className="mx-auto max-w-4xl space-y-16 px-8 text-body leading-relaxed">
               {lastUpdated && (
                 <AnimatedItem index={1} variant={fadeInUp}>
                   <div className="border-dark-green mb-2 border-l-4 py-2 pl-6">

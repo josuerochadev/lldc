@@ -15,7 +15,7 @@ export default function App() {
       <Route
         path="/mentions-legales"
         element={
-          <Suspense fallback={<div className="p-4 text-text-base">…</div>}>
+          <Suspense fallback={<div className="p-4 text-body">…</div>}>
             <MentionsLegales />
           </Suspense>
         }
@@ -23,7 +23,7 @@ export default function App() {
       <Route
         path="/conditions-de-vente"
         element={
-          <Suspense fallback={<div className="p-4 text-text-base">…</div>}>
+          <Suspense fallback={<div className="p-4 text-body">…</div>}>
             <ConditionsDeVente />
           </Suspense>
         }
@@ -31,7 +31,7 @@ export default function App() {
       <Route
         path="*"
         element={
-          <Suspense fallback={<div className="p-4 text-text-base">…</div>}>
+          <Suspense fallback={<div className="p-4 text-body">…</div>}>
             <NotFound />
           </Suspense>
         }
