@@ -152,9 +152,9 @@ export default function ContactForm() {
 
         {/* Bouton (alinha à esquerda e ocupa a linha inteira em lg+) */}
         <div className="lg:col-span-2">
-          <Button type="submit" disabled={status === 'sending'} className="mt-2">
+          <Button type="submit" disabled={status === 'sending'} className="group mt-2">
             <span className="flex items-center gap-2">
-              <Send className="button-icon" />
+              <Send className="button-icon group-hover:rotate-12" />
               {status === 'sending' ? 'Envoi en cours...' : 'Envoyer'}
             </span>
           </Button>

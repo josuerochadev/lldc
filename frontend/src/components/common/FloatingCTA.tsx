@@ -89,9 +89,9 @@ export default function FloatingCTA() {
             rel="noopener noreferrer"
             aria-label="Prendre rendez-vous"
           >
-            <Button>
+            <Button className="group">
               <span className="flex items-center gap-2">
-                <Calendar className="button-icon" />
+                <Calendar className="button-icon group-hover:rotate-12" />
                 Prendre rendez-vous
               </span>
             </Button>
