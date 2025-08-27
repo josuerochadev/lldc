@@ -4,6 +4,7 @@
 @import './components.typography.css';
 @import './components.layout.css';
 @import './components.buttons.css';
+@import './components.forms.css';
 
 @tailwind base;
 @tailwind components;

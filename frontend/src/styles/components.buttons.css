@@ -62,13 +62,13 @@
     /* Forme moderne arrondie */
     border-radius: 12px;
     
-    /* Glassmorphism - fond violet clair avec blur */
-    background: rgba(var(--color-violet-light-rgb), 0.15);
+    /* Glassmorphism plus opaque pour visibilité sur image */
+    background: rgba(var(--color-violet-light-rgb), 0.4);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     
-    /* Bordure */
-    border: 2px solid rgba(var(--color-mauve-dark-rgb));
+    /* Bordure plus marquée */
+    border: 2px solid rgba(var(--color-mauve-dark-rgb), 0.9);
     
     /* Texte mauve contrasté */
     color: rgba(var(--color-mauve-dark-rgb), 0.9);
@@ -86,8 +86,8 @@
   @media (hover: hover) {
     .button-primary:hover {
       /* Glassmorphism renforcé au hover */
-      background: rgba(var(--color-violet-light-rgb), 0.25);
-      border-color: rgba(var(--color-mauve-dark-rgb));
+      background: rgba(var(--color-violet-light-rgb), 0.55);
+      border-color: rgba(var(--color-mauve-dark-rgb), 1);
       
       /* Légère élévation moderne */
       transform: translateY(-2px);
@@ -106,8 +106,8 @@
       transform: translateY(-1px);
       
       /* Glassmorphism plus intense */
-      background: rgba(var(--color-violet-light-rgb), 0.35);
-      border-color: rgba(var(--color-mauve-dark-rgb));
+      background: rgba(var(--color-violet-light-rgb), 0.65);
+      border-color: rgba(var(--color-mauve-dark-rgb), 1);
       
       /* Ombre réduite */
       box-shadow: 

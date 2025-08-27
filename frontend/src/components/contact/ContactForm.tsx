@@ -123,19 +123,19 @@ export default function ContactForm() {
       {/* Área de mensagens (status/sucesso/erro) */}
       <div ref={messageRef} tabIndex={-1} aria-live="polite" className="mb-flow outline-none">
         {status === 'success' && (
-          <div className="font-semibold text-primary">✅ Votre message a bien été envoyé !</div>
+          <div className="form-message--success">✅ Votre message a bien été envoyé !</div>
         )}
-        {status === 'error' && <div className="font-semibold text-red-700">{error}</div>}
+        {status === 'error' && <div className="form-message--error">{error}</div>}
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 gap-word-gap lg:grid-cols-2"
+        className="grid grid-cols-1 gap-md lg:grid-cols-2"
         aria-busy={status === 'sending'}
       >
         {/* Champ Nom */}
         <div className="flex min-w-0 flex-col">
-          <label htmlFor="name" className="mb-2">
+          <label htmlFor="name" className="form-label">
             Nom{' '}
             <span className="text-red-600" aria-label="requis">
               *
@@ -148,8 +148,8 @@ export default function ContactForm() {
             required
             minLength={2}
             maxLength={50}
-            className={`w-full rounded-btn border-2 p-4 font-serif tracking-wider ${
-              fieldErrors.name ? 'border-red-500' : 'border-primary'
+            className={`form-input ${
+              fieldErrors.name ? 'form-input--error' : ''
             }`}
             placeholder="Votre nom"
             autoComplete="name"
@@ -167,11 +167,11 @@ export default function ContactForm() {
               }
             }}
           />
-          <div id="name-hint" className="mt-1 text-xs text-gray-600">
+          <div id="name-hint" className="form-hint">
             2 à 50 caractères
           </div>
           {fieldErrors.name && (
-            <div id="name-error" className="mt-1 text-xs text-red-600" role="alert">
+            <div id="name-error" className="form-error" role="alert">
               {fieldErrors.name}
             </div>
           )}
@@ -179,7 +179,7 @@ export default function ContactForm() {
 
         {/* Champ Email */}
         <div className="flex min-w-0 flex-col">
-          <label htmlFor="email" className="mb-2">
+          <label htmlFor="email" className="form-label">
             Email{' '}
             <span className="text-red-600" aria-label="requis">
               *
@@ -191,8 +191,8 @@ export default function ContactForm() {
             type="email"
             required
             maxLength={64}
-            className={`w-full rounded-btn border-2 p-4 font-serif tracking-wider ${
-              fieldErrors.email ? 'border-red-500' : 'border-primary'
+            className={`form-input ${
+              fieldErrors.email ? 'form-input--error' : ''
             }`}
             placeholder="Votre email"
             autoComplete="email"
@@ -210,11 +210,11 @@ export default function ContactForm() {
               }
             }}
           />
-          <div id="email-hint" className="mt-1 text-xs text-gray-600">
+          <div id="email-hint" className="form-hint">
             Format : exemple@domaine.com
           </div>
           {fieldErrors.email && (
-            <div id="email-error" className="mt-1 text-xs text-red-600" role="alert">
+            <div id="email-error" className="form-error" role="alert">
               {fieldErrors.email}
             </div>
           )}
@@ -222,7 +222,7 @@ export default function ContactForm() {
 
         {/* Champ Message (ocupa a linha inteira em lg+) */}
         <div className="flex min-w-0 flex-col lg:col-span-2">
-          <label htmlFor="message" className="mb-2">
+          <label htmlFor="message" className="form-label">
             Message{' '}
             <span className="text-red-600" aria-label="requis">
               *
@@ -235,8 +235,8 @@ export default function ContactForm() {
             required
             minLength={10}
             maxLength={1000}
-            className={`w-full resize-none rounded-btn border-2 p-4 font-serif tracking-wider ${
-              fieldErrors.message ? 'border-red-500' : 'border-primary'
+            className={`form-input resize-none ${
+              fieldErrors.message ? 'form-input--error' : ''
             }`}
             placeholder="Votre message..."
             autoComplete="message"
@@ -254,11 +254,11 @@ export default function ContactForm() {
               }
             }}
           />
-          <div id="message-hint" className="mt-1 text-xs text-gray-600">
+          <div id="message-hint" className="form-hint">
             10 à 1000 caractères
           </div>
           {fieldErrors.message && (
-            <div id="message-error" className="mt-1 text-xs text-red-600" role="alert">
+            <div id="message-error" className="form-error" role="alert">
               {fieldErrors.message}
             </div>
           )}

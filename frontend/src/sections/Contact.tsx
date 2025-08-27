@@ -14,9 +14,13 @@ import ContactForm from '@/components/contact/ContactForm';
  */
 export default function Contact() {
   return (
-    <SectionContainer id="contact">
+    <SectionContainer 
+      id="contact" 
+      className="bg-boat relative text-accent shadow-xl"
+      overlayClassName="bg-transparent"
+    >
       <SectionTitle title="Nous contacter" />
-      <div className="mx-auto mb-title-gap max-w-4xl rounded-btn border-2 border-primary/80 bg-accent/60 px-container-x py-md shadow-card backdrop-blur-xl lg:max-w-5xl">
+      <div className="mx-auto max-w-4xl lg:max-w-5xl">
         <ContactForm />
       </div>
     </SectionContainer>

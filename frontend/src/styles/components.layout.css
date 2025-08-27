@@ -32,4 +32,16 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  /* Background pour la section Contact (formulaire) */
+  .bg-boat {
+    background-image: image-set(
+      url('/backgrounds/boat-background-1600.avif') type('image/avif'),
+      url('/backgrounds/boat-background-1600.webp') type('image/webp'),
+      url('/backgrounds/boat-background.png') type('image/png')
+    );
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
