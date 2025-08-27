@@ -127,7 +127,7 @@ export default function OfferCard({ offer, isOpen, onToggle, index }: OfferCardP
                   )}
                 >
                   {isOpen ? (
-                    <div className="space-y-2">
+                    <div className="space-y-xs">
                       <p className="text-sm font-semibold uppercase tracking-wide text-accent">
                         Détails
                       </p>

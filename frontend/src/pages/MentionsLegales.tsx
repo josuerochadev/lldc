@@ -43,7 +43,7 @@ export default function MentionsLegales() {
 
       <AnimatedItem index={3} variant={fadeInUp}>
         <AnimatedItem index={6} variant={fadeInUp}>
-          <section className="space-y-8">
+          <section className="space-y-md">
             <h2
               id="editeur"
               className="font-serif text-title-lg font-bold text-primary"
@@ -52,8 +52,8 @@ export default function MentionsLegales() {
               Éditeur du site
             </h2>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="space-y-sm">
+              <div className="grid grid-cols-1 gap-md md:grid-cols-2">
                 <div>
                   <p className="text-text-base leading-relaxed">
                     <strong className="font-semibold text-primary">Nom :</strong>
@@ -99,13 +99,17 @@ export default function MentionsLegales() {
       </AnimatedItem>
 
       <AnimatedItem index={5} variant={fadeInUp}>
-        <section className="space-y-8">
-          <h2 id="contact" className="font-serif text-title-lg font-bold text-primary" tabIndex={-1}>
+        <section className="space-y-md">
+          <h2
+            id="contact"
+            className="font-serif text-title-lg font-bold text-primary"
+            tabIndex={-1}
+          >
             Contact
           </h2>
 
           <HighlightBox title="Nous contacter" variant="info">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-sm md:grid-cols-2">
               <p className="text-primary">
                 <strong>Email :</strong>
                 <br />
@@ -132,7 +136,7 @@ export default function MentionsLegales() {
       </AnimatedItem>
 
       <AnimatedItem index={6} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="hebergeur"
             className="font-serif text-title-lg font-bold text-primary"
@@ -151,7 +155,7 @@ export default function MentionsLegales() {
       </AnimatedItem>
 
       <AnimatedItem index={6} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="propriete-intellectuelle"
             className="font-serif text-title-lg font-bold text-primary"
@@ -169,7 +173,7 @@ export default function MentionsLegales() {
       </AnimatedItem>
 
       <AnimatedItem index={6} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="donnees-personnelles"
             className="font-serif text-title-lg font-bold text-primary"
@@ -187,7 +191,7 @@ export default function MentionsLegales() {
       </AnimatedItem>
 
       <AnimatedItem index={6} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="mediation"
             className="font-serif text-title-lg font-bold text-primary"
@@ -196,7 +200,7 @@ export default function MentionsLegales() {
             Médiation de la consommation
           </h2>
 
-          <p className="mb-6 text-text-base leading-relaxed">
+          <p className="mb-md text-text-base leading-relaxed">
             Conformément à l'article L.612-1 du Code de la consommation, le client peut recourir à
             un médiateur de la consommation gratuitement.
           </p>

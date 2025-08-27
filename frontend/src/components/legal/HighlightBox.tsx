@@ -51,7 +51,7 @@ export default function HighlightBox({
       role="note"
     >
       {title && <h4 className={`mb-3 ${style.title}`}>{title}</h4>}
-      <div className={`${style.content} space-y-2`}>{children}</div>
+      <div className={`${style.content} space-y-xs`}>{children}</div>
     </div>
   );
 }

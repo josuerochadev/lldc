@@ -76,19 +76,32 @@ const config: Config = {
 
       /* ====== SPACING ====== */
       spacing: {
-        // existants
-        section: 'clamp(6rem, 10vw, 10rem)',
-        'section-sm': 'clamp(4rem, 8vw, 8rem)',
-        'section-gap': 'clamp(1rem, 5vw, 3rem)',
-        'title-gap': 'clamp(2rem, 2.5vw, 4rem)',
-        'btn-x': 'clamp(1.5rem, 2vw, 3rem)',
-        'btn-y': 'clamp(1.25rem, 1vw, 2.5rem)',
-        'word-gap': 'clamp(1rem, 1.5vw, 2rem)',
+        /* ===== SYSTÈME SÉMANTIQUE ===== */
+        // Espacement vertical standardisé
+        'xs': '0.5rem',    // 8px - Éléments très proches
+        'sm': '1rem',      // 16px - Paragraphes, listes
+        'md': '2rem',      // 32px - Sections de contenu  
+        'lg': '4rem',      // 64px - Grandes sections
+        'xl': '6rem',      // 96px - Sections majeures
 
-        // alias sémantiques
-        'container-x': 'clamp(1rem, 5vw, 3rem)',
-        'container-y': 'clamp(2rem, 5vw, 4rem)',
-        'flow': 'clamp(0.75rem, 2vw, 1.5rem)', // gap par défaut entre blocs
+        /* ===== ESPACEMENT SPÉCIALISÉ ===== */
+        // Sections principales (responsive)
+        section: 'clamp(6rem, 10vw, 10rem)',           // Entre sections page
+        'section-sm': 'clamp(4rem, 8vw, 8rem)',        // Sections réduites
+        
+        // Gaps internes (responsive) 
+        'section-gap': 'clamp(1rem, 5vw, 3rem)',       // ≈ md-lg responsive
+        'title-gap': 'clamp(2rem, 2.5vw, 4rem)',       // ≈ md-lg responsive
+        'flow': 'clamp(0.75rem, 2vw, 1.5rem)',         // ≈ xs-sm responsive
+        
+        // Composants
+        'btn-x': 'clamp(1.5rem, 2vw, 3rem)',           // Padding horizontal boutons
+        'btn-y': 'clamp(1.25rem, 1vw, 2.5rem)',        // Padding vertical boutons
+        'word-gap': 'clamp(1rem, 1.5vw, 2rem)',        // Gap entre mots
+        
+        // Containers
+        'container-x': 'clamp(1rem, 5vw, 3rem)',       // Padding horizontal
+        'container-y': 'clamp(2rem, 5vw, 4rem)',       // Padding vertical
       },
 
       /* ====== RADII / SHADOWS / Z ====== */

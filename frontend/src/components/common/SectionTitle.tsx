@@ -18,7 +18,7 @@ type SectionTitleProps = {
  */
 const SectionTitle = ({ title }: SectionTitleProps) => {
   return (
-    <SectionTitleReveal as="h2" className="mb-title-gap text-title-xl uppercase" title={title} />
+    <SectionTitleReveal as="h2" className="mb-title-gap pt-lg text-title-xl uppercase" title={title} />
   );
 };
 

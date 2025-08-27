@@ -79,7 +79,7 @@ export default function Footer({
           className={clsx(
             'mx-auto w-fit',
             isMenu
-              ? 'flex flex-col items-center space-y-2'
+              ? 'flex flex-col items-center space-y-xs'
               : 'grid items-baseline gap-x-section-gap sm:grid-cols-2',
           )}
         >
@@ -108,7 +108,7 @@ export default function Footer({
             aria-label="Navigation de bas de page"
             className={clsx(
               'flex flex-col items-center text-text-footer',
-              isMenu ? 'space-y-3 pt-2' : 'space-y-4 sm:items-start',
+              isMenu ? 'space-y-3 pt-2' : 'space-y-sm sm:items-start',
             )}
           >
             {/* Réseaux sociaux */}
@@ -141,7 +141,7 @@ export default function Footer({
 
             {/* Liens légaux */}
             <div
-              className={clsx('flex', isMenu ? 'space-x-6 text-text-footer' : 'flex-col space-y-4')}
+              className={clsx('flex', isMenu ? 'space-x-6 text-text-footer' : 'flex-col space-y-sm')}
             >
               {FOOTER_LINKS.map((link) => (
                 <Link

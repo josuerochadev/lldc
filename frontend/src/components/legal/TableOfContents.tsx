@@ -48,7 +48,7 @@ export default function TableOfContents({ sections, className = '' }: TableOfCon
                 <a
                   href={`#${section.id}`}
                   onClick={(e) => handleClick(e, section.id)}
-                  className="focus-style group flex items-baseline gap-4 text-primary transition-all duration-200 focus:outline-none"
+                  className="focus-style group flex items-baseline gap-sm text-primary transition-all duration-200 focus:outline-none"
                 >
                   <span className="min-w-[2rem] text-title-sm font-thin">{index + 1}.</span>
                   <span className="flex flex-wrap gap-x-1">

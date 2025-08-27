@@ -64,14 +64,14 @@ export default class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="flex min-h-screen flex-col items-center justify-center bg-accent px-4">
           <div className="mx-auto max-w-md text-center">
-            <div className="mb-6">
+            <div className="mb-md">
               <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-orange/20">
                 <span className="text-2xl">⚠️</span>
               </div>
               <h1 className="mb-4 text-title-md font-bold text-primary">
                 Oups ! Quelque chose s'est mal passé
               </h1>
-              <p className="mb-6 text-text-base text-primary/80">
+              <p className="mb-md text-text-base text-primary/80">
                 Une erreur inattendue s'est produite. Notre équipe a été automatiquement notifiée et
                 nous travaillons pour résoudre le problème.
               </p>

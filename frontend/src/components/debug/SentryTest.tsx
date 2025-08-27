@@ -23,7 +23,7 @@ export default function SentryTest() {
       style={{ zIndex: 9999 }}
     >
       <h3 className="mb-2 text-sm font-bold text-red-800">🚨 Sentry Test (dev only)</h3>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-xs">
         <button
           onClick={triggerError}
           className="rounded bg-red-500 px-3 py-2 text-sm font-medium text-white hover:bg-red-600"

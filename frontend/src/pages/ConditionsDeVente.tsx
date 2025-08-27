@@ -25,7 +25,7 @@ export default function ConditionsDeVente() {
       <TableOfContents sections={sections} />
 
       <AnimatedItem index={5} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="introduction"
             className="font-serif text-title-lg font-bold text-primary"
@@ -34,14 +34,14 @@ export default function ConditionsDeVente() {
             Fabrication et qualité
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-sm">
             <p className="text-text-base leading-relaxed">
               Les lunettes sont manufacturées par nos spécialistes expérimentés et conçues à partir
               de matériaux nobles. Il est important de traiter vos lunettes avec délicatesse.
             </p>
 
             <HighlightBox title="Services gratuits inclus" variant="info">
-              <ul className="space-y-2 text-primary">
+              <ul className="space-y-xs text-primary">
                 <li>
                   • <strong>Ajustages</strong> personnalisés
                 </li>
@@ -58,7 +58,7 @@ export default function ConditionsDeVente() {
       </AnimatedItem>
 
       <AnimatedItem index={5} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="politique-retour"
             className="font-serif text-title-lg font-bold text-primary"
@@ -69,7 +69,7 @@ export default function ConditionsDeVente() {
 
           <HighlightBox title="Points essentiels à retenir" variant="warning">
             <div className="space-y-3">
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-sm md:grid-cols-3">
                 <div className="text-center">
                   <p className="text-lg font-bold text-primary">0</p>
                   <p className="text-sm text-primary/80">
@@ -82,13 +82,15 @@ export default function ConditionsDeVente() {
                 </div>
                 <div className="text-center">
                   <p className="text-lg font-bold text-primary">✗</p>
-                  <p className="text-sm text-primary/80">montures personnalisées non retournables</p>
+                  <p className="text-sm text-primary/80">
+                    montures personnalisées non retournables
+                  </p>
                 </div>
               </div>
             </div>
           </HighlightBox>
 
-          <div className="space-y-4">
+          <div className="space-y-sm">
             <p className="text-text-base leading-relaxed">
               Il n'existe aucun droit de rétractation pour l'achat de produits personnalisés en
               boutique.
@@ -107,7 +109,7 @@ export default function ConditionsDeVente() {
       </AnimatedItem>
 
       <AnimatedItem index={5} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="changement-puissance"
             className="font-serif text-title-lg font-bold text-primary"
@@ -123,7 +125,7 @@ export default function ConditionsDeVente() {
             </p>
 
             <HighlightBox title="Tarifs des franchises" variant="info">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-md md:grid-cols-2">
                 <div className="p-4 text-center">
                   <p className="text-2xl font-bold text-primary">90€</p>
                   <p className="font-semibold text-primary">Verres progressifs</p>
@@ -144,7 +146,7 @@ export default function ConditionsDeVente() {
       </AnimatedItem>
 
       <AnimatedItem index={5} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="reglement"
             className="font-serif text-title-lg font-bold text-primary"
@@ -153,7 +155,7 @@ export default function ConditionsDeVente() {
             Règlement par chèque et tiers payant
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-sm">
             <p className="text-text-base leading-relaxed">
               <strong className="font-semibold text-primary">Règlement par chèque :</strong>
               <br />
@@ -169,7 +171,7 @@ export default function ConditionsDeVente() {
       </AnimatedItem>
 
       <AnimatedItem index={5} variant={fadeInUp}>
-        <section className="space-y-8">
+        <section className="space-y-md">
           <h2
             id="offres-commerciales"
             className="font-serif text-title-lg font-bold text-primary"
@@ -185,7 +187,7 @@ export default function ConditionsDeVente() {
             </p>
           </HighlightBox>
 
-          <div className="space-y-8">
+          <div className="space-y-md">
             <div>
               <h3 className="mb-4 text-title-sm font-bold text-primary">01. Remise à la reprise</h3>
               <div className="border-dark-green space-y-3 border-l-2 pl-6">
@@ -223,8 +225,8 @@ export default function ConditionsDeVente() {
                   équipement Komono et Myorelax
                 </p>
                 <p className="text-text-base leading-relaxed">
-                  <strong className="text-primary">Options (+40€) :</strong> polarisation solaires ou
-                  double CozyLens
+                  <strong className="text-primary">Options (+40€) :</strong> polarisation solaires
+                  ou double CozyLens
                 </p>
               </div>
             </div>
