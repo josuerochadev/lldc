@@ -25,9 +25,13 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
 
   const [first, ...rest] = label.split(' ');
   const last = rest.join(' ');
-  
+
   // Vérifie si ce lien correspond à la section active
   const isActive = isHash(href) && href === `#${activeSection}`;
+
+  // Classes communes pour tous les liens (scale géré par Framer Motion)
+  const linkClasses =
+    'flex items-baseline uppercase transition-all duration-200 ease-out hover:text-orange focus-visible:text-orange focus-ring';
 
   // Smooth scroll vers l’ancre si on est déjà sur la Home
   const handleHashClick = useCallback(
@@ -53,15 +57,15 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
 
   const content = (
     <>
-      <span className={`mr-4 text-title-sm font-thin transition-colors ${isActive ? 'text-orange' : ''}`}>
+      <span className={`mr-4 text-title-sm font-thin ${isActive ? 'text-orange' : ''}`}>
         {index + 1}.
       </span>
       <span className="flex flex-wrap gap-x-1 text-title-lg">
-        <span className={`font-thin transition-colors ${isActive ? 'text-orange' : ''}`}>
+        <span className={`font-thin ${isActive ? 'text-orange' : ''}`}>
           {first}
         </span>
         {last && (
-          <span className={`font-extrabold transition-colors ${isActive ? 'text-orange' : ''}`}>
+          <span className={`font-extrabold ${isActive ? 'text-orange' : ''}`}>
             {last}
           </span>
         )}
@@ -82,8 +86,9 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
         target="_blank"
         rel="noopener noreferrer"
         onClick={onClick}
-        className="flex items-baseline uppercase transition-all duration-300 hover:scale-110 hover:text-orange focus-visible:text-orange focus-visible:scale-110 focus-ring"
+        className={linkClasses}
         whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+        whileFocus={{ scale: prefersReduced ? 1 : 1.1 }}
       >
         {content}
       </m.a>
@@ -98,8 +103,9 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
         <m.a
           href={href}
           onClick={handleHashClick}
-          className="flex items-baseline uppercase transition-all duration-300 hover:scale-110 hover:text-orange focus-visible:text-orange focus-visible:scale-110 focus-ring"
+          className={linkClasses}
           whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+          whileFocus={{ scale: prefersReduced ? 1 : 1.1 }}
         >
           {content}
         </m.a>
@@ -107,12 +113,11 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
     }
     // Sinon, on route vers "/" + hash (le scroll natif s’appliquera)
     return (
-      <m.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
-        <Link
-          to={{ pathname: '/', hash: href }}
-          onClick={onClick}
-          className="flex items-baseline uppercase transition-all duration-300 hover:scale-110 hover:text-orange focus-visible:text-orange focus-visible:scale-110 focus-ring"
-        >
+      <m.div
+        whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+        whileFocus={{ scale: prefersReduced ? 1 : 1.1 }}
+      >
+        <Link to={{ pathname: '/', hash: href }} onClick={onClick} className={linkClasses}>
           {content}
         </Link>
       </m.div>
@@ -122,12 +127,11 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
   // 3) Route interne (au cas où tu en ajoutes plus tard)
   if (isInternalPath(href)) {
     return (
-      <m.div whileHover={{ scale: prefersReduced ? 1 : 1.1 }}>
-        <Link
-          to={href}
-          onClick={onClick}
-          className="flex items-baseline uppercase transition-all duration-300 hover:scale-110 hover:text-orange focus-visible:text-orange focus-visible:scale-110 focus-ring"
-        >
+      <m.div
+        whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
+        whileFocus={{ scale: prefersReduced ? 1 : 1.1 }}
+      >
+        <Link to={href} onClick={onClick} className={linkClasses}>
           {content}
         </Link>
       </m.div>
@@ -139,7 +143,7 @@ export default function MenuLinkItem({ label, href, index, onClick }: MenuLinkIt
     <m.a
       href={href}
       onClick={onClick}
-      className="flex items-baseline uppercase transition hover:scale-110"
+      className={linkClasses}
       whileHover={{ scale: prefersReduced ? 1 : 1.1 }}
     >
       {content}
